@@ -131,6 +131,7 @@ export default function ContactForm() {
             type="text"
             className="form-input"
             placeholder="e.g. Alex Morgan"
+            autoComplete="name"
             aria-invalid={!!errors.fullName}
             aria-describedby={errors.fullName ? 'fullName-error' : undefined}
             {...register('fullName')}
@@ -151,6 +152,7 @@ export default function ContactForm() {
             type="email"
             className="form-input"
             placeholder="a.morgan@company.com"
+            autoComplete="email"
             aria-invalid={!!errors.email}
             aria-describedby={errors.email ? 'email-error' : undefined}
             {...register('email')}
@@ -173,6 +175,7 @@ export default function ContactForm() {
           type="text"
           className="form-input"
           placeholder="e.g. Morgan Dynamics"
+          autoComplete="organization"
           {...register('company')}
         />
       </div>

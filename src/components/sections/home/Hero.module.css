@@ -77,9 +77,17 @@
 }
 
 .title {
-  font-size: clamp(3rem, 9.5vw, 7.5rem);
-  line-height: 0.92;
-  letter-spacing: -0.045em;
+  font-size: clamp(2.35rem, 8.5vw, 7rem);
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  word-break: normal;
+}
+
+@media (max-width: 360px) {
+  .title {
+    font-size: 2.15rem;
+    line-height: 1.02;
+  }
 }
 
 .titleLine {

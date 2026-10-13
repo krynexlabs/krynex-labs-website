@@ -36,8 +36,15 @@
 
 @media (max-width: 1024px) {
   .timeline {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
     gap: 1.5rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .timeline {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
   }
 }
 

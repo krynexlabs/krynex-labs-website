@@ -22,7 +22,7 @@ export default function Hero() {
           </p>
 
           <h1 id="hero-title" className={styles.title}>
-            <span className={styles.titleLine}>Software built for&nbsp;</span>
+            <span className={styles.titleLine}>Software built for</span>
             <span className={styles.titleAccent}>business.</span>
           </h1>
 

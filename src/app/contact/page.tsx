@@ -4,9 +4,9 @@ import ContactForm from '@/components/forms/ContactForm';
 import Reveal from '@/components/animation/Reveal';
 
 export const metadata: Metadata = {
-  title: 'Contact Krynex Labs',
+  title: 'Contact Us | Business Software Inquiries',
   alternates: { canonical: '/contact' },
-  description: `Get in touch with ${siteConfig.name} to explore software solutions, discuss operational workflows, or start a conversation.`,
+  description: 'Get in touch with Krynex Labs to explore software solutions, discuss operational workflows, or start a conversation.',
 };
 
 export default function ContactPage() {

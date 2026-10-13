@@ -1,13 +1,14 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowRight, Cloud, Layers, Cpu, Wrench, RefreshCw, CheckCircle2 } from 'lucide-react';
-import { siteConfig } from '@/data/site-data';
 import Reveal from '@/components/animation/Reveal';
 
+import styles from './WhatWeDo.module.css';
+
 export const metadata: Metadata = {
-  title: 'What We Do — Core Capabilities',
+  title: 'What We Do | SaaS Products & Capabilities',
   alternates: { canonical: '/what-we-do' },
-  description: `Discover what ${siteConfig.name} builds: SaaS product development, business software, practical engineering, and intelligent technology.`,
+  description: 'Explore Krynex Labs capabilities in SaaS product development, operational business systems, and practical intelligent technology.',
 };
 
 const capabilities = [
@@ -98,25 +99,16 @@ export default function WhatWeDoPage() {
     <>
       {/* Hero Header */}
       <section
-        className="section"
-        style={{ paddingTop: 'calc(var(--nav-height) + 4rem)' }}
+        className={`section ${styles.heroSection}`}
         aria-labelledby="capabilities-heading"
       >
         <div className="site-container">
           <Reveal>
             <p className="section-label">Company Capabilities</p>
-            <h1 id="capabilities-heading" style={{ maxWidth: '44rem' }}>
+            <h1 id="capabilities-heading" className={styles.heroHeading}>
               What we do.
             </h1>
-            <p
-              className="prose-width"
-              style={{
-                marginTop: '1.5rem',
-                fontSize: 'clamp(1rem, 1.3vw, 1.125rem)',
-                lineHeight: 1.7,
-                color: 'var(--color-text-secondary)',
-              }}
-            >
+            <p className={`prose-width ${styles.heroLead}`}>
               Krynex Labs develops purpose-built SaaS products and business software.
               Here is how our core engineering capabilities create lasting operational value for businesses.
             </p>
@@ -125,149 +117,50 @@ export default function WhatWeDoPage() {
       </section>
 
       {/* Capabilities List */}
-      <section className="section" style={{ background: 'var(--color-bg-secondary)' }}>
+      <section className={`section ${styles.capabilitiesSection}`}>
         <div className="site-container">
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '3.5rem' }}>
+          <div className={styles.capabilitiesList}>
             {capabilities.map((cap, index) => {
               const Icon = cap.icon;
               return (
                 <div key={cap.id} id={cap.id} style={{ scrollMarginTop: '6rem' }}>
                   <Reveal delay={index * 50}>
-                    <article
-                      style={{
-                        background: 'var(--color-surface)',
-                        border: '1px solid var(--color-border)',
-                        borderRadius: 'var(--radius-xl)',
-                        padding: 'clamp(2rem, 4vw, 3.5rem)',
-                        display: 'grid',
-                        gridTemplateColumns: '1.2fr 1fr',
-                        gap: '3rem',
-                        alignItems: 'start',
-                      }}
-                    >
+                    <article className={styles.capabilityCard}>
                       <div>
-                        <div
-                          style={{
-                            display: 'inline-flex',
-                            alignItems: 'center',
-                            gap: '0.625rem',
-                            padding: '0.375rem 0.875rem',
-                            borderRadius: '9999px',
-                            background: 'var(--color-surface-elevated)',
-                            border: '1px solid var(--color-border)',
-                            fontFamily: 'var(--font-mono)',
-                            fontSize: '0.75rem',
-                            color: 'var(--color-accent)',
-                            marginBottom: '1.5rem',
-                          }}
-                        >
+                        <div className={styles.capabilityBadge}>
                           <Icon size={14} aria-hidden="true" />
                           <span>0{index + 1} {'//'} CAPABILITY</span>
                         </div>
 
-                        <h2
-                          style={{
-                            fontFamily: 'var(--font-display)',
-                            fontSize: 'clamp(1.5rem, 2.5vw, 2rem)',
-                            fontWeight: 700,
-                            color: 'var(--color-text-primary)',
-                            marginBottom: '0.5rem',
-                          }}
-                        >
+                        <h2 className={styles.capabilityTitle}>
                           {cap.title}
                         </h2>
 
-                        <p
-                          style={{
-                            fontFamily: 'var(--font-mono)',
-                            fontSize: '0.875rem',
-                            color: 'var(--color-accent)',
-                            marginBottom: '1.25rem',
-                          }}
-                        >
+                        <p className={styles.capabilityTagline}>
                           {cap.tagline}
                         </p>
 
-                        <p
-                          style={{
-                            fontSize: '1rem',
-                            lineHeight: 1.7,
-                            color: 'var(--color-text-secondary)',
-                            marginBottom: '1.5rem',
-                          }}
-                        >
+                        <p className={styles.capabilityDesc}>
                           {cap.description}
                         </p>
 
-                        <div
-                          style={{
-                            background: 'var(--color-bg)',
-                            border: '1px solid var(--color-border)',
-                            borderRadius: 'var(--radius-md)',
-                            padding: '1.25rem',
-                          }}
-                        >
-                          <strong
-                            style={{
-                              display: 'block',
-                              fontFamily: 'var(--font-mono)',
-                              fontSize: '0.8125rem',
-                              color: 'var(--color-text-primary)',
-                              marginBottom: '0.375rem',
-                              textTransform: 'uppercase',
-                              letterSpacing: '0.05em',
-                            }}
-                          >
+                        <div className={styles.businessValueBox}>
+                          <strong className={styles.businessValueLabel}>
                             Business Value
                           </strong>
-                          <p style={{ margin: 0, fontSize: '0.875rem', lineHeight: 1.6, color: 'var(--color-text-secondary)' }}>
+                          <p className={styles.businessValueText}>
                             {cap.businessValue}
                           </p>
                         </div>
                       </div>
 
-                      <div
-                        style={{
-                          background: 'var(--color-surface-elevated)',
-                          border: '1px solid var(--color-border)',
-                          borderRadius: 'var(--radius-lg)',
-                          padding: '2rem',
-                          height: '100%',
-                        }}
-                      >
-                        <h3
-                          style={{
-                            fontFamily: 'var(--font-display)',
-                            fontSize: '1.125rem',
-                            fontWeight: 600,
-                            marginBottom: '1.25rem',
-                            color: 'var(--color-text-primary)',
-                          }}
-                        >
+                      <div className={styles.focusElementsBox}>
+                        <h3 className={styles.focusElementsTitle}>
                           Key Focus Elements
                         </h3>
-                        <ul
-                          style={{
-                            listStyle: 'none',
-                            padding: 0,
-                            margin: 0,
-                            display: 'flex',
-                            flexDirection: 'column',
-                            gap: '0.875rem',
-                          }}
-                        >
+                        <ul className={styles.focusElementsList}>
                           {cap.bulletPoints.map((point) => (
-                            <li
-                              key={point}
-                              style={{
-                                display: 'flex',
-                                alignItems: 'flex-start',
-                                gap: '0.625rem',
-                                fontSize: '0.875rem',
-                                lineHeight: 1.6,
-                                color: 'var(--color-text-secondary)',
-                              }}
-                            >
+                            <li key={point} className={styles.focusElementItem}>
                               <CheckCircle2
                                 size={16}
                                 style={{ color: 'var(--color-accent)', flexShrink: 0, marginTop: '0.2rem' }}
@@ -288,21 +181,14 @@ export default function WhatWeDoPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="section" style={{ textAlign: 'center' }}>
+      <section className={`section ${styles.ctaSection}`}>
         <div className="site-container" style={{ maxWidth: '38rem' }}>
           <Reveal>
             <h2>Have a business software requirement?</h2>
-            <p
-              style={{
-                marginTop: '1rem',
-                fontSize: '1.0625rem',
-                lineHeight: 1.7,
-                color: 'var(--color-text-secondary)',
-              }}
-            >
+            <p className={styles.ctaLead}>
               Get in touch with the Krynex Labs team to discuss how our software capabilities can support your operations.
             </p>
-            <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', marginTop: '2rem', flexWrap: 'wrap' }}>
+            <div className={styles.ctaActions}>
               <Link href="/contact" className="btn btn-primary">
                 Talk to Our Team
                 <ArrowRight size={16} aria-hidden="true" />

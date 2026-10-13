@@ -9,7 +9,7 @@ export const siteConfig = {
   supportingStatement:
     'Krynex Labs develops practical software products that help businesses simplify operations, improve workflows, and move forward with technology.',
   description:
-    'Krynex Labs develops practical software products that help businesses simplify operations, improve workflows, and move forward with technology.',
+    'Krynex Labs develops SaaS products and industry-specific software to help businesses improve workflows, streamline operations, and grow with technology.',
   // Single canonical hostname for the website (apex krynexlabs.in redirects here via Vercel).
   url: 'https://www.krynexlabs.in',
   // Bare domain, used for email addresses only (not for website URLs).

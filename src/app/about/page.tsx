@@ -4,10 +4,12 @@ import { ArrowRight, CheckCircle2, ShieldCheck } from 'lucide-react';
 import { siteConfig, focusAreas, approachPrinciples, philosophy } from '@/data/site-data';
 import Reveal from '@/components/animation/Reveal';
 
+import styles from './About.module.css';
+
 export const metadata: Metadata = {
-  title: 'About Krynex Labs',
+  title: 'About Us | Purpose-Built Business Software',
   alternates: { canonical: '/about' },
-  description: `Learn about ${siteConfig.name}, a technology company focused on SaaS products and business software.`,
+  description: 'Learn about Krynex Labs, an independent technology company dedicated to developing dependable SaaS products and practical business software.',
 };
 
 export default function AboutPage() {
@@ -15,25 +17,16 @@ export default function AboutPage() {
     <>
       {/* Hero Banner */}
       <section
-        className="section"
-        style={{ paddingTop: 'calc(var(--nav-height) + 4rem)' }}
+        className={`section ${styles.heroSection}`}
         aria-labelledby="about-heading"
       >
         <div className="site-container">
           <Reveal>
             <p className="section-label">Company Profile</p>
-            <h1 id="about-heading" style={{ maxWidth: '44rem' }}>
+            <h1 id="about-heading" className={styles.heroHeading}>
               Software built with purpose and engineering rigor.
             </h1>
-            <p
-              className="prose-width"
-              style={{
-                marginTop: '1.5rem',
-                fontSize: 'clamp(1rem, 1.3vw, 1.125rem)',
-                lineHeight: 1.7,
-                color: 'var(--color-text-secondary)',
-              }}
-            >
+            <p className={`prose-width ${styles.heroLead}`}>
               {siteConfig.name} is a technology company focused on developing practical SaaS products and business software.
               We build digital systems that help businesses simplify operations, connect workflows, and move forward with technology.
             </p>
@@ -42,7 +35,7 @@ export default function AboutPage() {
       </section>
 
       {/* Focus & Capabilities */}
-      <section className="section" style={{ background: 'var(--color-bg-secondary)' }}>
+      <section className={`section ${styles.sectionAlt}`}>
         <div className="site-container">
           <Reveal>
             <p className="section-label">Our Focus</p>
@@ -52,46 +45,22 @@ export default function AboutPage() {
             </p>
           </Reveal>
 
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 320px), 1fr))',
-              gap: '2rem',
-            }}
-          >
+          <div className={styles.focusGrid}>
             {focusAreas.map((area, idx) => (
               <Reveal key={area.id} delay={idx * 80}>
-                <div
-                  style={{
-                    background: 'var(--color-surface)',
-                    border: '1px solid var(--color-border)',
-                    borderRadius: 'var(--radius-lg)',
-                    padding: '2.25rem',
-                    height: '100%',
-                    display: 'flex',
-                    flexDirection: 'column',
-                  }}
-                >
-                  <span
-                    style={{
-                      fontFamily: 'var(--font-mono)',
-                      fontSize: '0.8125rem',
-                      color: 'var(--color-accent)',
-                      marginBottom: '1rem',
-                      fontWeight: 600,
-                    }}
-                  >
+                <div className={styles.focusCard}>
+                  <span className={styles.focusCardIndex}>
                     0{idx + 1} {'//'} AREA
                   </span>
-                  <h3 style={{ fontSize: '1.25rem', fontFamily: 'var(--font-display)', marginBottom: '0.75rem' }}>
+                  <h3 className={styles.focusCardTitle}>
                     {area.title}
                   </h3>
-                  <p style={{ fontSize: '0.9375rem', lineHeight: 1.65, color: 'var(--color-text-secondary)', marginBottom: '1.5rem', flexGrow: 1 }}>
+                  <p className={styles.focusCardDesc}>
                     {area.description}
                   </p>
-                  <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.5rem', borderTop: '1px solid var(--color-border)', paddingTop: '1.25rem' }}>
+                  <ul className={styles.focusCardList}>
                     {area.highlights.map((h) => (
-                      <li key={h} style={{ fontSize: '0.84rem', color: 'var(--color-text-secondary)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                      <li key={h} className={styles.focusCardListItem}>
                         <CheckCircle2 size={14} style={{ color: 'var(--color-accent)', flexShrink: 0 }} />
                         <span>{h}</span>
                       </li>
@@ -115,45 +84,20 @@ export default function AboutPage() {
             </p>
           </Reveal>
 
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 260px), 1fr))',
-              gap: '1.5rem',
-              marginTop: '3rem',
-            }}
-          >
+          <div className={styles.approachGrid}>
             {approachPrinciples.map((p, i) => (
               <Reveal key={p.title} delay={i * 60}>
-                <div
-                  style={{
-                    padding: '2rem',
-                    border: '1px solid var(--color-border)',
-                    borderRadius: 'var(--radius-lg)',
-                    background: 'var(--color-surface)',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    gap: '0.75rem',
-                    height: '100%',
-                  }}
-                >
-                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: '1.125rem', color: 'var(--color-accent)', fontWeight: 700 }}>
+                <div className={styles.approachCard}>
+                  <span className={styles.approachNumber}>
                     {p.number}
                   </span>
-                  <h3
-                    style={{
-                      fontFamily: 'var(--font-display)',
-                      fontSize: '1.25rem',
-                      fontWeight: 600,
-                      color: 'var(--color-text-primary)',
-                    }}
-                  >
+                  <h3 className={styles.approachTitle}>
                     {p.title}
                   </h3>
-                  <p style={{ fontSize: '0.9375rem', lineHeight: 1.6, color: 'var(--color-text-secondary)' }}>
+                  <p className={styles.approachSummary}>
                     {p.summary}
                   </p>
-                  <p style={{ fontSize: '0.84rem', lineHeight: 1.6, color: 'var(--color-text-tertiary)', borderTop: '1px solid var(--color-border)', paddingTop: '0.75rem', marginTop: 'auto' }}>
+                  <p className={styles.approachDetail}>
                     {p.detail}
                   </p>
                 </div>
@@ -164,7 +108,7 @@ export default function AboutPage() {
       </section>
 
       {/* Core Principles / Philosophy */}
-      <section className="section" style={{ background: 'var(--color-bg-secondary)' }}>
+      <section className={`section ${styles.sectionAlt}`}>
         <div className="site-container">
           <Reveal>
             <p className="section-label">Core Philosophy</p>
@@ -174,28 +118,14 @@ export default function AboutPage() {
             </p>
           </Reveal>
 
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 260px), 1fr))',
-              gap: '1.5rem',
-              marginTop: '3rem',
-            }}
-          >
+          <div className={styles.pillarsGrid}>
             {philosophy.pillars.map((pillar, idx) => (
               <Reveal key={pillar.title} delay={idx * 60}>
-                <div
-                  style={{
-                    padding: '1.75rem',
-                    background: 'var(--color-surface)',
-                    border: '1px solid var(--color-border)',
-                    borderRadius: 'var(--radius-md)',
-                  }}
-                >
-                  <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.125rem', marginBottom: '0.5rem', color: 'var(--color-text-primary)' }}>
+                <div className={styles.pillarCard}>
+                  <h3 className={styles.pillarTitle}>
                     {pillar.title}
                   </h3>
-                  <p style={{ fontSize: '0.875rem', lineHeight: 1.6, color: 'var(--color-text-secondary)' }}>
+                  <p className={styles.pillarDesc}>
                     {pillar.description}
                   </p>
                 </div>
@@ -209,26 +139,14 @@ export default function AboutPage() {
       <section className="section">
         <div className="site-container">
           <Reveal>
-            <div
-              style={{
-                background: 'var(--color-surface)',
-                border: '1px solid var(--color-border)',
-                borderRadius: 'var(--radius-xl)',
-                padding: 'clamp(2rem, 4vw, 3rem)',
-                display: 'flex',
-                flexDirection: 'column',
-                gap: '1rem',
-                maxWidth: '54rem',
-                marginInline: 'auto',
-              }}
-            >
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+            <div className={styles.governanceCard}>
+              <div className={styles.governanceHeader}>
                 <ShieldCheck size={20} style={{ color: 'var(--color-accent)' }} />
-                <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.25rem', margin: 0 }}>
+                <h3 className={styles.governanceTitle}>
                   Independent SaaS Company
                 </h3>
               </div>
-              <p style={{ color: 'var(--color-text-secondary)', lineHeight: 1.7, fontSize: '0.9375rem', margin: 0 }}>
+              <p className={styles.governanceText}>
                 Krynex Labs operates as a dedicated software company. We communicate with total transparency regarding our software capabilities, engineering methodologies, and product directions without inflated metrics or fabricated statistics.
               </p>
             </div>
@@ -237,21 +155,14 @@ export default function AboutPage() {
       </section>
 
       {/* Contact CTA */}
-      <section className="section" style={{ textAlign: 'center', background: 'var(--color-bg-secondary)' }}>
-        <div className="site-container" style={{ maxWidth: '38rem' }}>
+      <section className={`section ${styles.ctaSection}`}>
+        <div className={`site-container ${styles.ctaContainer}`}>
           <Reveal>
             <h2>Let&apos;s talk about your business.</h2>
-            <p
-              style={{
-                marginTop: '1rem',
-                fontSize: '1.0625rem',
-                lineHeight: 1.7,
-                color: 'var(--color-text-secondary)',
-              }}
-            >
+            <p className={styles.ctaLead}>
               Looking to explore software solutions for your business? Get in touch with Krynex Labs to start a conversation.
             </p>
-            <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', marginTop: '2rem', flexWrap: 'wrap' }}>
+            <div className={styles.ctaActions}>
               <Link href="/contact" className="btn btn-primary">
                 Contact Krynex Labs
                 <ArrowRight size={16} aria-hidden="true" />

@@ -73,6 +73,12 @@
   --radius-full: 9999px;
 }
 
+@media (max-width: 360px) {
+  :root {
+    --container-padding: 0.875rem;
+  }
+}
+
 @media (min-width: 768px) {
   :root {
     --container-padding: 2.5rem;

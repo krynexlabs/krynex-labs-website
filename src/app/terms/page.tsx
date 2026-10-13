@@ -5,7 +5,7 @@ import Reveal from '@/components/animation/Reveal';
 export const metadata: Metadata = {
   title: 'Terms of Service',
   alternates: { canonical: '/terms' },
-  description: `Terms of Service for ${siteConfig.name}, SaaS Products & Business Software.`,
+  description: 'Terms of Service for Krynex Labs governing software access, licensing, and usage of our website and services.',
 };
 
 export default function TermsPage() {
@@ -87,7 +87,7 @@ export default function TermsPage() {
 
           <h2 style={styles.h2}>9. Contact</h2>
           <p style={styles.p}>
-            For questions about these Terms, please contact us at contact@{siteConfig.domain}.
+            For questions about these Terms, please contact us at {siteConfig.contactEmail}.
           </p>
         </Reveal>
       </div>

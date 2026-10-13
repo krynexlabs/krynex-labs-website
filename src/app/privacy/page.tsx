@@ -5,7 +5,7 @@ import Reveal from '@/components/animation/Reveal';
 export const metadata: Metadata = {
   title: 'Privacy Policy',
   alternates: { canonical: '/privacy' },
-  description: `Privacy Policy for ${siteConfig.name}, SaaS Products & Business Software.`,
+  description: 'Privacy Policy for Krynex Labs, detailing how we safeguard your personal and business inquiry information.',
 };
 
 export default function PrivacyPage() {
@@ -77,7 +77,7 @@ export default function PrivacyPage() {
           <h2 style={styles.h2}>6. Your Rights</h2>
           <p style={styles.p}>
             You may request access to, correction of, or deletion of your personal information at
-            any time by contacting us at contact@{siteConfig.domain}.
+            any time by contacting us at {siteConfig.contactEmail}.
           </p>
 
           <h2 style={styles.h2}>7. Changes to This Policy</h2>
@@ -88,7 +88,7 @@ export default function PrivacyPage() {
 
           <h2 style={styles.h2}>8. Contact</h2>
           <p style={styles.p}>
-            If you have questions about this Privacy Policy, please contact us at contact@{siteConfig.domain}.
+            If you have questions about this Privacy Policy, please contact us at {siteConfig.contactEmail}.
           </p>
         </Reveal>
       </div>

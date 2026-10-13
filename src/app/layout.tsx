@@ -26,22 +26,22 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: 'Krynex Labs — Powering Businesses with Purpose-Built Software',
-    template: '%s — Krynex Labs',
+    default: 'Krynex Labs | SaaS Products & Business Software Solutions',
+    template: '%s | Krynex Labs',
   },
   description: siteConfig.description,
   applicationName: siteConfig.name,
   openGraph: {
     type: 'website',
     siteName: siteConfig.name,
-    title: 'Krynex Labs — SaaS Products & Business Software',
+    title: 'Krynex Labs | SaaS Products & Business Software Solutions',
     description: siteConfig.description,
     url: '/',
     locale: 'en_IN',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Krynex Labs — SaaS Products & Business Software',
+    title: 'Krynex Labs | SaaS Products & Business Software Solutions',
     description: siteConfig.description,
   },
 };
@@ -53,16 +53,44 @@ export const viewport: Viewport = {
 
 const jsonLd = {
   '@context': 'https://schema.org',
-  '@type': 'Organization',
-  name: siteConfig.name,
-  url: siteConfig.url,
-  description: siteConfig.description,
-  knowsAbout: [
-    'SaaS Products',
-    'Business Software',
-    'Workflow Automation',
-    'Software Licensing',
-    'Enterprise Software Solutions',
+  '@graph': [
+    {
+      '@type': 'WebSite',
+      '@id': `${siteConfig.url}/#website`,
+      name: siteConfig.name,
+      alternateName: 'Krynex Labs',
+      url: siteConfig.url,
+      description: siteConfig.description,
+      publisher: {
+        '@id': `${siteConfig.url}/#organization`,
+      },
+      inLanguage: 'en-IN',
+    },
+    {
+      '@type': 'Organization',
+      '@id': `${siteConfig.url}/#organization`,
+      name: siteConfig.name,
+      legalName: siteConfig.legalName,
+      url: siteConfig.url,
+      logo: `${siteConfig.url}/favicon.ico`,
+      description: siteConfig.description,
+      email: siteConfig.contactEmail,
+      contactPoint: [
+        {
+          '@type': 'ContactPoint',
+          email: siteConfig.contactEmail,
+          contactType: 'customer support',
+          availableLanguage: ['English', 'Hindi'],
+        },
+      ],
+      knowsAbout: [
+        'SaaS Products',
+        'Business Software',
+        'Workflow Automation',
+        'Software Licensing',
+        'Enterprise Software Solutions',
+      ],
+    },
   ],
 };
 
