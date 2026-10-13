@@ -1,12 +1,14 @@
 import type { Metadata } from 'next';
+import { Mail, ArrowUpRight } from 'lucide-react';
 import { siteConfig } from '@/data/site-data';
 import ContactForm from '@/components/forms/ContactForm';
 import Reveal from '@/components/animation/Reveal';
+import styles from './Contact.module.css';
 
 export const metadata: Metadata = {
   title: 'Contact Us | Business Software Inquiries',
   alternates: { canonical: '/contact' },
-  description: 'Get in touch with Krynex Labs to explore software solutions, discuss operational workflows, or start a conversation.',
+  description: 'Get in touch with Krynex Labs to explore software solutions, discuss operational workflows, or email our official support desk at support@krynexlabs.in.',
 };
 
 export default function ContactPage() {
@@ -28,7 +30,7 @@ export default function ContactPage() {
             {/* Header */}
             <Reveal>
               <div>
-                <p className="section-label">Contact</p>
+                <p className="section-label">Contact &amp; Support</p>
                 <h1 id="contact-heading">Let&apos;s talk about your business.</h1>
                 <p
                   style={{
@@ -39,22 +41,36 @@ export default function ContactPage() {
                     color: 'var(--color-text-secondary)',
                   }}
                 >
-                  Looking to explore software solutions for your business? Get in touch with Krynex Labs to start a conversation.
-                  We review every inquiry and respond within 1–2 business days.
+                  Looking to explore software solutions for your business? Submit an inquiry below or email our support desk directly.
+                  We review every submission and respond within 1–2 business days.
                 </p>
 
-                <div
-                  style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    gap: '0.5rem',
-                    marginTop: '2rem',
-                    fontFamily: 'var(--font-mono)',
-                    fontSize: '0.8125rem',
-                    color: 'var(--color-text-tertiary)',
-                  }}
-                >
-                  <span>Direct inquiries: inquiries@{siteConfig.domain}</span>
+                {/* Official Public Support Email Card */}
+                <div className={styles.emailCard}>
+                  <div className={styles.emailMeta}>
+                    <span className={styles.emailLabel}>Official Public Support &amp; Contact</span>
+                    <a
+                      href={`mailto:${siteConfig.supportEmail}`}
+                      className={styles.emailLink}
+                      aria-label={`Send email to ${siteConfig.supportEmail}`}
+                    >
+                      <Mail size={18} aria-hidden="true" />
+                      <span>{siteConfig.supportEmail}</span>
+                    </a>
+                    <span className={styles.emailSubtitle}>
+                      Direct destination for all business, licensing, and support inquiries.
+                    </span>
+                  </div>
+                  <div className={styles.emailAction}>
+                    <a
+                      href={`mailto:${siteConfig.supportEmail}`}
+                      className="btn btn-secondary"
+                      style={{ width: '100%' }}
+                    >
+                      <span>Email Support</span>
+                      <ArrowUpRight size={14} aria-hidden="true" />
+                    </a>
+                  </div>
                 </div>
               </div>
             </Reveal>

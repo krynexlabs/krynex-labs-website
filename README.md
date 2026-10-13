@@ -50,12 +50,12 @@ The canonical origin is set **once** in `src/data/site-data.ts` (`siteConfig.url
 
 The form validates on the client and again on the server (`src/app/api/contact/route.ts`), with a honeypot field, per-IP rate limiting (best-effort on serverless), input sanitising, and header-injection protection.
 
-Email is sent through [Resend](https://resend.com). Set these **server-side** variables (Vercel → Project → Settings → Environment Variables; never commit them):
+Email is sent through [Resend](https://resend.com) and routed to **`support@krynexlabs.in`** (the official public support and business contact email). Set these **server-side** variables (Vercel → Project → Settings → Environment Variables; never commit them):
 
 | Variable | Description |
 | :--- | :--- |
 | `RESEND_API_KEY` | Resend API key |
-| `CONTACT_EMAIL_RECIPIENT` | Mailbox that receives inquiries (one you own and monitor) |
+| `CONTACT_EMAIL_RECIPIENT` | Official recipient mailbox (defaults to `support@krynexlabs.in`) |
 | `CONTACT_FROM_EMAIL` | Sender address on a domain **verified in Resend** |
 
 Behaviour:

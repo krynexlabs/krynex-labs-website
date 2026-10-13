@@ -112,6 +112,50 @@
   color: var(--color-text-primary);
 }
 
+.emailDirectLink {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 0.45rem;
+  color: var(--color-accent) !important;
+  font-weight: 500;
+  word-break: break-all;
+}
+
+.emailDirectLink:hover {
+  color: var(--color-accent-strong) !important;
+}
+
+.supportBadge {
+  margin-top: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.supportLabel {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-text-tertiary);
+}
+
+.supportLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  color: var(--color-accent);
+  transition: opacity var(--duration-fast);
+  word-break: break-all;
+}
+
+.supportLink:hover {
+  opacity: 0.85;
+  text-decoration: underline;
+}
+
 .bottom {
   display: flex;
   flex-wrap: wrap;

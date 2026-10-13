@@ -278,6 +278,21 @@
   padding-top: 2rem;
 }
 
+.mobileEmail {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  color: var(--color-accent);
+  padding: 0.25rem 0;
+  transition: opacity var(--duration-fast);
+}
+
+.mobileEmail:hover {
+  opacity: 0.85;
+}
+
 .mobileTag {
   font-family: var(--font-mono);
   font-size: 0.6875rem;

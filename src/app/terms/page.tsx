@@ -87,7 +87,13 @@ export default function TermsPage() {
 
           <h2 style={styles.h2}>9. Contact</h2>
           <p style={styles.p}>
-            For questions about these Terms, please contact us at {siteConfig.contactEmail}.
+            For questions about these Terms, please contact our support team at{' '}
+            <a
+              href={`mailto:${siteConfig.supportEmail}`}
+              style={{ color: 'var(--color-accent)', textDecoration: 'underline' }}
+            >
+              {siteConfig.supportEmail}
+            </a>.
           </p>
         </Reveal>
       </div>

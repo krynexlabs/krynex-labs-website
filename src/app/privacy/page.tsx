@@ -77,7 +77,13 @@ export default function PrivacyPage() {
           <h2 style={styles.h2}>6. Your Rights</h2>
           <p style={styles.p}>
             You may request access to, correction of, or deletion of your personal information at
-            any time by contacting us at {siteConfig.contactEmail}.
+            any time by contacting our support desk at{' '}
+            <a
+              href={`mailto:${siteConfig.supportEmail}`}
+              style={{ color: 'var(--color-accent)', textDecoration: 'underline' }}
+            >
+              {siteConfig.supportEmail}
+            </a>.
           </p>
 
           <h2 style={styles.h2}>7. Changes to This Policy</h2>
@@ -88,7 +94,13 @@ export default function PrivacyPage() {
 
           <h2 style={styles.h2}>8. Contact</h2>
           <p style={styles.p}>
-            If you have questions about this Privacy Policy, please contact us at {siteConfig.contactEmail}.
+            If you have questions about this Privacy Policy, please contact our support desk at{' '}
+            <a
+              href={`mailto:${siteConfig.supportEmail}`}
+              style={{ color: 'var(--color-accent)', textDecoration: 'underline' }}
+            >
+              {siteConfig.supportEmail}
+            </a>.
           </p>
         </Reveal>
       </div>

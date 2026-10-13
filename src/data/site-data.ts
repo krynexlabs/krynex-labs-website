@@ -14,7 +14,8 @@ export const siteConfig = {
   url: 'https://www.krynexlabs.in',
   // Bare domain, used for email addresses only (not for website URLs).
   domain: 'krynexlabs.in',
-  contactEmail: 'inquiries@krynexlabs.in',
+  contactEmail: 'support@krynexlabs.in',
+  supportEmail: 'support@krynexlabs.in',
 };
 
 export const navItems: NavItem[] = [

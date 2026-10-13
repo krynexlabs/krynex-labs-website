@@ -4,7 +4,8 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { AlertCircle, CheckCircle2, Loader2, Send } from 'lucide-react';
+import { AlertCircle, CheckCircle2, Loader2, Send, Mail } from 'lucide-react';
+import { siteConfig } from '@/data/site-data';
 import styles from './ContactForm.module.css';
 
 const contactSchema = z.object({
@@ -16,6 +17,8 @@ const contactSchema = z.object({
     .string()
     .email('Please enter a valid business email address.')
     .max(100, 'Email cannot exceed 100 characters.'),
+  category: z.string().min(1, 'Please select an inquiry category.'),
+  subject: z.string().max(200, 'Subject cannot exceed 200 characters.').optional(),
   company: z.string().max(100, 'Company name cannot exceed 100 characters.').optional(),
   message: z
     .string()
@@ -40,6 +43,8 @@ export default function ContactForm() {
     defaultValues: {
       fullName: '',
       email: '',
+      category: 'General Support & Business Inquiries',
+      subject: '',
       company: '',
       message: '',
       hp_field: '',
@@ -83,17 +88,19 @@ export default function ContactForm() {
     return (
       <div className={styles.successCard} role="status">
         <CheckCircle2 size={48} className={styles.successIcon} />
-        <h3 className={styles.successTitle}>Message Successfully Sent</h3>
+        <h3 className={styles.successTitle}>Inquiry Successfully Sent</h3>
         <p className={styles.successDesc}>
-          Thank you for reaching out to Krynex Labs. Your inquiry has been received by our team and we will respond within 1–2 business days.
+          Thank you for reaching out. Your inquiry has been routed directly to our official support desk at{' '}
+          <strong style={{ color: 'var(--color-accent)' }}>{siteConfig.supportEmail}</strong>.
+          Our team reviews all submissions and will respond within 1–2 business days.
         </p>
         <button
           type="button"
           onClick={() => setSubmissionStatus('idle')}
           className="btn btn-secondary"
-          style={{ marginTop: '1.5rem' }}
+          style={{ marginTop: '1.75rem' }}
         >
-          Send Another Message
+          Send Another Inquiry
         </button>
       </div>
     );
@@ -115,8 +122,16 @@ export default function ContactForm() {
 
       {submissionStatus === 'error' && (
         <div className={styles.errorAlert} role="alert">
-          <AlertCircle size={18} />
-          <span>{serverErrorMessage || 'Unable to send message. Please verify your details.'}</span>
+          <AlertCircle size={20} className={styles.errorIcon} />
+          <div>
+            <p>{serverErrorMessage || 'Unable to send message right now.'}</p>
+            <p style={{ marginTop: '0.35rem', fontSize: '0.8125rem' }}>
+              Direct email support:{' '}
+              <a href={`mailto:${siteConfig.supportEmail}`} className={styles.errorLink}>
+                {siteConfig.supportEmail}
+              </a>
+            </p>
+          </div>
         </div>
       )}
 
@@ -132,6 +147,7 @@ export default function ContactForm() {
             className="form-input"
             placeholder="e.g. Alex Morgan"
             autoComplete="name"
+            disabled={submissionStatus === 'submitting'}
             aria-invalid={!!errors.fullName}
             aria-describedby={errors.fullName ? 'fullName-error' : undefined}
             {...register('fullName')}
@@ -153,6 +169,7 @@ export default function ContactForm() {
             className="form-input"
             placeholder="a.morgan@company.com"
             autoComplete="email"
+            disabled={submissionStatus === 'submitting'}
             aria-invalid={!!errors.email}
             aria-describedby={errors.email ? 'email-error' : undefined}
             {...register('email')}
@@ -165,10 +182,52 @@ export default function ContactForm() {
         </div>
       </div>
 
-      {/* Row 2: Company Name (Optional) */}
+      {/* Row 2: Inquiry Category and Subject */}
+      <div className={styles.gridRow}>
+        <div className="form-group">
+          <label htmlFor="category" className="form-label">
+            Inquiry Category <span className={styles.req}>*</span>
+          </label>
+          <select
+            id="category"
+            className="form-input"
+            disabled={submissionStatus === 'submitting'}
+            aria-invalid={!!errors.category}
+            aria-describedby={errors.category ? 'category-error' : undefined}
+            {...register('category')}
+          >
+            <option value="General Support & Business Inquiries">General Support &amp; Inquiries</option>
+            <option value="SaaS Product Inquiries">SaaS Product Inquiries</option>
+            <option value="Software Licensing & Access">Software Licensing &amp; Access</option>
+            <option value="Technical Support">Technical &amp; Operational Support</option>
+            <option value="Corporate & Partnerships">Corporate &amp; Partnerships</option>
+          </select>
+          {errors.category && (
+            <p id="category-error" className={styles.fieldError}>
+              {errors.category.message}
+            </p>
+          )}
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="subject" className="form-label">
+            Subject / Topic <span className={styles.optional}>(Optional)</span>
+          </label>
+          <input
+            id="subject"
+            type="text"
+            className="form-input"
+            placeholder="e.g. Licensing inquiry or product question"
+            disabled={submissionStatus === 'submitting'}
+            {...register('subject')}
+          />
+        </div>
+      </div>
+
+      {/* Row 3: Company Name (Optional) */}
       <div className="form-group">
         <label htmlFor="company" className="form-label">
-          Company Name <span className={styles.optional}>(Optional)</span>
+          Company / Organization <span className={styles.optional}>(Optional)</span>
         </label>
         <input
           id="company"
@@ -176,11 +235,12 @@ export default function ContactForm() {
           className="form-input"
           placeholder="e.g. Morgan Dynamics"
           autoComplete="organization"
+          disabled={submissionStatus === 'submitting'}
           {...register('company')}
         />
       </div>
 
-      {/* Row 3: Message */}
+      {/* Row 4: Message */}
       <div className="form-group">
         <label htmlFor="message" className="form-label">
           Message <span className={styles.req}>*</span>
@@ -188,8 +248,9 @@ export default function ContactForm() {
         <textarea
           id="message"
           rows={5}
-          className="form-textarea"
-          placeholder="Tell us about your business, operational requirements, or software needs..."
+          className="form-input"
+          placeholder="Tell us about your operational workflows, software requirements, or questions..."
+          disabled={submissionStatus === 'submitting'}
           aria-invalid={!!errors.message}
           aria-describedby={errors.message ? 'message-error' : undefined}
           {...register('message')}
@@ -211,15 +272,20 @@ export default function ContactForm() {
         {submissionStatus === 'submitting' ? (
           <>
             <Loader2 size={16} className={styles.spin} />
-            Sending Message...
+            Sending to Support Desk...
           </>
         ) : (
           <>
             <Send size={16} />
-            Contact Krynex Labs
+            Send Inquiry to support@krynexlabs.in
           </>
         )}
       </button>
+
+      <div className={styles.formNote}>
+        <Mail size={13} aria-hidden="true" />
+        <span>Official support recipient: {siteConfig.supportEmail}</span>
+      </div>
     </form>
   );
 }

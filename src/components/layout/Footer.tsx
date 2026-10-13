@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { Mail } from 'lucide-react';
 import { siteConfig, navItems } from '@/data/site-data';
 import BrandMark from '@/components/ui/BrandMark';
 import CurrentYear from '@/components/ui/CurrentYear';
@@ -18,6 +19,17 @@ export default function Footer() {
             <p className={styles.description}>
               {siteConfig.description}
             </p>
+            <div className={styles.supportBadge}>
+              <span className={styles.supportLabel}>Public Support &amp; Inquiries</span>
+              <a
+                href={`mailto:${siteConfig.supportEmail}`}
+                className={styles.supportLink}
+                aria-label={`Email Krynex Labs at ${siteConfig.supportEmail}`}
+              >
+                <Mail size={13} aria-hidden="true" />
+                <span>{siteConfig.supportEmail}</span>
+              </a>
+            </div>
           </div>
 
           <div className={styles.columns}>
@@ -42,10 +54,20 @@ export default function Footer() {
               </ul>
             </nav>
 
-            <nav aria-label="Legal & Inquiries">
-              <p className={styles.heading} role="heading" aria-level={3}>Company</p>
+            <nav aria-label="Support & Company">
+              <p className={styles.heading} role="heading" aria-level={3}>Support &amp; Company</p>
               <ul className={styles.list}>
-                <li><Link href="/contact">Contact Krynex Labs</Link></li>
+                <li>
+                  <a
+                    href={`mailto:${siteConfig.supportEmail}`}
+                    className={styles.emailDirectLink}
+                    aria-label={`Official support email: ${siteConfig.supportEmail}`}
+                  >
+                    <Mail size={13} aria-hidden="true" />
+                    <span>{siteConfig.supportEmail}</span>
+                  </a>
+                </li>
+                <li><Link href="/contact">Contact Us</Link></li>
                 <li><Link href="/privacy">Privacy Policy</Link></li>
                 <li><Link href="/terms">Terms of Service</Link></li>
               </ul>

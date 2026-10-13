@@ -15,6 +15,8 @@ const serverContactSchema = z.object({
     .email('Valid business email address required.')
     .max(100, 'Email exceeds 100 characters.'),
   company: z.string().max(100).optional(),
+  category: z.string().max(100).optional(),
+  subject: z.string().max(200).optional(),
   message: z
     .string()
     .min(10, 'Message must be at least 10 characters.')
@@ -74,25 +76,28 @@ export async function POST(request: NextRequest) {
       fullName: singleLine(sanitize(data.fullName)),
       email: singleLine(sanitize(data.email)),
       company: data.company ? singleLine(sanitize(data.company)) : '',
+      category: data.category ? singleLine(sanitize(data.category)) : 'Business & Support Inquiry',
+      subject: data.subject ? singleLine(sanitize(data.subject)) : '',
       message: sanitize(data.message),
     };
 
     // 4. Delivery configuration (server-side environment variables only)
     const apiKey = process.env.RESEND_API_KEY;
-    const recipient = process.env.CONTACT_EMAIL_RECIPIENT;
+    // Official public support and business contact recipient
+    const recipient = process.env.CONTACT_EMAIL_RECIPIENT || 'support@krynexlabs.in';
     const sender = process.env.CONTACT_FROM_EMAIL;
     const isConfigured = Boolean(apiKey && recipient && sender);
 
     if (!isConfigured) {
       if (process.env.NODE_ENV !== 'production') {
         // Local development only: log the inquiry so the form can be exercised without a provider.
-        console.log('[Contact DEV — email provider not configured, inquiry NOT emailed]:', clean);
+        console.log('[Contact DEV — routing to support@krynexlabs.in, inquiry logged]:', clean);
         return NextResponse.json({ success: true, delivered: false });
       }
       // Production: never claim success when nothing can be delivered.
       console.error('[Contact API] Email delivery is not configured. Set RESEND_API_KEY, CONTACT_EMAIL_RECIPIENT and CONTACT_FROM_EMAIL.');
       return NextResponse.json(
-        { error: 'Our contact form is temporarily unavailable. Please try again later.' },
+        { error: 'Our contact form is temporarily unavailable. Please email us directly at support@krynexlabs.in.' },
         { status: 503 }
       );
     }
@@ -100,6 +105,7 @@ export async function POST(request: NextRequest) {
     // 5. Send via Resend and verify it was actually accepted
     let response: Response;
     try {
+      const emailSubject = clean.subject || `[${clean.category}] from ${clean.fullName}${clean.company ? ` (${clean.company})` : ''}`;
       response = await fetch('https://api.resend.com/emails', {
         method: 'POST',
         headers: {
@@ -107,14 +113,15 @@ export async function POST(request: NextRequest) {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          from: `Krynex Labs Website <${sender}>`,
+          from: `Krynex Labs Support <${sender}>`,
           to: [recipient],
           reply_to: clean.email,
-          subject: `New business inquiry: ${clean.fullName}${clean.company ? ` (${clean.company})` : ''}`,
+          subject: emailSubject,
           text: [
             `Name: ${clean.fullName}`,
             `Email: ${clean.email}`,
             `Company: ${clean.company || 'Not specified'}`,
+            `Category: ${clean.category}`,
             '',
             'Message:',
             clean.message,
@@ -124,7 +131,7 @@ export async function POST(request: NextRequest) {
     } catch (networkErr) {
       console.error('[Contact API] Email provider unreachable:', networkErr);
       return NextResponse.json(
-        { error: 'We could not send your message right now. Please try again shortly.' },
+        { error: 'We could not send your message right now. Please email us directly at support@krynexlabs.in.' },
         { status: 502 }
       );
     }

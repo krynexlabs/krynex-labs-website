@@ -3,8 +3,8 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Menu, X, ArrowRight } from 'lucide-react';
-import { navItems } from '@/data/site-data';
+import { Menu, X, ArrowRight, Mail } from 'lucide-react';
+import { navItems, siteConfig } from '@/data/site-data';
 import BrandMark from '@/components/ui/BrandMark';
 import styles from './Navbar.module.css';
 
@@ -158,6 +158,15 @@ export default function Navbar() {
               Talk to Our Team
               <ArrowRight size={14} aria-hidden="true" />
             </Link>
+            <a
+              href={`mailto:${siteConfig.supportEmail}`}
+              className={styles.mobileEmail}
+              onClick={() => closeMenu(false)}
+              aria-label={`Email support at ${siteConfig.supportEmail}`}
+            >
+              <Mail size={14} aria-hidden="true" />
+              <span>{siteConfig.supportEmail}</span>
+            </a>
             <p className={styles.mobileTag}>KRYNEX LABS / BUSINESS SOFTWARE</p>
           </div>
         </div>
