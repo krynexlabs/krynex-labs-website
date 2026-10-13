@@ -1,0 +1,29 @@
+/*
+ * Content is visible by default. The hidden "pre-reveal" state only applies when
+ * scripting is available AND the user hasn't requested reduced motion, so content
+ * never disappears for no-JS visitors or reduced-motion users.
+ */
+.reveal {
+  transition:
+    opacity 0.9s var(--ease-out-expo),
+    transform 0.9s var(--ease-out-expo);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+@media (scripting: enabled) and (prefers-reduced-motion: no-preference) {
+  .reveal:not(.visible) {
+    opacity: 0;
+  }
+  .up:not(.visible) {
+    transform: translate3d(0, 32px, 0);
+  }
+  .down:not(.visible) {
+    transform: translate3d(0, -32px, 0);
+  }
+  .left:not(.visible) {
+    transform: translate3d(32px, 0, 0);
+  }
+  .right:not(.visible) {
+    transform: translate3d(-32px, 0, 0);
+  }
+}

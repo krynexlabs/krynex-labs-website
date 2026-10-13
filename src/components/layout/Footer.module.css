@@ -1,0 +1,157 @@
+.footer {
+  position: relative;
+  background: var(--color-background-secondary);
+  border-top: 1px solid var(--color-border);
+  padding: clamp(4rem, 8vw, 6rem) 0 2rem;
+  overflow: hidden;
+}
+
+.footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: min(900px, 90%);
+  height: 1px;
+  transform: translateX(-50%);
+  background: linear-gradient(90deg, transparent, rgba(99, 229, 255, 0.5), transparent);
+}
+
+.top {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+}
+
+@media (min-width: 900px) {
+  .top {
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 2fr);
+    gap: 4rem;
+  }
+}
+
+.brand {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: fit-content;
+  color: var(--color-text-primary);
+}
+
+.logo svg {
+  color: var(--color-accent);
+}
+
+.logoText {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+}
+
+.tagline {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+.description {
+  max-width: 34ch;
+  font-size: 0.875rem;
+  line-height: 1.7;
+  color: var(--color-text-tertiary);
+}
+
+.columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2.5rem 2rem;
+}
+
+@media (min-width: 640px) {
+  .columns {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.heading {
+  margin-bottom: 1.125rem;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem !important;
+  font-weight: 500 !important;
+  line-height: 1.4 !important;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+}
+
+.list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.list a {
+  display: inline-block;
+  padding: 0.3rem 0;
+  font-size: 0.875rem;
+  color: var(--color-text-tertiary);
+  transition: color var(--duration-fast);
+}
+
+.list a:hover {
+  color: var(--color-text-primary);
+}
+
+.bottom {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 3.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--color-border);
+}
+
+.copyright {
+  font-size: 0.8125rem;
+  color: var(--color-text-tertiary);
+}
+
+.parent {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-text-tertiary);
+}
+
+.parent strong {
+  font-weight: 500;
+  color: var(--color-text-secondary);
+}
+
+/* Oversized wordmark used as a quiet closing gesture */
+.wordmark {
+  margin-top: 3rem;
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 15vw, 13rem);
+  font-weight: 700;
+  line-height: 0.85;
+  letter-spacing: -0.04em;
+  text-align: center;
+  white-space: nowrap;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.07);
+  user-select: none;
+}
