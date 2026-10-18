@@ -5,7 +5,7 @@
 - **Headquarters:** SBR (Sindhu Bhavan Road), Ahmedabad, Gujarat 380054, India.
 - **Official Domain:** https://www.krynexlabs.in
 - **Official Contact Email:** support@krynexlabs.in
-- **Official Phone:** +91 (079) 4000-0000
+- **Official WhatsApp:** +91 9879417569 (WhatsApp Only • No Calls)
 - **Corporate Positioning:** Premier Applied AI/ML and Information Technology Engineering Company. We identify real-world enterprise bottlenecks and engineer custom neural architectures, zero-trust cloud backbones, and production-grade software ecosystems.
 - **Strict Rule:** Never reveal or imply specific commercial product spoilers (e.g. no mentions of drafting systems or rent-based SaaS products). Krynex Labs operates as an elite corporate engineering firm.
 

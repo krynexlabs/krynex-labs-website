@@ -97,7 +97,7 @@ const jsonLd = {
       url: "https://www.krynexlabs.in",
       logo: "https://www.krynexlabs.in/icon",
       email: "support@krynexlabs.in",
-      telephone: "+91-79-4000-0000",
+      telephone: "+91-98794-17569",
       address: {
         "@type": "PostalAddress",
         streetAddress: "SBR (Sindhu Bhavan Road)",
@@ -123,7 +123,7 @@ const jsonLd = {
       contactPoint: [
         {
           "@type": "ContactPoint",
-          telephone: "+91-79-4000-0000",
+          telephone: "+91-98794-17569",
           contactType: "customer support",
           email: "support@krynexlabs.in",
           areaServed: "IN",
