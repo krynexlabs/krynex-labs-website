@@ -19,24 +19,24 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.krynexlabs.in"),
   title: {
-    default: "Krynex Labs | Applied AI/ML & Enterprise IT Engineering Company",
+    default: "Krynex Labs | Applied AI, Enterprise Engineering & SaaS Products",
     template: "%s | Krynex Labs (www.krynexlabs.in)",
   },
   description:
-    "Krynex Labs is an elite Applied AI/ML and Enterprise Information Technology company headquartered at SBR, Ahmedabad, Gujarat, India. We identify critical industrial pain points and engineer custom neural architectures, automated workflows, and mission-critical cloud infrastructure.",
+    "Krynex Labs is a premier Applied AI, Enterprise Engineering, and SaaS Products company headquartered at SBR, Ahmedabad, India. We engineer intelligent technology for business problems and develop software products that help organizations operate more effectively.",
   keywords: [
     "Krynex Labs",
     "krynexlabs.in",
-    "AI ML Company Ahmedabad",
+    "Applied AI Company Ahmedabad",
+    "Enterprise Software Engineering Gujarat",
+    "SaaS Products India",
+    "Legal Drafting AI SaaS",
+    "Workflow Integration Engine",
+    "Edge Computer Vision QC",
     "IT Company SBR Ahmedabad",
-    "Enterprise IT Company Gujarat",
-    "Applied Artificial Intelligence India",
     "Custom Machine Learning Engineering",
-    "Industrial Pain Point Automation",
-    "Enterprise Software Architecture",
-    "LLM Fine Tuning India",
     "Zero Trust Cloud Infrastructure",
-    "B2B AI Research Lab",
+    "Deterministic Legal AI",
   ],
   authors: [{ name: "Krynex Labs Corporate Engineering Division" }],
   creator: "Krynex Labs Inc.",
@@ -54,15 +54,15 @@ export const metadata: Metadata = {
     locale: "en_IN",
     url: "https://www.krynexlabs.in",
     siteName: "Krynex Labs",
-    title: "Krynex Labs | Applied AI/ML & Enterprise IT Engineering Company",
+    title: "Krynex Labs | Applied AI, Enterprise Engineering & SaaS Products",
     description:
-      "Krynex Labs is an elite Applied AI/ML and Enterprise Information Technology company headquartered at SBR, Ahmedabad, Gujarat, India. We identify critical industrial pain points and engineer custom neural architectures, automated workflows, and mission-critical cloud infrastructure.",
+      "Krynex Labs is a premier Applied AI, Enterprise Engineering, and SaaS Products company headquartered at SBR, Ahmedabad, India. We engineer intelligent technology for business problems and develop software products that help organizations operate more effectively.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Krynex Labs | Applied AI/ML & Enterprise IT Engineering Company",
+    title: "Krynex Labs | Applied AI, Enterprise Engineering & SaaS Products",
     description:
-      "Krynex Labs is an elite Applied AI/ML and Enterprise Information Technology company headquartered at SBR, Ahmedabad, Gujarat, India.",
+      "Krynex Labs is a premier Applied AI, Enterprise Engineering, and SaaS Products company headquartered at SBR, Ahmedabad, India.",
     creator: "@krynexlabs",
   },
   robots: {
@@ -112,13 +112,14 @@ const jsonLd = {
         longitude: "72.5085",
       },
       knowsAbout: [
-        "Artificial Intelligence",
+        "Applied Artificial Intelligence",
         "Machine Learning",
-        "Enterprise Information Technology",
-        "Cloud Architecture",
-        "Industrial Automation",
-        "Neural Networks",
-        "Deterministic RAG Architecture",
+        "Enterprise Software Architecture",
+        "SaaS Product Development",
+        "Cloud & Data Infrastructure",
+        "Industrial Computer Vision",
+        "Deterministic Legal Tech",
+        "Zero-Trust Security",
       ],
       contactPoint: [
         {
@@ -141,7 +142,7 @@ const jsonLd = {
       "@id": "https://www.krynexlabs.in/#website",
       url: "https://www.krynexlabs.in",
       name: "Krynex Labs",
-      description: "Applied AI/ML & Enterprise Information Technology Engineering",
+      description: "Applied AI, Enterprise Engineering and SaaS Products",
       publisher: {
         "@id": "https://www.krynexlabs.in/#organization",
       },

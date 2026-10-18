@@ -22,10 +22,10 @@ import confetti from "canvas-confetti";
 import KrynexLogo from "./KrynexLogo";
 
 interface FooterProps {
-  onRequestDemo: () => void;
+  onRequestDemo?: () => void;
 }
 
-export default function Footer({ onRequestDemo }: FooterProps) {
+export default function Footer({ onRequestDemo }: FooterProps = {}) {
   const router = useRouter();
   const [inquiryName, setInquiryName] = useState("");
   const [inquiryEmail, setInquiryEmail] = useState("");
@@ -458,70 +458,67 @@ export default function Footer({ onRequestDemo }: FooterProps) {
             </div>
           </div>
 
-          {/* Col 2: Core Capabilities */}
+          {/* Col 2: Division A: Solutions */}
           <div>
-            <div className="text-xs font-mono font-semibold text-white uppercase tracking-wider mb-4">
-              Capabilities
+            <div className="text-xs font-mono font-semibold text-white uppercase tracking-wider mb-4 flex items-center gap-1.5">
+              <span>Solutions</span>
+              <span className="text-[9px] px-1 py-0.2 rounded bg-white/[0.08] text-zinc-400">Div A</span>
             </div>
             <ul className="space-y-2.5 text-xs text-zinc-400">
               <li>
-                <a href="#capabilities" className="hover:text-white transition-colors">
+                <Link href="/solutions" className="hover:text-white transition-colors">
+                  Engineering Overview
+                </Link>
+              </li>
+              <li>
+                <Link href="/solutions/ai-ml" className="hover:text-white transition-colors">
                   Applied AI &amp; Neural Nets
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#capabilities" className="hover:text-white transition-colors">
-                  Full-Stack Enterprise IT
-                </a>
+                <Link href="/solutions/enterprise-software" className="hover:text-white transition-colors">
+                  Custom Enterprise Systems
+                </Link>
               </li>
               <li>
-                <a href="#capabilities" className="hover:text-white transition-colors">
-                  Industrial Edge Vision
-                </a>
+                <Link href="/solutions/web-mobile" className="hover:text-white transition-colors">
+                  Web &amp; Mobile Engineering
+                </Link>
               </li>
               <li>
-                <a href="#capabilities" className="hover:text-white transition-colors">
-                  Data Intelligence &amp; SCADA
-                </a>
-              </li>
-              <li>
-                <a href="#capabilities" className="hover:text-white transition-colors">
-                  Zero-Trust Architecture
-                </a>
+                <Link href="/solutions/cloud-data" className="hover:text-white transition-colors">
+                  Cloud &amp; Zero-Trust Data
+                </Link>
               </li>
             </ul>
           </div>
 
-          {/* Col 3: Research & Architecture */}
+          {/* Col 3: Division B: SaaS Products */}
           <div>
-            <div className="text-xs font-mono font-semibold text-white uppercase tracking-wider mb-4">
-              R&amp;D Division
+            <div className="text-xs font-mono font-semibold text-white uppercase tracking-wider mb-4 flex items-center gap-1.5">
+              <span>SaaS Products</span>
+              <span className="text-[9px] px-1 py-0.2 rounded bg-white/[0.08] text-zinc-400">Div B</span>
             </div>
             <ul className="space-y-2.5 text-xs text-zinc-400">
               <li>
-                <a href="#methodology" className="hover:text-white transition-colors">
-                  Engineering Matrix
-                </a>
+                <Link href="/products" className="hover:text-white transition-colors">
+                  Product Directory
+                </Link>
               </li>
               <li>
-                <a href="#console" className="hover:text-white transition-colors">
-                  Diagnostic Console
-                </a>
+                <Link href="/products/krynex-lexis" className="hover:text-white transition-colors">
+                  Krynex Lexis (Legal AI)
+                </Link>
               </li>
               <li>
-                <a href="#methodology" className="hover:text-white transition-colors">
-                  Deterministic Guardrails
-                </a>
+                <Link href="/products/krynex-flow" className="hover:text-white transition-colors">
+                  Krynex Flow (Integration)
+                </Link>
               </li>
               <li>
-                <a href="#capabilities" className="hover:text-white transition-colors">
-                  Model Quantization
-                </a>
-              </li>
-              <li>
-                <a href="#capabilities" className="hover:text-white transition-colors">
-                  Telemetry Benchmarks
-                </a>
+                <Link href="/products/krynex-vision" className="hover:text-white transition-colors">
+                  Krynex Vision (Edge QC)
+                </Link>
               </li>
             </ul>
           </div>
@@ -529,36 +526,38 @@ export default function Footer({ onRequestDemo }: FooterProps) {
           {/* Col 4: Corporate & Governance */}
           <div>
             <div className="text-xs font-mono font-semibold text-white uppercase tracking-wider mb-4">
-              Governance &amp; Legal
+              Company &amp; Governance
             </div>
             <ul className="space-y-2.5 text-xs text-zinc-400">
               <li>
-                <a href="#vision" className="hover:text-white transition-colors">
-                  Corporate Thesis
-                </a>
+                <Link href="/about" className="hover:text-white transition-colors">
+                  About &amp; Methodology
+                </Link>
               </li>
               <li>
-                <a href="#industries" className="hover:text-white transition-colors">
-                  Industry Focus
-                </a>
+                <Link href="/industries" className="hover:text-white transition-colors">
+                  Target Industries
+                </Link>
+              </li>
+              <li>
+                <Link href="/research" className="hover:text-white transition-colors">
+                  R&amp;D Diagnostic Lab
+                </Link>
+              </li>
+              <li>
+                <Link href="/contact" className="hover:text-white transition-colors">
+                  Executive Consultation
+                </Link>
               </li>
               <li>
                 <Link href="/privacy" className="hover:text-white transition-colors">
-                  Privacy Policy &amp; Data
+                  Privacy &amp; Data Sovereignty
                 </Link>
               </li>
               <li>
                 <Link href="/terms" className="hover:text-white transition-colors">
                   Terms &amp; 99.99% SLA
                 </Link>
-              </li>
-              <li>
-                <button
-                  onClick={onRequestDemo}
-                  className="hover:text-white transition-colors text-left"
-                >
-                  Request Security Whitepaper
-                </button>
               </li>
             </ul>
           </div>

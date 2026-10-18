@@ -5,6 +5,7 @@ import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import Methodology from "@/components/Methodology";
 import BentoGrid from "@/components/BentoGrid";
+import ProductsShowcase from "@/components/ProductsShowcase";
 import DraftingDemo from "@/components/DraftingDemo";
 import EnterpriseMatrix from "@/components/EnterpriseMatrix";
 import Footer from "@/components/Footer";
@@ -166,6 +167,12 @@ export default function Home() {
 
       {/* 02 // Core Corporate Capabilities & R&D Telemetry (Bento Grid) */}
       <BentoGrid />
+
+      {/* Resend 1px Silver Horizon Divider */}
+      <SectionDivider />
+
+      {/* 03 // Proprietary SaaS Products & Software Solutions (Division B) */}
+      <ProductsShowcase onRequestDemo={() => setIsDemoModalOpen(true)} />
 
       {/* Resend 1px Silver Horizon Divider */}
       <SectionDivider />
