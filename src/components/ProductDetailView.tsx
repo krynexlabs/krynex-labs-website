@@ -22,7 +22,6 @@ import {
   Clock,
   HelpCircle,
 } from "lucide-react";
-import confetti from "canvas-confetti";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import DemoModal from "./DemoModal";
@@ -44,15 +43,20 @@ export default function ProductDetailView({ product }: ProductDetailViewProps) {
   const runSimulation = () => {
     setIsSimulating(true);
     setSimulationComplete(false);
-    setTimeout(() => {
+    setTimeout(async () => {
       setIsSimulating(false);
       setSimulationComplete(true);
-      confetti({
-        particleCount: 50,
-        spread: 50,
-        origin: { y: 0.6 },
-        colors: ["#ffffff", "#a1a1aa", "#71717a"],
-      });
+      try {
+        const confetti = (await import("canvas-confetti")).default;
+        confetti({
+          particleCount: 50,
+          spread: 50,
+          origin: { y: 0.6 },
+          colors: ["#ffffff", "#a1a1aa", "#71717a"],
+        });
+      } catch {
+        // Non-blocking visual effect
+      }
     }, 1200);
   };
 
