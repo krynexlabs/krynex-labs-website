@@ -17,7 +17,7 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "About Krynex Labs | Positioning, Divisions & Methodology",
+  title: "About Us | Positioning, Divisions & Methodology",
   description:
     "Learn about Krynex Labs: Premier Applied AI, Enterprise Engineering, and SaaS Products Company headquartered at SBR, Ahmedabad, India. Explore our Understand-Engineer-Refine-Evolve methodology.",
   alternates: {
@@ -37,7 +37,7 @@ export default function AboutPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-3xl">
             <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/[0.04] border border-white/10 text-[11px] font-mono tracking-widest text-zinc-300 uppercase mb-5">
-              <span>CORPORATE DOSSIER // KRYNEX LABS INC.</span>
+              <span>CORPORATE DOSSIER // KRYNEX LABS</span>
             </div>
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight mb-6 leading-tight bg-gradient-to-b from-white via-zinc-100 to-zinc-500 bg-clip-text text-transparent">
               Architecting Intelligence for Industry.

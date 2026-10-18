@@ -2,7 +2,7 @@ import Link from "next/link";
 import { CheckCircle2, Shield, ArrowLeft, Clock, Lock, Server } from "lucide-react";
 
 export const metadata = {
-  title: "Inquiry Confirmed | Krynex Labs",
+  title: "Inquiry Confirmed",
   description: "Executive R&D Consultation request securely received by Krynex Labs corporate engineering division.",
   robots: {
     index: false,
@@ -81,14 +81,14 @@ export default function ThankYouPage({
                 <Server className="w-3 h-3 text-zinc-400" />
                 Routing Node
               </span>
-              <span className="text-white font-semibold">Ahmedabad DC-01</span>
+              <span className="text-white font-semibold">Ahmedabad Labs</span>
             </div>
           </div>
 
           {/* Security Notice */}
           <div className="flex items-center gap-2 text-xs font-mono text-zinc-500">
             <Shield className="w-4 h-4 text-zinc-400 shrink-0" />
-            <span>MNC-grade data isolation active. Training data never co-mingled.</span>
+            <span>Enterprise data isolation active. Client inquiry details never shared or co-mingled.</span>
           </div>
 
           {/* Return CTA */}

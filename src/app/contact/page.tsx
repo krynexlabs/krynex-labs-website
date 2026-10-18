@@ -175,7 +175,7 @@ export default function ContactPage() {
                   <div className="flex items-start gap-2 text-xs text-zinc-300 leading-relaxed">
                     <MapPin className="w-4 h-4 text-white shrink-0 mt-0.5" />
                     <div>
-                      <div className="font-medium text-white">Krynex Labs Inc.</div>
+                      <div className="font-medium text-white">Krynex Labs</div>
                       <div>SBR (Sindhu Bhavan Road)</div>
                       <div>Ahmedabad, Gujarat 380054, India</div>
                     </div>

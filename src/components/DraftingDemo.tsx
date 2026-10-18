@@ -11,6 +11,7 @@ import {
   RotateCcw,
   CheckCircle2,
   TrendingUp,
+  AlertCircle,
 } from "lucide-react";
 
 export default function DraftingDemo() {
@@ -46,18 +47,18 @@ export default function DraftingDemo() {
         "Automated SAP/Oracle bidirectional ledger connector",
       ],
       impact: [
-        { label: "Cost Reduction", value: "42%", detail: "Decreased scrap & maintenance downtime" },
-        { label: "Processing Speed", value: "10x", detail: "Real-time edge inspection & ERP sync" },
-        { label: "Defect Escape Rate", value: "0.02%", detail: "Down from baseline 4.2% manual error" },
+        { label: "Target Cost Reduction", value: "42%", detail: "Simulated scrap & maintenance downtime reduction" },
+        { label: "Target Processing Speed", value: "10x", detail: "Real-time edge inspection & ERP sync objective" },
+        { label: "Target Defect Rate", value: "0.02%", detail: "Modeled vs baseline 4.2% manual error" },
       ],
       terminalLogs: [
-        ">> init krynex_audit --sector='Manufacturing' --facility='Global Heavy Works'",
+        ">> init krynex_audit --sector='Manufacturing' --facility='Simulated Facility: Global Heavy Works (Sandbox Demo)'",
         ">> Ingesting 250 SCADA sensors + 12 High-Speed Vision cameras...",
         ">> Operational Bottleneck: Bearing vibration anomaly detected on Line #4",
         ">> Deploying KRYNEX-Edge-Predictive-v4.2 container to local gateway...",
         ">> Latency: 1.2ms (Edge TensorRT) | Zero-Trust isolated LAN",
-        ">> Automated Work-Order generated in ERP (Ticket #WO-89102)",
-        ">> MEASURED IMPACT: 42% Cost Reduction | 10x Workflow Speed | Zero Line Stoppages",
+        ">> Automated Work-Order generated in ERP (Simulated Ticket #SIM-WO-89102)",
+        ">> SIMULATED ARCHITECTURE TARGET: 42% Scrap & Downtime Target | 10x Pipeline Target",
       ],
     },
     {
@@ -71,21 +72,21 @@ export default function DraftingDemo() {
       archDetails: [
         "Streaming Kafka + Flink real-time feature store",
         "Sub-5ms Graph Convolutional Network inference",
-        "Bank-grade AES-256 HSM cryptographic vault",
+        "AES-256 HSM cryptographic key vault",
       ],
       impact: [
-        { label: "Fraud Detection", value: "99.8%", detail: "Instant multi-account correlation" },
-        { label: "Verification Time", value: "<90s", detail: "Down from 5-7 business days" },
-        { label: "Throughput", value: "85k/sec", detail: "Concurrent transaction capacity" },
+        { label: "Fraud Interception Target", value: "99.8%", detail: "Simulated multi-account correlation" },
+        { label: "Verification Target", value: "<90s", detail: "Modeled vs 5-7 business days manual turnaround" },
+        { label: "Capacity Target", value: "85k/sec", detail: "Concurrent transaction design envelope" },
       ],
       terminalLogs: [
-        ">> init krynex_audit --sector='FinTech' --node='Core Banking Engine'",
-        ">> Monitoring streaming ledger: 65,000 tx/sec under load...",
+        ">> init krynex_audit --sector='FinTech' --node='Simulated Core Banking Engine (Demo Sandbox)'",
+        ">> Monitoring streaming ledger: 65,000 tx/sec modeled under load...",
         ">> Anomaly Triggered: Multi-hop circular disbursement pattern flagged",
         ">> Executing GNN Graph Reasoning Model on GPU cluster...",
         ">> Decision: Transaction Suspended & Risk Payload routed to Compliance Vault",
-        ">> Latency: 3.8ms | Compliance: ISO 27001 & Global Banking Standards",
-        ">> MEASURED IMPACT: 99.8% Fraud Prevention | Real-Time Clearance | 0 Discrepancy",
+        ">> Latency: 3.8ms | Architecture Standard: Aligned with ISO 27001 Control Guidelines",
+        ">> SIMULATED ARCHITECTURE TARGET: 99.8% Fraud Interception Target | Sub-5ms Scoring",
       ],
     },
     {
@@ -102,18 +103,18 @@ export default function DraftingDemo() {
         "Dynamic route recalculation based on live maritime congestion",
       ],
       impact: [
-        { label: "Turnaround Speed", value: "<3 Min", detail: "Gate clearance from 36 hours" },
-        { label: "Manifest Accuracy", value: "99.9%", detail: "Zero customs clearance penalties" },
-        { label: "Fleet Utilization", value: "+38%", detail: "Optimized turnaround cycles" },
+        { label: "Turnaround Target", value: "<3 Min", detail: "Gate clearance modeled from 36 hours" },
+        { label: "Manifest Accuracy Target", value: "99.9%", detail: "Zero customs clearance penalty objective" },
+        { label: "Fleet Utilization Target", value: "+38%", detail: "Simulated turnaround efficiency gain" },
       ],
       terminalLogs: [
-        ">> init krynex_audit --sector='Logistics' --hub='Maritime Container Terminal'",
+        ">> init krynex_audit --sector='Logistics' --hub='Simulated Maritime Terminal (Demo Sandbox)'",
         ">> Ingesting Multilingual Bill of Lading & Inland Container Manifests...",
         ">> Discrepancy Found: HSN Code mismatch in legacy vendor scan",
         ">> Running Neural Document Parser with Automated Cross-Reference Engine...",
         ">> Auto-Corrected against National Tariff Database & verified with digital token",
         ">> Gate Clearance Token dispatched to Driver Mobile App in 1.4s",
-        ">> MEASURED IMPACT: Dwell Time reduced to <3 minutes | 38% Fleet Efficiency Gain",
+        ">> SIMULATED ARCHITECTURE TARGET: Dwell Time Target <3 minutes | 38% Target Efficiency Gain",
       ],
     },
     {
@@ -130,18 +131,18 @@ export default function DraftingDemo() {
         "Comprehensive human-in-the-loop exception escalations",
       ],
       impact: [
-        { label: "Workflow Velocity", value: "15x", detail: "Approvals reduced from days to minutes" },
-        { label: "Manual Errors", value: "Zero", detail: "Fully audited deterministic execution" },
-        { label: "Productivity Reclaimed", value: "70%", detail: "Staff pivoted to high-value strategy" },
+        { label: "Target Workflow Velocity", value: "15x", detail: "Approvals modeled from days to minutes" },
+        { label: "Syntax Schema Errors", value: "Zero", detail: "Enforced via deterministic schema grammar" },
+        { label: "Productivity Target", value: "70%", detail: "Administrative capacity reclaimed" },
       ],
       terminalLogs: [
-        ">> init krynex_audit --sector='Enterprise IT' --domain='Global Corporate Operations'",
+        ">> init krynex_audit --sector='Enterprise IT' --domain='Simulated Corporate Operations (Demo)'",
         ">> Ingesting cross-departmental email, PDF purchase requests & ERP records...",
         ">> Parsing unstructured supplier quote into structured procurement schema...",
         ">> Verifying departmental budget allocations & statutory compliance...",
         ">> Autonomous PO Creation, Tax Verification, and Multi-Level Approval executed",
         ">> Audit Trail Sealed: SHA-256 immutable signature generated",
-        ">> MEASURED IMPACT: 15x Workflow Velocity | Zero Manual Error | 100% Audit Compliance",
+        ">> SIMULATED ARCHITECTURE TARGET: 15x Workflow Velocity Target | Verified Conformance",
       ],
     },
   ];
@@ -180,6 +181,14 @@ export default function DraftingDemo() {
           </p>
         </div>
 
+        {/* Illustrative Simulation Notice */}
+        <div className="p-3.5 rounded-2xl bg-white/[0.02] border border-white/10 text-xs font-mono text-zinc-400 mb-8 flex items-start gap-3 max-w-4xl">
+          <AlertCircle className="w-4 h-4 text-white shrink-0 mt-0.5" />
+          <span>
+            <strong className="text-white">ILLUSTRATIVE ARCHITECTURAL SIMULATION:</strong> The facility names, telemetry waveforms, work orders, and metrics displayed in this interactive console represent simulated demonstration data modeling theoretical performance envelopes for custom enterprise neural and microservice architectures.
+          </span>
+        </div>
+
         {/* 4 Clickable Industry Domain Tabs */}
         <div className="flex flex-wrap gap-2 p-1.5 rounded-2xl bg-[#080808] border border-white/10 mb-8 max-w-2xl">
           {sectors.map((sec, idx) => (
@@ -210,7 +219,7 @@ export default function DraftingDemo() {
                 <span className="w-3 h-3 rounded-full bg-zinc-300 inline-block" />
               </div>
               <span className="text-xs font-mono text-zinc-400">
-                krynex-diagnostics — bash — 99.99% SLA
+                krynex-architectural-simulator — demonstration sandbox
               </span>
             </div>
 

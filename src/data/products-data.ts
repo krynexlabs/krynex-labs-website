@@ -121,7 +121,7 @@ export const PRODUCTS_DATA: Record<string, ProductDetail> = {
         "Client documents encrypted at rest with per-tenant AES-256 keys",
         "Air-gapped VPC hosting option for corporate legal departments",
         "Zero-retention inference: Inputs flushed immediately post-compilation",
-        "Deterministic grammar decoder prevents LLM hallucinations",
+        "Deterministic grammar decoder constrains generative drift to statutory templates",
       ],
     },
     demoPreview: {
@@ -237,7 +237,7 @@ export const PRODUCTS_DATA: Record<string, ProductDetail> = {
       {
         title: "Autonomous AI Document Parsing",
         description:
-          "Ingest scanned invoices, delivery receipts, and customs manifests; extract line items with 99.8% precision; and match against purchase orders.",
+          "Ingest scanned invoices, delivery receipts, and customs manifests; extract line items with high-precision validation; and match against purchase orders.",
         specs: "3-way ERP reconciliation",
       },
       {
@@ -250,7 +250,7 @@ export const PRODUCTS_DATA: Record<string, ProductDetail> = {
         title: "Enterprise Role-Based Access & Audit Ledger",
         description:
           "Immutable, timestamped audit log of every state change, document approval, and API transmission for regulatory compliance.",
-        specs: "SOC 2 & ISO 27001 aligned",
+        specs: "Designed in alignment with SOC 2 & ISO 27001 security guidelines",
       },
     ],
     architecture: {

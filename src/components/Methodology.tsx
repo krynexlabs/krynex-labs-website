@@ -45,10 +45,10 @@ export default function Methodology() {
       badge: "AI & ML R&D LAB",
       title: "Custom Neural Architecture",
       description:
-        "Designing proprietary machine learning models, custom neural pipelines, and autonomous decision trees tailored to exact industry taxonomy. Every architecture incorporates deterministic mathematical bounds to eliminate hallucination.",
+        "Designing proprietary machine learning models, custom neural pipelines, and autonomous decision trees tailored to exact industry taxonomy. Every architecture incorporates deterministic mathematical bounds and grammar decoding to minimize generative drift and enforce structural compliance.",
       points: [
         "Domain-specific tokenization & fine-tuned transformer weights",
-        "Deterministic guardrails with zero-hallucination semantic RAG",
+        "Deterministic guardrails with grammar-constrained semantic RAG",
         "Multi-agent validation: execution, verification, and audit agents",
         "Optimized 4-bit/8-bit quantization for sub-10ms inference latencies",
       ],
@@ -57,22 +57,22 @@ export default function Methodology() {
 >> Model Taxonomy: Multi-Agent Arbitration & Localized Embeddings
 >> Guardrails Active: 100% Deterministic Schema Validation
 >> Inference Benchmark: 99.6% F1 Accuracy on Enterprise Test Vectors
->> Latency Profile: 8.4ms (p99 GPU TensorRT Core)`,
+>> Latency Target: 8.4ms (p99 GPU TensorRT Core)`,
     },
     {
       step: "03",
-      badge: "MNC INFRASTRUCTURE",
+      badge: "ENTERPRISE INFRASTRUCTURE",
       title: "Enterprise-Grade IT Scale",
       description:
-        "Building resilient, cloud-native full-stack software systems with MNC-level security, scalability, and 99.99% reliability. We deploy high-concurrency microservices, zero-trust cloud meshes, and intuitive executive dashboards.",
+        "Building resilient, cloud-native full-stack software systems with enterprise-level security, horizontal scalability, and high-availability design. We deploy high-concurrency microservices, zero-trust cloud meshes, and intuitive executive dashboards.",
       points: [
         "Distributed Kubernetes & edge runtime deployment",
-        "Bank-grade AES-256 end-to-end encryption & ISO standards",
+        "AES-256 HSM encryption & aligned security controls",
         "Bidirectional enterprise connectors for SAP, Salesforce, Oracle & Custom ERPs",
         "24/7 dedicated engineering SLA support & automated model health telemetry",
       ],
       terminalSnippet: `// 03 // ENTERPRISE DEPLOYMENT PHASE
->> Target Mesh: Distributed Multi-Region High-Availability Cluster
+>> Architecture Target: Distributed High-Availability Cluster
 >> Security Architecture: Zero-Trust Network Access (mTLS + AES-256)
 >> SLA Status: 99.99% Uptime Verified
 >> System Load: 125,000+ Real-Time Concurrent Transactions / Second

@@ -29,17 +29,17 @@ export const SOLUTIONS_DATA: Record<string, SolutionDetail> = {
     overview:
       "We engineer bespoke neural networks, domain-adapted large language models, and high-frequency edge computer vision systems tailored to complex enterprise workflows. Unlike off-the-shelf consumer wrappers, our models operate under strict deterministic guardrails, zero-retention data sovereignty, and optimized micro-kernel execution.",
     keyProblemsSolved: [
-      "Elimination of generic LLM hallucinations via deterministic mathematical verification and constrained grammar decoding.",
+      "Minimization of LLM hallucinations via deterministic AST verification and constrained grammar decoding.",
       "High-latency inference bottlenecks overcome with 4-bit/8-bit TensorRT quantization on local edge hardware (<15ms per frame).",
       "Protection of sensitive intellectual property with zero-retention private VPC and on-premise neural cluster deployments.",
-      "Fragmented unstructured document processing transformed into verified JSON schemas with 99.8% precision.",
+      "Fragmented unstructured document processing transformed into verified JSON schemas with high-precision validation.",
     ],
     capabilities: [
       {
         title: "Domain-Adapted Foundation Models",
         description:
           "Targeted fine-tuning of open-weights models (Llama 3, Mistral, Gemma) on proprietary enterprise corpora using LoRA/QLoRA with rigorous benchmark evaluation.",
-        metrics: "99.8% schema adherence",
+        metrics: ">99% target schema adherence",
       },
       {
         title: "Deterministic RAG & Clause Validation",

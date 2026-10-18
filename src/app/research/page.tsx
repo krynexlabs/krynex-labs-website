@@ -17,9 +17,9 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "R&D Lab & Engineering Research | Krynex Labs",
+  title: "R&D Lab & Engineering Research",
   description:
-    "Explore Krynex Labs R&D telemetry, model quantization experiments, deterministic mathematical guardrails, and the Ahmedabad DC-01 diagnostic console.",
+    "Explore Krynex Labs R&D telemetry, model quantization experiments, deterministic mathematical guardrails, and our architectural simulation diagnostic console.",
   alternates: {
     canonical: "https://www.krynexlabs.in/research",
   },
@@ -99,12 +99,12 @@ export default function ResearchPage() {
                 </div>
               </div>
               <div className="p-5 rounded-2xl bg-black border border-white/[0.06]">
-                <div className="text-[10px] font-mono text-zinc-400 uppercase">Mathematical Guardrails Threshold</div>
+                <div className="text-[10px] font-mono text-zinc-400 uppercase">Mathematical Guardrails Target</div>
                 <div className="text-3xl font-bold font-mono text-white tracking-tight mt-1 mb-1">
                   99.98%
                 </div>
                 <div className="text-xs text-zinc-400">
-                  Deterministic AST grammar verification preventing hallucinations
+                  Deterministic AST grammar verification to minimize generative drift and schema divergence
                 </div>
               </div>
               <div className="p-5 rounded-2xl bg-black border border-white/[0.06]">

@@ -5,7 +5,7 @@ import { SOLUTIONS_DATA } from "@/data/solutions-data";
 import SolutionDetailView from "@/components/SolutionDetailView";
 
 export const metadata: Metadata = {
-  title: "Cloud Infrastructure, Data & Zero-Trust Security | Krynex Labs",
+  title: "Cloud Infrastructure, Data & Zero-Trust Security",
   description:
     "Zero-trust cloud infrastructure, real-time streaming data pipelines (Kafka/Flink), and HSM cryptographic key management engineered for sovereign data isolation.",
   alternates: {

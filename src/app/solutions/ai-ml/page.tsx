@@ -5,7 +5,7 @@ import { SOLUTIONS_DATA } from "@/data/solutions-data";
 import SolutionDetailView from "@/components/SolutionDetailView";
 
 export const metadata: Metadata = {
-  title: "Applied AI & Neural Architectures | Krynex Labs",
+  title: "Applied AI & Neural Architectures",
   description:
     "Custom neural architectures, LLM fine-tuning, deterministic RAG, and sub-15ms edge computer vision engineered for zero-error enterprise execution.",
   alternates: {

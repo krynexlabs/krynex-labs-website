@@ -1,5 +1,5 @@
 export const ABOUT_DATA = {
-  company: "KRYNEX LABS INC.",
+  company: "KRYNEX LABS",
   headquarters: "SBR (Sindhu Bhavan Road), Ahmedabad, Gujarat 380054, India",
   tagline: "Architecting Intelligence for Industry.",
   coreMessage:
@@ -77,9 +77,9 @@ export const ABOUT_DATA = {
         "FIPS 140-2 Level 3 validated encryption protects all credentials, database volumes, and API keys at rest and in transit.",
     },
     {
-      title: "Ahmedabad Cloud DC-01 Operations",
+      title: "Ahmedabad Operations & Edge Infrastructure",
       description:
-        "Headquartered at SBR, Ahmedabad, India with multi-region edge nodes engineered to deliver sub-10ms response times globally.",
+        "Headquartered at SBR, Ahmedabad, India with edge node routing engineered for low-latency responsiveness.",
     },
     {
       title: "Full Intellectual Property Transfer",

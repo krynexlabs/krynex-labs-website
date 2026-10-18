@@ -15,7 +15,7 @@ export default function Analytics() {
         const metric = {
           route: pathname,
           timestamp: new Date().toISOString(),
-          datacenter: "AHMEDABAD-DC01",
+          node: "AHMEDABAD-LABS",
         };
         // Internal diagnostic heartbeat channel
         if (process.env.NODE_ENV === "development") {

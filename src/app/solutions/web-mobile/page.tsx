@@ -5,7 +5,7 @@ import { SOLUTIONS_DATA } from "@/data/solutions-data";
 import SolutionDetailView from "@/components/SolutionDetailView";
 
 export const metadata: Metadata = {
-  title: "Web & Mobile Application Engineering | Krynex Labs",
+  title: "Web & Mobile Application Engineering",
   description:
     "Sub-100ms full-stack web platforms, offline-first mobile apps, and interactive enterprise data visualizations built with Next.js and React Native.",
   alternates: {

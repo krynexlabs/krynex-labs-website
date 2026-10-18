@@ -18,7 +18,7 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "SaaS Products & Software Solutions | Krynex Labs",
+  title: "SaaS Products & Software Solutions",
   description:
     "Explore Krynex Labs' proprietary software products: Krynex Lexis (Regional AI Legal Drafting SaaS), Krynex Flow (Enterprise Workflow Orchestrator), and Krynex Vision (Edge Industrial QC).",
   alternates: {

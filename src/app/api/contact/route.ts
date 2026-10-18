@@ -171,7 +171,7 @@ export async function POST(request: Request) {
         referenceId,
         contactEmail: "support@krynexlabs.in",
         timestamp,
-        message: "Executive brief securely received and routed to Ahmedabad DC-01 engineering team.",
+        message: "Executive brief securely received and routed to Krynex Labs engineering team.",
       },
       { status: 200 }
     );

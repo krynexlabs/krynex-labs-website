@@ -9,12 +9,7 @@ const Hero3DCube = dynamic(() => import("./Hero3DCube"), {
   ssr: false,
   loading: () => (
     <div className="w-full h-[560px] lg:h-[680px] flex items-center justify-center">
-      <div className="flex flex-col items-center gap-3">
-        <div className="w-12 h-12 rounded-full border-2 border-white/30 border-t-transparent animate-spin" />
-        <span className="text-xs font-mono text-zinc-500 tracking-wider">
-          INITIALIZING 3D RUBIK MATRIX...
-        </span>
-      </div>
+      <div className="w-12 h-12 rounded-full border-2 border-white/20 border-t-white animate-spin" />
     </div>
   ),
 });
@@ -91,7 +86,7 @@ export default function HeroSection({ onRequestDemo }: HeroSectionProps) {
                   <span>Standards</span>
                 </div>
                 <div className="text-lg sm:text-xl font-bold text-white tracking-tight font-mono">
-                  MNC-Grade
+                  Enterprise-Grade
                 </div>
                 <span className="text-[11px] text-zinc-500">Zero-trust architecture</span>
               </div>
@@ -102,9 +97,9 @@ export default function HeroSection({ onRequestDemo }: HeroSectionProps) {
                   <span>Reliability</span>
                 </div>
                 <div className="text-lg sm:text-xl font-bold text-white tracking-tight font-mono">
-                  99.99% SLA
+                  99.9% Target
                 </div>
-                <span className="text-[11px] text-zinc-500">High-availability cloud</span>
+                <span className="text-[11px] text-zinc-500">High-availability SLA target</span>
               </div>
 
               <div className="flex flex-col">
@@ -113,9 +108,9 @@ export default function HeroSection({ onRequestDemo }: HeroSectionProps) {
                   <span>Precision</span>
                 </div>
                 <div className="text-lg sm:text-xl font-bold text-white tracking-tight font-mono">
-                  Deterministic
+                  AST Verified
                 </div>
-                <span className="text-[11px] text-zinc-500">Zero-hallucination RAG</span>
+                <span className="text-[11px] text-zinc-500">Grammar-constrained RAG</span>
               </div>
 
               <div className="flex flex-col">
@@ -124,9 +119,9 @@ export default function HeroSection({ onRequestDemo }: HeroSectionProps) {
                   <span>Latency</span>
                 </div>
                 <div className="text-lg sm:text-xl font-bold text-white tracking-tight font-mono">
-                  &lt;10ms
+                  Sub-50ms
                 </div>
-                <span className="text-[11px] text-zinc-500">Optimized inference mesh</span>
+                <span className="text-[11px] text-zinc-500">Target inference latency</span>
               </div>
             </div>
           </div>

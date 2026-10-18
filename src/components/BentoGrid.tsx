@@ -84,7 +84,7 @@ export default function BentoGrid() {
               </h3>
               <p className="text-sm sm:text-base text-zinc-400 leading-relaxed mb-8 max-w-2xl">
                 Architecting neural networks, high-speed computer vision, domain-adapted NLP,
-                and automated enterprise decision systems with mathematical zero-hallucination bounds.
+                and automated enterprise decision systems with deterministic AST verification and validation guardrails.
               </p>
 
               {/* Monochrome Node Graph with Animated Bezier Data Beams */}
@@ -351,8 +351,8 @@ export default function BentoGrid() {
             </div>
 
             <div className="pt-4 border-t border-white/[0.08] flex items-center justify-between text-xs text-zinc-500">
-              <span className="font-mono">99.99% SLA UPTIME</span>
-              <span className="text-zinc-300 font-medium">MNC-Certified</span>
+              <span className="font-mono">99.9% TARGET AVAILABILITY</span>
+              <span className="text-zinc-300 font-medium">Enterprise Baseline</span>
             </div>
           </div>
 
@@ -387,7 +387,7 @@ export default function BentoGrid() {
                     <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
                     <span>SCADA TELEMETRY STREAM</span>
                   </div>
-                  <span className="text-white font-semibold">120,450 EVENTS/SEC</span>
+                  <span className="text-white font-semibold">120,450 EVENTS/SEC TARGET</span>
                 </div>
                 {/* SVG Real-time Sparkline */}
                 <div className="h-10 w-full overflow-hidden flex items-center">
@@ -433,7 +433,7 @@ export default function BentoGrid() {
           </div>
 
           {/* ======================================================== */}
-          {/* CARD 4: MNC-Grade Security & Performance (6 cols) */}
+          {/* CARD 4: Hardened Enterprise Security & Performance (6 cols) */}
           {/* ======================================================== */}
           <div className="lg:col-span-6 spotlight-card rounded-3xl p-6 sm:p-8 flex flex-col justify-between relative overflow-hidden">
             <div className="absolute top-0 left-6 right-6 h-[1px] bg-gradient-to-r from-transparent via-white/30 to-transparent pointer-events-none" />
@@ -441,7 +441,7 @@ export default function BentoGrid() {
             <div>
               <div className="flex items-center justify-between mb-4">
                 <span className="text-xs font-mono text-zinc-300 tracking-wider uppercase font-semibold">
-                  MNC-GRADE RELIABILITY
+                  ENTERPRISE-GRADE RELIABILITY
                 </span>
                 <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.04] text-zinc-400 border border-white/10">
                   ZERO-TRUST
@@ -449,18 +449,18 @@ export default function BentoGrid() {
               </div>
 
               <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight mb-2">
-                MNC-Grade Security &amp; Performance
+                Enterprise Security &amp; Performance
               </h3>
               <p className="text-xs sm:text-sm text-zinc-400 leading-relaxed mb-6">
                 Engineered under zero-trust paradigms. Strict isolation boundaries,
-                air-gapped deployment options, and compliance with global data governance mandates.
+                air-gapped deployment options, and compliance alignment with global data governance mandates.
               </p>
 
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-6">
                 <div className="p-3.5 rounded-xl bg-black border border-white/[0.06]">
-                  <div className="text-[10px] font-mono text-zinc-500 uppercase">API Latency</div>
+                  <div className="text-[10px] font-mono text-zinc-500 uppercase">API Latency Target</div>
                   <div className="text-xl font-bold font-mono text-white my-0.5">&lt;10ms</div>
-                  <div className="text-[10px] text-zinc-500">Edge Gateway p99</div>
+                  <div className="text-[10px] text-zinc-500">Edge Gateway p99 Objective</div>
                 </div>
 
                 <div className="p-3.5 rounded-xl bg-black border border-white/[0.06]">
@@ -470,9 +470,9 @@ export default function BentoGrid() {
                 </div>
 
                 <div className="p-3.5 rounded-xl bg-black border border-white/[0.06] col-span-2 sm:col-span-1">
-                  <div className="text-[10px] font-mono text-zinc-500 uppercase">Standards</div>
+                  <div className="text-[10px] font-mono text-zinc-500 uppercase">Framework Alignment</div>
                   <div className="text-xl font-bold font-mono text-white my-0.5">ISO 27001</div>
-                  <div className="text-[10px] text-zinc-500">Aligned Engineering</div>
+                  <div className="text-[10px] text-zinc-500">Control Guidelines Target</div>
                 </div>
               </div>
 

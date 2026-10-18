@@ -49,6 +49,16 @@ const nextConfig = {
         destination: 'https://www.krynexlabs.in/:path*',
         permanent: true,
       },
+      {
+        source: '/legal/privacy',
+        destination: '/privacy',
+        permanent: true,
+      },
+      {
+        source: '/legal/terms',
+        destination: '/terms',
+        permanent: true,
+      },
     ];
   },
 };

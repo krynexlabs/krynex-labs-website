@@ -334,7 +334,7 @@ export default function Footer({ onRequestDemo }: FooterProps = {}) {
               <div className="flex items-center justify-center gap-4 text-[11px] font-mono text-zinc-500 pt-3">
                 <span className="flex items-center gap-1.5">
                   <Shield className="w-3.5 h-3.5 text-zinc-400" />
-                  MNC-GRADE CONFIDENTIALITY &amp; NDA PROTECTED
+                  ENTERPRISE CONFIDENTIALITY &amp; NDA PROTECTED
                 </span>
                 <span>•</span>
                 <span>SBR, AHM, GUJ // AHMEDABAD HQ</span>
@@ -429,31 +429,13 @@ export default function Footer({ onRequestDemo }: FooterProps = {}) {
                 </svg>
               </a>
               <a
-                href="https://github.com"
+                href="https://github.com/krynexlabs"
                 target="_blank"
                 rel="noreferrer"
                 className="w-8 h-8 rounded-lg bg-black border border-white/10 hover:border-white/30 flex items-center justify-center text-zinc-400 hover:text-white transition-colors focus:outline-none focus-visible:ring-1 focus-visible:ring-white"
                 aria-label="Krynex GitHub"
               >
                 <Github className="w-4 h-4" />
-              </a>
-              <a
-                href="https://twitter.com"
-                target="_blank"
-                rel="noreferrer"
-                className="w-8 h-8 rounded-lg bg-black border border-white/10 hover:border-white/30 flex items-center justify-center text-zinc-400 hover:text-white transition-colors focus:outline-none focus-visible:ring-1 focus-visible:ring-white"
-                aria-label="Krynex Twitter"
-              >
-                <Twitter className="w-4 h-4" />
-              </a>
-              <a
-                href="https://linkedin.com"
-                target="_blank"
-                rel="noreferrer"
-                className="w-8 h-8 rounded-lg bg-black border border-white/10 hover:border-white/30 flex items-center justify-center text-zinc-400 hover:text-white transition-colors focus:outline-none focus-visible:ring-1 focus-visible:ring-white"
-                aria-label="Krynex LinkedIn"
-              >
-                <Linkedin className="w-4 h-4" />
               </a>
             </div>
           </div>
@@ -556,7 +538,7 @@ export default function Footer({ onRequestDemo }: FooterProps = {}) {
               </li>
               <li>
                 <Link href="/terms" className="hover:text-white transition-colors">
-                  Terms &amp; 99.99% SLA
+                  Terms of Service &amp; SLA
                 </Link>
               </li>
             </ul>
@@ -567,13 +549,13 @@ export default function Footer({ onRequestDemo }: FooterProps = {}) {
         <div className="pt-8 border-t border-white/[0.08] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-zinc-500">
           <div className="flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-white animate-pulse" />
-            <span className="text-zinc-300">ALL SYSTEMS NOMINAL</span>
+            <span className="text-zinc-300">DIAGNOSTIC STATUS: NOMINAL</span>
             <span>{"//"}</span>
-            <span>AHMEDABAD CLOUD DC-01</span>
+            <span>AHMEDABAD LABS</span>
           </div>
 
           <div>
-            &copy; 2026 KRYNEX LABS INC. ALL RIGHTS RESERVED.
+            &copy; 2026 KRYNEX LABS. ALL RIGHTS RESERVED.
           </div>
         </div>
       </div>

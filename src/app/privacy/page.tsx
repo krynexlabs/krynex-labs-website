@@ -1,21 +1,36 @@
+import React from "react";
 import Link from "next/link";
-import { ArrowLeft, Shield, Lock, EyeOff, Server, Mail } from "lucide-react";
+import { Metadata } from "next";
+import { ArrowLeft, Shield, Lock, EyeOff, Server, Mail, CheckCircle2 } from "lucide-react";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
-export const metadata = {
-  title: "Privacy Policy & Enterprise Data Governance | Krynex Labs",
+export const metadata: Metadata = {
+  title: "Privacy Policy",
   description:
-    "Enterprise data sovereignty, zero-trust encryption, and strict NDA compliance standards governing Krynex Labs client workflows and telemetry.",
+    "Enterprise data sovereignty, cryptographic security standards, and privacy disclosures governing Krynex Labs client workflows, SaaS products, and contact inquiries.",
+  alternates: {
+    canonical: "https://www.krynexlabs.in/privacy",
+  },
+  openGraph: {
+    title: "Privacy Policy | Krynex Labs",
+    description:
+      "Enterprise data sovereignty, cryptographic security standards, and privacy disclosures governing Krynex Labs client workflows, SaaS products, and contact inquiries.",
+    url: "https://www.krynexlabs.in/privacy",
+  },
 };
 
 export default function PrivacyPage() {
   return (
-    <main className="min-h-screen bg-black text-white selection:bg-white selection:text-black pt-24 pb-20 px-4 sm:px-6 lg:px-8">
+    <main className="min-h-screen bg-black text-white selection:bg-white selection:text-black">
+      <Navbar />
+
       {/* Top ambient spotlight */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[400px] bg-[radial-gradient(circle,rgba(255,255,255,0.06),transparent_70%)] pointer-events-none -z-10" />
 
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-4xl mx-auto pt-36 pb-20 px-4 sm:px-6 lg:px-8">
         {/* Navigation Back */}
-        <div className="mb-10">
+        <div className="mb-8">
           <Link
             href="/"
             className="inline-flex items-center gap-2 text-xs font-mono text-zinc-400 hover:text-white transition-colors group"
@@ -29,12 +44,12 @@ export default function PrivacyPage() {
         <div className="mb-12 border-b border-white/[0.08] pb-8">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/[0.04] border border-white/10 text-[11px] font-mono text-zinc-300 uppercase mb-4">
             <Shield className="w-3.5 h-3.5 text-zinc-300" />
-            <span>ENTERPRISE GOVERNANCE // ISO 27001 ALIGNED</span>
+            <span>ENTERPRISE GOVERNANCE &amp; PRIVACY DISCLOSURE</span>
           </div>
           <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-white mb-4">
             Privacy Policy &amp; Data Sovereignty
           </h1>
-          <p className="text-zinc-400 text-sm font-mono">
+          <p className="text-zinc-400 text-xs font-mono">
             LAST REVISED: OCTOBER 2026 • AHMEDABAD ENGINEERING HEADQUARTERS
           </p>
         </div>
@@ -45,18 +60,18 @@ export default function PrivacyPage() {
           <section className="space-y-4">
             <h2 className="text-xl font-bold text-white tracking-tight flex items-center gap-2">
               <Lock className="w-5 h-5 text-zinc-400" />
-              1. Zero-Retention Client Data Guarantee
+              1. Client Data Sovereignty &amp; Zero Public Model Co-Mingling
             </h2>
             <p className="text-zinc-400 leading-relaxed">
               At Krynex Labs (&ldquo;Krynex&rdquo;, &ldquo;we&rdquo;, &ldquo;us&rdquo;), enterprise confidentiality and client proprietary
-              intelligence form our foundational baseline. Unlike consumer AI aggregators, Krynex Labs maintains an absolute zero-retention
-              architecture: proprietary customer datasets, industrial logs, SCADA records, and ERP schemas are never utilized to train or fine-tune
-              public or foundation neural models.
+              intelligence form our foundational baseline. Unlike consumer AI aggregators, Krynex Labs maintains an absolute zero public model
+              co-mingling policy: proprietary customer datasets, industrial logs, SCADA records, and ERP schemas processed by our custom engineering
+              pipelines or SaaS products are never utilized to train or fine-tune public or foundation neural models.
             </p>
             <div className="p-4 rounded-xl bg-[#080808] border border-white/[0.08] font-mono text-xs text-zinc-400 space-y-1">
               <div>&bull; ZERO PUBLIC MODEL CO-MINGLING</div>
               <div>&bull; ISOLATED TENANT CONTAINERIZATION</div>
-              <div>&bull; DETERMINISTIC CRYPTOGRAPHIC DISPOSAL UPON PIPELINE COMPLETION</div>
+              <div>&bull; CLIENT-CONTROLLED ENCRYPTION KEYS FOR SENSITIVE WORKFLOWS</div>
             </div>
           </section>
 
@@ -64,13 +79,25 @@ export default function PrivacyPage() {
           <section className="space-y-4">
             <h2 className="text-xl font-bold text-white tracking-tight flex items-center gap-2">
               <EyeOff className="w-5 h-5 text-zinc-400" />
-              2. Cryptographic Security &amp; Ingestion Standards
+              2. Information Collected via Website &amp; Technical Inquiries
             </h2>
             <p className="text-zinc-400 leading-relaxed">
-              All data transmitted during operational discovery, pipeline benchmarking, and enterprise IT deployment is encrypted
-              in transit using TLS 1.3 with AES-256-GCM cipher suites and encrypted at rest using client-held hardware security module (HSM) keys.
-              Internal telemetry logs are anonymized and mathematically scrubbed of all Personally Identifiable Information (PII)
-              before aggregation into our Ahmedabad cluster diagnostics.
+              When prospective enterprise partners submit project inquiries via our website or consultation portal, we collect business contact
+              details necessary to establish and administer commercial discussions:
+            </p>
+            <ul className="space-y-2 text-xs text-zinc-400 pl-4 list-disc">
+              <li>
+                <strong className="text-white">Contact Information:</strong> Executive name, corporate email address, and company/sector designation.
+              </li>
+              <li>
+                <strong className="text-white">Project Scope &amp; Friction Details:</strong> High-level operational challenges, workflow requirements, or software licensing inquiries submitted through our forms.
+              </li>
+              <li>
+                <strong className="text-white">Technical Access Logs:</strong> Standard HTTP server logs (IP address, browser user-agent, request timestamps) captured at the network edge for security, DDoS mitigation, and operational integrity.
+              </li>
+            </ul>
+            <p className="text-zinc-400 text-xs">
+              Contact submissions are retained securely for the duration of the business evaluation or client relationship, and are never sold or rented to third-party commercial brokers.
             </p>
           </section>
 
@@ -78,12 +105,14 @@ export default function PrivacyPage() {
           <section className="space-y-4">
             <h2 className="text-xl font-bold text-white tracking-tight flex items-center gap-2">
               <Server className="w-5 h-5 text-zinc-400" />
-              3. Telemetry &amp; Cookie Consent
+              3. Telemetry, Cookies &amp; User Choices
             </h2>
             <p className="text-zinc-400 leading-relaxed">
               This website employs minimal, non-invasive cookies solely for essential session persistence, regional CDN routing,
-              and anonymous aggregate performance metrics. We do not engage in third-party behavioral ad tracking or cross-site fingerprinting.
-              Visitors may choose &ldquo;Essential Only&rdquo; on our telemetry banner to disable all non-critical performance metrics without affecting site functionality.
+              and anonymous aggregate performance metrics. We do not engage in third-party behavioral advertising tracking or cross-site fingerprinting.
+            </p>
+            <p className="text-zinc-400 leading-relaxed">
+              Visitors may choose &ldquo;Essential Only&rdquo; on our telemetry banner to disable all non-critical performance metrics without affecting site functionality. Your preference is persisted locally in your browser (<code className="text-zinc-200">krynex_cookie_consent</code>) and may be cleared at any time via your browser settings.
             </p>
           </section>
 
@@ -91,22 +120,23 @@ export default function PrivacyPage() {
           <section className="space-y-4">
             <h2 className="text-xl font-bold text-white tracking-tight flex items-center gap-2">
               <Mail className="w-5 h-5 text-zinc-400" />
-              4. Corporate Compliance &amp; Contact
+              4. Data Subject Rights &amp; Contact Information
             </h2>
             <p className="text-zinc-400 leading-relaxed">
-              Inquiries regarding enterprise non-disclosure agreements (NDAs), data processing addenda (DPAs), and sovereign cloud isolation
-              should be directed to our Legal and Data Protection Office:
+              In accordance with applicable data protection laws (including the Digital Personal Data Protection Act and international privacy frameworks), you have the right to request access to, correction of, or deletion of personal contact details submitted to us.
             </p>
             <div className="p-4 rounded-xl bg-[#080808] border border-white/[0.08] font-mono text-xs text-zinc-400 space-y-1">
-              <div>OFFICE OF DATA PROTECTION &amp; ENTERPRISE GOVERNANCE</div>
-              <div>KRYNEX LABS INC.</div>
+              <div>DATA GOVERNANCE &amp; PRIVACY INQUIRIES</div>
+              <div>KRYNEX LABS</div>
               <div>Sindhu Bhavan Road (SBR), Ahmedabad, Gujarat 380054, India</div>
               <div>Direct: <a href="mailto:support@krynexlabs.in" className="text-white underline">support@krynexlabs.in</a></div>
-              <div>Executive WhatsApp: <a href="https://wa.me/919879418569?text=Hello%20Krynex%20Labs,%20I%20would%20like%20to%20discuss%20an%20industry%20inquiry." target="_blank" rel="noopener noreferrer" className="text-white underline">+91 9879418569</a> <span className="text-[10px] text-zinc-400 font-mono">(WhatsApp Only • No Calls)</span></div>
+              <div>Executive WhatsApp: <a href="https://wa.me/919879418569?text=Hello%20Krynex%20Labs,%20I%20have%20a%20data%20governance%20inquiry." target="_blank" rel="noopener noreferrer" className="text-white underline">+91 9879418569</a> <span className="text-[10px] text-zinc-400 font-mono">(WhatsApp Only • No Calls)</span></div>
             </div>
           </section>
         </div>
       </div>
+
+      <Footer />
     </main>
   );
 }

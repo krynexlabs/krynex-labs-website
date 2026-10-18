@@ -60,7 +60,7 @@ export default function Home() {
                 </div>
                 <div className="flex items-center gap-1.5">
                   <CheckCircle2 className="w-4 h-4 text-white" />
-                  <span>MNC-Grade Engineering Standards</span>
+                  <span>Enterprise-Grade Engineering Standards</span>
                 </div>
               </div>
             </div>

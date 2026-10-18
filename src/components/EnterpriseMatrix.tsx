@@ -41,7 +41,7 @@ export default function EnterpriseMatrix() {
         "High-latency fraud scoring engines, fragmented cross-border compliance audits, and legacy core banking transaction reconciliation bottlenecks.",
       solution:
         "Streaming Graph Neural Networks (GNN) and zero-trust transaction ledgers delivering sub-5ms risk scoring and continuous statutory audit certification.",
-      metrics: ["99.8% Fraud Interception", "<5ms Streaming Inference", "ISO 27001 Cryptographic Vault"],
+      metrics: ["Target >99% Interception", "<5ms Streaming Inference", "Zero-Trust Cryptographic Vault"],
     },
     {
       id: "ports",

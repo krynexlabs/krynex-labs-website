@@ -5,7 +5,7 @@ import { SOLUTIONS_DATA } from "@/data/solutions-data";
 import SolutionDetailView from "@/components/SolutionDetailView";
 
 export const metadata: Metadata = {
-  title: "Custom Enterprise Software & Modernization | Krynex Labs",
+  title: "Custom Enterprise Software & Modernization",
   description:
     "Event-driven microservices, legacy monolith refactoring, and high-availability database engineering built for mission-critical enterprise throughput.",
   alternates: {

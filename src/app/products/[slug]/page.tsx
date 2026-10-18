@@ -25,7 +25,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   }
 
   return {
-    title: `${product.name} | ${product.shortTagline} | Krynex Labs`,
+    title: `${product.name} | ${product.shortTagline}`,
     description: product.summary,
     alternates: {
       canonical: `https://www.krynexlabs.in/products/${product.slug}`,

@@ -19,7 +19,7 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Target Industries & Enterprise Dossiers | Krynex Labs",
+  title: "Target Industries & Enterprise Dossiers",
   description:
     "Explore how Krynex Labs solves mission-critical operational bottlenecks across Manufacturing, FinTech, Logistics, Legal, and Healthcare sectors.",
   alternates: {
