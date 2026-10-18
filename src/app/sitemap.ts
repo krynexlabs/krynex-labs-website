@@ -1,23 +1,27 @@
-import { MetadataRoute } from 'next';
-import { siteConfig } from '@/data/site-data';
+import { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  // Always the single canonical host (https://www.krynexlabs.in).
-  const baseUrl = siteConfig.url;
+  const baseUrl = "https://www.krynexlabs.in";
+  const now = new Date();
 
-  const routes = [
-    '',
-    '/about',
-    '/what-we-do',
-    '/contact',
-    '/privacy',
-    '/terms',
+  return [
+    {
+      url: baseUrl,
+      lastModified: now,
+      changeFrequency: "weekly",
+      priority: 1.0,
+    },
+    {
+      url: `${baseUrl}/privacy`,
+      lastModified: now,
+      changeFrequency: "weekly",
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/terms`,
+      lastModified: now,
+      changeFrequency: "weekly",
+      priority: 0.8,
+    },
   ];
-
-  return routes.map((route) => ({
-    url: `${baseUrl}${route}`,
-    lastModified: new Date(),
-    changeFrequency: 'weekly' as const,
-    priority: route === '' ? 1.0 : route === '/what-we-do' || route === '/about' ? 0.9 : 0.8,
-  }));
 }

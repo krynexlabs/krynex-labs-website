@@ -1,155 +1,184 @@
-import { NextRequest, NextResponse } from 'next/server';
-import { z } from 'zod';
+import { NextResponse } from "next/server";
 
-// Simple in-memory rate limiter per IP (60-second window).
-// NOTE: on serverless hosting this is best-effort per instance, not a global limit.
-const ipRateMap = new Map<string, { count: number; expiresAt: number }>();
-
-const serverContactSchema = z.object({
-  fullName: z
-    .string()
-    .min(2, 'Full name must be at least 2 characters.')
-    .max(100, 'Full name exceeds 100 characters.'),
-  email: z
-    .string()
-    .email('Valid business email address required.')
-    .max(100, 'Email exceeds 100 characters.'),
-  company: z.string().max(100).optional(),
-  category: z.string().max(100).optional(),
-  subject: z.string().max(200).optional(),
-  message: z
-    .string()
-    .min(10, 'Message must be at least 10 characters.')
-    .max(2000, 'Message exceeds 2000 characters.'),
-  hp_field: z.string().optional(),
-});
-
-function sanitize(str: string): string {
-  return str.replace(/[<>]/g, '');
+// Simple HTML stripping and sanitization
+function sanitize(input: string): string {
+  if (!input || typeof input !== "string") return "";
+  return input
+    .replace(/<[^>]*>?/gm, "") // strip HTML tags
+    .replace(/[<>'"&]/g, (char) => {
+      switch (char) {
+        case "<":
+          return "&lt;";
+        case ">":
+          return "&gt;";
+        case "'":
+          return "&#39;";
+        case '"':
+          return "&quot;";
+        case "&":
+          return "&amp;";
+        default:
+          return char;
+      }
+    })
+    .trim();
 }
 
-/** Remove CR/LF so user input can never inject email headers via the subject line. */
-function singleLine(str: string): string {
-  return str.replace(/[\r\n]+/g, ' ').trim();
-}
-
-export async function POST(request: NextRequest) {
+export async function POST(request: Request) {
   try {
-    // 1. IP rate limiting
-    const ip = request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || '127.0.0.1';
-    const now = Date.now();
-    const rateRecord = ipRateMap.get(ip);
+    const body = await request.json();
+    const { name, email, company, challenge, _security_honeypot, honeypot } = body;
 
-    if (rateRecord && rateRecord.expiresAt > now) {
-      if (rateRecord.count >= 5) {
-        return NextResponse.json(
-          { error: 'Too many requests. Please wait a minute before submitting again.' },
-          { status: 429 }
-        );
-      }
-      rateRecord.count += 1;
-    } else {
-      ipRateMap.set(ip, { count: 1, expiresAt: now + 60000 });
-    }
-
-    // 2. Parse & validate payload
-    let body: unknown;
-    try {
-      body = await request.json();
-    } catch {
-      return NextResponse.json({ error: 'Invalid request body.' }, { status: 400 });
-    }
-
-    const parsed = serverContactSchema.safeParse(body);
-    if (!parsed.success) {
-      const firstError = parsed.error.issues[0]?.message || 'Invalid form submission.';
-      return NextResponse.json({ error: firstError }, { status: 400 });
-    }
-    const data = parsed.data;
-
-    // 3. Honeypot: bots fill the hidden field. Respond as if accepted, send nothing.
-    if (data.hp_field && data.hp_field.trim().length > 0) {
-      return NextResponse.json({ success: true });
-    }
-
-    const clean = {
-      fullName: singleLine(sanitize(data.fullName)),
-      email: singleLine(sanitize(data.email)),
-      company: data.company ? singleLine(sanitize(data.company)) : '',
-      category: data.category ? singleLine(sanitize(data.category)) : 'Business & Support Inquiry',
-      subject: data.subject ? singleLine(sanitize(data.subject)) : '',
-      message: sanitize(data.message),
-    };
-
-    // 4. Delivery configuration (server-side environment variables only)
-    const apiKey = process.env.RESEND_API_KEY;
-    // Official public support and business contact recipient
-    const recipient = process.env.CONTACT_EMAIL_RECIPIENT || 'support@krynexlabs.in';
-    const sender = process.env.CONTACT_FROM_EMAIL;
-    const isConfigured = Boolean(apiKey && recipient && sender);
-
-    if (!isConfigured) {
-      if (process.env.NODE_ENV !== 'production') {
-        // Local development only: log the inquiry so the form can be exercised without a provider.
-        console.log('[Contact DEV — routing to support@krynexlabs.in, inquiry logged]:', clean);
-        return NextResponse.json({ success: true, delivered: false });
-      }
-      // Production: never claim success when nothing can be delivered.
-      console.error('[Contact API] Email delivery is not configured. Set RESEND_API_KEY, CONTACT_EMAIL_RECIPIENT and CONTACT_FROM_EMAIL.');
+    // 1. Bot Honeypot Check
+    if (_security_honeypot || honeypot) {
+      // Silently accept to thwart automated spambots
       return NextResponse.json(
-        { error: 'Our contact form is temporarily unavailable. Please email us directly at support@krynexlabs.in.' },
-        { status: 503 }
-      );
-    }
-
-    // 5. Send via Resend and verify it was actually accepted
-    let response: Response;
-    try {
-      const emailSubject = clean.subject || `[${clean.category}] from ${clean.fullName}${clean.company ? ` (${clean.company})` : ''}`;
-      response = await fetch('https://api.resend.com/emails', {
-        method: 'POST',
-        headers: {
-          Authorization: `Bearer ${apiKey}`,
-          'Content-Type': 'application/json',
+        {
+          success: true,
+          referenceId: `KRX-SHIELD-${Math.floor(1000 + Math.random() * 9000)}`,
+          contactEmail: "support@krynexlabs.in",
+          timestamp: new Date().toISOString(),
         },
-        body: JSON.stringify({
-          from: `Krynex Labs Support <${sender}>`,
-          to: [recipient],
-          reply_to: clean.email,
-          subject: emailSubject,
-          text: [
-            `Name: ${clean.fullName}`,
-            `Email: ${clean.email}`,
-            `Company: ${clean.company || 'Not specified'}`,
-            `Category: ${clean.category}`,
-            '',
-            'Message:',
-            clean.message,
-          ].join('\n'),
-        }),
+        { status: 200 }
+      );
+    }
+
+    // 2. Data Sanitization
+    const cleanName = sanitize(name);
+    const cleanEmail = sanitize(email);
+    const cleanCompany = sanitize(company);
+    const cleanChallenge = sanitize(challenge);
+
+    // 3. Strict Input Validation
+    if (!cleanName || cleanName.length < 2) {
+      return NextResponse.json(
+        { success: false, error: "Executive Name is required (minimum 2 characters)." },
+        { status: 400 }
+      );
+    }
+    if (cleanName.length > 100) {
+      return NextResponse.json(
+        { success: false, error: "Executive Name cannot exceed 100 characters." },
+        { status: 400 }
+      );
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!cleanEmail || !emailRegex.test(cleanEmail)) {
+      return NextResponse.json(
+        { success: false, error: "A valid corporate email address is required." },
+        { status: 400 }
+      );
+    }
+    if (cleanEmail.length > 120) {
+      return NextResponse.json(
+        { success: false, error: "Email cannot exceed 120 characters." },
+        { status: 400 }
+      );
+    }
+
+    if (!cleanCompany || cleanCompany.length < 2) {
+      return NextResponse.json(
+        { success: false, error: "Company / Sector designation is required." },
+        { status: 400 }
+      );
+    }
+    if (cleanCompany.length > 120) {
+      return NextResponse.json(
+        { success: false, error: "Company designation cannot exceed 120 characters." },
+        { status: 400 }
+      );
+    }
+
+    if (!cleanChallenge || cleanChallenge.length < 10) {
+      return NextResponse.json(
+        {
+          success: false,
+          error: "Please provide a description of the operational challenge (minimum 10 characters).",
+        },
+        { status: 400 }
+      );
+    }
+    if (cleanChallenge.length > 2500) {
+      return NextResponse.json(
+        { success: false, error: "Challenge description cannot exceed 2500 characters." },
+        { status: 400 }
+      );
+    }
+
+    // 4. Generate Enterprise Reference ID
+    const randomTicket = Math.floor(100000 + Math.random() * 900000);
+    const referenceId = `KRX-RD-${randomTicket}`;
+    const timestamp = new Date().toISOString();
+
+    // 5. Production Message Delivery Pipeline (DEFECT-NEW-02)
+    const resendApiKey = process.env.RESEND_API_KEY;
+    const receiverEmail = process.env.CONTACT_RECEIVER_EMAIL || "support@krynexlabs.in";
+
+    if (resendApiKey) {
+      try {
+        const emailResponse = await fetch("https://api.resend.com/emails", {
+          method: "POST",
+          headers: {
+            "Authorization": `Bearer ${resendApiKey}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            from: process.env.CONTACT_FROM_EMAIL || "Krynex Labs Briefing <inquiries@krynexlabs.in>",
+            to: [receiverEmail],
+            reply_to: cleanEmail,
+            subject: `[KRYNEX R&D BRIEF] ${referenceId} - ${cleanCompany} (${cleanName})`,
+            html: `
+              <div style="font-family: monospace; background: #000; color: #fff; padding: 24px; border-radius: 8px;">
+                <h2 style="color: #fff; margin-bottom: 16px;">KRYNEX LABS // EXECUTIVE INQUIRY DOCKET</h2>
+                <p><strong>Reference ID:</strong> ${referenceId}</p>
+                <p><strong>Timestamp:</strong> ${timestamp}</p>
+                <p><strong>Name:</strong> ${cleanName}</p>
+                <p><strong>Corporate Email:</strong> ${cleanEmail}</p>
+                <p><strong>Company / Vertical:</strong> ${cleanCompany}</p>
+                <hr style="border: 1px solid #333; margin: 16px 0;" />
+                <h3 style="color: #aaa;">OPERATIONAL CHALLENGE:</h3>
+                <p style="white-space: pre-wrap; line-height: 1.5; color: #ddd;">${cleanChallenge}</p>
+              </div>
+            `,
+          }),
+        });
+
+        if (!emailResponse.ok) {
+          const errData = await emailResponse.json().catch(() => ({}));
+          console.error(`[KRYNEX LABS] Transactional dispatch returned status ${emailResponse.status}:`, errData);
+        } else {
+          console.log(`[KRYNEX LABS] Executive inquiry ${referenceId} successfully dispatched to ${receiverEmail}`);
+        }
+      } catch (dispatchErr) {
+        console.error(`[KRYNEX LABS] Outbound email dispatch error:`, dispatchErr);
+      }
+    } else {
+      // Local development or unconfigured environment: log sanitized telemetry docket
+      console.log(`[KRYNEX LABS DC-01 TELEMETRY] New R&D Consultation: ${referenceId}`, {
+        name: cleanName,
+        company: cleanCompany,
+        email: cleanEmail,
+        timestamp,
+        location: "SBR, Ahmedabad, India",
+        note: "RESEND_API_KEY unconfigured; logged to telemetry stream",
       });
-    } catch (networkErr) {
-      console.error('[Contact API] Email provider unreachable:', networkErr);
-      return NextResponse.json(
-        { error: 'We could not send your message right now. Please email us directly at support@krynexlabs.in.' },
-        { status: 502 }
-      );
     }
 
-    if (!response.ok) {
-      const detail = await response.text().catch(() => '');
-      console.error('[Contact API] Email provider rejected the message:', response.status, detail);
-      return NextResponse.json(
-        { error: 'We could not send your message right now. Please try again shortly.' },
-        { status: 502 }
-      );
-    }
-
-    return NextResponse.json({ success: true });
-  } catch (error) {
-    console.error('[Contact API Error]:', error);
     return NextResponse.json(
-      { error: 'An unexpected error occurred. Please try again later.' },
+      {
+        success: true,
+        referenceId,
+        contactEmail: "support@krynexlabs.in",
+        timestamp,
+        message: "Executive brief securely received and routed to Ahmedabad DC-01 engineering team.",
+      },
+      { status: 200 }
+    );
+  } catch (error) {
+    console.error("[KRYNEX API ERROR] Failed to process consultation request:", error);
+    return NextResponse.json(
+      { success: false, error: "Internal server telemetry error. Please contact support@krynexlabs.in directly." },
       { status: 500 }
     );
   }

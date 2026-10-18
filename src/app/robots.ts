@@ -1,17 +1,13 @@
-import { MetadataRoute } from 'next';
-import { siteConfig } from '@/data/site-data';
+import { MetadataRoute } from "next";
 
 export default function robots(): MetadataRoute.Robots {
-  // Always the single canonical host (https://www.krynexlabs.in).
-  const baseUrl = siteConfig.url;
-
   return {
     rules: {
-      userAgent: '*',
-      allow: '/',
-      disallow: ['/api/'],
+      userAgent: "*",
+      allow: "/",
+      disallow: ["/api/"],
     },
-    sitemap: `${baseUrl}/sitemap.xml`,
-    host: baseUrl,
+    sitemap: "https://www.krynexlabs.in/sitemap.xml",
+    host: "https://www.krynexlabs.in",
   };
 }

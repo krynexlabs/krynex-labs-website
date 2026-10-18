@@ -1,109 +1,95 @@
-# Krynex Labs — Company Marketing Website
+# KRYNEX LABS — Enterprise AI & IT Flagship Website
 
-> **"SOFTWARE BUILT FOR BUSINESS."**
-> Krynex Labs develops practical software products that help businesses simplify operations, improve workflows, and move forward with technology.
-
-This repository is **only** the Krynex Labs company marketing website. It intentionally contains no product catalog, pricing tables, checkout, customer login, or dashboards.
-
-- **Canonical site:** https://www.krynexlabs.in
-- **Apex domain:** https://krynexlabs.in → permanently redirects to the `www` site (configured in Vercel, not in code)
-- **Hosting:** Vercel · **Framework:** Next.js 16 (App Router) · **Language:** TypeScript
+A production-ready, MNC-grade corporate and product flagship platform for **KRYNEX LABS**—an AI/ML and Information Technology company headquartered in Ahmedabad, Gujarat, engineering custom AI architectures and rent-based (SaaS) software products for high-friction regional and enterprise industries.
 
 ---
 
-## Routes
+## 🎨 Visual Benchmark & Design System (Resend.com & Linear.app)
 
-| Route | Purpose |
-| :--- | :--- |
-| `/` | Homepage: 3D hero, introduction, focus areas, approach, philosophy, call to action |
-| `/about` | Company profile, focus, approach, principles |
-| `/what-we-do` | Company capabilities |
-| `/contact` | Inquiry form (`POST /api/contact`) |
-| `/privacy`, `/terms` | Legal pages |
-| `/sitemap.xml`, `/robots.txt` | Generated; always use the canonical `www` host |
+1. **Theme & Color Palette:**
+   - Ultra-sleek pitch-black dark mode (`#000000` primary background, `#09090B` card surfaces).
+   - 1px solid borders using `rgba(255, 255, 255, 0.08)`.
+   - Dynamic mouse-tracking radial spotlight gradients (`rgba(56, 189, 248, 0.15)`) on all Bento grid cards.
+   - Accents: Electric Cyan (`#00f0ff`), Sky (`#38bdf8`), and Indigo (`#818cf8`).
 
-## Tech stack
+2. **Typography & Metallic Text:**
+   - Headings: `Inter` with tight tracking (`tracking-tight`) and metallic gradients (`bg-gradient-to-b from-white via-white/90 to-zinc-500 bg-clip-text text-transparent`).
+   - Technical badges, code blocks, and metrics: `JetBrains Mono` in uppercase with subtle cyan/silver glow.
 
-Next.js 16 · React 19 · TypeScript 5 · CSS Modules (design tokens in `src/app/globals.css`) · Three.js / React Three Fiber / Drei (3D hero, with reduced-motion fallback) · React Hook Form + Zod (validation) · Lucide icons.
+3. **3D Centerpiece (`@react-three/fiber` & Three.js):**
+   - Modular 3x3x3 dark-chrome and obsidian geometric cube assembly with clearcoat physical material (`MeshPhysicalMaterial`), studio rim lighting, an emissive cyan inner core, ambient sparkles, and smooth mouse-parallax rotation + orbital drag controls (`enableZoom: false`).
+   - Graceful SSR handling with dynamic import and zero hydration errors.
 
 ---
 
-## Local development
+## 🏗️ Architecture & Sections
 
-Requires Node.js 20+ and npm.
+1. **Sticky Glassmorphic Navigation Bar (`Navbar.tsx`):**
+   - Minimalist faceted geometric logo + `KRYNEX LABS` in bold tracking.
+   - Smooth anchor links to `Vision`, `AI Methodology`, `Regional Drafting SaaS`, `Enterprise Solutions`, and `Interactive Demo`.
+   - Pill-shaped CTA button with rotating glowing border (`@property --border-angle`).
+
+2. **Hero Section (`HeroSection.tsx` & `Hero3DCube.tsx`):**
+   - Division Pill Badge: `[ KRYNEX LABS // AI & IT RESEARCH DIVISION ]`
+   - Metallic Headline: `"Engineering Intelligence for Industry Pain Points."`
+   - Subheadline highlighting industrial bottleneck discovery and rent-based SaaS delivery.
+   - High-contrast white CTA `"Explore Flagship SaaS"` + glassmorphic `"Partner With Us"`.
+   - Real-time industrial telemetry badges: `10x Faster Turnaround`, `99.4% Precision`, `Rent-Based Model`.
+
+3. **The Krynex Execution Engine (`Methodology.tsx`):**
+   - 3-Column Interactive Pipeline:
+     - **01 / Problem Discovery:** Deep-dive industrial audits across Gujarat & Indian corridors (Sanand, Dahej, Ahmedabad).
+     - **02 / AI/ML Engineering:** Custom LLM fine-tuning, Gujarati-English dual tokenizers, and 0%-hallucination statutory safeguards.
+     - **03 / Rent-Based SaaS Delivery:** Zero-Capex monthly subscription models replacing expensive legacy IT vendor lock-in.
+   - Live interactive terminal telemetry inspector for each pipeline phase.
+
+4. **Flagship Product Spotlight (`BentoGrid.tsx`):**
+   - **Large Main Card (Gujarat's First Regional AI Drafting System):**
+     - Tag: `FLAGSHIP SAAS // RENT-BASED MODEL`
+     - Interactive live animated UI preview converting prompts into structured Gujarati & English official deeds (`દસ્તાવેજ: વેચાણ કરાર અને ટાઈટલ ક્લિયરન્સ પ્રમાણપત્ર`).
+   - **Card 2 (Flexible SaaS Licensing):** Interactive tier switcher (Advocate Starter ₹1,499/mo, Pro MSME ₹4,999/mo, Enterprise Custom).
+   - **Card 3 (Custom Enterprise AI):** Bespoke IT & ML solutions for manufacturing, logistics, and finance.
+   - **Card 4 (Security & Speed Metrics):** Real-time counters showing `<1.2s Average Latency`, `AES-256 Encryption`, and `99.99% Uptime SLA`.
+
+5. **Interactive Live Demo Playground (`DraftingDemo.tsx`):**
+   - Tabbed interactive component across 3 sample industrial pain points:
+     - `Regional Legal/Revenue Drafting` (Sanand GIDC 7/12 & 8-A Title Search & Conveyance)
+     - `Industrial Compliance Automation` (Dahej PCPIR GPCB Environmental Manifest)
+     - `Enterprise Workflow AI` (Mundra Port APSEZ Multimodal Bill of Lading OCR)
+   - Real-time simulation runner with animated compiling steps, language switcher (`Bilingual`, `ગુજરાતી`, `English`), and one-click copy/PDF export simulation.
+
+6. **Enterprise Matrix (`EnterpriseMatrix.tsx`):**
+   - Dedicated sector breakdowns for Gujarat’s high-impact industrial corridors:
+     - Chemical & Petrochemicals (Dahej, Ankleshwar)
+     - Maritime Ports & Logistics (Mundra, Kandla)
+     - Automotive & Engineering (Sanand, Changodar)
+     - Textiles, Diamonds & Ceramics (Surat, Morbi)
+     - Legal & BFSI Revenue Title Searches (Pan-Gujarat)
+
+7. **Direct Intake Console Modal (`DemoModal.tsx`):**
+   - Consultation booking dialog with field validation, model delivery preference selector, and celebratory confetti upon submission.
+
+8. **MNC-Grade Footer (`Footer.tsx`):**
+   - Pre-footer banner with radial horizon glow: `"Have an Industry Problem? Let's Engineer the Solution."`
+   - Corporate multi-column directory, newsletter subscription, and Ahmedabad HQ address.
+   - Giant subtle background wireframe text watermark: `KRYNEX`.
+
+---
+
+## 🚀 Running Locally
 
 ```bash
+# Install dependencies
 npm install
-npm run dev      # http://localhost:3000
-npm run lint     # ESLint
-npm run build    # production build
-npm run start    # serve the production build
+
+# Run development server
+npm run dev
+
+# Build production bundle
+npm run build
+
+# Start production server
+npm run start
 ```
 
-## Canonical URL
-
-The canonical origin is set **once** in `src/data/site-data.ts` (`siteConfig.url = https://www.krynexlabs.in`). It drives `metadataBase`, per-page canonical tags, `sitemap.xml`, `robots.txt` and structured data. No site-URL environment variable is used, so a misconfigured env var cannot split the site across two hostnames.
-
----
-
-## Contact form — email delivery (required for production)
-
-The form validates on the client and again on the server (`src/app/api/contact/route.ts`), with a honeypot field, per-IP rate limiting (best-effort on serverless), input sanitising, and header-injection protection.
-
-Email is sent through [Resend](https://resend.com) and routed to **`support@krynexlabs.in`** (the official public support and business contact email). Set these **server-side** variables (Vercel → Project → Settings → Environment Variables; never commit them):
-
-| Variable | Description |
-| :--- | :--- |
-| `RESEND_API_KEY` | Resend API key |
-| `CONTACT_EMAIL_RECIPIENT` | Official recipient mailbox (defaults to `support@krynexlabs.in`) |
-| `CONTACT_FROM_EMAIL` | Sender address on a domain **verified in Resend** |
-
-Behaviour:
-- **Production, variables missing:** the API returns `503` and the form shows an error. It never reports success when nothing can be delivered.
-- **Provider rejects or is unreachable:** the API returns `502`; the visitor sees an error.
-- **Local development, variables missing:** the inquiry is only logged to the terminal (no email is sent).
-
-See `.env.example` for a template.
-
----
-
-## Deployment (Vercel) and custom domain
-
-### 1. Push to GitHub
-The remote repository is `https://github.com/krynexlabs/krynex-labs-website` (default branch `main`).
-```bash
-git remote add origin https://github.com/krynexlabs/krynex-labs-website.git
-git branch -M main
-git push -u origin main     # normal push; do not force-push
-```
-
-### 2. Import into Vercel
-1. Vercel → **Add New… → Project** → import `krynexlabs/krynex-labs-website`.
-2. Framework preset: **Next.js** (auto-detected). Root directory: repository root. Production branch: `main`.
-3. Add the three contact environment variables above for the **Production** environment (and Preview if you want to test the form there).
-4. Deploy. Verify the generated `*.vercel.app` preview first.
-
-### 3. Domains (Project → Settings → Domains)
-1. Add **`www.krynexlabs.in`** and set it as the **primary** domain.
-2. Add **`krynexlabs.in`** and set it to **redirect to `www.krynexlabs.in`** using a **308 (permanent)** redirect. Vercel preserves path and query string.
-
-### 4. DNS (at the registrar / DNS host)
-Use the **exact values Vercel displays for this project** on the Domains page. Do not copy example values from documentation, since Vercel may assign project-specific targets. Typically:
-
-| Host | Type | Value |
-| :--- | :--- | :--- |
-| `www` | `CNAME` | value shown by Vercel |
-| `@` (apex) | `A` | value shown by Vercel |
-
-Notes:
-- Do **not** delete existing `MX`, `TXT` (SPF/DKIM/verification) or other records. They may be needed for email and other services.
-- Only replace an existing `A`/`AAAA`/`CNAME` record for the same host after confirming what it is used for.
-- HTTPS certificates are issued automatically by Vercel after DNS resolves.
-
-### 5. Verify (do not assume)
-```bash
-curl -I http://krynexlabs.in        # expect redirect to https
-curl -I https://krynexlabs.in       # expect 308 → https://www.krynexlabs.in/
-curl -I https://www.krynexlabs.in   # expect 200
-```
-Also confirm the canonical tag, `/sitemap.xml` and `/robots.txt` use `https://www.krynexlabs.in`, and submit a real test message through `/contact`.
+Visit [http://localhost:3000](http://localhost:3000) to view the website.
