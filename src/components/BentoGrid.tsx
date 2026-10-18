@@ -49,14 +49,13 @@ export default function BentoGrid() {
         {/* Section Header */}
         <div className="flex flex-col items-start max-w-3xl mb-16">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.03] border border-white/10 text-[11px] font-mono tracking-widest text-zinc-300 uppercase mb-4">
-            <span>02 // CORE CORPORATE CAPABILITIES &amp; R&amp;D TELEMETRY</span>
+            <span>06 // PRODUCT-BUILDING CAPABILITIES</span>
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mb-4 bg-gradient-to-b from-white via-zinc-100 to-zinc-500 bg-clip-text text-transparent">
-            Advanced Engineering for Mission-Critical Enterprise.
+            We Use the Right Technologies to Solve the Problem.
           </h2>
           <p className="text-base sm:text-lg text-zinc-400 leading-relaxed">
-            We bridge deep applied AI research with industrial-grade software engineering.
-            Explore our core technological capabilities designed for multinational scale.
+            We do not structure our technology as an agency service catalogue or sell billable hours. We master the full technological spectrum—from applied neural networks to distributed backends, web, mobile, and edge computing—to build resilient software products businesses can depend on.
           </p>
         </div>
 
@@ -464,9 +463,9 @@ export default function BentoGrid() {
                 </div>
 
                 <div className="p-3.5 rounded-xl bg-black border border-white/[0.06]">
-                  <div className="text-[10px] font-mono text-zinc-500 uppercase">Encryption</div>
-                  <div className="text-xl font-bold font-mono text-white my-0.5">AES-256</div>
-                  <div className="text-[10px] text-zinc-500">At-Rest &amp; In-Transit</div>
+                  <div className="text-[10px] font-mono text-zinc-500 uppercase">Transport &amp; Storage</div>
+                  <div className="text-xl font-bold font-mono text-white my-0.5">TLS / AES</div>
+                  <div className="text-[10px] text-zinc-500">In-Transit &amp; At-Rest</div>
                 </div>
 
                 <div className="p-3.5 rounded-xl bg-black border border-white/[0.06] col-span-2 sm:col-span-1">

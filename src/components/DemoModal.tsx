@@ -16,19 +16,20 @@ export default function DemoModal({ isOpen, onClose }: DemoModalProps) {
   const [isSuccess, setIsSuccess] = useState(false);
   const [requestId, setRequestId] = useState("");
   const [honeypot, setHoneypot] = useState("");
-  const [emailError, setEmailError] = useState("");
+  const [formErrors, setFormErrors] = useState<{ [key: string]: string }>({});
 
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     company: "",
-    sector: "Advanced Manufacturing & Supply Chain",
-    modelPreference: "Bespoke Enterprise AI Architecture",
+    sector: "Manufacturing & Industrial IoT",
+    modelPreference: "Product Demo & Trial",
     painPoint: "",
   });
 
   const resetAndClose = useCallback(() => {
     setIsSuccess(false);
+    setFormErrors({});
     onClose();
   }, [onClose]);
 
@@ -86,13 +87,31 @@ export default function DemoModal({ isOpen, onClose }: DemoModalProps) {
     e.preventDefault();
     if (honeypot) return;
 
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(formData.email.trim())) {
-      setEmailError("Please provide a valid corporate email.");
+    const errors: { [key: string]: string } = {};
+
+    if (!formData.name.trim() || formData.name.trim().length < 2) {
+      errors.name = "Your name is required (minimum 2 characters).";
+    }
+
+    const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)+$/;
+    if (!formData.email.trim() || !emailRegex.test(formData.email.trim())) {
+      errors.email = "Please provide a valid work or corporate email.";
+    }
+
+    if (!formData.company.trim() || formData.company.trim().length < 2) {
+      errors.company = "Organization / Company designation is required.";
+    }
+
+    if (!formData.painPoint.trim() || formData.painPoint.trim().length < 10) {
+      errors.painPoint = "Please describe the operational challenge (minimum 10 characters).";
+    }
+
+    if (Object.keys(errors).length > 0) {
+      setFormErrors(errors);
       return;
     }
-    setEmailError("");
 
+    setFormErrors({});
     setIsSubmitting(true);
 
     try {
@@ -100,10 +119,10 @@ export default function DemoModal({ isOpen, onClose }: DemoModalProps) {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          name: formData.name || "Enterprise Executive",
-          email: formData.email,
-          company: formData.company || "Enterprise Client",
-          challenge: `${formData.sector} // ${formData.modelPreference}: ${formData.painPoint || "General Enterprise Consultation"}`,
+          name: formData.name.trim(),
+          email: formData.email.trim(),
+          company: formData.company.trim(),
+          challenge: `${formData.sector} // ${formData.modelPreference}: ${formData.painPoint.trim()}`,
           _security_honeypot: honeypot,
         }),
       });
@@ -111,7 +130,7 @@ export default function DemoModal({ isOpen, onClose }: DemoModalProps) {
       const result = await response.json();
 
       if (response.ok && result.success) {
-        setRequestId(result.referenceId || `KRYNEX-CORP-${Math.floor(1000 + Math.random() * 9000)}`);
+        setRequestId(result.referenceId || `KRX-RD-${Math.floor(100000 + Math.random() * 900000)}`);
         setIsSubmitting(false);
         setIsSuccess(true);
 
@@ -123,11 +142,11 @@ export default function DemoModal({ isOpen, onClose }: DemoModalProps) {
         });
       } else {
         setIsSubmitting(false);
-        setEmailError(result.error || "Submission failed. Please try again.");
+        setFormErrors({ general: result.error || "Submission failed. Please check details and retry." });
       }
     } catch {
       setIsSubmitting(false);
-      setEmailError("Network transmission error. Please email support@krynexlabs.in directly.");
+      setFormErrors({ general: "Network transmission error. Please email support@krynexlabs.in directly." });
     }
   };
 
@@ -221,10 +240,10 @@ export default function DemoModal({ isOpen, onClose }: DemoModalProps) {
             </div>
 
             <h3 id="modal-headline" className="text-2xl font-bold text-white mb-1 tracking-tight">
-              Initiate R&amp;D Technical Consultation
+              Product Demonstration &amp; Consultation
             </h3>
             <p className="text-xs sm:text-sm text-zinc-400 mb-6">
-              Connect directly with KRYNEX LABS research engineers to audit your operational bottlenecks and architect custom AI/IT solutions.
+              Connect directly with Krynex Labs to explore our software products, trial on-demand access, or propose an unsolved industry challenge.
             </p>
 
             <form onSubmit={handleSubmit} noValidate className="space-y-4">
@@ -240,6 +259,13 @@ export default function DemoModal({ isOpen, onClose }: DemoModalProps) {
                 aria-hidden="true"
               />
 
+              {formErrors.general && (
+                <div className="p-3 rounded-xl bg-red-950/20 border border-red-500/40 text-xs font-mono text-red-400 flex items-center gap-2">
+                  <AlertCircle className="w-4 h-4 shrink-0" />
+                  <span>{formErrors.general}</span>
+                </div>
+              )}
+
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label htmlFor="modal-inquiry-name" className="block text-xs font-mono text-zinc-400 mb-1 cursor-pointer">
@@ -251,10 +277,21 @@ export default function DemoModal({ isOpen, onClose }: DemoModalProps) {
                     type="text"
                     maxLength={100}
                     value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    onChange={(e) => {
+                      setFormData({ ...formData, name: e.target.value });
+                      if (formErrors.name) setFormErrors((prev) => { const n = { ...prev }; delete n.name; return n; });
+                    }}
                     placeholder="e.g. Vikramaditya Mehta"
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-black border border-white/15 text-sm text-white focus:outline-none focus:border-white transition-colors placeholder:text-zinc-600 focus-visible:ring-1 focus-visible:ring-white/40"
+                    className={`w-full px-3.5 py-2.5 rounded-xl bg-black border text-sm text-white focus:outline-none transition-colors placeholder:text-zinc-600 focus-visible:ring-1 focus-visible:ring-white/40 ${
+                      formErrors.name ? "border-red-500/50 bg-red-950/10" : "border-white/15 focus:border-white"
+                    }`}
                   />
+                  {formErrors.name && (
+                    <div className="flex items-center gap-1.5 text-xs text-red-400 font-mono mt-1">
+                      <AlertCircle className="w-3.5 h-3.5 shrink-0" />
+                      <span>{formErrors.name}</span>
+                    </div>
+                  )}
                 </div>
 
                 <div>
@@ -269,17 +306,17 @@ export default function DemoModal({ isOpen, onClose }: DemoModalProps) {
                     value={formData.email}
                     onChange={(e) => {
                       setFormData({ ...formData, email: e.target.value });
-                      if (emailError) setEmailError("");
+                      if (formErrors.email) setFormErrors((prev) => { const n = { ...prev }; delete n.email; return n; });
                     }}
                     placeholder="v.mehta@enterprise.com"
                     className={`w-full px-3.5 py-2.5 rounded-xl bg-black border text-sm text-white focus:outline-none transition-colors placeholder:text-zinc-600 focus-visible:ring-1 focus-visible:ring-white/40 ${
-                      emailError ? "border-red-500/50 bg-red-950/10" : "border-white/15 focus:border-white"
+                      formErrors.email ? "border-red-500/50 bg-red-950/10" : "border-white/15 focus:border-white"
                     }`}
                   />
-                  {emailError && (
+                  {formErrors.email && (
                     <div className="flex items-center gap-1.5 text-xs text-red-400 font-mono mt-1">
                       <AlertCircle className="w-3.5 h-3.5 shrink-0" />
-                      <span>{emailError}</span>
+                      <span>{formErrors.email}</span>
                     </div>
                   )}
                 </div>
@@ -296,10 +333,21 @@ export default function DemoModal({ isOpen, onClose }: DemoModalProps) {
                     type="text"
                     maxLength={120}
                     value={formData.company}
-                    onChange={(e) => setFormData({ ...formData, company: e.target.value })}
+                    onChange={(e) => {
+                      setFormData({ ...formData, company: e.target.value });
+                      if (formErrors.company) setFormErrors((prev) => { const n = { ...prev }; delete n.company; return n; });
+                    }}
                     placeholder="e.g. Continental Industrial Group"
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-black border border-white/15 text-sm text-white focus:outline-none focus:border-white transition-colors placeholder:text-zinc-600 focus-visible:ring-1 focus-visible:ring-white/40"
+                    className={`w-full px-3.5 py-2.5 rounded-xl bg-black border text-sm text-white focus:outline-none transition-colors placeholder:text-zinc-600 focus-visible:ring-1 focus-visible:ring-white/40 ${
+                      formErrors.company ? "border-red-500/50 bg-red-950/10" : "border-white/15 focus:border-white"
+                    }`}
                   />
+                  {formErrors.company && (
+                    <div className="flex items-center gap-1.5 text-xs text-red-400 font-mono mt-1">
+                      <AlertCircle className="w-3.5 h-3.5 shrink-0" />
+                      <span>{formErrors.company}</span>
+                    </div>
+                  )}
                 </div>
 
                 <div>
@@ -312,20 +360,20 @@ export default function DemoModal({ isOpen, onClose }: DemoModalProps) {
                     onChange={(e) => setFormData({ ...formData, sector: e.target.value })}
                     className="w-full px-3.5 py-2.5 rounded-xl bg-black border border-white/15 text-sm text-white focus:outline-none focus:border-white transition-colors focus-visible:ring-1 focus-visible:ring-white/40 cursor-pointer"
                   >
-                    <option value="Advanced Manufacturing & Supply Chain">
-                      Advanced Manufacturing &amp; Supply Chain
+                    <option value="Manufacturing & Industrial IoT">
+                      Manufacturing &amp; Industrial IoT (Krynex Vision)
                     </option>
-                    <option value="Banking, FinTech & Capital Markets">
-                      Banking, FinTech &amp; Capital Markets
+                    <option value="LegalTech & Statutory Practice">
+                      LegalTech &amp; Statutory Practice (Krynex Lexis)
                     </option>
-                    <option value="Maritime Ports & Logistics">
-                      Maritime Ports &amp; Logistics
+                    <option value="Logistics & Supply Chain">
+                      Logistics &amp; Multimodal Supply Chain (Krynex Flow)
                     </option>
-                    <option value="Chemical, Energy & Process Engineering">
-                      Chemical, Energy &amp; Process Engineering
+                    <option value="FinTech & Banking Infrastructure">
+                      FinTech &amp; Banking Infrastructure
                     </option>
-                    <option value="Enterprise Workflow & Cognitive IT">
-                      Enterprise Workflow &amp; Cognitive IT
+                    <option value="Healthcare & Clinical Diagnostics">
+                      Healthcare &amp; Clinical Diagnostics
                     </option>
                   </select>
                 </div>
@@ -337,9 +385,9 @@ export default function DemoModal({ isOpen, onClose }: DemoModalProps) {
                 </label>
                 <div className="grid grid-cols-3 gap-2">
                   {[
-                    "Bespoke Enterprise AI Architecture",
-                    "Full-Stack IT Modernization",
-                    "Technical Audit",
+                    "Product Demo & Trial",
+                    "Subscription Licensing",
+                    "Industry Problem Proposal",
                   ].map((pref) => (
                     <button
                       key={pref}
@@ -367,10 +415,21 @@ export default function DemoModal({ isOpen, onClose }: DemoModalProps) {
                   rows={2}
                   maxLength={1000}
                   value={formData.painPoint}
-                  onChange={(e) => setFormData({ ...formData, painPoint: e.target.value })}
+                  onChange={(e) => {
+                    setFormData({ ...formData, painPoint: e.target.value });
+                    if (formErrors.painPoint) setFormErrors((prev) => { const n = { ...prev }; delete n.painPoint; return n; });
+                  }}
                   placeholder="e.g. Inefficiencies in multi-plant data synchronization, high manual QC inspection delay, or custom machine learning pipeline needs..."
-                  className="w-full px-3.5 py-2 rounded-xl bg-black border border-white/15 text-sm text-white focus:outline-none focus:border-white transition-colors resize-none placeholder:text-zinc-600 focus-visible:ring-1 focus-visible:ring-white/40"
+                  className={`w-full px-3.5 py-2 rounded-xl bg-black border text-sm text-white focus:outline-none transition-colors resize-none placeholder:text-zinc-600 focus-visible:ring-1 focus-visible:ring-white/40 ${
+                    formErrors.painPoint ? "border-red-500/50 bg-red-950/10" : "border-white/15 focus:border-white"
+                  }`}
                 />
+                {formErrors.painPoint && (
+                  <div className="flex items-center gap-1.5 text-xs text-red-400 font-mono mt-1">
+                    <AlertCircle className="w-3.5 h-3.5 shrink-0" />
+                    <span>{formErrors.painPoint}</span>
+                  </div>
+                )}
               </div>
 
               <button
@@ -381,7 +440,7 @@ export default function DemoModal({ isOpen, onClose }: DemoModalProps) {
                 {isSubmitting ? (
                   <>
                     <Cpu className="w-4 h-4 animate-spin text-black" />
-                    <span>Encrypting &amp; Transmitting Brief...</span>
+                    <span>Transmitting Request...</span>
                   </>
                 ) : (
                   <>
@@ -393,7 +452,7 @@ export default function DemoModal({ isOpen, onClose }: DemoModalProps) {
 
               <div className="flex items-center justify-center gap-2 text-[10px] font-mono text-zinc-500 pt-2">
                 <Shield className="w-3 h-3 text-zinc-400" />
-                <span>NDA &amp; STRICT ENTERPRISE CONFIDENTIALITY PROTECTED • SBR, AHM, GUJ</span>
+                <span>ENTERPRISE PRIVACY &amp; DATA ISOLATION PROTECTED • SBR, AHMEDABAD, GUJARAT</span>
               </div>
             </form>
           </div>

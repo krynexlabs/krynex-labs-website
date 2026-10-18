@@ -2,7 +2,8 @@
 
 import React from "react";
 import dynamic from "next/dynamic";
-import { ArrowRight, ShieldCheck, Zap, Cpu, Globe2 } from "lucide-react";
+import Link from "next/link";
+import { ArrowRight, ShieldCheck, Zap, Cpu, Globe2, Compass } from "lucide-react";
 
 // Dynamically import 3D Cube with SSR disabled to prevent hydration errors
 const Hero3DCube = dynamic(() => import("./Hero3DCube"), {
@@ -15,7 +16,7 @@ const Hero3DCube = dynamic(() => import("./Hero3DCube"), {
 });
 
 interface HeroSectionProps {
-  onRequestDemo: () => void;
+  onRequestDemo?: () => void;
 }
 
 export default function HeroSection({ onRequestDemo }: HeroSectionProps) {
@@ -42,39 +43,38 @@ export default function HeroSection({ onRequestDemo }: HeroSectionProps) {
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.03] border border-white/10 hover:border-white/20 transition-colors backdrop-blur-md mb-6 shadow-sm group">
               <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
               <span className="text-[11px] sm:text-xs font-mono font-medium tracking-wider text-zinc-300 uppercase">
-                KRYNEX LABS // APPLIED AI &amp; ENTERPRISE IT
+                KRYNEX LABS // SOFTWARE PRODUCT COMPANY
               </span>
               <span className="text-zinc-600">|</span>
-              <span className="text-[10px] font-mono text-zinc-400 font-semibold">SBR, AHM, GUJ</span>
+              <span className="text-[10px] font-mono text-zinc-400 font-semibold">AHMEDABAD, INDIA</span>
             </div>
 
             {/* Main Headline - Exact Resend Silver Metallic Gradient */}
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1] mb-6 bg-gradient-to-b from-white via-zinc-100 to-zinc-500 bg-clip-text text-transparent">
-              Engineering Intelligence for Industry Pain Points.
+              We Find Industry Problems. We Build the Software That Solves Them.
             </h1>
 
             {/* Subheadline */}
             <p className="text-base sm:text-lg text-zinc-400 max-w-2xl leading-relaxed mb-8">
-              Krynex Labs is an elite AI/ML and Information Technology engineering company.
-              We identify mission-critical operational bottlenecks and architect custom enterprise systems.
+              Krynex Labs researches real business challenges and turns them into practical software products. From web and mobile applications to AI-powered platforms, we build, launch, and continuously improve software that businesses can subscribe to and use.
             </p>
 
             {/* Primary Action Buttons */}
             <div className="flex flex-wrap items-center gap-4 w-full sm:w-auto mb-10">
               <a
-                href="#capabilities"
+                href="#products"
                 className="w-full sm:w-auto px-6 py-3.5 rounded-full bg-white text-black font-semibold text-sm hover:bg-zinc-200 transition-all flex items-center justify-center gap-2 group shadow-[0_0_25px_rgba(255,255,255,0.2)]"
               >
-                <span>Explore Our Capabilities</span>
+                <span>Explore Our Products</span>
                 <ArrowRight className="w-4 h-4 text-black group-hover:translate-x-1 transition-transform" />
               </a>
 
               <a
-                href="#methodology"
+                href="#approach"
                 className="w-full sm:w-auto px-6 py-3.5 rounded-full bg-white/[0.04] border border-white/10 hover:border-white/20 text-white font-medium text-sm hover:bg-white/[0.08] transition-all flex items-center justify-center gap-2 backdrop-blur-md"
               >
-                <Cpu className="w-4 h-4 text-zinc-400" />
-                <span>Our Engineering Methodology</span>
+                <Compass className="w-4 h-4 text-zinc-400" />
+                <span>How We Build</span>
               </a>
             </div>
 
@@ -83,12 +83,12 @@ export default function HeroSection({ onRequestDemo }: HeroSectionProps) {
               <div className="flex flex-col">
                 <div className="flex items-center gap-1.5 text-xs text-zinc-500 font-mono uppercase mb-1">
                   <Globe2 className="w-3.5 h-3.5 text-zinc-400" />
-                  <span>Standards</span>
+                  <span>Business Model</span>
                 </div>
                 <div className="text-lg sm:text-xl font-bold text-white tracking-tight font-mono">
-                  Enterprise-Grade
+                  Rented SaaS
                 </div>
-                <span className="text-[11px] text-zinc-500">Zero-trust architecture</span>
+                <span className="text-[11px] text-zinc-500">Zero upfront capex</span>
               </div>
 
               <div className="flex flex-col">
@@ -99,7 +99,7 @@ export default function HeroSection({ onRequestDemo }: HeroSectionProps) {
                 <div className="text-lg sm:text-xl font-bold text-white tracking-tight font-mono">
                   99.9% Target
                 </div>
-                <span className="text-[11px] text-zinc-500">High-availability SLA target</span>
+                <span className="text-[11px] text-zinc-500">Service availability target</span>
               </div>
 
               <div className="flex flex-col">
@@ -108,20 +108,20 @@ export default function HeroSection({ onRequestDemo }: HeroSectionProps) {
                   <span>Precision</span>
                 </div>
                 <div className="text-lg sm:text-xl font-bold text-white tracking-tight font-mono">
-                  AST Verified
+                  Deterministic
                 </div>
-                <span className="text-[11px] text-zinc-500">Grammar-constrained RAG</span>
+                <span className="text-[11px] text-zinc-500">Constrained AST guardrails</span>
               </div>
 
               <div className="flex flex-col">
                 <div className="flex items-center gap-1.5 text-xs text-zinc-500 font-mono uppercase mb-1">
                   <Zap className="w-3.5 h-3.5 text-zinc-400" />
-                  <span>Latency</span>
+                  <span>Evolution</span>
                 </div>
                 <div className="text-lg sm:text-xl font-bold text-white tracking-tight font-mono">
-                  Sub-50ms
+                  Continuous
                 </div>
-                <span className="text-[11px] text-zinc-500">Target inference latency</span>
+                <span className="text-[11px] text-zinc-500">Compounding product updates</span>
               </div>
             </div>
           </div>

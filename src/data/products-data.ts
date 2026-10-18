@@ -60,7 +60,7 @@ export const PRODUCTS_DATA: Record<string, ProductDetail> = {
     fullTagline:
       "Deterministic Bilingual Drafting & Automated Title Clearance for Indian Statutory Jurisdictions",
     category: "LegalTech & Enterprise Compliance",
-    division: "Division B // SaaS Products & Software Solutions",
+    division: "Krynex Software Products // Recurring SaaS",
     status: "GA (General Availability)",
     version: "v3.8.4",
     summary:
@@ -200,7 +200,7 @@ export const PRODUCTS_DATA: Record<string, ProductDetail> = {
     fullTagline:
       "Event-Driven Process Orchestration Connecting Disparate Systems with Autonomous Triage",
     category: "Enterprise Automation & Middleware",
-    division: "Division B // SaaS Products & Software Solutions",
+    division: "Krynex Software Products // Recurring SaaS",
     status: "GA (General Availability)",
     version: "v2.6.0",
     summary:
@@ -337,7 +337,7 @@ export const PRODUCTS_DATA: Record<string, ProductDetail> = {
     shortTagline: "Edge Industrial Computer Vision & QC Engine",
     fullTagline: "Sub-15ms Surface Defect Detection & SCADA Correlation for High-Speed Production",
     category: "Industrial IoT & Edge AI",
-    division: "Division B // SaaS Products & Software Solutions",
+    division: "Krynex Software Products // Recurring SaaS",
     status: "Enterprise Pilot",
     version: "v1.4.2",
     summary:

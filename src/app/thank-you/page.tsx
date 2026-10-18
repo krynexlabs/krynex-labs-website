@@ -2,20 +2,25 @@ import Link from "next/link";
 import { CheckCircle2, Shield, ArrowLeft, Clock, Lock, Server } from "lucide-react";
 
 export const metadata = {
-  title: "Inquiry Confirmed",
-  description: "Executive R&D Consultation request securely received by Krynex Labs corporate engineering division.",
+  title: "Inquiry Confirmed | Krynex Labs",
+  description: "Inquiry securely received by Krynex Labs software engineering team.",
   robots: {
     index: false,
     follow: false,
   },
 };
 
+// Strict whitelist regex for safe reference IDs (e.g. KRX-RD-123456 or alphanumeric IDs)
+const SAFE_REF_REGEX = /^[A-Za-z0-9_-]{4,32}$/;
+
 export default function ThankYouPage({
   searchParams,
 }: {
   searchParams?: { ref?: string };
 }) {
-  const docketId = searchParams?.ref;
+  const rawRef = searchParams?.ref;
+  const isValidRef = typeof rawRef === "string" && SAFE_REF_REGEX.test(rawRef);
+  const docketId = isValidRef ? rawRef : null;
 
   return (
     <main className="relative min-h-screen bg-black text-white flex items-center justify-center px-4 py-20 overflow-hidden">
@@ -30,7 +35,7 @@ export default function ThankYouPage({
           <div className="flex items-center gap-2">
             <span className="w-2.5 h-2.5 rounded-full bg-white animate-pulse" />
             <span className="text-xs font-mono text-zinc-300">
-              {docketId ? `DOCKET ID: ${docketId}` : "DISPATCH STATUS: TRANSMITTED"}
+              {docketId ? `DOCKET ID: ${docketId}` : "STATUS: TRANSMISSION RECEIVED"}
             </span>
           </div>
           <span className="text-xs font-mono text-zinc-500">
@@ -46,7 +51,7 @@ export default function ThankYouPage({
 
           <div className="space-y-2">
             <div className="text-xs font-mono tracking-widest text-zinc-400 uppercase">
-              R&amp;D CONSULTATION BRIEF CONFIRMED
+              PRODUCT &amp; PARTNERSHIP BRIEF CONFIRMED
             </div>
             <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-white">
               Executive Brief Securely Received.
@@ -54,8 +59,8 @@ export default function ThankYouPage({
           </div>
 
           <p className="text-zinc-400 text-sm sm:text-base leading-relaxed">
-            Your technical inquiry and operational parameters have been encrypted using AES-256 and routed directly
-            to our Senior Systems Architects and Machine Learning Engineering Division at SBR, Ahmedabad.
+            Your inquiry and operational parameters have been transmitted via secure TLS encryption and routed directly
+            to our Senior Software Architects and Product Engineering team at SBR, Ahmedabad.
           </p>
 
           {/* Telemetry Details Grid */}
@@ -63,17 +68,17 @@ export default function ThankYouPage({
             <div className="flex flex-col gap-1">
               <span className="text-zinc-500 text-[10px] uppercase flex items-center gap-1">
                 <Clock className="w-3 h-3 text-zinc-400" />
-                Response SLA
+                Response Window
               </span>
-              <span className="text-white font-semibold">&lt; 2 Business Hours</span>
+              <span className="text-white font-semibold">1-2 Business Days</span>
             </div>
 
             <div className="flex flex-col gap-1">
               <span className="text-zinc-500 text-[10px] uppercase flex items-center gap-1">
                 <Lock className="w-3 h-3 text-zinc-400" />
-                NDA Security
+                Confidentiality
               </span>
-              <span className="text-white font-semibold">Strict Bilateral</span>
+              <span className="text-white font-semibold">Privacy Protected</span>
             </div>
 
             <div className="flex flex-col gap-1">
@@ -81,7 +86,7 @@ export default function ThankYouPage({
                 <Server className="w-3 h-3 text-zinc-400" />
                 Routing Node
               </span>
-              <span className="text-white font-semibold">Ahmedabad Labs</span>
+              <span className="text-white font-semibold">Ahmedabad DC-01</span>
             </div>
           </div>
 

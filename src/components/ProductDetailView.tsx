@@ -77,13 +77,13 @@ export default function ProductDetailView({ product }: ProductDetailViewProps) {
               className="inline-flex items-center gap-2 text-xs font-mono text-zinc-400 hover:text-white transition-colors group"
             >
               <ArrowLeft className="w-3.5 h-3.5 group-hover:-translate-x-1 transition-transform" />
-              <span>&larr; Return to SaaS Products Directory</span>
+              <span>&larr; Return to Product Directory</span>
             </Link>
           </div>
 
           <div className="flex flex-wrap items-center gap-3 mb-5">
             <span className="text-[10px] font-mono px-3 py-1 rounded-full bg-white/[0.04] border border-white/10 text-zinc-300 uppercase tracking-widest">
-              {product.division}
+              {product.category}
             </span>
             <span className="text-[10px] font-mono px-2.5 py-0.5 rounded bg-white/[0.06] border border-white/10 text-zinc-400">
               {product.status}

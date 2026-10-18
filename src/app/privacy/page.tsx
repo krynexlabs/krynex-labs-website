@@ -65,8 +65,8 @@ export default function PrivacyPage() {
             <p className="text-zinc-400 leading-relaxed">
               At Krynex Labs (&ldquo;Krynex&rdquo;, &ldquo;we&rdquo;, &ldquo;us&rdquo;), enterprise confidentiality and client proprietary
               intelligence form our foundational baseline. Unlike consumer AI aggregators, Krynex Labs maintains an absolute zero public model
-              co-mingling policy: proprietary customer datasets, industrial logs, SCADA records, and ERP schemas processed by our custom engineering
-              pipelines or SaaS products are never utilized to train or fine-tune public or foundation neural models.
+              co-mingling policy: proprietary customer datasets, industrial logs, SCADA records, and ERP schemas processed by our software products
+              and platforms are never utilized to train or fine-tune public or foundation neural models.
             </p>
             <div className="p-4 rounded-xl bg-[#080808] border border-white/[0.08] font-mono text-xs text-zinc-400 space-y-1">
               <div>&bull; ZERO PUBLIC MODEL CO-MINGLING</div>

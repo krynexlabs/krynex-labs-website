@@ -19,12 +19,12 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.krynexlabs.in"),
   title: {
-    default: "Krynex Labs | AI Engineering, Enterprise Software & SaaS",
+    default: "Krynex Labs | Problem-Driven Software & SaaS Products",
     template: "%s | Krynex Labs",
   },
   description:
-    "Krynex Labs is an Applied AI, Enterprise Engineering, and SaaS Products company headquartered at SBR, Ahmedabad, India. We engineer intelligent technology for business problems and develop software products that help organizations operate more effectively.",
-  authors: [{ name: "Krynex Labs Corporate Engineering Division" }],
+    "Krynex Labs identifies real-world industry problems and develops software products, web applications, mobile apps, and SaaS platforms that businesses subscribe to and use.",
+  authors: [{ name: "Krynex Labs" }],
   creator: "Krynex Labs",
   publisher: "Krynex Labs",
   formatDetection: {
@@ -40,15 +40,15 @@ export const metadata: Metadata = {
     locale: "en_IN",
     url: "https://www.krynexlabs.in",
     siteName: "Krynex Labs",
-    title: "Krynex Labs | AI Engineering, Enterprise Software & SaaS",
+    title: "Krynex Labs | Problem-Driven Software & SaaS Products",
     description:
-      "Krynex Labs is an Applied AI, Enterprise Engineering, and SaaS Products company headquartered at SBR, Ahmedabad, India. We engineer intelligent technology for business problems and develop software products that help organizations operate more effectively.",
+      "Krynex Labs identifies real-world industry problems and develops software products, web applications, mobile apps, and SaaS platforms that businesses subscribe to and use.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Krynex Labs | AI Engineering, Enterprise Software & SaaS",
+    title: "Krynex Labs | Problem-Driven Software & SaaS Products",
     description:
-      "Krynex Labs is an Applied AI, Enterprise Engineering, and SaaS Products company headquartered at SBR, Ahmedabad, India.",
+      "Krynex Labs identifies real-world industry problems and develops software products, web applications, mobile apps, and SaaS platforms that businesses subscribe to and use.",
   },
   robots: {
     index: true,
@@ -79,7 +79,8 @@ const jsonLd = {
       "@id": "https://www.krynexlabs.in/#organization",
       name: "Krynex Labs",
       url: "https://www.krynexlabs.in",
-      logo: "https://www.krynexlabs.in/icon",
+      logo: "https://www.krynexlabs.in/opengraph-image",
+      image: "https://www.krynexlabs.in/opengraph-image",
       email: "support@krynexlabs.in",
       telephone: "+91-98794-18569",
       address: {
@@ -124,7 +125,7 @@ const jsonLd = {
       "@id": "https://www.krynexlabs.in/#website",
       url: "https://www.krynexlabs.in",
       name: "Krynex Labs",
-      description: "Applied AI, Enterprise Engineering and SaaS Products",
+      description: "Problem-Driven Software Products and SaaS Company",
       publisher: {
         "@id": "https://www.krynexlabs.in/#organization",
       },

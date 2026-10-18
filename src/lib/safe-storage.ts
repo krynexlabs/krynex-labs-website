@@ -1,0 +1,36 @@
+/**
+ * Safe browser storage wrapper
+ * Catches all localStorage / sessionStorage access exceptions (e.g. Safari private browsing,
+ * disabled cookies, storage quota exceeded, SSR execution) to prevent root application crashes.
+ */
+
+export const safeLocalStorage = {
+  getItem(key: string): string | null {
+    if (typeof window === "undefined") return null;
+    try {
+      return window.localStorage.getItem(key);
+    } catch {
+      return null;
+    }
+  },
+
+  setItem(key: string, value: string): boolean {
+    if (typeof window === "undefined") return false;
+    try {
+      window.localStorage.setItem(key, value);
+      return true;
+    } catch {
+      return false;
+    }
+  },
+
+  removeItem(key: string): boolean {
+    if (typeof window === "undefined") return false;
+    try {
+      window.localStorage.removeItem(key);
+      return true;
+    } catch {
+      return false;
+    }
+  },
+};

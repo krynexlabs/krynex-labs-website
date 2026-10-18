@@ -3,7 +3,6 @@ import Link from "next/link";
 import { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import SectionDivider from "@/components/SectionDivider";
 import { INDUSTRIES_DATA } from "@/data/industries-data";
 import {
   Factory,
@@ -15,13 +14,15 @@ import {
   CheckCircle2,
   AlertCircle,
   Cpu,
-  Shield,
+  Layers,
+  Sparkles,
+  Users,
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Target Industries & Enterprise Dossiers",
+  title: "Industries & Operational Problems | Problem-Driven Software",
   description:
-    "Explore how Krynex Labs solves mission-critical operational bottlenecks across Manufacturing, FinTech, Logistics, Legal, and Healthcare sectors.",
+    "Explore the operational bottlenecks Krynex Labs investigates across Manufacturing, LegalTech, Logistics, FinTech, and Healthcare—and the focused software products we engineer to solve them.",
   alternates: {
     canonical: "https://www.krynexlabs.in/industries",
   },
@@ -47,28 +48,26 @@ export default function IndustriesPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-3xl">
             <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/[0.04] border border-white/10 text-[11px] font-mono tracking-widest text-zinc-300 uppercase mb-5">
-              <span>VERTICAL SPECIALIZATION // INDUSTRIAL DOSSIERS</span>
+              <span>PROBLEM DISCOVERY // INDUSTRY RESEARCH</span>
             </div>
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight mb-6 leading-tight bg-gradient-to-b from-white via-zinc-100 to-zinc-500 bg-clip-text text-transparent">
-              Targeted Neural &amp; Software Solutions by Sector.
+              Software Built Around Real Industry Bottlenecks.
             </h1>
             <p className="text-base sm:text-lg text-zinc-400 leading-relaxed mb-8">
-              Generic software fails when exposed to the harsh, nuanced realities of specialized
-              industries. At Krynex Labs, we engineer purpose-built systems that respect the exact
-              statutory laws, physical equipment constraints, and latency thresholds of your operational domain.
+              At Krynex Labs, we start with the problem, not the technology. We research real operational friction—tasks that consume excessive time, processes that generate avoidable errors, and tools that are too complex or expensive—and build focused software products that businesses subscribe to.
             </p>
             <div className="flex flex-wrap items-center gap-4 text-xs font-mono text-zinc-400">
               <div className="flex items-center gap-1.5">
                 <CheckCircle2 className="w-4 h-4 text-white" />
-                <span>Domain-Adapted Architectures</span>
+                <span>Validated Pain Points</span>
               </div>
               <div className="flex items-center gap-1.5">
                 <CheckCircle2 className="w-4 h-4 text-white" />
-                <span>Deterministic Safety Guardrails</span>
+                <span>Transparent Product Status</span>
               </div>
               <div className="flex items-center gap-1.5">
                 <CheckCircle2 className="w-4 h-4 text-white" />
-                <span>Zero-Trust Compliance</span>
+                <span>Recurring Software Model</span>
               </div>
             </div>
           </div>
@@ -101,8 +100,13 @@ export default function IndustriesPage() {
                     </span>
                   </div>
                 </div>
-                <div className="text-xs font-mono text-zinc-400">
-                  DOSSIER #{String(idx + 1).padStart(2, "0")}
+                <div className="flex items-center gap-2">
+                  <span className="text-[10px] font-mono px-3 py-1 rounded-full bg-white/[0.05] border border-white/15 text-zinc-300">
+                    {ind.statusLabel}
+                  </span>
+                  <div className="text-xs font-mono text-zinc-500 hidden sm:block">
+                    RESEARCH VECTOR #{String(idx + 1).padStart(2, "0")}
+                  </div>
                 </div>
               </div>
 
@@ -111,14 +115,26 @@ export default function IndustriesPage() {
                 {ind.overview}
               </p>
 
+              {/* Workflow & Beneficiaries Header Card */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6 p-4 rounded-2xl bg-white/[0.02] border border-white/[0.06] text-xs font-mono">
+                <div>
+                  <span className="text-zinc-500 uppercase block mb-1">Target Business Workflow:</span>
+                  <span className="text-zinc-200">{ind.targetWorkflow}</span>
+                </div>
+                <div>
+                  <span className="text-zinc-500 uppercase block mb-1">Who Would Benefit:</span>
+                  <span className="text-zinc-200">{ind.beneficiaries}</span>
+                </div>
+              </div>
+
               {/* Bottlenecks vs Solution */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                <div className="p-5 rounded-2xl bg-white/[0.02] border border-white/[0.06]">
+                <div className="p-5 rounded-2xl bg-black border border-white/[0.08]">
                   <div className="text-[10px] font-mono uppercase tracking-wider text-zinc-400 mb-3 flex items-center gap-1.5">
                     <AlertCircle className="w-3.5 h-3.5 text-zinc-400" />
-                    <span>Industry Pain Points</span>
+                    <span>The Underlying Pain Point</span>
                   </div>
-                  <ul className="space-y-2.5">
+                  <ul className="space-y-2.5 mb-4">
                     {ind.bottlenecks.map((btnk, bIdx) => (
                       <li key={bIdx} className="text-xs text-zinc-300 flex items-start gap-2">
                         <span className="w-1.5 h-1.5 rounded-full bg-zinc-400 mt-1.5 shrink-0" />
@@ -126,17 +142,28 @@ export default function IndustriesPage() {
                       </li>
                     ))}
                   </ul>
+                  <div className="pt-3 border-t border-white/[0.06]">
+                    <span className="text-[10px] font-mono text-zinc-500 uppercase block mb-1">
+                      Why Existing Tools Fall Short:
+                    </span>
+                    <p className="text-xs text-zinc-400 leading-relaxed">
+                      {ind.whyExistingInadequate}
+                    </p>
+                  </div>
                 </div>
 
-                <div className="p-5 rounded-2xl bg-white/[0.02] border border-white/[0.06]">
+                <div className="p-5 rounded-2xl bg-black border border-white/[0.08]">
                   <div className="text-[10px] font-mono uppercase tracking-wider text-zinc-300 mb-3 flex items-center gap-1.5">
                     <Cpu className="w-3.5 h-3.5 text-white" />
-                    <span>The Krynex Engineering Response</span>
+                    <span>The Krynex Software Solution</span>
                   </div>
-                  <p className="text-xs text-zinc-300 mb-3 leading-relaxed">
+                  <p className="text-xs text-zinc-300 mb-4 leading-relaxed">
                     {ind.krynexSolution}
                   </p>
-                  <div className="space-y-1.5 pt-2 border-t border-white/[0.04]">
+                  <div className="space-y-2 pt-3 border-t border-white/[0.06]">
+                    <span className="text-[10px] font-mono text-zinc-500 uppercase block mb-1">
+                      Technical Architecture Envelopes:
+                    </span>
                     {ind.architectureDetails.map((detail, dIdx) => (
                       <div key={dIdx} className="text-[11px] font-mono text-zinc-400 flex items-center gap-1.5">
                         <CheckCircle2 className="w-3 h-3 text-white shrink-0" />
@@ -150,7 +177,7 @@ export default function IndustriesPage() {
               {/* Quantified Metrics Ribbon */}
               <div className="p-6 rounded-2xl bg-black border border-white/[0.08] mb-8">
                 <div className="text-[10px] font-mono uppercase tracking-wider text-zinc-400 mb-4">
-                  EMPIRICAL TARGET TELEMETRY:
+                  MODELED PERFORMANCE TARGETS:
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
                   {ind.quantifiedImpact.map((imp, iIdx) => (
@@ -168,16 +195,44 @@ export default function IndustriesPage() {
               {/* Footer CTA */}
               <div className="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-white/[0.06]">
                 <div className="text-xs font-mono text-zinc-400">
-                  Representative Archetype:{" "}
+                  Target Domain Archetype:{" "}
                   <span className="text-white font-medium">{ind.caseDossier.clientType}</span>
                 </div>
-                <Link
-                  href={`/contact?sector=${ind.slug}`}
-                  className="bg-white text-black font-medium hover:bg-zinc-200 px-5 py-2 rounded-xl transition-all text-xs tracking-wide flex items-center gap-1.5"
-                >
-                  <span>Request Sector Architecture Proposal</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </Link>
+                <div className="flex items-center gap-3">
+                  {ind.slug === "manufacturing" && (
+                    <Link
+                      href="/products/krynex-vision"
+                      className="bg-white text-black font-medium hover:bg-zinc-200 px-4 py-2 rounded-xl transition-all text-xs tracking-wide flex items-center gap-1.5"
+                    >
+                      <span>Explore Krynex Vision</span>
+                      <ArrowRight className="w-3.5 h-3.5" />
+                    </Link>
+                  )}
+                  {ind.slug === "legal" && (
+                    <Link
+                      href="/products/krynex-lexis"
+                      className="bg-white text-black font-medium hover:bg-zinc-200 px-4 py-2 rounded-xl transition-all text-xs tracking-wide flex items-center gap-1.5"
+                    >
+                      <span>Explore Krynex Lexis</span>
+                      <ArrowRight className="w-3.5 h-3.5" />
+                    </Link>
+                  )}
+                  {ind.slug === "logistics" && (
+                    <Link
+                      href="/products/krynex-flow"
+                      className="bg-white text-black font-medium hover:bg-zinc-200 px-4 py-2 rounded-xl transition-all text-xs tracking-wide flex items-center gap-1.5"
+                    >
+                      <span>Explore Krynex Flow</span>
+                      <ArrowRight className="w-3.5 h-3.5" />
+                    </Link>
+                  )}
+                  <Link
+                    href={`/contact?subject=problem-${ind.slug}`}
+                    className="bg-white/[0.04] text-white hover:bg-white/[0.08] border border-white/10 px-4 py-2 rounded-xl transition-all text-xs font-mono flex items-center gap-1.5"
+                  >
+                    <span>Propose Industry Problem</span>
+                  </Link>
+                </div>
               </div>
             </div>
           ))}

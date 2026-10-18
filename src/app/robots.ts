@@ -8,6 +8,5 @@ export default function robots(): MetadataRoute.Robots {
       disallow: ["/api/"],
     },
     sitemap: "https://www.krynexlabs.in/sitemap.xml",
-    host: "https://www.krynexlabs.in",
   };
 }

@@ -8,14 +8,18 @@ import * as THREE from "three";
 // 3x3x3 Resend-style Rubik's Assembly with true 90-degree slice mechanics & micro-textures
 function ResendRubiksAssembly({ prefersReducedMotion }: { prefersReducedMotion: boolean }) {
   const outerGroupRef = useRef<THREE.Group>(null);
+  const [hoveredCubeId, setHoveredCubeId] = useState<number | null>(null);
 
   // Generate 3 procedural micro-textures on 256x256 HTML5 canvases (0 external images)
-  const { mat0, mat1, mat2, ribbedTex, dottedTex } = useMemo(() => {
+  const { mat0, mat1, mat2, mat0Hover, mat1Hover, mat2Hover, ribbedTex, dottedTex } = useMemo(() => {
     if (typeof document === "undefined") {
       return {
         mat0: new THREE.MeshPhysicalMaterial({ color: "#080808" }),
         mat1: new THREE.MeshPhysicalMaterial({ color: "#0b0b0b" }),
         mat2: new THREE.MeshPhysicalMaterial({ color: "#090909" }),
+        mat0Hover: new THREE.MeshPhysicalMaterial({ color: "#141414" }),
+        mat1Hover: new THREE.MeshPhysicalMaterial({ color: "#18181b" }),
+        mat2Hover: new THREE.MeshPhysicalMaterial({ color: "#161618" }),
         ribbedTex: null,
         dottedTex: null,
       };
@@ -89,7 +93,52 @@ function ResendRubiksAssembly({ prefersReducedMotion }: { prefersReducedMotion: 
       reflectivity: 0.85,
     });
 
-    return { mat0: m0, mat1: m1, mat2: m2, ribbedTex, dottedTex };
+    // Interactive Hover Variations (Roughness drops for gleaming specular sheen, subtle silver emissive highlight)
+    const m0Hover = new THREE.MeshPhysicalMaterial({
+      color: "#141414",
+      metalness: 0.96,
+      roughness: 0.05,
+      clearcoat: 1.0,
+      clearcoatRoughness: 0.03,
+      reflectivity: 1.0,
+      emissive: new THREE.Color("#27272a"),
+      emissiveIntensity: 0.35,
+    });
+
+    const m1Hover = new THREE.MeshPhysicalMaterial({
+      color: "#18181b",
+      metalness: 0.98,
+      roughness: 0.12,
+      clearcoat: 0.9,
+      bumpMap: ribbedTex,
+      bumpScale: 0.04,
+      reflectivity: 1.0,
+      emissive: new THREE.Color("#27272a"),
+      emissiveIntensity: 0.35,
+    });
+
+    const m2Hover = new THREE.MeshPhysicalMaterial({
+      color: "#161618",
+      metalness: 0.95,
+      roughness: 0.14,
+      clearcoat: 0.85,
+      bumpMap: dottedTex,
+      bumpScale: 0.035,
+      reflectivity: 1.0,
+      emissive: new THREE.Color("#27272a"),
+      emissiveIntensity: 0.35,
+    });
+
+    return {
+      mat0: m0,
+      mat1: m1,
+      mat2: m2,
+      mat0Hover: m0Hover,
+      mat1Hover: m1Hover,
+      mat2Hover: m2Hover,
+      ribbedTex,
+      dottedTex,
+    };
   }, []);
 
   // Safe cleanup of component-owned WebGL textures and materials (PERF-01)
@@ -102,8 +151,31 @@ function ResendRubiksAssembly({ prefersReducedMotion }: { prefersReducedMotion: 
       mat0?.dispose();
       mat1?.dispose();
       mat2?.dispose();
+      mat0Hover?.dispose();
+      mat1Hover?.dispose();
+      mat2Hover?.dispose();
+      if (typeof document !== "undefined") {
+        document.body.style.cursor = "auto";
+      }
     };
-  }, [mat0, mat1, mat2, ribbedTex, dottedTex]);
+  }, [mat0, mat1, mat2, mat0Hover, mat1Hover, mat2Hover, ribbedTex, dottedTex]);
+
+  // Pointer hover feedback handlers
+  const handlePointerOver = (e: any, id: number) => {
+    e.stopPropagation();
+    setHoveredCubeId(id);
+    if (typeof document !== "undefined") {
+      document.body.style.cursor = "pointer";
+    }
+  };
+
+  const handlePointerOut = (e: any, id: number) => {
+    e.stopPropagation();
+    setHoveredCubeId((prev) => (prev === id ? null : prev));
+    if (typeof document !== "undefined") {
+      document.body.style.cursor = "auto";
+    }
+  };
 
   // Initialize 27 sub-cubes at coordinates x, y, z in [-1, 0, 1]
   const cubes = useMemo(() => {
@@ -143,10 +215,58 @@ function ResendRubiksAssembly({ prefersReducedMotion }: { prefersReducedMotion: 
     layer: 1,
     direction: 1,
     elapsed: 0,
-    duration: 0.85, // 0.85s smooth turn
-    pauseTimer: 0.35, // Initial delay before first turn
+    duration: 0.85, // 0.85s smooth turn for automated rotations
+    pauseTimer: 2.0, // Initial delay before first idle turn
     lastAxis: "z",
   });
+
+  // Interactive Click-to-Turn Handler
+  const handleCubeClick = (e: any, cube: (typeof cubes)[0]) => {
+    e.stopPropagation();
+    const s = sliceState.current;
+    if (s.isRotating) return; // Prevent multiple clicks from triggering overlapping animations
+
+    // Read current logical grid position
+    const currentY = Math.round(cube.gridPos.y);
+    const currentX = Math.round(cube.gridPos.x);
+    const currentZ = Math.round(cube.gridPos.z);
+
+    // Shift-Click or Secondary Interaction: Rotates the Column / Slice (vertical layer)
+    const isSecondary = Boolean(e.shiftKey || e.altKey || e.button === 2);
+
+    if (isSecondary) {
+      let chosenAxis: "x" | "z" = "x";
+      let chosenLayer = currentX;
+
+      if (e.altKey) {
+        chosenAxis = "z";
+        chosenLayer = currentZ;
+      } else if (Math.abs(currentX) > 0) {
+        chosenAxis = "x";
+        chosenLayer = currentX;
+      } else if (Math.abs(currentZ) > 0) {
+        chosenAxis = "z";
+        chosenLayer = currentZ;
+      }
+
+      s.axis = chosenAxis;
+      s.layer = chosenLayer;
+      s.direction = 1;
+      s.duration = 0.65; // 0.65s cubic easing
+      s.isRotating = true;
+      s.elapsed = 0;
+      s.pauseTimer = 4.0; // Pause auto-rotation after user interaction
+    } else {
+      // Primary Click (Left Click / Tap): Rotates the Row / Slice corresponding to current y (horizontal layer around Y axis)
+      s.axis = "y";
+      s.layer = currentY;
+      s.direction = 1;
+      s.duration = 0.65; // 0.65s cubic easing
+      s.isRotating = true;
+      s.elapsed = 0;
+      s.pauseTimer = 4.0; // Pause auto-rotation after user interaction
+    }
+  };
 
   useFrame((state, delta) => {
     // A11Y-03: Respect prefers-reduced-motion preference
@@ -190,6 +310,7 @@ function ResendRubiksAssembly({ prefersReducedMotion }: { prefersReducedMotion: 
         s.axis = allowedAxes[Math.floor(Math.random() * allowedAxes.length)];
         s.layer = [-1, 0, 1][Math.floor(Math.random() * 3)];
         s.direction = Math.random() > 0.5 ? 1 : -1;
+        s.duration = 0.85;
         s.isRotating = true;
         s.elapsed = 0;
       }
@@ -250,7 +371,7 @@ function ResendRubiksAssembly({ prefersReducedMotion }: { prefersReducedMotion: 
       }
 
       s.isRotating = false;
-      s.pauseTimer = 0.25; // 0.25s pause before next slice turn
+      s.pauseTimer = 3.5; // 3.5s pause before next automated turn
       s.lastAxis = s.axis;
     }
   });
@@ -258,8 +379,10 @@ function ResendRubiksAssembly({ prefersReducedMotion }: { prefersReducedMotion: 
   return (
     <group ref={outerGroupRef} scale={0.64} rotation={[0.55, -0.65, 0.22]}>
       {cubes.map((cube) => {
-        // Deterministic assignment of the 3 procedural micro-textures across 27 cubelets
-        const mat = cube.id % 3 === 0 ? mat0 : cube.id % 3 === 1 ? mat1 : mat2;
+        const isHovered = hoveredCubeId === cube.id;
+        const baseMat = cube.id % 3 === 0 ? mat0 : cube.id % 3 === 1 ? mat1 : mat2;
+        const hoverMat = cube.id % 3 === 0 ? mat0Hover : cube.id % 3 === 1 ? mat1Hover : mat2Hover;
+        const activeMat = isHovered ? hoverMat : baseMat;
 
         return (
           <group
@@ -272,11 +395,14 @@ function ResendRubiksAssembly({ prefersReducedMotion }: { prefersReducedMotion: 
               args={[0.94, 0.94, 0.94]}
               radius={0.07}
               smoothness={5}
-              material={mat}
+              material={activeMat}
               castShadow
               receiveShadow
+              onClick={(e) => handleCubeClick(e, cube)}
+              onPointerOver={(e) => handlePointerOver(e, cube.id)}
+              onPointerOut={(e) => handlePointerOut(e, cube.id)}
             >
-              <Edges threshold={18} color="#52525b" />
+              <Edges threshold={18} color={isHovered ? "#ffffff" : "#52525b"} />
             </RoundedBox>
           </group>
         );
@@ -285,13 +411,81 @@ function ResendRubiksAssembly({ prefersReducedMotion }: { prefersReducedMotion: 
   );
 }
 
+function StaticSvgFallback() {
+  return (
+    <div className="relative w-full h-full min-h-[380px] sm:min-h-[480px] lg:min-h-[680px] flex items-center justify-center p-8 select-none">
+      <svg
+        viewBox="0 0 400 400"
+        className="w-full max-w-[380px] h-auto drop-shadow-[0_0_35px_rgba(255,255,255,0.12)]"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        {/* Isometric wireframe cube facets */}
+        <polygon points="200,50 320,120 200,190 80,120" fill="#141414" stroke="#ffffff" strokeWidth="1.5" strokeOpacity="0.4" />
+        <polygon points="80,120 200,190 200,330 80,260" fill="#090909" stroke="#ffffff" strokeWidth="1.5" strokeOpacity="0.3" />
+        <polygon points="200,190 320,120 320,260 200,330" fill="#0d0d0d" stroke="#ffffff" strokeWidth="1.5" strokeOpacity="0.3" />
+        {/* Grid lines simulating 3x3 Rubik slices */}
+        <line x1="120" y1="96" x2="240" y2="166" stroke="#ffffff" strokeWidth="1" strokeOpacity="0.35" />
+        <line x1="160" y1="73" x2="280" y2="143" stroke="#ffffff" strokeWidth="1" strokeOpacity="0.35" />
+        <line x1="240" y1="73" x2="120" y2="143" stroke="#ffffff" strokeWidth="1" strokeOpacity="0.35" />
+        <line x1="280" y1="96" x2="160" y2="166" stroke="#ffffff" strokeWidth="1" strokeOpacity="0.35" />
+        <line x1="120" y1="143" x2="120" y2="283" stroke="#ffffff" strokeWidth="1" strokeOpacity="0.25" />
+        <line x1="160" y1="166" x2="160" y2="306" stroke="#ffffff" strokeWidth="1" strokeOpacity="0.25" />
+        <line x1="240" y1="166" x2="240" y2="306" stroke="#ffffff" strokeWidth="1" strokeOpacity="0.25" />
+        <line x1="280" y1="143" x2="280" y2="283" stroke="#ffffff" strokeWidth="1" strokeOpacity="0.25" />
+        <line x1="80" y1="166" x2="200" y2="236" stroke="#ffffff" strokeWidth="1" strokeOpacity="0.25" />
+        <line x1="80" y1="213" x2="200" y2="283" stroke="#ffffff" strokeWidth="1" strokeOpacity="0.25" />
+        <line x1="200" y1="236" x2="320" y2="166" stroke="#ffffff" strokeWidth="1" strokeOpacity="0.25" />
+        <line x1="200" y1="283" x2="320" y2="213" stroke="#ffffff" strokeWidth="1" strokeOpacity="0.25" />
+      </svg>
+    </div>
+  );
+}
+
+interface WebGLErrorBoundaryProps {
+  fallback: React.ReactNode;
+  children: React.ReactNode;
+}
+
+interface WebGLErrorBoundaryState {
+  hasError: boolean;
+}
+
+class WebGLErrorBoundary extends React.Component<WebGLErrorBoundaryProps, WebGLErrorBoundaryState> {
+  constructor(props: WebGLErrorBoundaryProps) {
+    super(props);
+    this.state = { hasError: false };
+  }
+
+  static getDerivedStateFromError() {
+    return { hasError: true };
+  }
+
+  componentDidCatch(err: any) {
+    console.warn("[KRYNEX 3D] WebGL canvas caught runtime exception, activating static fallback:", err);
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return this.props.fallback;
+    }
+    return this.props.children;
+  }
+}
+
 export default function Hero3DCube() {
   const [mounted, setMounted] = useState(false);
+  const [initTimeout, setInitTimeout] = useState(false);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
   const [hasWebGL, setHasWebGL] = useState(true);
 
   useEffect(() => {
     setMounted(true);
+
+    const timeoutId = setTimeout(() => {
+      setInitTimeout(true);
+    }, 3500);
+
     if (typeof window !== "undefined") {
       try {
         const canvas = document.createElement("canvas");
@@ -311,11 +505,16 @@ export default function Hero3DCube() {
         setPrefersReducedMotion(event.matches);
       };
       mediaQuery.addEventListener("change", listener);
-      return () => mediaQuery.removeEventListener("change", listener);
+      return () => {
+        clearTimeout(timeoutId);
+        mediaQuery.removeEventListener("change", listener);
+      };
     }
+
+    return () => clearTimeout(timeoutId);
   }, []);
 
-  if (!mounted) {
+  if (!mounted && !initTimeout) {
     return (
       <div className="w-full h-full min-h-[380px] sm:min-h-[480px] lg:min-h-[680px] flex items-center justify-center">
         <div className="w-12 h-12 border-2 border-white/20 border-t-white rounded-full animate-spin" />
@@ -323,43 +522,17 @@ export default function Hero3DCube() {
     );
   }
 
-  if (!hasWebGL) {
-    return (
-      <div className="relative w-full h-full min-h-[380px] sm:min-h-[480px] lg:min-h-[680px] flex items-center justify-center p-8 select-none">
-        <svg
-          viewBox="0 0 400 400"
-          className="w-full max-w-[380px] h-auto drop-shadow-[0_0_35px_rgba(255,255,255,0.12)]"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          {/* Isometric wireframe cube facets */}
-          <polygon points="200,50 320,120 200,190 80,120" fill="#141414" stroke="#ffffff" strokeWidth="1.5" strokeOpacity="0.4" />
-          <polygon points="80,120 200,190 200,330 80,260" fill="#090909" stroke="#ffffff" strokeWidth="1.5" strokeOpacity="0.3" />
-          <polygon points="200,190 320,120 320,260 200,330" fill="#0d0d0d" stroke="#ffffff" strokeWidth="1.5" strokeOpacity="0.3" />
-          {/* Grid lines simulating 3x3 Rubik slices */}
-          <line x1="120" y1="96" x2="240" y2="166" stroke="#ffffff" strokeWidth="1" strokeOpacity="0.35" />
-          <line x1="160" y1="73" x2="280" y2="143" stroke="#ffffff" strokeWidth="1" strokeOpacity="0.35" />
-          <line x1="240" y1="73" x2="120" y2="143" stroke="#ffffff" strokeWidth="1" strokeOpacity="0.35" />
-          <line x1="280" y1="96" x2="160" y2="166" stroke="#ffffff" strokeWidth="1" strokeOpacity="0.35" />
-          <line x1="120" y1="143" x2="120" y2="283" stroke="#ffffff" strokeWidth="1" strokeOpacity="0.25" />
-          <line x1="160" y1="166" x2="160" y2="306" stroke="#ffffff" strokeWidth="1" strokeOpacity="0.25" />
-          <line x1="240" y1="166" x2="240" y2="306" stroke="#ffffff" strokeWidth="1" strokeOpacity="0.25" />
-          <line x1="280" y1="143" x2="280" y2="283" stroke="#ffffff" strokeWidth="1" strokeOpacity="0.25" />
-          <line x1="80" y1="166" x2="200" y2="236" stroke="#ffffff" strokeWidth="1" strokeOpacity="0.25" />
-          <line x1="80" y1="213" x2="200" y2="283" stroke="#ffffff" strokeWidth="1" strokeOpacity="0.25" />
-          <line x1="200" y1="236" x2="320" y2="166" stroke="#ffffff" strokeWidth="1" strokeOpacity="0.25" />
-          <line x1="200" y1="283" x2="320" y2="213" stroke="#ffffff" strokeWidth="1" strokeOpacity="0.25" />
-        </svg>
-      </div>
-    );
+  if (!hasWebGL || (!mounted && initTimeout)) {
+    return <StaticSvgFallback />;
   }
 
   return (
-    <div className="relative w-full h-full select-none [mask-image:radial-gradient(circle_at_center,black_70%,transparent_100%)] [-webkit-mask-image:radial-gradient(circle_at_center,black_70%,transparent_100%)] flex items-center justify-center">
-      <Canvas
-        shadows
-        className="cursor-grab active:cursor-grabbing w-full h-full"
-      >
+    <WebGLErrorBoundary fallback={<StaticSvgFallback />}>
+      <div className="relative w-full h-full select-none [mask-image:radial-gradient(circle_at_center,black_70%,transparent_100%)] [-webkit-mask-image:radial-gradient(circle_at_center,black_70%,transparent_100%)] flex items-center justify-center">
+        <Canvas
+          shadows
+          className="cursor-grab active:cursor-grabbing w-full h-full"
+        >
         {/* Exact camera setup requested: position [0, 0, 6.2], fov 38 */}
         <PerspectiveCamera makeDefault position={[0, 0, 6.2]} fov={38} />
 
@@ -416,6 +589,15 @@ export default function Hero3DCube() {
           maxPolarAngle={Math.PI - Math.PI / 4}
         />
       </Canvas>
-    </div>
+
+      {/* Interactive Rubik's mechanics instruction badge */}
+      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 pointer-events-none z-10 hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/60 border border-white/[0.08] backdrop-blur-md">
+        <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
+        <span className="text-[10px] font-mono tracking-widest text-zinc-400 uppercase">
+          {"Click row to turn // Shift+Click column"}
+        </span>
+      </div>
+      </div>
+    </WebGLErrorBoundary>
   );
 }

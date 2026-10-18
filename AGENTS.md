@@ -1,13 +1,13 @@
 # KRYNEX LABS — Enterprise System Architecture & Knowledge Graph
 
 ## Corporate Identity & Positioning
-- **Company:** KRYNEX LABS INC.
+- **Company:** Krynex Labs
 - **Headquarters:** SBR (Sindhu Bhavan Road), Ahmedabad, Gujarat 380054, India.
 - **Official Domain:** https://www.krynexlabs.in
 - **Official Contact Email:** support@krynexlabs.in
 - **Official WhatsApp:** +91 9879418569 (WhatsApp Only • No Calls)
-- **Corporate Positioning:** Premier Applied AI/ML and Information Technology Engineering Company. We identify real-world enterprise bottlenecks and engineer custom neural architectures, zero-trust cloud backbones, and production-grade software ecosystems.
-- **Strict Rule:** Never reveal or imply specific commercial product spoilers (e.g. no mentions of drafting systems or rent-based SaaS products). Krynex Labs operates as an elite corporate engineering firm.
+- **Corporate Positioning:** Unified Software Product & SaaS Company. We identify real-world industry bottlenecks, understand operational pain points, build software products (web, mobile, AI-powered, automation), and earn recurring software revenue through subscriptions and software-rental access.
+- **Core Business Model:** Rented software access via recurring subscriptions (Build → Launch → Subscribe → Maintain → Improve). Not a custom development agency or hourly contractor.
 
 ---
 

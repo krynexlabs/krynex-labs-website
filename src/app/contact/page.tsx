@@ -21,7 +21,7 @@ export default function ContactPage() {
   const [inquiryEmail, setInquiryEmail] = useState("");
   const [inquiryCompany, setInquiryCompany] = useState("");
   const [inquiryChallenge, setInquiryChallenge] = useState("");
-  const [division, setDivision] = useState("Division A: Custom Engineering");
+  const [inquiryType, setInquiryType] = useState("Krynex Lexis Inquiry");
   const [honeypot, setHoneypot] = useState("");
 
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -69,7 +69,7 @@ export default function ContactPage() {
         body: JSON.stringify({
           name: inquiryName,
           email: inquiryEmail,
-          company: `${inquiryCompany} [${division}]`,
+          company: `${inquiryCompany} [${inquiryType}]`,
           challenge: inquiryChallenge,
           _security_honeypot: honeypot,
         }),
@@ -114,14 +114,13 @@ export default function ContactPage() {
 
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/[0.04] border border-white/10 text-[11px] font-mono tracking-widest text-zinc-300 uppercase mb-5">
-            <span>EXECUTIVE INQUIRY &amp; CONSULTATION</span>
+            <span>PRODUCT &amp; PARTNERSHIP INQUIRIES</span>
           </div>
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight mb-4 leading-tight bg-gradient-to-b from-white via-zinc-100 to-zinc-500 bg-clip-text text-transparent">
-            Initiate Technical Dialogue.
+            Initiate Product Dialogue.
           </h1>
           <p className="text-base sm:text-lg text-zinc-400 leading-relaxed max-w-3xl">
-            Whether you require bespoke neural engineering under Division A, or license onboarding for our
-            SaaS software products under Division B, our principal software architects respond within 48 business hours.
+            Whether you are evaluating a software product trial, exploring subscription onboarding, or submitting an unsolved industry problem for our R&amp;D team to investigate, our software architects respond within 48 business hours.
           </p>
         </div>
       </section>
@@ -183,19 +182,18 @@ export default function ContactPage() {
                 </div>
               </div>
 
-              {/* SLA & NDA Card */}
+              {/* Confidentiality & Review Standards Card */}
               <div className="p-6 rounded-3xl bg-[#080808] border border-white/[0.08] space-y-4 text-xs font-mono text-zinc-400">
                 <div className="flex items-center gap-2 text-white font-bold">
                   <Shield className="w-4 h-4 text-white" />
-                  <span>Confidentiality &amp; NDA Standards</span>
+                  <span>Confidentiality &amp; Data Privacy</span>
                 </div>
                 <p className="text-zinc-400 text-xs leading-relaxed font-sans">
-                  All shared project materials, architectures, and proprietary dataset schemas are governed
-                  by automatic mutual NDA under our zero-retention data sovereignty policy.
+                  Inquiries and operational challenges submitted through this portal are treated as strictly confidential business communications under our Privacy Policy. Formal bilateral NDAs are executed prior to deep architectural discovery or pilot deployment.
                 </p>
                 <div className="flex items-center gap-2 text-[11px] text-zinc-300">
                   <Clock className="w-3.5 h-3.5 text-white" />
-                  <span>Guaranteed 48-Hour SLA Response Window</span>
+                  <span>Standard Response Window: 1-2 Business Days</span>
                 </div>
               </div>
             </div>
@@ -258,30 +256,33 @@ export default function ContactPage() {
                       </div>
                     )}
 
-                    {/* Division Selector */}
+                    {/* Inquiry Category Selector */}
                     <div>
                       <label className="text-[10px] font-mono text-zinc-400 uppercase block mb-1">
-                        Inquiry Division
+                        Inquiry Category
                       </label>
                       <select
-                        value={division}
-                        onChange={(e) => setDivision(e.target.value)}
+                        value={inquiryType}
+                        onChange={(e) => setInquiryType(e.target.value)}
                         className="w-full bg-black border border-white/10 rounded-xl px-4 py-2.5 text-xs font-mono text-white focus:outline-none focus:border-white/40"
                       >
-                        <option value="Division A: Custom Engineering">
-                          Division A // Custom Applied AI &amp; Enterprise Engineering
+                        <option value="Krynex Lexis Inquiry">
+                          Krynex Lexis // Legal &amp; Statutory AI Drafting SaaS
                         </option>
-                        <option value="Division B: Krynex Lexis">
-                          Division B // Krynex Lexis (Legal AI Drafting SaaS)
+                        <option value="Krynex Flow Inquiry">
+                          Krynex Flow // Enterprise Workflow &amp; Middleware Engine
                         </option>
-                        <option value="Division B: Krynex Flow">
-                          Division B // Krynex Flow (Integration &amp; Middleware)
+                        <option value="Krynex Vision Inquiry">
+                          Krynex Vision // Edge Industrial Computer Vision QC
                         </option>
-                        <option value="Division B: Krynex Vision">
-                          Division B // Krynex Vision (Edge Industrial QC)
+                        <option value="Propose Industry Problem">
+                          Propose Industry Bottleneck // Suggest Problem for R&amp;D
                         </option>
-                        <option value="General Corporate Partnership">
-                          General Corporate / Academic R&amp;D Partnership
+                        <option value="Software Subscription &amp; Licensing">
+                          Software Subscription &amp; Licensing Inquiry
+                        </option>
+                        <option value="Corporate Partnership">
+                          General Corporate / Technology Partnership
                         </option>
                       </select>
                     </div>

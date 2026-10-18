@@ -60,10 +60,10 @@ export default function TermsPage() {
           <section className="space-y-4">
             <h2 className="text-xl font-bold text-white tracking-tight flex items-center gap-2">
               <FileText className="w-5 h-5 text-zinc-400" />
-              1. Scope of Enterprise Engineering Services &amp; SaaS Products
+              1. Scope of Software Products &amp; Subscription Terms
             </h2>
             <p className="text-zinc-400 leading-relaxed">
-              Krynex Labs provides custom applied artificial intelligence (AI), machine learning (ML), and enterprise software engineering services (Division A), alongside standardized proprietary SaaS products (Division B). Specific delivery parameters, milestone schedules, and acceptance criteria for custom client engineering are established through bilateral Statements of Work (SOW) or Master Services Agreements (MSA).
+              Krynex Labs develops, owns, operates, and maintains proprietary software products, web applications, and SaaS platforms (including Krynex Lexis, Krynex Flow, and Krynex Vision). Customers subscribe to or rent ongoing access to these software products under product-specific subscription agreements (monthly, annual, or enterprise tiers). Krynex Labs operates as a unified software product company and does not primarily sell billable development hours or one-off custom agency projects.
             </p>
           </section>
 
@@ -71,23 +71,23 @@ export default function TermsPage() {
           <section className="space-y-4">
             <h2 className="text-xl font-bold text-white tracking-tight flex items-center gap-2">
               <CheckCircle className="w-5 h-5 text-zinc-400" />
-              2. High-Availability Targets &amp; Service Level Commitments
+              2. Service Availability Targets &amp; Continuous Maintenance
             </h2>
             <p className="text-zinc-400 leading-relaxed">
-              For custom deployed enterprise systems and managed infrastructure, specific availability thresholds (such as 99.99% monthly uptime targets), support response windows, and service credits are governed by the applicable bilateral enterprise contract. For standardized SaaS products (such as Krynex Lexis), standard service availability targets 99.9% monthly uptime, excluding scheduled maintenance. Public website demonstrations and diagnostic sandbox environments are provided for illustrative purposes on an &ldquo;as-is&rdquo; and &ldquo;as-available&rdquo; basis.
+              For commercial software products, standard service availability targets 99.9% monthly uptime, excluding scheduled maintenance windows. Krynex Labs provides ongoing cloud infrastructure management, security patching, and continuous product updates funded by recurring software subscriptions. Public website demonstrations and diagnostic sandbox environments are provided for illustrative simulation purposes on an &ldquo;as-is&rdquo; and &ldquo;as-available&rdquo; basis.
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 p-4 rounded-xl bg-[#080808] border border-white/[0.08] font-mono text-xs text-zinc-400">
               <div>
                 <div className="text-white font-bold">&gt; 99.9% Target</div>
-                <div className="text-zinc-500 text-[11px]">Standard SaaS Availability Target</div>
+                <div className="text-zinc-500 text-[11px]">Standard Software Availability Target</div>
               </div>
               <div>
-                <div className="text-white font-bold">Bilateral MSA</div>
-                <div className="text-zinc-500 text-[11px]">Custom Enterprise SLA Contracts</div>
+                <div className="text-white font-bold">Rented Software</div>
+                <div className="text-zinc-500 text-[11px]">Predictable Recurring Subscriptions</div>
               </div>
               <div>
-                <div className="text-white font-bold">Ahmedabad Labs</div>
-                <div className="text-zinc-500 text-[11px]">Primary Engineering Operations</div>
+                <div className="text-white font-bold">Ahmedabad HQ</div>
+                <div className="text-zinc-500 text-[11px]">Primary Software Operations</div>
               </div>
             </div>
           </section>
@@ -96,10 +96,10 @@ export default function TermsPage() {
           <section className="space-y-4">
             <h2 className="text-xl font-bold text-white tracking-tight flex items-center gap-2">
               <Scale className="w-5 h-5 text-zinc-400" />
-              3. Intellectual Property Rights &amp; Ownership
+              3. Intellectual Property Rights &amp; Customer Data Sovereignty
             </h2>
             <p className="text-zinc-400 leading-relaxed">
-              Upon full settlement of agreed deliverables under custom client contracts, all custom-engineered pipeline logic, bespoke model weights, and client-specific automation workflows are transferred to the client as their exclusive intellectual property. Krynex Labs retains proprietary rights solely to its pre-existing core algorithmic frameworks, SaaS products, and internal developer toolchains.
+              Krynex Labs retains all right, title, and interest in and to its software products, platforms, algorithms, application architectures, and documentation. Customers and subscribers retain 100% exclusive ownership and sovereignty over all customer data, uploaded files, revenue records, and business documents processed through Krynex Labs products. Customer data is never co-mingled, sold, or used to train public foundation models.
             </p>
           </section>
 

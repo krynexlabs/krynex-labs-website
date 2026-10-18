@@ -18,9 +18,9 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "SaaS Products & Software Solutions",
+  title: "Software Products Directory | Problem-Driven SaaS",
   description:
-    "Explore Krynex Labs' proprietary software products: Krynex Lexis (Regional AI Legal Drafting SaaS), Krynex Flow (Enterprise Workflow Orchestrator), and Krynex Vision (Edge Industrial QC).",
+    "Explore Krynex Labs' verified software products: Krynex Lexis (Regional AI Legal Drafting SaaS), Krynex Flow (Enterprise Workflow Orchestrator), and Krynex Vision (Edge Industrial QC).",
   alternates: {
     canonical: "https://www.krynexlabs.in/products",
   },
@@ -46,15 +46,13 @@ export default function ProductsPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-3xl">
             <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/[0.04] border border-white/10 text-[11px] font-mono tracking-widest text-zinc-300 uppercase mb-5">
-              <span>DIVISION B // SAAS PRODUCTS &amp; SOFTWARE SOLUTIONS</span>
+              <span>KRYNEX SOFTWARE PORTFOLIO // RECURRING ACCESS</span>
             </div>
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight mb-6 leading-tight bg-gradient-to-b from-white via-zinc-100 to-zinc-500 bg-clip-text text-transparent">
-              Turnkey Software Products. Built for Immediate Velocity.
+              Software Products Built Around Real Problems.
             </h1>
             <p className="text-base sm:text-lg text-zinc-400 leading-relaxed mb-8">
-              In addition to custom client engineering, Krynex Labs builds and maintains specialized
-              software products. Designed for immediate operational deployment, our products combine
-              deterministic AI intelligence, transparent subscription pricing, and zero data leakage.
+              We research business challenges, develop practical software solutions, launch them as products, and continuously improve them for the businesses that rely on them. Subscribe to software built for immediate operational utility.
             </p>
             <div className="flex flex-wrap items-center gap-4 text-xs font-mono text-zinc-400">
               <div className="flex items-center gap-1.5">

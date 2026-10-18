@@ -72,7 +72,7 @@ export default function DraftingDemo() {
       archDetails: [
         "Streaming Kafka + Flink real-time feature store",
         "Sub-5ms Graph Convolutional Network inference",
-        "AES-256 HSM cryptographic key vault",
+        "Hardware-enforced cryptographic key vault",
       ],
       impact: [
         { label: "Fraud Interception Target", value: "99.8%", detail: "Simulated multi-account correlation" },

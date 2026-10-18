@@ -133,17 +133,32 @@ export default function Footer({ onRequestDemo }: FooterProps = {}) {
           {/* Section Header */}
           <div className="text-center max-w-3xl mx-auto mb-12">
             <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/[0.03] border border-white/10 text-[11px] font-mono tracking-widest text-zinc-300 uppercase mb-5">
-              <span>03 // EXECUTIVE R&amp;D INQUIRY PORTAL</span>
+              <span>09 // EXECUTIVE INQUIRY &amp; PARTNERSHIP</span>
             </div>
 
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mb-5 leading-tight bg-gradient-to-b from-white via-zinc-100 to-zinc-500 bg-clip-text text-transparent">
-              Have an Unsolved Industry Challenge?
+              Better Software Starts with Better Questions.
             </h2>
 
-            <p className="text-base sm:text-lg text-zinc-400 leading-relaxed">
-              Connect with Krynex Labs to architect custom AI/ML and enterprise IT ecosystems.
-              Collaborate directly with our senior research and systems engineers at SBR, Ahmedabad.
+            <p className="text-base sm:text-lg text-zinc-400 leading-relaxed mb-6">
+              We explore industry challenges, develop useful software, and turn promising solutions into products businesses can use.
             </p>
+
+            <div className="flex flex-wrap items-center justify-center gap-4 mb-8">
+              <Link
+                href="/products"
+                className="px-6 py-2.5 rounded-full bg-white text-black font-semibold text-xs hover:bg-zinc-200 transition-all shadow-md flex items-center gap-2"
+              >
+                <span>Explore Products</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </Link>
+              <Link
+                href="/contact"
+                className="px-6 py-2.5 rounded-full bg-white/[0.04] text-white hover:bg-white/[0.08] border border-white/10 font-medium text-xs transition-all"
+              >
+                <span>Contact Krynex Labs</span>
+              </Link>
+            </div>
           </div>
 
           {/* Interactive Corporate Inquiry Form */}
@@ -157,14 +172,14 @@ export default function Footer({ onRequestDemo }: FooterProps = {}) {
                 <CheckCircle2 className="w-7 h-7 text-white" />
               </div>
               <div className="text-xs font-mono text-zinc-300 mb-2">
-                INQUIRY REGISTERED // {ticketId}
+                {`INQUIRY REGISTERED // ${ticketId}`}
               </div>
               <h3 className="text-xl font-bold text-white mb-2">
                 Inquiry Routed to Corporate Engineering
               </h3>
               <p className="text-xs sm:text-sm text-zinc-400 mb-6 leading-relaxed">
                 Thank you, <span className="text-white font-medium">{inquiryName}</span>. Your technical inquiry has been securely registered under reference <span className="font-mono text-white">{ticketId}</span>. A Systems Architect will evaluate your operational brief and reach out to{" "}
-                <span className="text-white font-medium">{inquiryEmail}</span> within 2 business hours.
+                <span className="text-white font-medium">{inquiryEmail}</span> promptly during standard business hours.
               </p>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
                 <Link
@@ -334,7 +349,7 @@ export default function Footer({ onRequestDemo }: FooterProps = {}) {
               <div className="flex items-center justify-center gap-4 text-[11px] font-mono text-zinc-500 pt-3">
                 <span className="flex items-center gap-1.5">
                   <Shield className="w-3.5 h-3.5 text-zinc-400" />
-                  ENTERPRISE CONFIDENTIALITY &amp; NDA PROTECTED
+                  ENTERPRISE PRIVACY &amp; DATA ISOLATION PROTECTED
                 </span>
                 <span>•</span>
                 <span>SBR, AHM, GUJ // AHMEDABAD HQ</span>
@@ -440,46 +455,10 @@ export default function Footer({ onRequestDemo }: FooterProps = {}) {
             </div>
           </div>
 
-          {/* Col 2: Division A: Solutions */}
+          {/* Col 2: Software Products */}
           <div>
             <div className="text-xs font-mono font-semibold text-white uppercase tracking-wider mb-4 flex items-center gap-1.5">
-              <span>Solutions</span>
-              <span className="text-[9px] px-1 py-0.2 rounded bg-white/[0.08] text-zinc-400">Div A</span>
-            </div>
-            <ul className="space-y-2.5 text-xs text-zinc-400">
-              <li>
-                <Link href="/solutions" className="hover:text-white transition-colors">
-                  Engineering Overview
-                </Link>
-              </li>
-              <li>
-                <Link href="/solutions/ai-ml" className="hover:text-white transition-colors">
-                  Applied AI &amp; Neural Nets
-                </Link>
-              </li>
-              <li>
-                <Link href="/solutions/enterprise-software" className="hover:text-white transition-colors">
-                  Custom Enterprise Systems
-                </Link>
-              </li>
-              <li>
-                <Link href="/solutions/web-mobile" className="hover:text-white transition-colors">
-                  Web &amp; Mobile Engineering
-                </Link>
-              </li>
-              <li>
-                <Link href="/solutions/cloud-data" className="hover:text-white transition-colors">
-                  Cloud &amp; Zero-Trust Data
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* Col 3: Division B: SaaS Products */}
-          <div>
-            <div className="text-xs font-mono font-semibold text-white uppercase tracking-wider mb-4 flex items-center gap-1.5">
-              <span>SaaS Products</span>
-              <span className="text-[9px] px-1 py-0.2 rounded bg-white/[0.08] text-zinc-400">Div B</span>
+              <span>Software Products</span>
             </div>
             <ul className="space-y-2.5 text-xs text-zinc-400">
               <li>
@@ -489,17 +468,46 @@ export default function Footer({ onRequestDemo }: FooterProps = {}) {
               </li>
               <li>
                 <Link href="/products/krynex-lexis" className="hover:text-white transition-colors">
-                  Krynex Lexis (Legal AI)
+                  Krynex Lexis (Legal AI SaaS)
                 </Link>
               </li>
               <li>
                 <Link href="/products/krynex-flow" className="hover:text-white transition-colors">
-                  Krynex Flow (Integration)
+                  Krynex Flow (Integration Engine)
                 </Link>
               </li>
               <li>
                 <Link href="/products/krynex-vision" className="hover:text-white transition-colors">
-                  Krynex Vision (Edge QC)
+                  Krynex Vision (Edge QC Engine)
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Col 3: Industries & Approach */}
+          <div>
+            <div className="text-xs font-mono font-semibold text-white uppercase tracking-wider mb-4 flex items-center gap-1.5">
+              <span>Industries &amp; Approach</span>
+            </div>
+            <ul className="space-y-2.5 text-xs text-zinc-400">
+              <li>
+                <Link href="/industries" className="hover:text-white transition-colors">
+                  Industries &amp; Problems
+                </Link>
+              </li>
+              <li>
+                <Link href="/approach" className="hover:text-white transition-colors">
+                  Our Approach &amp; Lifecycle
+                </Link>
+              </li>
+              <li>
+                <Link href="/approach#business-model" className="hover:text-white transition-colors">
+                  Rented Software Model
+                </Link>
+              </li>
+              <li>
+                <Link href="/research" className="hover:text-white transition-colors">
+                  R&amp;D Diagnostic Console
                 </Link>
               </li>
             </ul>

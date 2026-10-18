@@ -1,16 +1,16 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Executive Contact & Consultation",
+  title: "Contact & Product Inquiries",
   description:
-    "Initiate an executive technical consultation or enterprise inquiry with Krynex Labs engineering team. SBR, Ahmedabad, Gujarat, India.",
+    "Connect with Krynex Labs for software product trials, subscription licensing, industry problem proposals, or partnership inquiries. Headquartered at SBR, Ahmedabad, India.",
   alternates: {
     canonical: "https://www.krynexlabs.in/contact",
   },
   openGraph: {
-    title: "Executive Contact & Consultation | Krynex Labs",
+    title: "Contact & Product Inquiries | Krynex Labs",
     description:
-      "Initiate an executive technical consultation or enterprise inquiry with Krynex Labs engineering team.",
+      "Connect with Krynex Labs for software product trials, subscription licensing, or industry problem proposals.",
     url: "https://www.krynexlabs.in/contact",
   },
 };

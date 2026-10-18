@@ -8,9 +8,10 @@ import {
   Eye,
   ArrowRight,
   CheckCircle2,
-  Sparkles,
-  Shield,
+  AlertCircle,
+  Cpu,
   Layers,
+  Sparkles,
 } from "lucide-react";
 import { PRODUCTS_DATA } from "@/data/products-data";
 
@@ -27,8 +28,14 @@ export default function ProductsShowcase({ onRequestDemo }: ProductsShowcaseProp
     "krynex-vision": <Eye className="w-5 h-5 text-white" />,
   };
 
+  const statusBadges: Record<string, { label: string; color: string }> = {
+    "krynex-lexis": { label: "Available (GA)", color: "text-zinc-200 bg-white/[0.06] border-white/15" },
+    "krynex-flow": { label: "Available (GA)", color: "text-zinc-200 bg-white/[0.06] border-white/15" },
+    "krynex-vision": { label: "Early Access / Pilot", color: "text-zinc-300 bg-white/[0.04] border-white/10" },
+  };
+
   return (
-    <section id="products" className="relative py-24 bg-[#030303] overflow-hidden">
+    <section id="products" className="relative py-24 sm:py-32 bg-[#030303] overflow-hidden">
       {/* Specular Spotlight Glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[400px] bg-[radial-gradient(ellipse_70%_40%_at_50%_50%,rgba(255,255,255,0.04),transparent_70%)] pointer-events-none" />
 
@@ -37,23 +44,22 @@ export default function ProductsShowcase({ onRequestDemo }: ProductsShowcaseProp
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 border-b border-white/[0.06] pb-8 gap-6">
           <div>
             <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/[0.04] border border-white/10 text-[11px] font-mono tracking-widest text-zinc-300 uppercase mb-4">
-              <span>02 // DIVISION B: PROPRIETARY SAAS PRODUCTS</span>
+              <span>04 // OUR SOFTWARE PRODUCTS</span>
             </div>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight leading-tight bg-gradient-to-b from-white via-zinc-100 to-zinc-500 bg-clip-text text-transparent">
-              Turnkey Software Products. Immediate Operational Velocity.
+              Software Products Built Around Real Problems.
             </h2>
             <p className="text-sm sm:text-base text-zinc-400 mt-3 max-w-2xl">
-              Alongside bespoke client engineering, Krynex Labs develops standardized, high-performance
-              SaaS solutions for recurring industry bottlenecks with transparent flat pricing.
+              We research business challenges, develop practical software solutions, launch them as products, and continuously improve them for the businesses that rely on them.
             </p>
           </div>
 
           <div className="shrink-0">
             <Link
               href="/products"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white text-black font-medium text-xs hover:bg-zinc-200 transition-all shadow-[0_0_20px_rgba(255,255,255,0.15)]"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white text-black font-semibold text-xs hover:bg-zinc-200 transition-all shadow-[0_0_20px_rgba(255,255,255,0.15)]"
             >
-              <span>Explore All Products &amp; Pricing</span>
+              <span>View Product Directory</span>
               <ArrowRight className="w-3.5 h-3.5" />
             </Link>
           </div>
@@ -63,6 +69,7 @@ export default function ProductsShowcase({ onRequestDemo }: ProductsShowcaseProp
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {products.map((product) => {
             const lowestPlan = product.pricingTiers[0];
+            const badge = statusBadges[product.slug] || { label: product.status, color: "text-zinc-400 bg-white/[0.04] border-white/10" };
 
             return (
               <div
@@ -77,33 +84,62 @@ export default function ProductsShowcase({ onRequestDemo }: ProductsShowcaseProp
                     <div className="w-10 h-10 rounded-xl bg-white/[0.04] border border-white/10 flex items-center justify-center">
                       {iconMap[product.slug]}
                     </div>
-                    <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.04] border border-white/10 text-zinc-300">
-                      {product.status}
+                    <span className={`text-[10px] font-mono px-2.5 py-0.5 rounded-full border ${badge.color}`}>
+                      {badge.label}
                     </span>
                   </div>
 
                   <h3 className="text-2xl font-bold text-white mb-1 tracking-tight group-hover:text-zinc-100 transition-colors">
                     {product.name}
                   </h3>
-                  <div className="text-xs font-mono text-zinc-400 mb-4">{product.shortTagline}</div>
+                  <div className="text-[11px] font-mono text-zinc-400 mb-1">{product.category}</div>
+                  <div className="text-xs text-zinc-300 font-mono mb-4">{product.shortTagline}</div>
+
                   <p className="text-xs sm:text-sm text-zinc-400 leading-relaxed mb-6">
-                    {product.summary.substring(0, 140)}...
+                    {product.summary.substring(0, 150)}...
                   </p>
 
-                  <div className="space-y-2 mb-6 pt-4 border-t border-white/[0.04]">
+                  {/* Problem & Solution Contrast */}
+                  <div className="space-y-3 mb-6 pt-4 border-t border-white/[0.04]">
+                    <div>
+                      <div className="text-[10px] font-mono uppercase tracking-wider text-zinc-500 mb-1 flex items-center gap-1">
+                        <AlertCircle className="w-3 h-3 text-zinc-500" />
+                        <span>Problem Solved:</span>
+                      </div>
+                      <div className="text-xs text-zinc-300 font-medium line-clamp-2">
+                        {product.theProblem.painPoints[0]}
+                      </div>
+                    </div>
+
+                    <div>
+                      <div className="text-[10px] font-mono uppercase tracking-wider text-zinc-500 mb-1 flex items-center gap-1">
+                        <CheckCircle2 className="w-3 h-3 text-white" />
+                        <span>Software Solution:</span>
+                      </div>
+                      <div className="text-xs text-zinc-300 font-medium line-clamp-2">
+                        {product.theSolution.keyBenefits[0]}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Main Verified Features */}
+                  <div className="space-y-1.5 mb-6 pt-3 border-t border-white/[0.04]">
                     <div className="text-[10px] font-mono uppercase tracking-wider text-zinc-500 mb-1">
-                      Problem Solved:
+                      Verified Capabilities:
                     </div>
-                    <div className="text-xs text-zinc-300 font-medium line-clamp-2">
-                      {product.theProblem.painPoints[0]}
-                    </div>
+                    {product.features.slice(0, 2).map((feat, fIdx) => (
+                      <div key={fIdx} className="text-[11px] text-zinc-400 flex items-center gap-1.5">
+                        <span className="w-1 h-1 rounded-full bg-zinc-400" />
+                        <span>{feat.title}</span>
+                      </div>
+                    ))}
                   </div>
                 </div>
 
                 <div className="pt-6 border-t border-white/[0.06]">
                   <div className="flex items-baseline justify-between mb-4">
                     <div>
-                      <span className="text-[11px] text-zinc-500 font-mono">From</span>
+                      <span className="text-[11px] text-zinc-500 font-mono">Subscription from</span>
                       <div className="text-lg font-bold font-mono text-white">
                         {lowestPlan.price}{" "}
                         <span className="text-[11px] font-normal text-zinc-400">
@@ -116,13 +152,21 @@ export default function ProductsShowcase({ onRequestDemo }: ProductsShowcaseProp
                     </span>
                   </div>
 
-                  <Link
-                    href={`/products/${product.slug}`}
-                    className="w-full bg-white/[0.04] hover:bg-white text-white hover:text-black border border-white/10 font-medium py-2 rounded-xl transition-all text-xs tracking-wide flex items-center justify-center gap-1.5"
-                  >
-                    <span>View Features &amp; Demo</span>
-                    <ArrowRight className="w-3.5 h-3.5" />
-                  </Link>
+                  <div className="grid grid-cols-2 gap-2">
+                    <Link
+                      href={`/products/${product.slug}`}
+                      className="w-full bg-white/[0.04] hover:bg-white text-white hover:text-black border border-white/10 font-medium py-2 rounded-xl transition-all text-xs tracking-wide flex items-center justify-center gap-1"
+                    >
+                      <span>Details</span>
+                      <ArrowRight className="w-3.5 h-3.5" />
+                    </Link>
+                    <Link
+                      href={`/products/${product.slug}#pricing`}
+                      className="w-full bg-white text-black hover:bg-zinc-200 font-semibold py-2 rounded-xl transition-all text-xs tracking-wide flex items-center justify-center"
+                    >
+                      <span>Plans &amp; Demo</span>
+                    </Link>
+                  </div>
                 </div>
               </div>
             );

@@ -9,6 +9,14 @@ const nextConfig = {
         source: '/:path*',
         headers: [
           {
+            key: 'Content-Security-Policy',
+            value: "default-src 'self'; script-src 'self' 'unsafe-eval' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' blob: data: https:; font-src 'self' data:; connect-src 'self' https://api.resend.com; frame-ancestors 'none'; form-action 'self'; base-uri 'self'; object-src 'none';",
+          },
+          {
+            key: 'X-DNS-Prefetch-Control',
+            value: 'on',
+          },
+          {
             key: 'X-Frame-Options',
             value: 'DENY',
           },
@@ -30,7 +38,7 @@ const nextConfig = {
           },
           {
             key: 'X-XSS-Protection',
-            value: '1; mode=block',
+            value: '0',
           },
         ],
       },
@@ -57,6 +65,16 @@ const nextConfig = {
       {
         source: '/legal/terms',
         destination: '/terms',
+        permanent: true,
+      },
+      {
+        source: '/solutions',
+        destination: '/products',
+        permanent: true,
+      },
+      {
+        source: '/solutions/:slug',
+        destination: '/products',
         permanent: true,
       },
     ];

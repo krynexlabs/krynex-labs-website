@@ -3,13 +3,14 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { ShieldCheck, X } from "lucide-react";
+import { safeLocalStorage } from "@/lib/safe-storage";
 
 export default function CookieBanner() {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    // Check localStorage for consent choice
-    const consent = localStorage.getItem("krynex_cookie_consent");
+    // Check safeLocalStorage for consent choice
+    const consent = safeLocalStorage.getItem("krynex_cookie_consent");
     if (!consent) {
       // Small timeout for smooth slide-in
       const timer = setTimeout(() => setVisible(true), 1200);
@@ -18,7 +19,7 @@ export default function CookieBanner() {
   }, []);
 
   const handleChoice = (choice: "all" | "essential") => {
-    localStorage.setItem("krynex_cookie_consent", choice);
+    safeLocalStorage.setItem("krynex_cookie_consent", choice);
     setVisible(false);
   };
 
