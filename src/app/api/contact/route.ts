@@ -108,8 +108,8 @@ export async function POST(request: Request) {
     const smtpPort = process.env.SMTP_PORT;
     const resendApiKey = process.env.RESEND_API_KEY;
 
-    // Recipient address resolution (defaults to CONTACT_RECEIVER_EMAIL, then GMAIL_USER, then ankoliyadixit80@gmail.com)
-    const receiverEmail = process.env.CONTACT_RECEIVER_EMAIL || gmailUser || "ankoliyadixit80@gmail.com";
+    // Recipient address resolution (defaults to CONTACT_RECEIVER_EMAIL, then GMAIL_USER, then support@krynexlabs.in)
+    const receiverEmail = process.env.CONTACT_RECEIVER_EMAIL || gmailUser || "support@krynexlabs.in";
 
     // Clean single-line subject to prevent CRLF injection
     const isTest =
@@ -211,7 +211,7 @@ export async function POST(request: Request) {
 
         // If custom domain is unverified or sandbox restriction triggers
         if (!emailResponse.ok) {
-          const errData = await emailResponse.json().catch(() => ({}));
+          const errData: any = await emailResponse.json().catch(() => ({}));
           console.error(`[KRYNEX NOTIFICATION ERROR] Resend initial dispatch status ${emailResponse.status}:`, errData);
 
           // Retry with onboarding sandbox if custom domain was unverified
@@ -220,10 +220,13 @@ export async function POST(request: Request) {
             emailResponse = await sendViaResend(fromEmail, toRecipient);
           }
 
-          // If still restricted to owner account (e.g. ankoliyadixit80@gmail.com)
-          if (!emailResponse.ok && toRecipient !== "ankoliyadixit80@gmail.com") {
-            toRecipient = "ankoliyadixit80@gmail.com";
-            emailResponse = await sendViaResend(fromEmail, toRecipient);
+          // If restricted to account owner email, extract and retry
+          if (!emailResponse.ok && typeof errData?.message === "string") {
+            const match = errData.message.match(/\(([^)]+)\)/);
+            if (match && match[1] && isValidEmail(match[1]) && match[1] !== toRecipient) {
+              toRecipient = match[1];
+              emailResponse = await sendViaResend(fromEmail, toRecipient);
+            }
           }
         }
 
