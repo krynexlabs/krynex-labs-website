@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import nodemailer from "nodemailer";
 import {
   sanitizeSingleLine,
   sanitizeMultiline,
@@ -100,47 +101,91 @@ export async function POST(request: Request) {
     const referenceId = `KRX-RD-${randomTicket}`;
     const timestamp = new Date().toISOString();
 
-    // 6. Outbound Email Delivery via Resend
+    // 6. Outbound Email Delivery Configuration
+    const gmailUser = process.env.GMAIL_USER || process.env.SMTP_USER;
+    const gmailPass = process.env.GMAIL_APP_PASSWORD || process.env.SMTP_PASS;
+    const smtpHost = process.env.SMTP_HOST;
+    const smtpPort = process.env.SMTP_PORT;
     const resendApiKey = process.env.RESEND_API_KEY;
-    const receiverEmail = process.env.CONTACT_RECEIVER_EMAIL || "support@krynexlabs.in";
-    const fromEmail = process.env.CONTACT_FROM_EMAIL || "Krynex Labs Briefing <inquiries@krynexlabs.in>";
 
-    if (resendApiKey) {
-      // Clean single-line subject to prevent CRLF injection
-      const subject = `[KRYNEX PRODUCT INQUIRY] ${referenceId} - ${cleanCompany} (${cleanName})`;
+    // Recipient address resolution (defaults to CONTACT_RECEIVER_EMAIL, then GMAIL_USER, then support@krynexlabs.in)
+    const receiverEmail = process.env.CONTACT_RECEIVER_EMAIL || gmailUser || "support@krynexlabs.in";
 
-      // Plaintext fallback body
-      const textContent = [
-        "KRYNEX LABS // EXECUTIVE INQUIRY DOCKET",
-        "========================================",
-        `Reference ID: ${referenceId}`,
-        `Timestamp:    ${timestamp}`,
-        `Client Name:  ${cleanName}`,
-        `Work Email:   ${rawEmail}`,
-        `Company:      ${cleanCompany}`,
-        "----------------------------------------",
-        "OPERATIONAL CHALLENGE / INQUIRY:",
-        cleanChallenge,
-        "========================================",
-      ].join("\n");
+    // Clean single-line subject to prevent CRLF injection
+    const isTest =
+      cleanChallenge.includes("[GIAS EMAIL TEST]") ||
+      (typeof body.subject === "string" && body.subject.includes("[GIAS EMAIL TEST]"));
+    const subjectPrefix = isTest ? "[GIAS EMAIL TEST]" : "[KRYNEX PRODUCT INQUIRY]";
+    const subject = `${subjectPrefix} ${referenceId} - ${cleanCompany} (${cleanName})`;
 
-      // HTML escaped template
-      const htmlContent = `
-        <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background: #000; color: #fff; padding: 24px; border-radius: 8px;">
-          <h2 style="color: #fff; margin-bottom: 16px; font-size: 18px; letter-spacing: 0.5px;">KRYNEX LABS // PRODUCT INQUIRY DOCKET</h2>
-          <table style="width: 100%; border-collapse: collapse; font-size: 13px; color: #ccc;">
-            <tr><td style="padding: 6px 0; color: #888;">Reference ID:</td><td style="padding: 6px 0; color: #fff; font-family: monospace;">${escapeHtml(referenceId)}</td></tr>
-            <tr><td style="padding: 6px 0; color: #888;">Timestamp:</td><td style="padding: 6px 0; color: #fff; font-family: monospace;">${escapeHtml(timestamp)}</td></tr>
-            <tr><td style="padding: 6px 0; color: #888;">Client Name:</td><td style="padding: 6px 0; color: #fff;">${escapeHtml(cleanName)}</td></tr>
-            <tr><td style="padding: 6px 0; color: #888;">Work Email:</td><td style="padding: 6px 0; color: #fff;">${escapeHtml(rawEmail)}</td></tr>
-            <tr><td style="padding: 6px 0; color: #888;">Company / Sector:</td><td style="padding: 6px 0; color: #fff;">${escapeHtml(cleanCompany)}</td></tr>
-          </table>
-          <hr style="border: none; border-top: 1px solid #333; margin: 20px 0;" />
-          <h3 style="color: #aaa; font-size: 14px; text-transform: uppercase; margin-bottom: 8px;">Operational Challenge:</h3>
-          <div style="white-space: pre-wrap; line-height: 1.6; color: #eee; background: #0a0a0a; border: 1px solid #222; border-radius: 6px; padding: 14px; font-size: 13px;">${escapeHtml(cleanChallenge)}</div>
-        </div>
-      `;
+    // Plaintext fallback body
+    const textContent = [
+      "KRYNEX LABS // EXECUTIVE INQUIRY DOCKET",
+      "========================================",
+      `Reference ID: ${referenceId}`,
+      `Timestamp:    ${timestamp}`,
+      `Client Name:  ${cleanName}`,
+      `Work Email:   ${rawEmail}`,
+      `Company:      ${cleanCompany}`,
+      "----------------------------------------",
+      "OPERATIONAL CHALLENGE / INQUIRY:",
+      cleanChallenge,
+      "========================================",
+    ].join("\n");
 
+    // HTML escaped template
+    const htmlContent = `
+      <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background: #000; color: #fff; padding: 24px; border-radius: 8px;">
+        <h2 style="color: #fff; margin-bottom: 16px; font-size: 18px; letter-spacing: 0.5px;">KRYNEX LABS // PRODUCT INQUIRY DOCKET</h2>
+        <table style="width: 100%; border-collapse: collapse; font-size: 13px; color: #ccc;">
+          <tr><td style="padding: 6px 0; color: #888;">Reference ID:</td><td style="padding: 6px 0; color: #fff; font-family: monospace;">${escapeHtml(referenceId)}</td></tr>
+          <tr><td style="padding: 6px 0; color: #888;">Timestamp:</td><td style="padding: 6px 0; color: #fff; font-family: monospace;">${escapeHtml(timestamp)}</td></tr>
+          <tr><td style="padding: 6px 0; color: #888;">Client Name:</td><td style="padding: 6px 0; color: #fff;">${escapeHtml(cleanName)}</td></tr>
+          <tr><td style="padding: 6px 0; color: #888;">Work Email:</td><td style="padding: 6px 0; color: #fff;">${escapeHtml(rawEmail)}</td></tr>
+          <tr><td style="padding: 6px 0; color: #888;">Company / Sector:</td><td style="padding: 6px 0; color: #fff;">${escapeHtml(cleanCompany)}</td></tr>
+        </table>
+        <hr style="border: none; border-top: 1px solid #333; margin: 20px 0;" />
+        <h3 style="color: #aaa; font-size: 14px; text-transform: uppercase; margin-bottom: 8px;">Operational Challenge:</h3>
+        <div style="white-space: pre-wrap; line-height: 1.6; color: #eee; background: #0a0a0a; border: 1px solid #222; border-radius: 6px; padding: 14px; font-size: 13px;">${escapeHtml(cleanChallenge)}</div>
+      </div>
+    `;
+
+    let emailDelivered = false;
+
+    // Delivery Provider 1: Gmail SMTP / Custom SMTP (if configured)
+    if (gmailUser && gmailPass) {
+      try {
+        const transporter = nodemailer.createTransport({
+          host: smtpHost || "smtp.gmail.com",
+          port: smtpPort ? parseInt(smtpPort, 10) : 465,
+          secure: smtpPort === "587" ? false : true,
+          auth: {
+            user: gmailUser,
+            pass: gmailPass,
+          },
+        });
+
+        const fromAddress = process.env.CONTACT_FROM_EMAIL || `Krynex Labs Briefing <${gmailUser}>`;
+
+        await transporter.sendMail({
+          from: fromAddress,
+          to: receiverEmail,
+          replyTo: rawEmail,
+          subject,
+          text: textContent,
+          html: htmlContent,
+        });
+
+        emailDelivered = true;
+      } catch (smtpErr) {
+        console.error("[KRYNEX NOTIFICATION ERROR] SMTP delivery exception:", smtpErr instanceof Error ? smtpErr.message : "Unknown SMTP failure");
+        // Fall through to Resend if available
+      }
+    }
+
+    // Delivery Provider 2: Resend API (if configured and SMTP was not used or failed)
+    if (!emailDelivered && resendApiKey) {
+      const fromEmail = process.env.CONTACT_FROM_EMAIL || "Krynex Labs Briefing <inquiries@krynexlabs.in>";
       try {
         const emailResponse = await fetch("https://api.resend.com/emails", {
           method: "POST",
@@ -158,32 +203,34 @@ export async function POST(request: Request) {
           }),
         });
 
-        if (!emailResponse.ok) {
+        if (emailResponse.ok) {
+          emailDelivered = true;
+        } else {
           const errData = await emailResponse.json().catch(() => ({}));
           console.error(`[KRYNEX NOTIFICATION ERROR] Resend status ${emailResponse.status}:`, errData);
-          return NextResponse.json(
-            {
-              success: false,
-              error: "Notification delivery service is temporarily unavailable. Please reach us at support@krynexlabs.in or WhatsApp +91 9879418569 directly.",
-            },
-            { status: 502 }
-          );
         }
-      } catch (dispatchErr) {
-        console.error("[KRYNEX NOTIFICATION ERROR] Outbound email network exception:", dispatchErr);
-        return NextResponse.json(
-          {
-            success: false,
-            error: "Network transmission error. Please reach us at support@krynexlabs.in or WhatsApp +91 9879418569 directly.",
-          },
-          { status: 502 }
-        );
+      } catch (resendErr) {
+        console.error("[KRYNEX NOTIFICATION ERROR] Resend network exception:", resendErr instanceof Error ? resendErr.message : "Unknown Resend failure");
       }
-    } else {
-      // Resend API key is unconfigured
+    }
+
+    // Evaluate delivery result
+    const hasConfiguredProvider = Boolean((gmailUser && gmailPass) || resendApiKey);
+
+    if (hasConfiguredProvider && !emailDelivered) {
+      return NextResponse.json(
+        {
+          success: false,
+          error: "Notification delivery service is temporarily unavailable. Please reach us at support@krynexlabs.in or WhatsApp +91 9879418569 directly.",
+        },
+        { status: 502 }
+      );
+    }
+
+    if (!hasConfiguredProvider) {
       if (process.env.NODE_ENV === "production") {
         // In production, NEVER falsely report success when email delivery is impossible
-        console.error("[KRYNEX CONFIG ERROR] RESEND_API_KEY is missing in production environment.");
+        console.error("[KRYNEX CONFIG ERROR] No outbound email credentials configured (GMAIL_USER/GMAIL_APP_PASSWORD or RESEND_API_KEY missing).");
         return NextResponse.json(
           {
             success: false,
