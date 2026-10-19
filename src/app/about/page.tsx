@@ -21,7 +21,7 @@ import {
 export const metadata: Metadata = {
   title: "About Us | Problem-First Software Product Company",
   description:
-    "Learn about Krynex Labs: Software Product and SaaS Company headquartered at SBR, Ahmedabad, India. We research real operational bottlenecks and engineer software products that businesses subscribe to and use.",
+    "Learn about Krynex Labs: Software Product and SaaS Company headquartered in AHMEDABAD (IN). We research real operational bottlenecks and engineer software products that businesses subscribe to and use.",
   alternates: {
     canonical: "https://www.krynexlabs.in/about",
   },
@@ -49,12 +49,12 @@ export default function AboutPage() {
               Software Built Around Real Problems.
             </h1>
             <p className="text-base sm:text-lg text-zinc-400 leading-relaxed mb-8">
-              {ABOUT_DATA.coreMessage} Headquartered at SBR, Ahmedabad, India, we identify the operational bottlenecks holding organizations back and build software applications that provide compounding utility.
+              {ABOUT_DATA.coreMessage} Headquartered in AHMEDABAD (IN), we identify the operational bottlenecks holding organizations back and build software applications that provide compounding utility.
             </p>
             <div className="flex flex-wrap items-center gap-4 text-xs font-mono text-zinc-400">
               <div className="flex items-center gap-1.5">
                 <MapPin className="w-4 h-4 text-white" />
-                <span>SBR, Ahmedabad, Gujarat, India</span>
+                <span>AHMEDABAD (IN)</span>
               </div>
               <div className="flex items-center gap-1.5">
                 <CheckCircle2 className="w-4 h-4 text-white" />

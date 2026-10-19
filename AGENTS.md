@@ -2,7 +2,7 @@
 
 ## Corporate Identity & Positioning
 - **Company:** Krynex Labs
-- **Headquarters:** SBR (Sindhu Bhavan Road), Ahmedabad, Gujarat 380054, India.
+- **Headquarters:** AHMEDABAD (IN)
 - **Official Domain:** https://www.krynexlabs.in
 - **Official Contact Email:** support@krynexlabs.in
 - **Official WhatsApp:** +91 9879418569 (WhatsApp Only • No Calls)

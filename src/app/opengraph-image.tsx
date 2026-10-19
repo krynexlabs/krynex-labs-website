@@ -94,7 +94,7 @@ export default async function Image() {
             }}
           >
             <div style={{ width: "8px", height: "8px", borderRadius: "50%", background: "#ffffff" }} />
-            <span>WWW.KRYNEXLABS.IN • SBR, AHM, GUJ</span>
+            <span>WWW.KRYNEXLABS.IN • AHMEDABAD (IN)</span>
           </div>
         </div>
 
@@ -112,7 +112,7 @@ export default async function Image() {
             Engineering Intelligence for Industry Pain Points.
           </div>
           <div style={{ fontSize: "21px", color: "#a1a1aa", lineHeight: 1.4 }}>
-            Elite Applied AI/ML and Enterprise Information Technology Engineering firm architecting custom neural models, cloud backbones, and zero-trust workflows.
+            Software Product and SaaS Company researching real operational bottlenecks, engineering focused applications, and operating recurring subscription platforms.
           </div>
         </div>
 
@@ -132,7 +132,7 @@ export default async function Image() {
                 Location
               </span>
               <span style={{ fontSize: "18px", fontWeight: "bold", color: "#ffffff", fontFamily: "monospace" }}>
-                SBR, AHM, GUJ
+                AHMEDABAD (IN)
               </span>
             </div>
             <div style={{ display: "flex", flexDirection: "column" }}>
@@ -148,7 +148,7 @@ export default async function Image() {
                 Availability SLA
               </span>
               <span style={{ fontSize: "18px", fontWeight: "bold", color: "#ffffff", fontFamily: "monospace" }}>
-                99.99% SLA
+                99.9% Target
               </span>
             </div>
           </div>
@@ -165,7 +165,7 @@ export default async function Image() {
           >
             <span>WWW.KRYNEXLABS.IN</span>
             <span>•</span>
-            <span>SBR, AHM, GUJ</span>
+            <span>AHMEDABAD (IN)</span>
             <span>•</span>
             <span>SUPPORT@KRYNEXLABS.IN</span>
           </div>

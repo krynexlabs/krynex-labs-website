@@ -128,7 +128,7 @@ export default function PrivacyPage() {
             <div className="p-4 rounded-xl bg-[#080808] border border-white/[0.08] font-mono text-xs text-zinc-400 space-y-1">
               <div>DATA GOVERNANCE &amp; PRIVACY INQUIRIES</div>
               <div>KRYNEX LABS</div>
-              <div>Sindhu Bhavan Road (SBR), Ahmedabad, Gujarat 380054, India</div>
+              <div>AHMEDABAD (IN)</div>
               <div>Direct: <a href="mailto:support@krynexlabs.in" className="text-white underline">support@krynexlabs.in</a></div>
               <div>Executive WhatsApp: <a href="https://wa.me/919879418569?text=Hello%20Krynex%20Labs,%20I%20have%20a%20data%20governance%20inquiry." target="_blank" rel="noopener noreferrer" className="text-white underline">+91 9879418569</a> <span className="text-[10px] text-zinc-400 font-mono">(WhatsApp Only • No Calls)</span></div>
             </div>

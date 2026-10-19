@@ -194,8 +194,8 @@ export default function DemoModal({ isOpen, onClose }: DemoModalProps) {
               Inquiry Routed to Corporate Engineering
             </h3>
             <p className="text-sm text-zinc-400 max-w-md leading-relaxed mb-6">
-              Your inquiry has been logged under docket <span className="font-mono text-white">{requestId}</span>. A Senior Systems Architect based at SBR, Ahmedabad HQ will review your parameters and follow up at{" "}
-              <span className="text-white font-medium">{formData.email}</span> within 2 business hours.
+              Your inquiry has been logged under docket <span className="font-mono text-white">{requestId}</span>. A Senior Systems Architect based in AHMEDABAD (IN) will review your parameters and follow up at{" "}
+              <span className="text-white font-medium">{formData.email}</span> promptly.
             </p>
 
             <div className="w-full p-4 rounded-2xl bg-black border border-white/[0.08] text-left text-xs font-mono text-zinc-300 space-y-2 mb-6">
@@ -452,7 +452,7 @@ export default function DemoModal({ isOpen, onClose }: DemoModalProps) {
 
               <div className="flex items-center justify-center gap-2 text-[10px] font-mono text-zinc-500 pt-2">
                 <Shield className="w-3 h-3 text-zinc-400" />
-                <span>ENTERPRISE PRIVACY &amp; DATA ISOLATION PROTECTED • SBR, AHMEDABAD, GUJARAT</span>
+                <span>ENTERPRISE PRIVACY &amp; DATA ISOLATION PROTECTED • AHMEDABAD (IN)</span>
               </div>
             </form>
           </div>

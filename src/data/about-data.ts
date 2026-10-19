@@ -1,6 +1,6 @@
 export const ABOUT_DATA = {
   company: "KRYNEX LABS",
-  headquarters: "SBR (Sindhu Bhavan Road), Ahmedabad, Gujarat 380054, India",
+  headquarters: "AHMEDABAD (IN)",
   tagline: "Software Built Around Real Problems.",
   coreMessage:
     "Krynex Labs identifies real-world industry problems and builds software products that solve them. We research business challenges, develop practical software solutions, launch them as products, and continuously improve them for the businesses that rely on them.",
@@ -20,7 +20,7 @@ export const ABOUT_DATA = {
       {
         step: "02",
         title: "Launch",
-        description: "Products go live with transparent, predictable subscription pricing.",
+        description: "Products go live with transparent, predictable subscription terms.",
       },
       {
         step: "03",
@@ -160,7 +160,7 @@ export const ABOUT_DATA = {
     {
       title: "Ahmedabad Operations & Edge Infrastructure",
       description:
-        "Headquartered at SBR, Ahmedabad, India with edge node routing engineered for high-availability responsiveness.",
+        "Headquartered in AHMEDABAD (IN) with edge node routing engineered for high-availability responsiveness.",
     },
     {
       title: "Predictable Recurring Subscription Terms",

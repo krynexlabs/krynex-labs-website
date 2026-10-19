@@ -115,7 +115,7 @@ export default function TermsPage() {
             <div className="p-4 rounded-xl bg-[#080808] border border-white/[0.08] font-mono text-xs text-zinc-400 space-y-1">
               <div>LEGAL &amp; COMMERCIAL ARBITRATION</div>
               <div>KRYNEX LABS</div>
-              <div>Sindhu Bhavan Road (SBR), Ahmedabad, Gujarat 380054, India</div>
+              <div>AHMEDABAD (IN)</div>
               <div>Inquiries: <a href="mailto:support@krynexlabs.in" className="text-white underline">support@krynexlabs.in</a></div>
             </div>
           </section>

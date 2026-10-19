@@ -85,16 +85,13 @@ const jsonLd = {
       telephone: "+91-98794-18569",
       address: {
         "@type": "PostalAddress",
-        streetAddress: "SBR (Sindhu Bhavan Road)",
         addressLocality: "Ahmedabad",
-        addressRegion: "GJ",
-        postalCode: "380054",
         addressCountry: "IN",
       },
       geo: {
         "@type": "GeoCoordinates",
-        latitude: "23.0415",
-        longitude: "72.5085",
+        latitude: "23.0225",
+        longitude: "72.5714",
       },
       knowsAbout: [
         "Applied Artificial Intelligence",

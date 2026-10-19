@@ -5,7 +5,7 @@ export default function manifest(): MetadataRoute.Manifest {
     name: "Krynex Labs",
     short_name: "Krynex",
     description:
-      "Premier Applied AI/ML and Enterprise Information Technology Engineering firm headquartered at SBR, Ahmedabad, Gujarat, India.",
+      "Software Product and SaaS Company headquartered in AHMEDABAD (IN).",
     start_url: "/",
     display: "standalone",
     background_color: "#000000",

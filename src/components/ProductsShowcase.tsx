@@ -68,7 +68,6 @@ export default function ProductsShowcase({ onRequestDemo }: ProductsShowcaseProp
         {/* 3 Product Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {products.map((product) => {
-            const lowestPlan = product.pricingTiers[0];
             const badge = statusBadges[product.slug] || { label: product.status, color: "text-zinc-400 bg-white/[0.04] border-white/10" };
 
             return (
@@ -136,37 +135,12 @@ export default function ProductsShowcase({ onRequestDemo }: ProductsShowcaseProp
                   </div>
                 </div>
 
-                <div className="pt-6 border-t border-white/[0.06]">
-                  <div className="flex items-baseline justify-between mb-4">
-                    <div>
-                      <span className="text-[11px] text-zinc-500 font-mono">Subscription from</span>
-                      <div className="text-lg font-bold font-mono text-white">
-                        {lowestPlan.price}{" "}
-                        <span className="text-[11px] font-normal text-zinc-400">
-                          /{lowestPlan.period.replace("per ", "")}
-                        </span>
-                      </div>
-                    </div>
-                    <span className="text-[10px] font-mono text-zinc-400">
-                      {product.version}
-                    </span>
-                  </div>
-
-                  <div className="grid grid-cols-2 gap-2">
-                    <Link
-                      href={`/products/${product.slug}`}
-                      className="w-full bg-white/[0.04] hover:bg-white text-white hover:text-black border border-white/10 font-medium py-2 rounded-xl transition-all text-xs tracking-wide flex items-center justify-center gap-1"
-                    >
-                      <span>Details</span>
-                      <ArrowRight className="w-3.5 h-3.5" />
-                    </Link>
-                    <Link
-                      href={`/products/${product.slug}#pricing`}
-                      className="w-full bg-white text-black hover:bg-zinc-200 font-semibold py-2 rounded-xl transition-all text-xs tracking-wide flex items-center justify-center"
-                    >
-                      <span>Plans &amp; Demo</span>
-                    </Link>
-                  </div>
+                {/* Card Footer: Metadata without pricing or demo buttons */}
+                <div className="pt-4 border-t border-white/[0.06] flex items-center justify-between text-[11px] font-mono text-zinc-400">
+                  <span className="text-zinc-500 uppercase tracking-wider">Enterprise Architecture</span>
+                  <span className="px-2 py-0.5 rounded bg-white/[0.04] border border-white/10 text-zinc-300">
+                    {product.version}
+                  </span>
                 </div>
               </div>
             );

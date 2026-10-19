@@ -39,7 +39,7 @@ export default function ThankYouPage({
             </span>
           </div>
           <span className="text-xs font-mono text-zinc-500">
-            SBR, AHM, GUJ // DC-01
+            AHMEDABAD (IN) // DC-01
           </span>
         </div>
 
@@ -60,7 +60,7 @@ export default function ThankYouPage({
 
           <p className="text-zinc-400 text-sm sm:text-base leading-relaxed">
             Your inquiry and operational parameters have been transmitted via secure TLS encryption and routed directly
-            to our Senior Software Architects and Product Engineering team at SBR, Ahmedabad.
+            to our Senior Software Architects and Product Engineering team in AHMEDABAD (IN).
           </p>
 
           {/* Telemetry Details Grid */}

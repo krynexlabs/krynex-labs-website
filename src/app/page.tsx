@@ -104,7 +104,7 @@ export default function Home() {
               <div className="flex flex-wrap items-center gap-4 text-xs font-mono text-zinc-400 pt-4 border-t border-white/[0.06]">
                 <div className="flex items-center gap-1.5">
                   <CheckCircle2 className="w-4 h-4 text-white" />
-                  <span>Headquartered at SBR, Ahmedabad, India</span>
+                  <span>Headquartered in AHMEDABAD (IN)</span>
                 </div>
                 <div className="flex items-center gap-1.5">
                   <CheckCircle2 className="w-4 h-4 text-white" />

@@ -188,7 +188,7 @@ export const PRODUCTS_DATA: Record<string, ProductDetail> = {
       },
     ],
     documentationLinks: [
-      { label: "Drafting Quickstart Guide", href: "/products/krynex-lexis#demo" },
+      { label: "Technical Architecture Overview", href: "/products/krynex-lexis#architecture" },
       { label: "Bilingual Gujarati Vocabulary Guide", href: "/products/krynex-lexis#architecture" },
       { label: "Statutory Compliance Whitepaper", href: "/contact?subject=lexis-compliance" },
     ],

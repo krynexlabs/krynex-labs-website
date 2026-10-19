@@ -321,7 +321,7 @@ export default function Navbar({ onRequestDemo }: NavbarProps) {
                 }}
                 className="w-full bg-white text-black font-semibold py-3 rounded-xl text-center text-xs tracking-wider uppercase hover:bg-zinc-200 transition-colors"
               >
-                Explore Products &amp; Pricing
+                Explore Software Products
               </button>
             ) : (
               <Link
@@ -329,7 +329,7 @@ export default function Navbar({ onRequestDemo }: NavbarProps) {
                 onClick={() => setMobileMenuOpen(false)}
                 className="w-full bg-white text-black font-semibold py-3 rounded-xl text-center text-xs tracking-wider uppercase hover:bg-zinc-200 transition-colors"
               >
-                Explore Products &amp; Pricing
+                Explore Software Products
               </Link>
             )}
           </div>

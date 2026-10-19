@@ -129,11 +129,11 @@ export default function Methodology() {
       title: "Test and Launch",
       subtitle: "Reliable Market Onboarding",
       description:
-        "We subject the product to extreme stress testing, statutory compliance audits, and security pen-testing. We then launch the product commercially with transparent, flat subscription pricing.",
+        "We subject the product to extreme stress testing, statutory compliance audits, and security pen-testing. We then launch the product commercially with reliable subscription access.",
       points: [
         "Automated end-to-end regression testing and benchmark evaluation",
         "Zero-downtime containerized cloud and edge deployment",
-        "Transparent monthly and annual subscription plans",
+        "Predictable monthly and annual recurring software access",
         "Instant cloud onboarding with self-service or guided setup",
       ],
       terminalSnippet: `// 06 // TEST AND LAUNCH

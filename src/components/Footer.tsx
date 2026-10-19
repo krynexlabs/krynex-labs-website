@@ -352,7 +352,7 @@ export default function Footer({ onRequestDemo }: FooterProps = {}) {
                   ENTERPRISE PRIVACY &amp; DATA ISOLATION PROTECTED
                 </span>
                 <span>•</span>
-                <span>SBR, AHM, GUJ // AHMEDABAD HQ</span>
+                <span>AHMEDABAD (IN)</span>
               </div>
             </form>
           )}
@@ -381,14 +381,11 @@ export default function Footer({ onRequestDemo }: FooterProps = {}) {
             </p>
 
             <div className="space-y-2.5 text-xs text-zinc-400 font-mono mb-6">
-              <div className="flex items-start gap-2.5 pt-1">
-                <MapPin className="w-4 h-4 text-zinc-400 shrink-0 mt-1" />
-                <div className="text-zinc-400 text-sm leading-relaxed space-y-1">
-                  <p className="font-semibold text-white">KRYNEX LABS HEADQUARTERS</p>
-                  <p>Sindhu Bhavan Road (SBR)</p>
-                  <p>Ahmedabad, Gujarat — 380054</p>
-                  <p className="text-zinc-500 text-xs">INDIA</p>
-                </div>
+              <div className="flex items-center gap-2 pt-1">
+                <MapPin className="w-4 h-4 text-zinc-400 shrink-0" />
+                <span className="text-zinc-300 text-xs font-mono font-medium tracking-wide">
+                  AHMEDABAD (IN)
+                </span>
               </div>
               <div className="flex items-center gap-2">
                 <Mail className="w-4 h-4 text-zinc-400 shrink-0" />
