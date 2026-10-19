@@ -77,9 +77,17 @@ export default function ContactForm({ initialProduct }: ContactFormProps) {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
+          inquiryCategory: inquiryType,
+          executiveName: inquiryName,
+          corporateEmail: inquiryEmail,
+          companySector: inquiryCompany,
+          operationalFriction: inquiryChallenge,
+          requestWalkthrough: requestMeeting,
+          websiteHoneypot: honeypot,
+          // Backwards compatibility mappings
           name: inquiryName,
           email: inquiryEmail,
-          company: `${inquiryCompany} [${inquiryType}]${requestMeeting ? " [Requested Zoom/Meet Architecture Walkthrough]" : ""}`,
+          company: `${inquiryCompany} [${inquiryType}]${requestMeeting ? " [Requested Architecture Walkthrough]" : ""}`,
           challenge: inquiryChallenge,
           _security_honeypot: honeypot,
         }),
@@ -87,8 +95,8 @@ export default function ContactForm({ initialProduct }: ContactFormProps) {
 
       const result = await response.json();
 
-      if (response.ok && result.success) {
-        setTicketId(result.referenceId || `KRX-RD-${Math.floor(1000 + Math.random() * 9000)}`);
+      if (response.ok && (result.ok || result.success)) {
+        setTicketId(result.referenceId || `KL-REQ-${Math.floor(1000 + Math.random() * 9000)}`);
         setIsSubmitting(false);
         setSubmitted(true);
 
@@ -104,10 +112,14 @@ export default function ContactForm({ initialProduct }: ContactFormProps) {
         }
       } else {
         setIsSubmitting(false);
-        setErrors((prev) => ({
-          ...prev,
-          general: result.error || "Submission rejected by server. Please verify your details.",
-        }));
+        if (result.errors) {
+          setErrors(result.errors);
+        } else {
+          setErrors((prev) => ({
+            ...prev,
+            general: result.error || "Submission rejected by server. Please verify your details.",
+          }));
+        }
       }
     } catch {
       setIsSubmitting(false);
@@ -123,7 +135,7 @@ export default function ContactForm({ initialProduct }: ContactFormProps) {
       <div className="absolute top-0 left-8 right-8 h-[1px] bg-gradient-to-r from-transparent via-white/25 to-transparent pointer-events-none" />
 
       {submitted ? (
-        <div className="py-12 text-center animate-fade-in space-y-4">
+        <div className="py-8 text-center animate-fade-in space-y-4">
           <div className="w-14 h-14 rounded-full bg-white/10 border border-white/20 mx-auto flex items-center justify-center text-white">
             <CheckCircle2 className="w-8 h-8" />
           </div>
@@ -134,8 +146,38 @@ export default function ContactForm({ initialProduct }: ContactFormProps) {
             Your inquiry has been logged for review by our engineering team within our 1–2 business day SLA window.
           </p>
           <div className="inline-block px-4 py-2 rounded-xl bg-black border border-white/10 font-mono text-xs text-white">
-            Reference ID: <span className="font-bold">{ticketId}</span>
+            Reference ID: <span className="font-bold text-zinc-200">{ticketId}</span>
           </div>
+
+          {/* One-click Direct Escalation Fallbacks */}
+          <div className="pt-4 border-t border-white/[0.08] max-w-md mx-auto">
+            <div className="text-[11px] font-mono text-zinc-500 uppercase tracking-wider mb-3">
+              Optional Direct Escalation Channels
+            </div>
+            <div className="flex flex-wrap items-center justify-center gap-3">
+              <a
+                href={`https://wa.me/919879418569?text=${encodeURIComponent(
+                  `Hello Krynex Labs, I have logged inquiry ticket ${ticketId}. Requesting architectural follow-up.`
+                )}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 text-xs font-mono text-white transition-colors"
+              >
+                <span>Send Backup via WhatsApp</span>
+              </a>
+              <a
+                href={`mailto:support@krynexlabs.in?subject=${encodeURIComponent(
+                  `Inquiry Docket ${ticketId} - ${inquiryCompany}`
+                )}&body=${encodeURIComponent(
+                  `Hello Krynex Labs Engineering,\n\nReferencing inquiry docket ${ticketId}.\nExecutive: ${inquiryName}\nCompany: ${inquiryCompany}\nCategory: ${inquiryType}\n\nSummary:\n${inquiryChallenge}`
+                )}`}
+                className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 text-xs font-mono text-white transition-colors"
+              >
+                <span>Send Backup via Direct Email</span>
+              </a>
+            </div>
+          </div>
+
           <div className="pt-4">
             <button
               onClick={() => {
@@ -164,7 +206,7 @@ export default function ContactForm({ initialProduct }: ContactFormProps) {
             <input
               id="security_honeypot_contact"
               type="text"
-              name="_security_honeypot"
+              name="websiteHoneypot"
               tabIndex={-1}
               value={honeypot}
               onChange={(e) => setHoneypot(e.target.value)}
@@ -219,22 +261,22 @@ export default function ContactForm({ initialProduct }: ContactFormProps) {
               </label>
               <input
                 id="executive-name"
-                name="name"
+                name="executiveName"
                 type="text"
                 required
                 autoComplete="name"
                 value={inquiryName}
                 onChange={(e) => setInquiryName(e.target.value)}
-                aria-invalid={Boolean(errors.name)}
-                aria-describedby={errors.name ? "name-error" : undefined}
+                aria-invalid={Boolean(errors.executiveName || errors.name)}
+                aria-describedby={errors.executiveName || errors.name ? "name-error" : undefined}
                 placeholder="e.g. Vikram Mehta"
                 className={`w-full bg-black border rounded-xl px-4 py-2.5 text-xs text-white placeholder-zinc-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/40 ${
-                  errors.name ? "border-red-400/80" : "border-white/10 focus:border-white/40"
+                  errors.executiveName || errors.name ? "border-red-400/80" : "border-white/10 focus:border-white/40"
                 }`}
               />
-              {errors.name && (
+              {(errors.executiveName || errors.name) && (
                 <div id="name-error" className="text-[10px] text-zinc-300 font-mono mt-1">
-                  {errors.name}
+                  {errors.executiveName || errors.name}
                 </div>
               )}
             </div>
@@ -245,22 +287,22 @@ export default function ContactForm({ initialProduct }: ContactFormProps) {
               </label>
               <input
                 id="corporate-email"
-                name="email"
+                name="corporateEmail"
                 type="email"
                 required
                 autoComplete="email"
                 value={inquiryEmail}
                 onChange={(e) => setInquiryEmail(e.target.value)}
-                aria-invalid={Boolean(errors.email)}
-                aria-describedby={errors.email ? "email-error" : undefined}
+                aria-invalid={Boolean(errors.corporateEmail || errors.email)}
+                aria-describedby={errors.corporateEmail || errors.email ? "email-error" : undefined}
                 placeholder="v.mehta@enterprise.com"
                 className={`w-full bg-black border rounded-xl px-4 py-2.5 text-xs text-white placeholder-zinc-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/40 ${
-                  errors.email ? "border-red-400/80" : "border-white/10 focus:border-white/40"
+                  errors.corporateEmail || errors.email ? "border-red-400/80" : "border-white/10 focus:border-white/40"
                 }`}
               />
-              {errors.email && (
+              {(errors.corporateEmail || errors.email) && (
                 <div id="email-error" className="text-[10px] text-zinc-300 font-mono mt-1">
-                  {errors.email}
+                  {errors.corporateEmail || errors.email}
                 </div>
               )}
             </div>
@@ -272,22 +314,22 @@ export default function ContactForm({ initialProduct }: ContactFormProps) {
             </label>
             <input
               id="company-sector"
-              name="company"
+              name="companySector"
               type="text"
               required
               autoComplete="organization"
               value={inquiryCompany}
               onChange={(e) => setInquiryCompany(e.target.value)}
-              aria-invalid={Boolean(errors.company)}
-              aria-describedby={errors.company ? "company-error" : undefined}
+              aria-invalid={Boolean(errors.companySector || errors.company)}
+              aria-describedby={errors.companySector || errors.company ? "company-error" : undefined}
               placeholder="e.g. Apex Industrial Corp / Heavy Manufacturing"
               className={`w-full bg-black border rounded-xl px-4 py-2.5 text-xs text-white placeholder-zinc-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/40 ${
-                errors.company ? "border-red-400/80" : "border-white/10 focus:border-white/40"
+                errors.companySector || errors.company ? "border-red-400/80" : "border-white/10 focus:border-white/40"
               }`}
             />
-            {errors.company && (
+            {(errors.companySector || errors.company) && (
               <div id="company-error" className="text-[10px] text-zinc-300 font-mono mt-1">
-                {errors.company}
+                {errors.companySector || errors.company}
               </div>
             )}
           </div>
@@ -298,21 +340,21 @@ export default function ContactForm({ initialProduct }: ContactFormProps) {
             </label>
             <textarea
               id="operational-friction"
-              name="challenge"
+              name="operationalFriction"
               rows={4}
               required
               value={inquiryChallenge}
               onChange={(e) => setInquiryChallenge(e.target.value)}
-              aria-invalid={Boolean(errors.challenge)}
-              aria-describedby={errors.challenge ? "challenge-error" : undefined}
+              aria-invalid={Boolean(errors.operationalFriction || errors.challenge)}
+              aria-describedby={errors.operationalFriction || errors.challenge ? "challenge-error" : undefined}
               placeholder="Detail the technical bottleneck, current legacy systems, estimated data volumes, or desired software licensing scale..."
               className={`w-full bg-black border rounded-xl px-4 py-2.5 text-xs text-white placeholder-zinc-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/40 resize-none ${
-                errors.challenge ? "border-red-400/80" : "border-white/10 focus:border-white/40"
+                errors.operationalFriction || errors.challenge ? "border-red-400/80" : "border-white/10 focus:border-white/40"
               }`}
             />
-            {errors.challenge && (
+            {(errors.operationalFriction || errors.challenge) && (
               <div id="challenge-error" className="text-[10px] text-zinc-300 font-mono mt-1">
-                {errors.challenge}
+                {errors.operationalFriction || errors.challenge}
               </div>
             )}
           </div>
@@ -322,7 +364,7 @@ export default function ContactForm({ initialProduct }: ContactFormProps) {
             <input
               type="checkbox"
               id="request-meeting"
-              name="requestMeeting"
+              name="requestWalkthrough"
               checked={requestMeeting}
               onChange={(e) => setRequestMeeting(e.target.checked)}
               className="w-4 h-4 rounded bg-black border-white/20 text-white focus:ring-1 focus:ring-white"

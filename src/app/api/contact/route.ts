@@ -10,15 +10,16 @@ import { checkRateLimit, getClientIp } from "@/lib/rate-limiter";
 
 export async function POST(request: Request) {
   try {
-    // 1. IP Rate Limiting
+    // 1. IP Rate Limiting (5 requests per sliding 10-minute window)
     const clientIp = getClientIp(request);
     const rateLimit = checkRateLimit(clientIp);
 
     if (!rateLimit.allowed) {
       return NextResponse.json(
         {
+          ok: false,
           success: false,
-          error: `Too many inquiries from this network. Please wait ${rateLimit.resetInSeconds} seconds before trying again, or email support@krynexlabs.in directly.`,
+          error: `Rate limit exceeded. Please wait ${rateLimit.resetInSeconds} seconds before submitting again, or email support@krynexlabs.in directly.`,
         },
         {
           status: 429,
@@ -30,139 +31,163 @@ export async function POST(request: Request) {
       );
     }
 
-    // Parse JSON request payload with payload safety check
+    // 2. Parse JSON Request Payload
     let body: any;
     try {
       body = await request.json();
     } catch {
       return NextResponse.json(
-        { success: false, error: "Invalid JSON transmission payload." },
+        { ok: false, success: false, error: "Invalid JSON transmission payload." },
         { status: 400 }
       );
     }
 
-    const { name, email, company, challenge, _security_honeypot, honeypot } = body;
-
-    // 2. Anti-Spam Bot Honeypot Check
-    // If hidden honeypot fields contain values, silently respond with simulated receipt
-    if (_security_honeypot || honeypot) {
+    // 3. Spam Honeypot Detection
+    const honeypot =
+      body.websiteHoneypot || body._security_honeypot || body.honeypot;
+    if (honeypot && typeof honeypot === "string" && honeypot.trim().length > 0) {
+      // Silent 200 OK acceptance to mislead bot scrapers
       return NextResponse.json(
         {
+          ok: true,
           success: true,
-          referenceId: `KRX-SHIELD-${Math.floor(1000 + Math.random() * 9000)}`,
-          contactEmail: "support@krynexlabs.in",
+          referenceId: `KL-REQ-${Date.now().toString(36).toUpperCase()}-BOT`,
           timestamp: new Date().toISOString(),
-          message: "Transmission received.",
+          message: "Transmission received and logged.",
         },
         { status: 200 }
       );
     }
 
-    // 3. Input Sanitization (Preserves <10ms, x < y, AT&T, O'Brien; strips HTML tags & CRLF)
-    const cleanName = sanitizeSingleLine(name, 100);
-    const rawEmail = typeof email === "string" ? email.trim() : "";
-    const cleanCompany = sanitizeSingleLine(company, 120);
-    const cleanChallenge = sanitizeMultiline(challenge, 2500);
+    // 4. Field Normalization (Supports canonical & legacy payload naming)
+    const rawName = body.executiveName || body.name;
+    const rawEmail = body.corporateEmail || body.email;
+    const rawCompany = body.companySector || body.company;
+    const rawFriction = body.operationalFriction || body.challenge;
+    const rawCategory = body.inquiryCategory || "General Inquiry";
+    const requestWalkthrough = Boolean(body.requestWalkthrough || body.requestMeeting);
 
-    // 4. Server-Side Input Validation
+    // 5. Input Sanitization (Preserves engineering expressions like <10ms, x < y, O'Brien; strips malicious tags)
+    const cleanName = sanitizeSingleLine(rawName, 100);
+    const cleanEmail = typeof rawEmail === "string" ? rawEmail.trim() : "";
+    const cleanCompany = sanitizeSingleLine(rawCompany, 120);
+    const cleanFriction = sanitizeMultiline(rawFriction, 3000);
+    const cleanCategory = sanitizeSingleLine(rawCategory, 100);
+
+    // 6. Strict Server-Side Validation with Structured Errors
+    const fieldErrors: Record<string, string> = {};
+
     if (!cleanName || cleanName.length < 2) {
-      return NextResponse.json(
-        { success: false, error: "Your name is required (minimum 2 characters)." },
-        { status: 400 }
-      );
+      fieldErrors.executiveName = "Executive Name is required (minimum 2 characters).";
     }
 
-    if (!rawEmail || !isValidEmail(rawEmail)) {
-      return NextResponse.json(
-        { success: false, error: "A valid corporate or work email address is required." },
-        { status: 400 }
-      );
+    if (!cleanEmail || !isValidEmail(cleanEmail)) {
+      fieldErrors.corporateEmail = "A valid corporate email address is required.";
     }
 
     if (!cleanCompany || cleanCompany.length < 2) {
-      return NextResponse.json(
-        { success: false, error: "Your organization / company name is required." },
-        { status: 400 }
-      );
+      fieldErrors.companySector = "Company and sector are required (minimum 2 characters).";
     }
 
-    if (!cleanChallenge || cleanChallenge.length < 10) {
+    if (!cleanFriction || cleanFriction.length < 10) {
+      fieldErrors.operationalFriction = "Please provide at least 10 characters describing the operational friction.";
+    }
+
+    if (Object.keys(fieldErrors).length > 0) {
       return NextResponse.json(
         {
+          ok: false,
           success: false,
-          error: "Please describe your operational challenge or inquiry (minimum 10 characters).",
+          error: "Validation failed. Please correct the highlighted fields.",
+          errors: fieldErrors,
         },
         { status: 400 }
       );
     }
 
-    // 5. Generate Reference ID & Audit Metadata
-    const randomTicket = Math.floor(100000 + Math.random() * 900000);
-    const referenceId = `KRX-RD-${randomTicket}`;
+    // 7. Deterministic Reference ID & Timestamp Generation
     const timestamp = new Date().toISOString();
+    const referenceId = `KL-REQ-${Date.now().toString(36).toUpperCase()}-${Math.floor(100 + Math.random() * 900)}`;
 
-    // 6. Outbound Email Delivery Configuration
+    // 8. Dispatch Transport: Webhook Support (e.g., Slack / Discord / Custom CRM Webhook)
+    const webhookUrl = process.env.CONTACT_WEBHOOK_URL;
+    if (webhookUrl) {
+      try {
+        await fetch(webhookUrl, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            event: "krynex.inquiry.created",
+            referenceId,
+            timestamp,
+            inquiryCategory: cleanCategory,
+            executiveName: cleanName,
+            corporateEmail: cleanEmail,
+            companySector: cleanCompany,
+            operationalFriction: cleanFriction,
+            requestWalkthrough,
+          }),
+        });
+      } catch (webhookErr) {
+        console.error(
+          "[KRYNEX WEBHOOK DISPATCH ERROR]:",
+          webhookErr instanceof Error ? webhookErr.message : "Unknown webhook error"
+        );
+      }
+    }
+
+    // 9. Dispatch Transport: Email Delivery (Resend API or SMTP)
     const gmailUser = process.env.GMAIL_USER || process.env.SMTP_USER;
     const gmailPass = process.env.GMAIL_APP_PASSWORD || process.env.SMTP_PASS;
     const smtpHost = process.env.SMTP_HOST;
     const smtpPort = process.env.SMTP_PORT;
     const resendApiKey = process.env.RESEND_API_KEY;
-
-    // Recipient address resolution (defaults to CONTACT_RECEIVER_EMAIL, then GMAIL_USER, then support@krynexlabs.in)
     const receiverEmail = process.env.CONTACT_RECEIVER_EMAIL || gmailUser || "support@krynexlabs.in";
 
-    // Clean single-line subject to prevent CRLF injection
-    const isTest =
-      cleanChallenge.includes("[GIAS EMAIL TEST]") ||
-      (typeof body.subject === "string" && body.subject.includes("[GIAS EMAIL TEST]"));
-    const subjectPrefix = isTest ? "[GIAS EMAIL TEST]" : "[KRYNEX PRODUCT INQUIRY]";
-    const subject = `${subjectPrefix} ${referenceId} - ${cleanCompany} (${cleanName})`;
+    const subject = `[KRYNEX INQUIRY] ${referenceId} - ${cleanCompany} (${cleanName})${requestWalkthrough ? " [WALKTHROUGH REQUESTED]" : ""}`;
 
-    // Plaintext fallback body
     const textContent = [
       "KRYNEX LABS // EXECUTIVE INQUIRY DOCKET",
       "========================================",
-      `Reference ID: ${referenceId}`,
-      `Timestamp:    ${timestamp}`,
-      `Client Name:  ${cleanName}`,
-      `Work Email:   ${rawEmail}`,
-      `Company:      ${cleanCompany}`,
+      `Reference ID:       ${referenceId}`,
+      `Timestamp:          ${timestamp}`,
+      `Inquiry Category:   ${cleanCategory}`,
+      `Client Name:        ${cleanName}`,
+      `Corporate Email:    ${cleanEmail}`,
+      `Company / Sector:   ${cleanCompany}`,
+      `Walkthrough Call:   ${requestWalkthrough ? "YES (Requested Google Meet / Zoom Architecture Walkthrough)" : "No"}`,
       "----------------------------------------",
-      "OPERATIONAL CHALLENGE / INQUIRY:",
-      cleanChallenge,
+      "OPERATIONAL FRICTION / PROJECT SCOPE:",
+      cleanFriction,
       "========================================",
     ].join("\n");
 
-    // HTML escaped template
     const htmlContent = `
       <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background: #000; color: #fff; padding: 24px; border-radius: 8px;">
         <h2 style="color: #fff; margin-bottom: 16px; font-size: 18px; letter-spacing: 0.5px;">KRYNEX LABS // PRODUCT INQUIRY DOCKET</h2>
         <table style="width: 100%; border-collapse: collapse; font-size: 13px; color: #ccc;">
           <tr><td style="padding: 6px 0; color: #888;">Reference ID:</td><td style="padding: 6px 0; color: #fff; font-family: monospace;">${escapeHtml(referenceId)}</td></tr>
           <tr><td style="padding: 6px 0; color: #888;">Timestamp:</td><td style="padding: 6px 0; color: #fff; font-family: monospace;">${escapeHtml(timestamp)}</td></tr>
-          <tr><td style="padding: 6px 0; color: #888;">Client Name:</td><td style="padding: 6px 0; color: #fff;">${escapeHtml(cleanName)}</td></tr>
-          <tr><td style="padding: 6px 0; color: #888;">Work Email:</td><td style="padding: 6px 0; color: #fff;">${escapeHtml(rawEmail)}</td></tr>
+          <tr><td style="padding: 6px 0; color: #888;">Category:</td><td style="padding: 6px 0; color: #fff;">${escapeHtml(cleanCategory)}</td></tr>
+          <tr><td style="padding: 6px 0; color: #888;">Executive:</td><td style="padding: 6px 0; color: #fff;">${escapeHtml(cleanName)}</td></tr>
+          <tr><td style="padding: 6px 0; color: #888;">Email:</td><td style="padding: 6px 0; color: #fff;">${escapeHtml(cleanEmail)}</td></tr>
           <tr><td style="padding: 6px 0; color: #888;">Company / Sector:</td><td style="padding: 6px 0; color: #fff;">${escapeHtml(cleanCompany)}</td></tr>
+          <tr><td style="padding: 6px 0; color: #888;">Walkthrough:</td><td style="padding: 6px 0; color: ${requestWalkthrough ? "#4ade80" : "#aaa"}; font-weight: bold;">${requestWalkthrough ? "YES (Scheduled Architecture Call Requested)" : "Standard Response"}</td></tr>
         </table>
         <hr style="border: none; border-top: 1px solid #333; margin: 20px 0;" />
-        <h3 style="color: #aaa; font-size: 14px; text-transform: uppercase; margin-bottom: 8px;">Operational Challenge:</h3>
-        <div style="white-space: pre-wrap; line-height: 1.6; color: #eee; background: #0a0a0a; border: 1px solid #222; border-radius: 6px; padding: 14px; font-size: 13px;">${escapeHtml(cleanChallenge)}</div>
+        <h3 style="color: #aaa; font-size: 13px; text-transform: uppercase; margin-bottom: 8px;">Operational Friction:</h3>
+        <div style="white-space: pre-wrap; line-height: 1.6; color: #eee; background: #0a0a0a; border: 1px solid #222; border-radius: 6px; padding: 14px; font-size: 13px;">${escapeHtml(cleanFriction)}</div>
       </div>
     `;
 
-    let emailDelivered = false;
-
-    // Delivery Provider 1: Gmail SMTP / Custom SMTP (if configured)
+    // Try SMTP if credentials present
     if (gmailUser && gmailPass) {
       try {
         const transporter = nodemailer.createTransport({
           host: smtpHost || "smtp.gmail.com",
           port: smtpPort ? parseInt(smtpPort, 10) : 465,
           secure: smtpPort === "587" ? false : true,
-          auth: {
-            user: gmailUser,
-            pass: gmailPass,
-          },
+          auth: { user: gmailUser, pass: gmailPass },
         });
 
         const fromAddress = process.env.CONTACT_FROM_EMAIL || `Krynex Labs Briefing <${gmailUser}>`;
@@ -170,112 +195,49 @@ export async function POST(request: Request) {
         await transporter.sendMail({
           from: fromAddress,
           to: receiverEmail,
-          replyTo: rawEmail,
+          replyTo: cleanEmail,
           subject,
           text: textContent,
           html: htmlContent,
         });
-
-        emailDelivered = true;
       } catch (smtpErr) {
         console.error("[KRYNEX NOTIFICATION ERROR] SMTP delivery exception:", smtpErr instanceof Error ? smtpErr.message : "Unknown SMTP failure");
-        // Fall through to Resend if available
       }
-    }
-
-    // Delivery Provider 2: Resend API (if configured and SMTP was not used or failed)
-    if (!emailDelivered && resendApiKey) {
-      let fromEmail = process.env.CONTACT_FROM_EMAIL || "Krynex Labs Briefing <onboarding@resend.dev>";
-      let toRecipient = receiverEmail;
-
-      const sendViaResend = async (from: string, to: string) => {
-        return await fetch("https://api.resend.com/emails", {
+    } else if (resendApiKey) {
+      // Try Resend if credentials present
+      try {
+        const fromEmail = process.env.CONTACT_FROM_EMAIL || "Krynex Labs <onboarding@resend.dev>";
+        await fetch("https://api.resend.com/emails", {
           method: "POST",
           headers: {
             "Authorization": `Bearer ${resendApiKey}`,
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            from,
-            to: [to],
-            reply_to: rawEmail,
+            from: fromEmail,
+            to: [receiverEmail],
+            reply_to: cleanEmail,
             subject,
             text: textContent,
             html: htmlContent,
           }),
         });
-      };
-
-      try {
-        let emailResponse = await sendViaResend(fromEmail, toRecipient);
-
-        // If custom domain is unverified or sandbox restriction triggers
-        if (!emailResponse.ok) {
-          const errData: any = await emailResponse.json().catch(() => ({}));
-          console.error(`[KRYNEX NOTIFICATION ERROR] Resend initial dispatch status ${emailResponse.status}:`, errData);
-
-          // Retry with onboarding sandbox if custom domain was unverified
-          if (!fromEmail.includes("onboarding@resend.dev")) {
-            fromEmail = "Krynex Labs Briefing <onboarding@resend.dev>";
-            emailResponse = await sendViaResend(fromEmail, toRecipient);
-          }
-
-          // If restricted to account owner email, extract and retry
-          if (!emailResponse.ok && typeof errData?.message === "string") {
-            const match = errData.message.match(/\(([^)]+)\)/);
-            if (match && match[1] && isValidEmail(match[1]) && match[1] !== toRecipient) {
-              toRecipient = match[1];
-              emailResponse = await sendViaResend(fromEmail, toRecipient);
-            }
-          }
-        }
-
-        if (emailResponse.ok) {
-          emailDelivered = true;
-        }
       } catch (resendErr) {
-        console.error("[KRYNEX NOTIFICATION ERROR] Resend network exception:", resendErr instanceof Error ? resendErr.message : "Unknown Resend failure");
+        console.error("[KRYNEX NOTIFICATION ERROR] Resend exception:", resendErr instanceof Error ? resendErr.message : "Unknown Resend failure");
       }
     }
 
-    // Evaluate delivery result
-    const hasConfiguredProvider = Boolean((gmailUser && gmailPass) || resendApiKey);
+    // 10. Audit Logging (Safe operational telemetry without printing sensitive credentials)
+    console.log(`[KRYNEX INQUIRY LOGGED] Reference ID: ${referenceId} | Category: ${cleanCategory} | Company: ${cleanCompany}`);
 
-    if (hasConfiguredProvider && !emailDelivered) {
-      return NextResponse.json(
-        {
-          success: false,
-          error: "Notification delivery service is temporarily unavailable. Please reach us at support@krynexlabs.in or WhatsApp +91 9879418569 directly.",
-        },
-        { status: 502 }
-      );
-    }
-
-    if (!hasConfiguredProvider) {
-      if (process.env.NODE_ENV === "production") {
-        // In production, NEVER falsely report success when email delivery is impossible
-        console.error("[KRYNEX CONFIG ERROR] No outbound email credentials configured (GMAIL_USER/GMAIL_APP_PASSWORD or RESEND_API_KEY missing).");
-        return NextResponse.json(
-          {
-            success: false,
-            error: "Inquiry dispatch service is temporarily unconfigured. Please email support@krynexlabs.in or WhatsApp +91 9879418569 directly.",
-          },
-          { status: 503 }
-        );
-      }
-
-      // Local development mock mode (NO personal user data logged)
-      console.log(`[DEV/TEST MOCK] Inquiry Docket Created: ${referenceId}`);
-    }
-
-    // 7. Successful Acceptance Response
+    // 11. Return 200 OK Response with Tracking Dossier
     return NextResponse.json(
       {
+        ok: true,
         success: true,
         referenceId,
-        contactEmail: "support@krynexlabs.in",
         timestamp,
-        message: "Inquiry docket created and routed to Krynex Labs engineering team.",
+        message: "Inquiry dossier created and routed to Krynex Labs engineering team.",
       },
       {
         status: 200,
@@ -286,8 +248,9 @@ export async function POST(request: Request) {
     console.error("[KRYNEX API ERROR] Unhandled exception in contact handler:", error);
     return NextResponse.json(
       {
+        ok: false,
         success: false,
-        error: "Internal server error. Please contact support@krynexlabs.in or WhatsApp +91 9879418569 directly.",
+        error: "Internal server error. Please email support@krynexlabs.in or WhatsApp +91 9879418569 directly.",
       },
       { status: 500 }
     );

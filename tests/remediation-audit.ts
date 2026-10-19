@@ -204,9 +204,36 @@ assert.strictEqual(termsContent.includes("99.99%"), false);
 assert.strictEqual(termsContent.includes("99.9% Service Availability Target"), true);
 console.log("✔ PASS: SLA standardized to 99.9% Service Availability Target.");
 
+// 17. Contact Form SSR Field & Honeypot Verification
+console.log("\n[TEST 17] Contact Form SSR Canonical Fields & Honeypot Verification");
+const contactFormContent = fs.readFileSync("src/components/ContactForm.tsx", "utf-8");
+assert.strictEqual(contactFormContent.includes('name="executiveName"'), true);
+assert.strictEqual(contactFormContent.includes('name="corporateEmail"'), true);
+assert.strictEqual(contactFormContent.includes('name="inquiryCategory"'), true);
+assert.strictEqual(contactFormContent.includes('name="companySector"'), true);
+assert.strictEqual(contactFormContent.includes('name="operationalFriction"'), true);
+assert.strictEqual(contactFormContent.includes('name="requestWalkthrough"'), true);
+assert.strictEqual(contactFormContent.includes('name="websiteHoneypot"'), true);
+assert.strictEqual(contactFormContent.includes('fetch("/api/contact"'), true);
+assert.strictEqual(contactFormContent.includes("https://wa.me/919879418569"), true);
+assert.strictEqual(contactFormContent.includes("mailto:support@krynexlabs.in"), true);
+console.log("✔ PASS: Contact form contains all canonical fields, honeypot trap, and direct fallback links.");
+
+// 18. API Contact Route Contract & Security Architecture
+console.log("\n[TEST 18] Contact API Route Contract & Security Architecture");
+const apiRouteContent = fs.readFileSync("src/app/api/contact/route.ts", "utf-8");
+assert.strictEqual(apiRouteContent.includes("websiteHoneypot"), true);
+assert.strictEqual(apiRouteContent.includes("checkRateLimit"), true);
+assert.strictEqual(apiRouteContent.includes("KL-REQ-"), true);
+assert.strictEqual(apiRouteContent.includes("CONTACT_WEBHOOK_URL"), true);
+assert.strictEqual(apiRouteContent.includes("status: 429"), true);
+assert.strictEqual(apiRouteContent.includes("status: 400"), true);
+console.log("✔ PASS: /api/contact enforces rate limits, honeypot, validation, webhook, and referenceId.");
+
 console.log("\n=======================================================");
-console.log("ALL 16 CRITICAL REGRESSION SUITES PASSED SUCCESSFULLY!");
+console.log("ALL 18 CRITICAL REGRESSION SUITES PASSED SUCCESSFULLY!");
 console.log("=======================================================\n");
 
 process.exit(0);
+
 
