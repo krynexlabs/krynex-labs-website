@@ -1,14 +1,11 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { trackConversionEvent } from "./Analytics";
 
-interface StickyMobileCTAProps {
-  onRequestDemo?: () => void;
-}
-
-export default function StickyMobileCTA({ onRequestDemo }: StickyMobileCTAProps) {
+export default function StickyMobileCTA() {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
@@ -23,18 +20,8 @@ export default function StickyMobileCTA({ onRequestDemo }: StickyMobileCTAProps)
 
   if (!visible) return null;
 
-  const handleDemoClick = (e: React.MouseEvent) => {
-    trackConversionEvent("demo_click", { location: "sticky_mobile_cta" });
-    if (onRequestDemo) {
-      e.preventDefault();
-      onRequestDemo();
-    } else {
-      const contactEl = document.getElementById("contact");
-      if (contactEl) {
-        e.preventDefault();
-        contactEl.scrollIntoView({ behavior: "smooth" });
-      }
-    }
+  const handleContactClick = () => {
+    trackConversionEvent("inquiry_click", { location: "sticky_mobile_cta" });
   };
 
   const handleWhatsAppClick = () => {
@@ -42,7 +29,7 @@ export default function StickyMobileCTA({ onRequestDemo }: StickyMobileCTAProps)
   };
 
   const whatsappUrl =
-    "https://wa.me/919879418569?text=Hello%20Krynex%20Labs%2C%20I%20am%20interested%20in%20a%20demo%20of%20your%20software%20products.";
+    "https://wa.me/919879418569?text=Hello%20Krynex%20Labs%2C%20I%20would%20like%20to%20discuss%20an%20engineering%20inquiry.";
 
   return (
     <div className="md:hidden fixed bottom-4 inset-x-3 z-50 animate-slide-up">
@@ -63,15 +50,15 @@ export default function StickyMobileCTA({ onRequestDemo }: StickyMobileCTAProps)
           <span className="text-[11px] text-zinc-300">WhatsApp</span>
         </a>
 
-        {/* Primary Book a Demo CTA */}
-        <a
-          href="#contact"
-          onClick={handleDemoClick}
+        {/* Primary Contact Us CTA */}
+        <Link
+          href="/contact"
+          onClick={handleContactClick}
           className="flex-1 px-4 py-2.5 rounded-xl bg-white text-black font-semibold text-xs tracking-wide hover:bg-zinc-200 transition-colors flex items-center justify-center gap-1.5 shadow-[0_0_20px_rgba(255,255,255,0.25)] text-center"
         >
-          <span>Book a Demo</span>
+          <span>Contact Us</span>
           <ArrowRight className="w-3.5 h-3.5 text-black" />
-        </a>
+        </Link>
       </div>
     </div>
   );

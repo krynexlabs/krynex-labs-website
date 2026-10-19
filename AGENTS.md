@@ -40,9 +40,10 @@
   - Target Industry Dossiers (`EnterpriseMatrix.tsx`)
   - Executive Consultation Portal & Corporate Footer (`Footer.tsx`)
   - Floating Sticky Mobile CTA (`StickyMobileCTA.tsx`)
-  - Consultation Modal (`DemoModal.tsx`)
+- `/contact` (`src/app/contact/page.tsx`): Enterprise Contact & Inquiry Portal with canonical 5-field inquiry form (`ContactForm.tsx`).
+- `/solutions` (`src/app/solutions/page.tsx`): Architectural capabilities directory across AI/ML, Cloud & Distributed Data, Enterprise Systems, and Web & Mobile.
 - `/privacy` (`src/app/privacy/page.tsx`): Enterprise Data Sovereignty, data isolation standards, KMS envelope encryption, and legal compliance.
-- `/terms` (`src/app/terms/page.tsx`): Enterprise Terms of Service, 99.99% SLA commitment, IP ownership, and Ahmedabad jurisdiction.
+- `/terms` (`src/app/terms/page.tsx`): Enterprise Terms of Service, High Availability SLA targets, IP ownership, and Ahmedabad jurisdiction.
 - `/thank-you` (`src/app/thank-you/page.tsx`): Executive inquiry confirmation docket displaying Ticket ID, SLA response window, and routing status.
 - `not-found.tsx` (`src/app/not-found.tsx`): Custom 404 terminal telemetry page with button linking to `/`.
 - `/api/contact` (`src/app/api/contact/route.ts`): Production backend endpoint with input sanitization, honeypot protection, character length enforcement, and enterprise reference ID generation.

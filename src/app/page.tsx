@@ -1,24 +1,20 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import ProblemSection from "@/components/ProblemSection";
 import Methodology from "@/components/Methodology";
-import ProductsShowcase from "@/components/ProductsShowcase";
 import EnterpriseMatrix from "@/components/EnterpriseMatrix";
 import DraftingDemo from "@/components/DraftingDemo";
 import BentoGrid from "@/components/BentoGrid";
 import BusinessModelSection from "@/components/BusinessModelSection";
 import Footer from "@/components/Footer";
-import DemoModal from "@/components/DemoModal";
 import SectionDivider from "@/components/SectionDivider";
 import StickyMobileCTA from "@/components/StickyMobileCTA";
-import { CheckCircle2, ShieldCheck, Zap, Sparkles } from "lucide-react";
+import { CheckCircle2 } from "lucide-react";
 
 export default function Home() {
-  const [isDemoModalOpen, setIsDemoModalOpen] = useState(false);
-
   // Generate 32 bars for the real-time telemetry matrix
   const telemetryBars = [
     35, 45, 60, 40, 75, 90, 65, 80, 55, 70, 85, 95, 60, 50, 65, 80,
@@ -28,12 +24,12 @@ export default function Home() {
   return (
     <main className="relative min-h-screen bg-black text-white selection:bg-white selection:text-black">
       {/* Sticky Glassmorphic Navigation */}
-      <Navbar onRequestDemo={() => setIsDemoModalOpen(true)} />
+      <Navbar />
 
       {/* ======================================================== */}
-      {/* SECTION 1 — HERO: Unified Software Product Company */}
+      {/* SECTION 1 — HERO: Custom Software & AI Engineering */}
       {/* ======================================================== */}
-      <HeroSection onRequestDemo={() => setIsDemoModalOpen(true)} />
+      <HeroSection />
 
       <SectionDivider />
 
@@ -52,14 +48,7 @@ export default function Home() {
       <SectionDivider />
 
       {/* ======================================================== */}
-      {/* SECTION 4 — OUR SOFTWARE PRODUCTS: Verified Platforms */}
-      {/* ======================================================== */}
-      <ProductsShowcase onRequestDemo={() => setIsDemoModalOpen(true)} />
-
-      <SectionDivider />
-
-      {/* ======================================================== */}
-      {/* SECTION 5 — INDUSTRIES AND PROBLEMS UNDER INVESTIGATION */}
+      {/* SECTION 4 — INDUSTRIES AND PROBLEMS UNDER INVESTIGATION */}
       {/* ======================================================== */}
       <EnterpriseMatrix />
 
@@ -69,21 +58,21 @@ export default function Home() {
       <SectionDivider />
 
       {/* ======================================================== */}
-      {/* SECTION 6 — PRODUCT ENGINEERING & ARCHITECTURE */}
+      {/* SECTION 5 — PRODUCT ENGINEERING & ARCHITECTURE */}
       {/* ======================================================== */}
       <BentoGrid />
 
       <SectionDivider />
 
       {/* ======================================================== */}
-      {/* SECTION 7 — OUR BUSINESS MODEL: Rented Software Subscriptions */}
+      {/* SECTION 6 — OUR ENGINEERING & ENGAGEMENT MODEL */}
       {/* ======================================================== */}
       <BusinessModelSection />
 
       <SectionDivider />
 
       {/* ======================================================== */}
-      {/* SECTION 8 — WHY KRYNEX LABS: The Product-Led Philosophy */}
+      {/* SECTION 7 — WHY KRYNEX LABS: The Problem-Led Philosophy */}
       {/* ======================================================== */}
       <section id="why-krynex" className="relative py-24 sm:py-32 border-t border-white/[0.08] bg-[#050505]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -91,13 +80,13 @@ export default function Home() {
             <div className="lg:col-span-5 flex flex-col justify-between h-full">
               <div>
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.04] border border-white/10 text-[11px] font-mono tracking-widest text-zinc-300 uppercase mb-4">
-                  <span>[ 08 // WHY KRYNEX LABS // PRODUCT-LED PHILOSOPHY ]</span>
+                  <span>[ 07 // WHY KRYNEX LABS // PROBLEM-LED PHILOSOPHY ]</span>
                 </div>
                 <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight mb-4 leading-tight bg-gradient-to-b from-white via-zinc-100 to-zinc-500 bg-clip-text text-transparent">
                   Software Built Around Real Problems, Not Technological Novelty.
                 </h2>
                 <p className="text-sm sm:text-base text-zinc-400 leading-relaxed mb-6">
-                  Most software products fail because they are built around technological hype rather than genuine business pain. At Krynex Labs, we start with the problem. We validate demand before overbuilding, focus exclusively on high-utility features, and continuously refine our applications based on empirical field feedback.
+                  Most software initiatives fail because they are built around technological hype rather than genuine business pain. At Krynex Labs, we start with the problem. We validate real-world operational friction before building, focus exclusively on high-utility capabilities, and continuously refine our systems based on empirical feedback.
                 </p>
               </div>
 
@@ -108,7 +97,7 @@ export default function Home() {
                 </div>
                 <div className="flex items-center gap-1.5">
                   <CheckCircle2 className="w-4 h-4 text-white" />
-                  <span>Transparent Subscription Access</span>
+                  <span>Deterministic Systems &amp; Clear SLAs</span>
                 </div>
               </div>
             </div>
@@ -137,7 +126,7 @@ export default function Home() {
                   Continuous Evolution
                 </div>
                 <p className="text-xs text-zinc-400 leading-relaxed">
-                  Subscribers fund continuous weekly product enhancements, statutory tax updates, and sub-second performance gains without costly consulting re-engagements.
+                  Engineering engagements focus on continuous performance enhancements, statutory updates, and sub-second execution gains without painful consultant lock-in.
                 </p>
               </div>
 
@@ -150,7 +139,7 @@ export default function Home() {
                   <div className="flex items-center gap-2 text-zinc-300">
                     <span className="w-2 h-2 rounded-full bg-white animate-pulse" />
                     <span className="tracking-wider uppercase font-semibold">
-                      PRODUCT TELEMETRY &amp; BENCHMARK TARGETS // AHMEDABAD LABS
+                      SYSTEM TELEMETRY &amp; BENCHMARK TARGETS // AHMEDABAD LABS
                     </span>
                   </div>
                   <span className="text-[10px] px-2 py-0.5 rounded bg-white/[0.04] text-zinc-400 border border-white/10">
@@ -161,14 +150,14 @@ export default function Home() {
                 {/* Metric Columns */}
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-4">
                   <div>
-                    <div className="text-[10px] font-mono text-zinc-500 uppercase">Lexis Compilation Target</div>
+                    <div className="text-[10px] font-mono text-zinc-500 uppercase">Neural Inference Target</div>
                     <div className="text-xl sm:text-2xl font-bold font-mono text-white tracking-tight">
-                      Rapid
+                      Sub-Second
                     </div>
-                    <div className="text-[10px] text-zinc-500">Bilingual deed AST synthesis objective</div>
+                    <div className="text-[10px] text-zinc-500">Constrained grammar decoding &amp; schema verification</div>
                   </div>
                   <div>
-                    <div className="text-[10px] font-mono text-zinc-500 uppercase">Vision Edge Latency Target</div>
+                    <div className="text-[10px] font-mono text-zinc-500 uppercase">Edge Vision Latency Target</div>
                     <div className="text-xl sm:text-2xl font-bold font-mono text-white tracking-tight">
                       Low Latency
                     </div>
@@ -179,7 +168,7 @@ export default function Home() {
                     <div className="text-xl sm:text-2xl font-bold font-mono text-white tracking-tight">
                       High Availability
                     </div>
-                    <div className="text-[10px] text-zinc-500">SaaS uptime architecture objective</div>
+                    <div className="text-[10px] text-zinc-500">Uptime architecture objective</div>
                   </div>
                 </div>
 
@@ -207,18 +196,12 @@ export default function Home() {
       <SectionDivider />
 
       {/* ======================================================== */}
-      {/* SECTION 9 — FINAL CTA: Better Software Starts With Better Questions */}
+      {/* SECTION 8 — FINAL CTA & INQUIRY FORM */}
       {/* ======================================================== */}
-      <Footer onRequestDemo={() => setIsDemoModalOpen(true)} />
-
-      {/* Product Demo / Consultation Modal */}
-      <DemoModal
-        isOpen={isDemoModalOpen}
-        onClose={() => setIsDemoModalOpen(false)}
-      />
+      <Footer />
 
       {/* Floating Sticky Mobile CTA Bar */}
-      <StickyMobileCTA onRequestDemo={() => setIsDemoModalOpen(true)} />
+      <StickyMobileCTA />
     </main>
   );
 }

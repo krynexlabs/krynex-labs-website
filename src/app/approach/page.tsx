@@ -228,21 +228,21 @@ export default function ApproachPage() {
         </div>
       </section>
 
-      {/* Explore Products CTA */}
+      {/* Explore Services CTA */}
       <section className="py-20 bg-[#050505] border-t border-white/[0.08]">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-bold text-white tracking-tight mb-4">
             See Our Approach in Action
           </h2>
           <p className="text-sm text-zinc-400 max-w-xl mx-auto mb-8">
-            Explore our active software products built using this exact problem-first methodology.
+            Explore our core engineering capabilities and applied AI architectures built using this exact problem-first methodology.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-4">
             <Link
-              href="/products"
+              href="/solutions"
               className="px-6 py-3 rounded-full bg-white text-black font-semibold text-xs hover:bg-zinc-200 transition-all shadow-md flex items-center gap-2"
             >
-              <span>Explore Software Products</span>
+              <span>Explore Our Services</span>
               <ArrowRight className="w-3.5 h-3.5" />
             </Link>
             <Link

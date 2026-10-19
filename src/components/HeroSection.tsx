@@ -3,7 +3,7 @@
 import React from "react";
 import dynamic from "next/dynamic";
 import Link from "next/link";
-import { ArrowRight, ShieldCheck, Zap, Cpu, Globe2, Compass } from "lucide-react";
+import { ArrowRight, ShieldCheck, Zap, Cpu, Globe2, Mail } from "lucide-react";
 
 import HeroCubeFallback from "./HeroCubeFallback";
 
@@ -14,11 +14,7 @@ const Hero3DCube = dynamic(() => import("./Hero3DCube"), {
   loading: () => <HeroCubeFallback />,
 });
 
-interface HeroSectionProps {
-  onRequestDemo?: () => void;
-}
-
-export default function HeroSection({ onRequestDemo }: HeroSectionProps) {
+export default function HeroSection() {
   return (
     <section
       id="vision"
@@ -42,7 +38,7 @@ export default function HeroSection({ onRequestDemo }: HeroSectionProps) {
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.03] border border-white/10 hover:border-white/20 transition-colors backdrop-blur-md mb-6 shadow-sm group">
               <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
               <span className="text-[11px] sm:text-xs font-mono font-medium tracking-wider text-zinc-300 uppercase">
-                KRYNEX LABS // SOFTWARE PRODUCT COMPANY
+                KRYNEX LABS // ENGINEERING &amp; TECHNOLOGY SERVICES
               </span>
               <span className="text-zinc-600">|</span>
               <span className="text-[10px] font-mono text-zinc-400 font-semibold">AHMEDABAD, INDIA</span>
@@ -55,25 +51,25 @@ export default function HeroSection({ onRequestDemo }: HeroSectionProps) {
 
             {/* Subheadline */}
             <p className="text-base sm:text-lg text-zinc-400 max-w-2xl leading-relaxed mb-8">
-              Krynex Labs researches real business challenges and turns them into practical software products. From web and mobile applications to AI-powered platforms, we build, launch, and continuously improve software that businesses can subscribe to and use.
+              Krynex Labs researches complex operational bottlenecks and engineers custom enterprise software, AI architectures, and resilient web/mobile platforms that eliminate friction and scale reliably.
             </p>
 
-            {/* Primary Action Buttons */}
+            {/* Primary Action Buttons: Contact Us & Send an Inquiry */}
             <div className="flex flex-wrap items-center gap-4 w-full sm:w-auto mb-10">
-              <a
-                href="#products"
-                className="w-full sm:w-auto px-6 py-3.5 rounded-full bg-white text-black font-semibold text-sm hover:bg-zinc-200 transition-all flex items-center justify-center gap-2 group shadow-[0_0_25px_rgba(255,255,255,0.2)]"
+              <Link
+                href="/contact"
+                className="w-full sm:w-auto px-7 py-3.5 rounded-full bg-white text-black font-semibold text-sm hover:bg-zinc-200 transition-all flex items-center justify-center gap-2 group shadow-[0_0_25px_rgba(255,255,255,0.2)]"
               >
-                <span>Explore Our Products</span>
+                <span>Contact Us</span>
                 <ArrowRight className="w-4 h-4 text-black group-hover:translate-x-1 transition-transform" />
-              </a>
+              </Link>
 
               <a
-                href="#approach"
-                className="w-full sm:w-auto px-6 py-3.5 rounded-full bg-white/[0.04] border border-white/10 hover:border-white/20 text-white font-medium text-sm hover:bg-white/[0.08] transition-all flex items-center justify-center gap-2 backdrop-blur-md"
+                href="#contact"
+                className="w-full sm:w-auto px-7 py-3.5 rounded-full bg-white/[0.04] border border-white/10 hover:border-white/20 text-white font-medium text-sm hover:bg-white/[0.08] transition-all flex items-center justify-center gap-2 backdrop-blur-md"
               >
-                <Compass className="w-4 h-4 text-zinc-400" />
-                <span>How We Build</span>
+                <Mail className="w-4 h-4 text-zinc-400" />
+                <span>Send an Inquiry</span>
               </a>
             </div>
 
@@ -82,12 +78,12 @@ export default function HeroSection({ onRequestDemo }: HeroSectionProps) {
               <div className="flex flex-col">
                 <div className="flex items-center gap-1.5 text-xs text-zinc-500 font-mono uppercase mb-1">
                   <Globe2 className="w-3.5 h-3.5 text-zinc-400" />
-                  <span>Business Model</span>
+                  <span>HQ Location</span>
                 </div>
                 <div className="text-lg sm:text-xl font-bold text-white tracking-tight font-mono">
-                  Rented SaaS
+                  Ahmedabad
                 </div>
-                <span className="text-[11px] text-zinc-500">Zero upfront capex</span>
+                <span className="text-[11px] text-zinc-500">Sindhu Bhavan Road (SBR)</span>
               </div>
 
               <div className="flex flex-col">
@@ -109,18 +105,18 @@ export default function HeroSection({ onRequestDemo }: HeroSectionProps) {
                 <div className="text-lg sm:text-xl font-bold text-white tracking-tight font-mono">
                   Deterministic
                 </div>
-                <span className="text-[11px] text-zinc-500">Constrained AST guardrails</span>
+                <span className="text-[11px] text-zinc-500">Mathematical guardrails</span>
               </div>
 
               <div className="flex flex-col">
                 <div className="flex items-center gap-1.5 text-xs text-zinc-500 font-mono uppercase mb-1">
                   <Zap className="w-3.5 h-3.5 text-zinc-400" />
-                  <span>Evolution</span>
+                  <span>Delivery</span>
                 </div>
                 <div className="text-lg sm:text-xl font-bold text-white tracking-tight font-mono">
-                  Continuous
+                  Turnkey
                 </div>
-                <span className="text-[11px] text-zinc-500">Compounding product updates</span>
+                <span className="text-[11px] text-zinc-500">100% IP &amp; source code handoff</span>
               </div>
             </div>
           </div>

@@ -49,7 +49,7 @@ export default function ProblemSection() {
       ],
       investigationVector:
         "Investigating event-driven state machines and automated routing to shrink day-long approval cycles into sub-minute executions.",
-      solutionExample: "Resolved in Krynex Flow via automated event-driven middleware.",
+      solutionExample: "Automated event-driven middleware and asynchronous state orchestration.",
     },
     {
       id: "manual-work",
@@ -65,7 +65,7 @@ export default function ProblemSection() {
       ],
       investigationVector:
         "Designing deterministic AI compilers and document extraction engines that eliminate manual re-keying completely.",
-      solutionExample: "Resolved in Krynex Lexis with bilingual statutory deed compilation.",
+      solutionExample: "Bilingual statutory document synthesis and structured parsing.",
     },
     {
       id: "fragmented-info",
@@ -81,7 +81,7 @@ export default function ProblemSection() {
       ],
       investigationVector:
         "Building unified ingestion backends, automated indexation pipelines, and zero-trust data bridges.",
-      solutionExample: "Addressed via statutory automated title search in Krynex Lexis.",
+      solutionExample: "Automated statutory record indexation and unified data search.",
     },
     {
       id: "expensive-tools",
@@ -113,7 +113,7 @@ export default function ProblemSection() {
       ],
       investigationVector:
         "Deploying edge computer vision and real-time SCADA telemetry for instantaneous defect isolation.",
-      solutionExample: "Resolved in Krynex Vision via local edge inference nodes.",
+      solutionExample: "Local edge inference nodes with real-time SCADA sensor telemetry.",
     },
     {
       id: "slow-decisions",

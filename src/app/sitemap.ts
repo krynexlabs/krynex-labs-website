@@ -10,10 +10,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     changeFrequency: "always" | "hourly" | "daily" | "weekly" | "monthly" | "yearly" | "never";
   }[] = [
     { path: "", priority: 1.0, changeFrequency: "daily" },
-    { path: "/products", priority: 0.95, changeFrequency: "daily" },
-    { path: "/products/krynex-lexis", priority: 0.9, changeFrequency: "weekly" },
-    { path: "/products/krynex-flow", priority: 0.9, changeFrequency: "weekly" },
-    { path: "/products/krynex-vision", priority: 0.9, changeFrequency: "weekly" },
+    { path: "/solutions", priority: 0.95, changeFrequency: "weekly" },
+    { path: "/solutions/ai-ml", priority: 0.9, changeFrequency: "weekly" },
+    { path: "/solutions/enterprise-software", priority: 0.9, changeFrequency: "weekly" },
+    { path: "/solutions/web-mobile", priority: 0.9, changeFrequency: "weekly" },
+    { path: "/solutions/cloud-data", priority: 0.9, changeFrequency: "weekly" },
     { path: "/industries", priority: 0.85, changeFrequency: "weekly" },
     { path: "/approach", priority: 0.85, changeFrequency: "monthly" },
     { path: "/about", priority: 0.85, changeFrequency: "monthly" },

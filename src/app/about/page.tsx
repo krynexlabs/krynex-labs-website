@@ -217,10 +217,10 @@ export default function AboutPage() {
 
           <div className="mt-16 text-center">
             <Link
-              href="/products"
+              href="/solutions"
               className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white text-black font-semibold text-xs hover:bg-zinc-200 transition-all shadow-md"
             >
-              <span>Explore Krynex Software Products</span>
+              <span>Explore Our Services &amp; Solutions</span>
               <ArrowRight className="w-3.5 h-3.5" />
             </Link>
           </div>

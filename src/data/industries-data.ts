@@ -27,10 +27,10 @@ export const INDUSTRIES_DATA: IndustryDetail[] = [
   {
     slug: "manufacturing",
     name: "Manufacturing & Industrial IoT",
-    badge: "RESEARCH & PRODUCT VECTOR // KRYNEX VISION",
+    badge: "RESEARCH & CAPABILITY VECTOR // INDUSTRIAL IOT",
     tagline: "Edge Vision & Anomaly Telemetry for Zero-Downtime Plants",
     overview:
-      "Modern continuous manufacturing facilities face severe margins erosion due to unplanned machinery downtime, uncalibrated visual quality defects on fast-moving assembly lines, and delayed ERP reconciliation. We research factory-floor operational bottlenecks and engineer edge-native software products.",
+      "Modern continuous manufacturing facilities face severe margins erosion due to unplanned machinery downtime, uncalibrated visual quality defects on fast-moving assembly lines, and delayed ERP reconciliation. We research factory-floor operational bottlenecks and engineer edge-native software architectures.",
     targetWorkflow:
       "Continuous high-speed assembly, part fabrication, physical quality inspection, and shop-floor MES/SCADA logging.",
     bottlenecks: [
@@ -41,7 +41,7 @@ export const INDUSTRIES_DATA: IndustryDetail[] = [
     whyExistingInadequate:
       "Legacy machine vision systems require cumbersome bespoke programming, cost tens of lakhs in upfront capex, and fail to correlate detected defects with upstream PLC vibration and temperature sensors.",
     krynexSolution:
-      "Krynex Vision: Edge TensorRT computer vision operating entirely on-premise without cloud latency, coupled with real-time SCADA vibration telemetry and direct pneumatic reject triggers.",
+      "Edge TensorRT computer vision operating entirely on-premise without cloud latency, coupled with real-time SCADA vibration telemetry and direct pneumatic reject triggers.",
     architectureDetails: [
       "Edge inference on NVIDIA Jetson / Industrial PCs",
       "Air-gapped operation with local PLC actuation (Modbus / OPC-UA)",
@@ -49,7 +49,7 @@ export const INDUSTRIES_DATA: IndustryDetail[] = [
     ],
     beneficiaries:
       "Plant managers, quality control engineers, precision component makers, and discrete manufacturers.",
-    statusLabel: "Software Product Under Active Development (Krynex Vision)",
+    statusLabel: "Industrial Edge Architecture & Research",
     quantifiedImpact: [
       { metric: "Reduced", label: "Target Scrap Reduction", sublabel: "Simulated line defect containment objective" },
       { metric: "Edge", label: "Edge Inference Latency", sublabel: "Offline factory gateway execution target" },
@@ -57,14 +57,14 @@ export const INDUSTRIES_DATA: IndustryDetail[] = [
     ],
     caseDossier: {
       clientType: "Precision Component & Continuous Manufacturing Facilities",
-      deployedSystem: "Krynex Vision Edge Inspection Station",
+      deployedSystem: "Krynex Edge Vision Inspection Station Prototype",
       result: "Automated surface defect inspection modeled for continuous line speed.",
     },
   },
   {
     slug: "legal",
     name: "Legal, Real Estate & Statutory Compliance",
-    badge: "RESEARCH & COMMERCIAL PRODUCT // KRYNEX LEXIS",
+    badge: "RESEARCH & CAPABILITY VECTOR // LEGAL TECH",
     tagline: "Deterministic Bilingual Document Synthesis & Title Search Automation",
     overview:
       "Corporate legal counsel, title advocates, and real estate developers in India face severe backlogs manually drafting deeds, search dockets, and statutory notices across Gujarati and English revenue records. We develop deterministic drafting software to eliminate manual typing and legal ambiguity.",
@@ -78,7 +78,7 @@ export const INDUSTRIES_DATA: IndustryDetail[] = [
     whyExistingInadequate:
       "Static word processors and generic LLM chat wrappers lack statutory grammar guardrails, hallucinate non-existent citations, and risk confidentiality breaches when sensitive client property dockets are uploaded to public clouds.",
     krynexSolution:
-      "Krynex Lexis: India's premier bilingual legal drafting and title clearance intelligence platform, compiling verified draft deeds in seconds with deterministic statutory verification.",
+      "Bilingual legal document synthesis and title clearance intelligence platform, compiling verified draft deeds in seconds with deterministic statutory verification.",
     architectureDetails: [
       "Bilingual Gujarati and English legal vocabulary grammar compiler",
       "Automated revenue record ingestion (Village Form 7/12, 8A, Index-II)",
@@ -86,7 +86,7 @@ export const INDUSTRIES_DATA: IndustryDetail[] = [
     ],
     beneficiaries:
       "Corporate legal counsel, title clearance advocates, real estate developers, and statutory compliance panels.",
-    statusLabel: "Live Software Product (Krynex Lexis)",
+    statusLabel: "Active Engineering & Legal Tech Prototyping",
     quantifiedImpact: [
       { metric: "Target", label: "Drafting Time Reduction", sublabel: "Modeled time reduction vs manual drafting" },
       { metric: "Native", label: "Bilingual Alignment", sublabel: "Native Gujarati legal terminology alignment" },
@@ -94,14 +94,14 @@ export const INDUSTRIES_DATA: IndustryDetail[] = [
     ],
     caseDossier: {
       clientType: "Real Estate Developers & Legal Firm Title Teams",
-      deployedSystem: "Krynex Lexis Statutory Drafting Suite",
+      deployedSystem: "Bilingual Statutory Drafting Pipeline Prototype",
       result: "Rapid bilingual deed compilation prototype with automated stamp duty and registration calculations.",
     },
   },
   {
     slug: "logistics",
     name: "Logistics & Multimodal Supply Chain",
-    badge: "EXPLORATION & RESEARCH VECTOR // INTEGRATION WITH KRYNEX FLOW",
+    badge: "EXPLORATION & RESEARCH VECTOR // EVENT MIDDLEWARE",
     tagline: "Automated Shipping Manifest Ingestion & Terminal Gate Telematics",
     overview:
       "Freight forwarders, container terminal operators, and fleet logistics hubs lose millions annually to paperwork bottlenecks at port gates, demurrage penalties, and disconnected transport management systems.",
@@ -115,7 +115,7 @@ export const INDUSTRIES_DATA: IndustryDetail[] = [
     whyExistingInadequate:
       "Off-the-shelf OCR tools fail on low-resolution scanned manifests and lack direct bidirectional hooks into port operating systems (TOS) and customs portals.",
     krynexSolution:
-      "Krynex Flow Orchestration: High-throughput event middleware and document extraction pipeline that reconciles shipping documents against customs databases in seconds.",
+      "High-throughput event middleware and document extraction pipeline that reconciles shipping documents against customs databases in seconds.",
     architectureDetails: [
       "Multilingual shipping manifest and bill-of-lading neural extraction",
       "Sub-second event synchronization with inland container depot databases",
@@ -123,7 +123,7 @@ export const INDUSTRIES_DATA: IndustryDetail[] = [
     ],
     beneficiaries:
       "Container terminal operators, customs house agents (CHA), freight forwarders, and intermodal transport fleets.",
-    statusLabel: "Software Product Under Active Development (Krynex Flow)",
+    statusLabel: "Distributed Middleware Architecture & Prototyping",
     quantifiedImpact: [
       { metric: "Rapid", label: "Target Gate Turnaround", sublabel: "Modeled improvement from manual baselines" },
       { metric: "Rapid", label: "Document Ingestion Speed", sublabel: "Automated extraction without human re-keying" },
@@ -131,7 +131,7 @@ export const INDUSTRIES_DATA: IndustryDetail[] = [
     ],
     caseDossier: {
       clientType: "Intermodal Container Freight Operators & Terminal Hubs",
-      deployedSystem: "Krynex Flow Document & Event Middleware",
+      deployedSystem: "Event Pipeline & Document Ingestion Prototype",
       result: "Modeled shipping manifest ingestion and real-time ERP/TOS synchronization architecture.",
     },
   },
