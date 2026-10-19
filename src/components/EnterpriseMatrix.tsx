@@ -125,21 +125,22 @@ export default function EnterpriseMatrix() {
       id="industries"
       ref={containerRef}
       onMouseMove={handleMouseMove}
-      className="relative py-24 sm:py-32 border-t border-white/[0.08]"
+      className="relative py-24 sm:py-32 border-t border-[#202630] bg-[#07090D]"
     >
-      {/* Background Subtle Silver Top Radial */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[850px] h-[400px] bg-[radial-gradient(circle,rgba(255,255,255,0.03),transparent_65%)] pointer-events-none -z-10" />
+      {/* Background Subtle Cyan Atmospheric Radial */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[850px] h-[400px] bg-[radial-gradient(circle,rgba(0,229,255,0.03),transparent_65%)] pointer-events-none -z-10" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="flex flex-col items-start max-w-3xl mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.03] border border-white/10 text-[11px] font-mono tracking-widest text-zinc-300 uppercase mb-4">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#0D1118] border border-[#202630] text-[11px] font-mono tracking-widest text-[#929BAA] uppercase mb-4">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#00E5FF] animate-pulse" />
             <span>05 // INDUSTRIES &amp; PROBLEMS UNDER INVESTIGATION</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mb-4 bg-gradient-to-b from-white via-zinc-100 to-zinc-500 bg-clip-text text-transparent">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold tracking-tight mb-4 text-[#F5F7FA]">
             Industries and Operational Problems We Investigate.
           </h2>
-          <p className="text-base sm:text-lg text-zinc-400 leading-relaxed">
+          <p className="text-base sm:text-lg text-[#929BAA] leading-relaxed">
             We research the deep operational friction within high-stakes business workflows—from vernacular legal bottlenecks and manual factory inspection to supply chain manifest triage—to evaluate and engineer focused software products.
           </p>
         </div>
@@ -164,15 +165,15 @@ export default function EnterpriseMatrix() {
                   aria-controls={`sector-panel-${idx}`}
                   tabIndex={isSelected ? 0 : -1}
                   onClick={() => setActiveSector(idx)}
-                  className={`p-4 sm:p-5 rounded-2xl border text-left transition-all duration-300 flex items-start gap-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white ${
+                  className={`p-4 sm:p-5 rounded-2xl border text-left transition-all duration-300 flex items-start gap-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00E5FF] ${
                     isSelected
-                      ? "bg-[#0a0a0a] border-white/30 shadow-[0_0_25px_rgba(255,255,255,0.08)]"
-                      : "bg-[#080808] border-white/[0.08] hover:border-white/[0.22] hover:bg-[#0c0c0e]"
+                      ? "bg-[#0D1118] border-[#00E5FF]/40 shadow-[0_0_25px_rgba(0,229,255,0.12)]"
+                      : "bg-[#0D1118] border-[#202630] hover:border-white/20 hover:bg-[#111722]"
                   }`}
                 >
                   <div
-                    className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 border ${
-                      isSelected ? "bg-white text-black border-white" : "bg-black text-white border-white/10"
+                    className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 border transition-colors ${
+                      isSelected ? "bg-[#00E5FF] text-[#07090D] border-[#00E5FF]" : "bg-[#07090D] text-[#929BAA] border-[#202630]"
                     }`}
                   >
                     <Icon className="w-5 h-5" />
@@ -180,25 +181,25 @@ export default function EnterpriseMatrix() {
 
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center justify-between mb-1">
-                      <h4 className="text-sm sm:text-base font-semibold text-white tracking-tight truncate">
+                      <h4 className="text-sm sm:text-base font-semibold text-[#F5F7FA] tracking-tight truncate">
                         {sec.title}
                       </h4>
                       <ArrowUpRight
                         className={`w-4 h-4 shrink-0 transition-transform ${
-                          isSelected ? "text-white translate-x-0.5 -translate-y-0.5" : "text-zinc-600"
+                          isSelected ? "text-[#00E5FF] translate-x-0.5 -translate-y-0.5" : "text-[#929BAA]"
                         }`}
                       />
                     </div>
-                    <span className="text-xs font-mono text-zinc-500 block truncate">{sec.sectorType}</span>
+                    <span className="text-xs font-mono text-[#929BAA] block truncate">{sec.sectorType}</span>
                   </div>
                 </button>
               );
             })}
           </div>
 
-          {/* Right Selected Deep-Dive Showcase with Spotlight (All dossiers rendered in SSR) */}
-          <div className="lg:col-span-7 spotlight-card rounded-3xl bg-[#080808] border border-white/10 p-6 sm:p-8 lg:p-10 flex flex-col justify-between relative overflow-hidden min-h-[500px]">
-            <div className="absolute top-0 left-8 right-8 h-[1px] bg-gradient-to-r from-transparent via-white/30 to-transparent pointer-events-none" />
+          {/* Right Selected Deep-Dive Showcase with Spotlight */}
+          <div className="lg:col-span-7 spotlight-card rounded-3xl bg-[#0D1118] border border-[#202630] p-6 sm:p-8 lg:p-10 flex flex-col justify-between relative overflow-hidden min-h-[500px]">
+            <div className="absolute top-0 left-8 right-8 h-[1px] bg-gradient-to-r from-transparent via-[#00E5FF]/25 to-transparent pointer-events-none" />
 
             {sectors.map((sec, idx) => {
               const isSelected = activeSector === idx;
@@ -212,48 +213,48 @@ export default function EnterpriseMatrix() {
                   className={isSelected ? "flex flex-col justify-between h-full" : "hidden"}
                 >
                   <div>
-                    <div className="flex items-center justify-between mb-6 pb-4 border-b border-white/10">
-                      <span className="text-xs font-mono text-zinc-300 uppercase tracking-widest font-semibold">
+                    <div className="flex items-center justify-between mb-6 pb-4 border-b border-[#202630]">
+                      <span className="text-xs font-mono text-[#00E5FF] uppercase tracking-widest font-semibold">
                         RESEARCH DOSSIER // {sec.id.toUpperCase()}
                       </span>
-                      <span className="text-[10px] font-mono px-2.5 py-0.5 rounded bg-white/[0.04] text-zinc-300 border border-white/10">
+                      <span className="text-[10px] font-mono px-2.5 py-0.5 rounded bg-[#111722] text-[#00E5FF] border border-[#202630]">
                         {sec.statusBadge}
                       </span>
                     </div>
 
-                    <h3 className="text-2xl sm:text-3xl font-bold text-white mb-2 tracking-tight">
+                    <h3 className="text-2xl sm:text-3xl font-heading font-bold text-[#F5F7FA] mb-2 tracking-tight">
                       {sec.title}
                     </h3>
-                    <p className="text-xs font-mono text-zinc-400 mb-6">
+                    <p className="text-xs font-mono text-[#929BAA] mb-6">
                       Target Workflow: {sec.workflow}
                     </p>
 
                     {/* The Pain Point */}
-                    <div className="mb-5 p-4 rounded-2xl bg-black border border-white/[0.08]">
-                      <div className="text-[11px] font-mono text-zinc-400 uppercase tracking-wider mb-1 font-semibold flex items-center gap-1.5">
-                        <AlertCircle className="w-3.5 h-3.5 text-zinc-400" />
+                    <div className="mb-5 p-4 rounded-2xl bg-[#07090D] border border-[#202630]">
+                      <div className="text-[11px] font-mono text-[#929BAA] uppercase tracking-wider mb-1 font-semibold flex items-center gap-1.5">
+                        <AlertCircle className="w-3.5 h-3.5 text-[#00E5FF]" />
                         <span>The Operational Pain Point</span>
                       </div>
                       <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed mb-3">
                         {sec.painPoint}
                       </p>
-                      <div className="pt-2 border-t border-white/[0.04] text-xs text-zinc-400">
-                        <strong className="text-zinc-300">Why Existing Tools Fall Short: </strong>
+                      <div className="pt-2 border-t border-[#202630] text-xs text-[#929BAA]">
+                        <strong className="text-[#F5F7FA]">Why Existing Tools Fall Short: </strong>
                         {sec.whyExistingFails}
                       </div>
                     </div>
 
                     {/* The Krynex Software Solution */}
-                    <div className="mb-6 p-4 rounded-2xl bg-black border border-white/20">
-                      <div className="text-[11px] font-mono text-white uppercase tracking-wider mb-1 font-semibold flex items-center gap-1.5">
-                        <Cpu className="w-3.5 h-3.5 text-white" />
+                    <div className="mb-6 p-4 rounded-2xl bg-[#07090D] border border-[#00E5FF]/30">
+                      <div className="text-[11px] font-mono text-[#00E5FF] uppercase tracking-wider mb-1 font-semibold flex items-center gap-1.5">
+                        <Cpu className="w-3.5 h-3.5 text-[#00E5FF]" />
                         <span>The Software Product Solution</span>
                       </div>
-                      <p className="text-xs sm:text-sm text-zinc-200 leading-relaxed mb-3">
+                      <p className="text-xs sm:text-sm text-[#F5F7FA] leading-relaxed mb-3">
                         {sec.solution}
                       </p>
-                      <div className="text-xs text-zinc-400">
-                        <strong className="text-zinc-300">Beneficiaries: </strong>
+                      <div className="text-xs text-[#929BAA]">
+                        <strong className="text-[#F5F7FA]">Beneficiaries: </strong>
                         {sec.beneficiaries}
                       </div>
                     </div>
@@ -261,9 +262,9 @@ export default function EnterpriseMatrix() {
                     {/* Modeled Metrics */}
                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                       {sec.metrics.map((m, mIdx) => (
-                        <div key={mIdx} className="p-3.5 rounded-xl bg-[#050505] border border-white/10">
-                          <div className="flex items-center gap-1.5 text-xs text-zinc-200 font-mono">
-                            <CheckCircle2 className="w-3.5 h-3.5 text-white shrink-0" />
+                        <div key={mIdx} className="p-3.5 rounded-xl bg-[#111722] border border-[#202630]">
+                          <div className="flex items-center gap-1.5 text-xs text-[#F5F7FA] font-mono">
+                            <CheckCircle2 className="w-3.5 h-3.5 text-[#00E5FF] shrink-0" />
                             <span>{m}</span>
                           </div>
                         </div>
@@ -271,13 +272,13 @@ export default function EnterpriseMatrix() {
                     </div>
                   </div>
 
-                  <div className="pt-6 mt-6 border-t border-white/10 flex flex-wrap items-center justify-between gap-3 text-xs font-mono">
-                    <span className="text-zinc-500">
+                  <div className="pt-6 mt-6 border-t border-[#202630] flex flex-wrap items-center justify-between gap-3 text-xs font-mono">
+                    <span className="text-[#929BAA]">
                       Category: {sec.statusBadge}
                     </span>
                     <Link
                       href={sec.productLink}
-                      className="text-white hover:text-zinc-300 transition-colors font-medium flex items-center gap-1"
+                      className="text-[#00E5FF] hover:text-[#33EBFF] transition-colors font-semibold flex items-center gap-1"
                     >
                       <span>View Details</span>
                       <ArrowRight className="w-3.5 h-3.5" />

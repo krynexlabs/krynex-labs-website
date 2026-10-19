@@ -170,22 +170,22 @@ export default function Methodology() {
       id="approach"
       ref={containerRef}
       onMouseMove={handleMouseMove}
-      className="relative py-24 sm:py-32 border-t border-white/[0.08]"
+      className="relative py-24 sm:py-32 border-t border-[#202630] bg-[#07090D]"
     >
-      {/* Background Subtle Silver Top Radial */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[850px] h-[400px] bg-[radial-gradient(circle,rgba(255,255,255,0.04),transparent_65%)] pointer-events-none -z-10" />
+      {/* Background Subtle Cyan Atmospheric Bloom */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[850px] h-[400px] bg-[radial-gradient(circle,rgba(0,229,255,0.04),transparent_65%)] pointer-events-none -z-10" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="flex flex-col items-center text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/[0.03] border border-white/10 text-[11px] font-mono tracking-widest text-zinc-300 uppercase mb-4 shadow-sm">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#0D1118] border border-[#202630] text-[11px] font-mono tracking-widest text-[#00E5FF] uppercase mb-4 shadow-sm">
             <span>03 // HOW WE BUILD // UNIFIED PRODUCT LIFECYCLE</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mb-4 bg-gradient-to-b from-white via-zinc-100 to-zinc-500 bg-clip-text text-transparent">
-            Find the Problem. Build the Solution.
+          <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mb-4 text-[#F5F7FA]">
+            Find the Problem. <span className="text-gradient-cyan">Build the Solution.</span>
           </h2>
-          <p className="text-sm sm:text-base text-zinc-400 leading-relaxed">
-            Every software product at Krynex Labs follows our disciplined 7-stage product lifecycle. We identify real-world business challenges, validate market demand, engineer focused software solutions, and continuously improve them for the businesses that subscribe to them.
+          <p className="font-sans text-sm sm:text-base text-[#929BAA] leading-relaxed">
+            Every software system at Krynex Labs follows our disciplined 7-stage engineering lifecycle. We identify real-world business challenges, validate market demand, engineer focused software solutions, and continuously improve them for the businesses that depend on them.
           </p>
         </div>
 
@@ -193,7 +193,7 @@ export default function Methodology() {
         <div
           role="tablist"
           aria-label="Product Lifecycle Stages"
-          className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-2 p-1.5 rounded-2xl bg-[#080808] border border-white/10 mb-8 max-w-6xl mx-auto"
+          className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-2 p-1.5 rounded-2xl bg-[#0D1118] border border-[#202630] mb-8 max-w-6xl mx-auto"
         >
           {steps.map((st, sIdx) => {
             const isSelected = activeStep === sIdx;
@@ -206,13 +206,13 @@ export default function Methodology() {
                 aria-controls={`stage-panel-${sIdx}`}
                 tabIndex={isSelected ? 0 : -1}
                 onClick={() => setActiveStep(sIdx)}
-                className={`py-2 px-2.5 rounded-xl text-center transition-all flex flex-col items-center gap-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white ${
+                className={`py-2 px-2.5 rounded-xl text-center transition-all flex flex-col items-center gap-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00E5FF] ${
                   isSelected
-                    ? "bg-white text-black font-semibold shadow-md"
-                    : "text-zinc-400 hover:text-white hover:bg-white/[0.04]"
+                    ? "bg-[#00E5FF] text-[#07090D] font-semibold shadow-[0_0_15px_rgba(0,229,255,0.25)]"
+                    : "text-[#929BAA] hover:text-[#F5F7FA] hover:bg-[#111722]"
                 }`}
               >
-                <span className={`text-[10px] font-mono uppercase ${isSelected ? "text-zinc-700" : "text-zinc-500"}`}>
+                <span className={`text-[10px] font-mono uppercase ${isSelected ? "text-[#07090D]/80 font-bold" : "text-[#929BAA]/70"}`}>
                   Step {st.step}
                 </span>
                 <span className="text-xs truncate max-w-full font-medium">
@@ -224,8 +224,8 @@ export default function Methodology() {
         </div>
 
         {/* Stage Spotlight Card (All 7 panels rendered in SSR; active panel visible) */}
-        <div className="spotlight-card rounded-3xl bg-[#080808] border border-white/10 p-6 sm:p-10 shadow-2xl relative overflow-hidden">
-          <div className="absolute top-0 left-12 right-12 h-[1px] bg-gradient-to-r from-transparent via-white/30 to-transparent pointer-events-none" />
+        <div className="spotlight-card rounded-3xl bg-[#0D1118] border border-[#202630] p-6 sm:p-10 shadow-2xl relative overflow-hidden">
+          <div className="absolute top-0 left-12 right-12 h-[1px] bg-gradient-to-r from-transparent via-[#00E5FF]/30 to-transparent pointer-events-none" />
 
           {steps.map((st, sIdx) => {
             const isSelected = activeStep === sIdx;
@@ -242,34 +242,34 @@ export default function Methodology() {
                   {/* Left: Stage Overview & Action Points */}
                   <div className="lg:col-span-6 space-y-6">
                     <div className="flex items-center gap-3">
-                      <span className="text-2xl font-mono font-bold text-white px-3 py-1 rounded-xl bg-white/[0.06] border border-white/10">
+                      <span className="text-2xl font-mono font-bold text-[#00E5FF] px-3 py-1 rounded-xl bg-[#00E5FF]/10 border border-[#00E5FF]/20">
                         {st.step}
                       </span>
                       <div>
-                        <span className="text-[10px] font-mono text-zinc-400 uppercase tracking-widest block">
+                        <span className="text-[10px] font-mono text-[#00E5FF] uppercase tracking-widest block font-semibold">
                           {`STAGE ${st.step} // ${st.badge}`}
                         </span>
-                        <h3 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
+                        <h3 className="font-heading text-2xl sm:text-3xl font-bold text-[#F5F7FA] tracking-tight">
                           {st.title}
                         </h3>
                       </div>
                     </div>
 
-                    <div className="text-sm font-mono text-zinc-300">
+                    <div className="text-sm font-mono text-[#929BAA]">
                       {st.subtitle}
                     </div>
 
-                    <p className="text-sm text-zinc-400 leading-relaxed">
+                    <p className="font-sans text-sm text-[#929BAA] leading-relaxed">
                       {st.description}
                     </p>
 
-                    <div className="space-y-2.5 pt-4 border-t border-white/[0.06]">
-                      <span className="text-[10px] font-mono uppercase tracking-wider text-zinc-500 block mb-2">
+                    <div className="space-y-2.5 pt-4 border-t border-[#202630]">
+                      <span className="text-[10px] font-mono uppercase tracking-wider text-[#929BAA]/80 block mb-2 font-semibold">
                         Key Operational Objectives:
                       </span>
                       {st.points.map((pt, pIdx) => (
-                        <div key={pIdx} className="flex items-start gap-2.5 text-xs text-zinc-300">
-                          <CheckCircle2 className="w-3.5 h-3.5 text-white shrink-0 mt-0.5" />
+                        <div key={pIdx} className="flex items-start gap-2.5 text-xs text-[#F5F7FA]">
+                          <CheckCircle2 className="w-3.5 h-3.5 text-[#00E5FF] shrink-0 mt-0.5" />
                           <span>{pt}</span>
                         </div>
                       ))}
@@ -278,23 +278,23 @@ export default function Methodology() {
 
                   {/* Right: Telemetry Console Snippet */}
                   <div className="lg:col-span-6 flex flex-col justify-between h-full space-y-4">
-                    <div className="rounded-2xl bg-black border border-white/[0.08] p-5 font-mono text-xs shadow-inner relative overflow-hidden">
-                      <div className="flex items-center justify-between pb-3 mb-4 border-b border-white/[0.06] text-zinc-500">
+                    <div className="rounded-2xl bg-[#07090D] border border-[#202630] p-5 font-mono text-xs shadow-inner relative overflow-hidden">
+                      <div className="flex items-center justify-between pb-3 mb-4 border-b border-[#202630] text-[#929BAA]">
                         <div className="flex items-center gap-2">
-                          <span className="w-2 h-2 rounded-full bg-white animate-pulse" />
-                          <span className="text-zinc-300">krynex-lifecycle // step-{st.step}</span>
+                          <span className="w-2 h-2 rounded-full bg-[#00E5FF] animate-pulse" />
+                          <span className="text-[#F5F7FA]">krynex-lifecycle // step-{st.step}</span>
                         </div>
-                        <span className="text-[10px]">EXECUTION_LOG</span>
+                        <span className="text-[10px] text-[#00E5FF]">EXECUTION_LOG</span>
                       </div>
 
-                      <pre className="text-zinc-300 whitespace-pre-wrap leading-relaxed text-[11px] sm:text-xs overflow-x-auto">
+                      <pre className="text-[#929BAA] whitespace-pre-wrap leading-relaxed text-[11px] sm:text-xs overflow-x-auto">
                         {st.terminalSnippet}
                       </pre>
                     </div>
 
-                    <div className="p-4 rounded-xl bg-white/[0.02] border border-white/[0.06] flex items-center justify-between text-xs font-mono">
-                      <span className="text-zinc-500">Current Phase:</span>
-                      <span className="text-white font-medium">
+                    <div className="p-4 rounded-xl bg-[#111722] border border-[#202630] flex items-center justify-between text-xs font-mono">
+                      <span className="text-[#929BAA]">Current Phase:</span>
+                      <span className="text-[#00E5FF] font-medium">
                         {st.step} of 07 — {st.badge}
                       </span>
                     </div>

@@ -73,7 +73,7 @@ export default function Navbar() {
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           isScrolled
-            ? "bg-black/90 backdrop-blur-xl border-b border-white/[0.08] shadow-[0_4px_30px_rgba(0,0,0,0.9)] py-3"
+            ? "bg-[#07090D]/85 backdrop-blur-xl border-b border-[#202630] shadow-[0_4px_30px_rgba(0,0,0,0.8)] py-3"
             : "bg-transparent py-5"
         }`}
       >
@@ -82,14 +82,14 @@ export default function Navbar() {
             {/* Brand Wordmark */}
             <Link
               href="/"
-              className="flex items-center group focus:outline-none focus-visible:ring-1 focus-visible:ring-white/40 rounded-lg p-1 -m-1"
+              className="flex items-center group focus:outline-none focus-visible:ring-1 focus-visible:ring-[#00E5FF]/40 rounded-lg p-1 -m-1"
               aria-label="Krynex Labs - Return to Home"
             >
               <KrynexLogo size="md" showTagline={false} />
             </Link>
 
             {/* Desktop Navigation Links */}
-            <nav className="hidden lg:flex items-center gap-1 xl:gap-2 px-3 py-1.5 rounded-full bg-black/60 border border-white/[0.06] backdrop-blur-md">
+            <nav className="hidden lg:flex items-center gap-1 xl:gap-2 px-3 py-1.5 rounded-full bg-[#0D1118]/85 border border-[#202630] backdrop-blur-md">
               {navLinks.map((link) => {
                 const isActive =
                   link.href === "/" ? pathname === "/" : pathname.startsWith(link.href);
@@ -98,10 +98,10 @@ export default function Navbar() {
                   <Link
                     key={link.label}
                     href={link.href}
-                    className={`text-xs font-medium px-3.5 py-1.5 rounded-full transition-all focus:outline-none focus-visible:ring-1 focus-visible:ring-white/40 ${
+                    className={`text-xs font-medium px-3.5 py-1.5 rounded-full transition-all focus:outline-none focus-visible:ring-1 focus-visible:ring-[#00E5FF]/40 ${
                       isActive
-                        ? "text-white bg-white/[0.08] font-semibold"
-                        : "text-zinc-400 hover:text-white hover:bg-white/[0.04]"
+                        ? "text-[#00E5FF] bg-[#111722] border border-[#202630] font-semibold"
+                        : "text-[#929BAA] hover:text-[#F5F7FA] hover:bg-[#111722]/50"
                     }`}
                   >
                     {link.label}
@@ -110,7 +110,7 @@ export default function Navbar() {
               })}
             </nav>
 
-            {/* Right Action CTA Button */}
+            {/* Right Action CTA Button: Make an Inquiry */}
             <div className="hidden sm:flex items-center gap-3">
               <Link
                 href="/contact"
@@ -119,9 +119,9 @@ export default function Navbar() {
                     trackConversionEvent("inquiry_click", { location: "navbar_desktop" });
                   });
                 }}
-                className="bg-white text-black font-semibold hover:bg-zinc-200 px-5 py-2 rounded-full transition-all text-xs tracking-wide shadow-[0_0_20px_rgba(255,255,255,0.15)] flex items-center justify-center focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
+                className="bg-[#00E5FF] text-[#07090D] font-semibold hover:bg-[#33ebff] px-5 py-2 rounded-xl transition-all text-xs tracking-wide shadow-[0_0_20px_rgba(0,229,255,0.22)] flex items-center justify-center focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00E5FF]"
               >
-                <span>Contact Us</span>
+                <span>Make an Inquiry</span>
               </Link>
             </div>
 
@@ -129,7 +129,7 @@ export default function Navbar() {
             <button
               ref={hamburgerBtnRef}
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden p-2 rounded-lg text-zinc-400 hover:text-white hover:bg-zinc-900 border border-white/[0.08] focus:outline-none focus-visible:ring-1 focus-visible:ring-white/40"
+              className="lg:hidden p-2 rounded-xl text-[#929BAA] hover:text-[#F5F7FA] hover:bg-[#111722] border border-[#202630] focus:outline-none focus-visible:ring-1 focus-visible:ring-[#00E5FF]/40"
               aria-label={mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
               aria-expanded={mobileMenuOpen}
             >
@@ -146,11 +146,11 @@ export default function Navbar() {
           role="dialog"
           aria-modal="true"
           aria-label="Mobile Navigation"
-          className="fixed inset-0 z-[60] bg-black/95 backdrop-blur-2xl lg:hidden pt-20 px-6 flex flex-col justify-between pb-8 animate-fade-in overflow-y-auto"
+          className="fixed inset-0 z-[60] bg-[#07090D]/95 backdrop-blur-2xl lg:hidden pt-20 px-6 flex flex-col justify-between pb-8 animate-fade-in overflow-y-auto"
         >
           <div className="flex flex-col gap-3">
-            <div className="flex items-center justify-between pb-3 border-b border-white/10">
-              <span className="text-[11px] font-mono tracking-widest text-zinc-400 uppercase">
+            <div className="flex items-center justify-between pb-3 border-b border-[#202630]">
+              <span className="text-[11px] font-mono tracking-widest text-[#929BAA] uppercase">
                 KRYNEX LABS // NAVIGATION
               </span>
               <button
@@ -159,7 +159,7 @@ export default function Navbar() {
                   setMobileMenuOpen(false);
                   hamburgerBtnRef.current?.focus();
                 }}
-                className="p-1 rounded-lg text-zinc-400 hover:text-white hover:bg-white/10 transition-colors focus:outline-none focus-visible:ring-1 focus-visible:ring-white/40"
+                className="p-1 rounded-lg text-[#929BAA] hover:text-[#F5F7FA] hover:bg-[#111722] transition-colors focus:outline-none focus-visible:ring-1 focus-visible:ring-[#00E5FF]/40"
                 aria-label="Close navigation drawer"
               >
                 <X className="w-5 h-5" />
@@ -171,16 +171,16 @@ export default function Navbar() {
                 link.href === "/" ? pathname === "/" : pathname.startsWith(link.href);
 
               return (
-                <div key={link.label} className="border-b border-white/[0.04] pb-2">
+                <div key={link.label} className="border-b border-[#202630]/50 pb-2">
                   <Link
                     href={link.href}
                     onClick={() => setMobileMenuOpen(false)}
                     className={`text-base font-medium py-1.5 transition-colors flex items-center justify-between ${
-                      isActive ? "text-white font-semibold" : "text-zinc-300 hover:text-white"
+                      isActive ? "text-[#00E5FF] font-semibold" : "text-[#929BAA] hover:text-[#F5F7FA]"
                     }`}
                   >
                     <span>{link.label}</span>
-                    <ArrowUpRight className="w-4 h-4 text-zinc-400" />
+                    <ArrowUpRight className="w-4 h-4 text-[#929BAA]" />
                   </Link>
                 </div>
               );
@@ -188,8 +188,8 @@ export default function Navbar() {
           </div>
 
           {/* Drawer Footer Actions */}
-          <div className="pt-6 border-t border-white/10 flex flex-col gap-3">
-            <div className="text-[11px] font-mono text-zinc-400 flex items-center justify-between">
+          <div className="pt-6 border-t border-[#202630] flex flex-col gap-3">
+            <div className="text-[11px] font-mono text-[#929BAA] flex items-center justify-between">
               <span>OFFICIAL WHATSAPP:</span>
               <a
                 href="https://wa.me/919879418569?text=Hello%20Krynex%20Labs%2C%20I%20would%20like%20to%20discuss%20an%20engineering%20inquiry"
@@ -200,7 +200,7 @@ export default function Navbar() {
                     trackConversionEvent("whatsapp_click", { location: "navbar_mobile" });
                   });
                 }}
-                className="text-white hover:underline flex items-center gap-1.5"
+                className="text-[#F5F7FA] hover:underline flex items-center gap-1.5"
               >
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
                 <span>+91 9879418569</span>
@@ -215,17 +215,17 @@ export default function Navbar() {
                   trackConversionEvent("inquiry_click", { location: "navbar_mobile" });
                 });
               }}
-              className="w-full bg-white text-black font-semibold py-3 rounded-xl text-center text-xs tracking-wider uppercase hover:bg-zinc-200 transition-colors shadow-[0_0_20px_rgba(255,255,255,0.15)]"
+              className="w-full bg-[#00E5FF] text-[#07090D] font-semibold py-3 rounded-xl text-center text-xs tracking-wider uppercase hover:bg-[#33ebff] transition-colors shadow-[0_0_20px_rgba(0,229,255,0.22)]"
             >
-              Contact Us
+              Make an Inquiry
             </Link>
 
             <Link
               href="/solutions"
               onClick={() => setMobileMenuOpen(false)}
-              className="w-full bg-white/[0.04] border border-white/10 text-white font-medium py-2.5 rounded-xl text-center text-xs tracking-wider uppercase hover:bg-white/[0.08] transition-colors"
+              className="w-full bg-[#0D1118] border border-[#202630] text-[#F5F7FA] font-medium py-2.5 rounded-xl text-center text-xs tracking-wider uppercase hover:bg-[#111722] transition-colors"
             >
-              Explore Engineering Services
+              Explore Capabilities
             </Link>
           </div>
         </div>

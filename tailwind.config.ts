@@ -10,30 +10,46 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "#000000",
+        background: "#07090D",
         surface: {
-          DEFAULT: "#080808",
-          subtle: "#0a0a0a",
-          elevated: "#121214",
-          glass: "rgba(10, 10, 10, 0.7)",
+          DEFAULT: "#0D1118",
+          secondary: "#0D1118",
+          elevated: "#111722",
+          glass: "rgba(13, 17, 24, 0.8)",
+        },
+        accent: {
+          DEFAULT: "#00E5FF",
+          cyan: "#00E5FF",
+          blue: "#4778FF",
+          glow: "rgba(0, 229, 255, 0.15)",
+        },
+        content: {
+          primary: "#F5F7FA",
+          secondary: "#929BAA",
+          muted: "#626C7D",
         },
         border: {
-          subtle: "rgba(255, 255, 255, 0.08)",
-          highlight: "rgba(255, 255, 255, 0.22)",
-          specular: "rgba(255, 255, 255, 0.35)",
+          DEFAULT: "#202630",
+          subtle: "#202630",
+          cyan: "rgba(0, 229, 255, 0.3)",
+          highlight: "rgba(0, 229, 255, 0.25)",
+          specular: "rgba(245, 247, 250, 0.12)",
         },
       },
       fontFamily: {
-        sans: ["var(--font-inter)", "system-ui", "sans-serif"],
+        heading: ["var(--font-space-grotesk)", "system-ui", "sans-serif"],
+        sans: ["var(--font-manrope)", "system-ui", "sans-serif"],
         mono: ["var(--font-mono)", "monospace"],
       },
       backgroundImage: {
         "radial-spotlight":
-          "radial-gradient(600px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), rgba(255, 255, 255, 0.05), transparent 40%)",
-        "radial-horizon":
-          "radial-gradient(ellipse 80% 50% at 50% 120%, rgba(255, 255, 255, 0.08), transparent)",
+          "radial-gradient(600px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), rgba(0, 229, 255, 0.06), transparent 45%)",
+        "radial-cyan-bloom":
+          "radial-gradient(ellipse 60% 50% at 50% 0%, rgba(0, 229, 255, 0.08), transparent 70%)",
+        "radial-blue-bloom":
+          "radial-gradient(ellipse 60% 50% at 50% 100%, rgba(71, 120, 255, 0.06), transparent 70%)",
         "grid-pattern":
-          "linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px), linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px)",
+          "linear-gradient(to right, rgba(255, 255, 255, 0.025) 1px, transparent 1px), linear-gradient(to bottom, rgba(255, 255, 255, 0.025) 1px, transparent 1px)",
       },
       animation: {
         "spin-slow": "spin 12s linear infinite",

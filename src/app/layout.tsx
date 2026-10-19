@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, JetBrains_Mono } from "next/font/google";
+import { Space_Grotesk, Manrope, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import CookieBanner from "@/components/CookieBanner";
 import WhatsAppButton from "@/components/WhatsAppButton";
@@ -7,9 +7,15 @@ import ClientTelemetry from "@/components/Analytics";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics as VercelAnalytics } from "@vercel/analytics/react";
 
-const inter = Inter({
+const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
-  variable: "--font-inter",
+  variable: "--font-space-grotesk",
+  display: "swap",
+});
+
+const manrope = Manrope({
+  subsets: ["latin"],
+  variable: "--font-manrope",
   display: "swap",
 });
 
@@ -22,11 +28,11 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.krynexlabs.in"),
   title: {
-    default: "Krynex Labs | Custom Enterprise Software & Applied AI",
+    default: "Krynex Labs | Building What Comes Next.",
     template: "%s | Krynex Labs",
   },
   description:
-    "Krynex Labs identifies real-world industry problems and engineers custom enterprise software, Applied AI architectures, and resilient web/mobile platforms.",
+    "Krynex Labs architects and engineers enterprise software systems, Applied AI architectures, and resilient technology solutions. Building What Comes Next.",
   authors: [{ name: "Krynex Labs" }],
   creator: "Krynex Labs",
   publisher: "Krynex Labs",
@@ -43,15 +49,15 @@ export const metadata: Metadata = {
     locale: "en_IN",
     url: "https://www.krynexlabs.in",
     siteName: "Krynex Labs",
-    title: "Krynex Labs | Custom Enterprise Software & Applied AI",
+    title: "Krynex Labs | Building What Comes Next.",
     description:
-      "Krynex Labs identifies real-world industry problems and engineers custom enterprise software, Applied AI architectures, and resilient web/mobile platforms.",
+      "Krynex Labs architects and engineers enterprise software systems, Applied AI architectures, and resilient technology solutions. Building What Comes Next.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Krynex Labs | Custom Enterprise Software & Applied AI",
+    title: "Krynex Labs | Building What Comes Next.",
     description:
-      "Krynex Labs identifies real-world industry problems and engineers custom enterprise software, Applied AI architectures, and resilient web/mobile platforms.",
+      "Krynex Labs architects and engineers enterprise software systems, Applied AI architectures, and resilient technology solutions. Building What Comes Next.",
   },
   robots: {
     index: true,
@@ -67,7 +73,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#000000",
+  themeColor: "#07090D",
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
@@ -188,7 +194,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${inter.variable} ${jetbrainsMono.variable} bg-black font-sans antialiased text-zinc-100 min-h-screen selection:bg-white selection:text-black overflow-x-hidden max-w-[100vw] w-full`}
+        className={`${spaceGrotesk.variable} ${manrope.variable} ${jetbrainsMono.variable} bg-[#07090D] font-sans antialiased text-[#F5F7FA] min-h-screen selection:bg-[#00E5FF] selection:text-[#07090D] overflow-x-hidden max-w-[100vw] w-full`}
       >
         {/* Internal Diagnostic Telemetry Tracker */}
         <ClientTelemetry />
@@ -199,11 +205,13 @@ export default function RootLayout({
         {/* Vercel Web Analytics */}
         <VercelAnalytics />
 
-        {/* Background Grid & Spotlights */}
+        {/* Atmospheric Cinematic Lighting & Background Grid */}
         <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
-          <div className="absolute inset-0 bg-grid-tech opacity-60" />
-          {/* Exact Resend Top Silver/White Radial Spotlight */}
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1100px] h-[550px] bg-[radial-gradient(ellipse_80%_50%_at_50%_0%,rgba(255,255,255,0.08),transparent_70%)] pointer-events-none" />
+          <div className="absolute inset-0 bg-grid-tech opacity-40" />
+          {/* Subtle Electric-Cyan Atmospheric Bloom */}
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1200px] h-[600px] bg-[radial-gradient(ellipse_70%_45%_at_50%_0%,rgba(0,229,255,0.08),transparent_70%)] pointer-events-none" />
+          {/* Subtle Electric-Blue Horizon Atmospheric Shadow */}
+          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[1400px] h-[500px] bg-[radial-gradient(ellipse_60%_40%_at_50%_100%,rgba(71,120,255,0.06),transparent_70%)] pointer-events-none" />
         </div>
 
         {/* Main Content Area */}
