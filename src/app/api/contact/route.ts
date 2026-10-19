@@ -108,8 +108,8 @@ export async function POST(request: Request) {
     const smtpPort = process.env.SMTP_PORT;
     const resendApiKey = process.env.RESEND_API_KEY;
 
-    // Recipient address resolution (defaults to CONTACT_RECEIVER_EMAIL, then GMAIL_USER, then support@krynexlabs.in)
-    const receiverEmail = process.env.CONTACT_RECEIVER_EMAIL || gmailUser || "support@krynexlabs.in";
+    // Recipient address resolution (defaults to CONTACT_RECEIVER_EMAIL, then GMAIL_USER, then ankoliyadixit80@gmail.com)
+    const receiverEmail = process.env.CONTACT_RECEIVER_EMAIL || gmailUser || "ankoliyadixit80@gmail.com";
 
     // Clean single-line subject to prevent CRLF injection
     const isTest =
@@ -185,29 +185,50 @@ export async function POST(request: Request) {
 
     // Delivery Provider 2: Resend API (if configured and SMTP was not used or failed)
     if (!emailDelivered && resendApiKey) {
-      const fromEmail = process.env.CONTACT_FROM_EMAIL || "Krynex Labs Briefing <inquiries@krynexlabs.in>";
-      try {
-        const emailResponse = await fetch("https://api.resend.com/emails", {
+      let fromEmail = process.env.CONTACT_FROM_EMAIL || "Krynex Labs Briefing <onboarding@resend.dev>";
+      let toRecipient = receiverEmail;
+
+      const sendViaResend = async (from: string, to: string) => {
+        return await fetch("https://api.resend.com/emails", {
           method: "POST",
           headers: {
             "Authorization": `Bearer ${resendApiKey}`,
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            from: fromEmail,
-            to: [receiverEmail],
+            from,
+            to: [to],
             reply_to: rawEmail,
             subject,
             text: textContent,
             html: htmlContent,
           }),
         });
+      };
+
+      try {
+        let emailResponse = await sendViaResend(fromEmail, toRecipient);
+
+        // If custom domain is unverified or sandbox restriction triggers
+        if (!emailResponse.ok) {
+          const errData = await emailResponse.json().catch(() => ({}));
+          console.error(`[KRYNEX NOTIFICATION ERROR] Resend initial dispatch status ${emailResponse.status}:`, errData);
+
+          // Retry with onboarding sandbox if custom domain was unverified
+          if (!fromEmail.includes("onboarding@resend.dev")) {
+            fromEmail = "Krynex Labs Briefing <onboarding@resend.dev>";
+            emailResponse = await sendViaResend(fromEmail, toRecipient);
+          }
+
+          // If still restricted to owner account (e.g. ankoliyadixit80@gmail.com)
+          if (!emailResponse.ok && toRecipient !== "ankoliyadixit80@gmail.com") {
+            toRecipient = "ankoliyadixit80@gmail.com";
+            emailResponse = await sendViaResend(fromEmail, toRecipient);
+          }
+        }
 
         if (emailResponse.ok) {
           emailDelivered = true;
-        } else {
-          const errData = await emailResponse.json().catch(() => ({}));
-          console.error(`[KRYNEX NOTIFICATION ERROR] Resend status ${emailResponse.status}:`, errData);
         }
       } catch (resendErr) {
         console.error("[KRYNEX NOTIFICATION ERROR] Resend network exception:", resendErr instanceof Error ? resendErr.message : "Unknown Resend failure");
