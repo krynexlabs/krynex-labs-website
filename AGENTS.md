@@ -41,7 +41,7 @@
   - Executive Consultation Portal & Corporate Footer (`Footer.tsx`)
   - Floating Sticky Mobile CTA (`StickyMobileCTA.tsx`)
   - Consultation Modal (`DemoModal.tsx`)
-- `/privacy` (`src/app/privacy/page.tsx`): Enterprise Data Sovereignty, zero-retention guarantee, HSM encryption standards, and legal compliance.
+- `/privacy` (`src/app/privacy/page.tsx`): Enterprise Data Sovereignty, data isolation standards, KMS envelope encryption, and legal compliance.
 - `/terms` (`src/app/terms/page.tsx`): Enterprise Terms of Service, 99.99% SLA commitment, IP ownership, and Ahmedabad jurisdiction.
 - `/thank-you` (`src/app/thank-you/page.tsx`): Executive inquiry confirmation docket displaying Ticket ID, SLA response window, and routing status.
 - `not-found.tsx` (`src/app/not-found.tsx`): Custom 404 terminal telemetry page with button linking to `/`.

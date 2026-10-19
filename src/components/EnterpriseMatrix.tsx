@@ -61,7 +61,7 @@ export default function EnterpriseMatrix() {
       whyExistingFails:
         "Static Word templates and generic public AI tools hallucinate non-existent citations and risk serious confidentiality breaches under statutory privilege rules.",
       solution:
-        "Krynex Lexis: India's premier bilingual legal drafting and title clearance platform, compiling legally binding deeds in under 1.2 seconds with deterministic statutory guardrails.",
+        "Krynex Lexis: India's premier bilingual legal drafting and title clearance platform, compiling structured draft deeds in under 1.2 seconds with deterministic statutory guardrails.",
       beneficiaries: "Corporate legal counsel, title advocates, real estate developers, and statutory compliance panels.",
       statusBadge: "Commercial Product (Krynex Lexis)",
       metrics: ["Sub-Second Compilation", "30-Year Index-II Triage", "Zero Public Model Training"],
@@ -98,7 +98,7 @@ export default function EnterpriseMatrix() {
         "Streaming Graph Neural Network (GNN) risk-scoring middleware coupled with automated collateral verification pipelines engineered for zero-trust compliance.",
       beneficiaries: "Commercial banks, MSME lenders, NBFCs, and financial risk compliance teams.",
       statusBadge: "Architectural Research & Prototyping",
-      metrics: ["<5ms Scoring Target", "<90s Collateral Verification", "Zero-Trust HSM Encryption"],
+      metrics: ["<5ms Scoring Target", "<90s Collateral Verification", "Zero-Trust KMS Encryption"],
       productLink: "/industries#fintech",
     },
     {

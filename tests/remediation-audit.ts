@@ -80,6 +80,47 @@ assert.strictEqual(SAFE_REF_REGEX.test("<script>alert(1)</script>"), false);
 assert.strictEqual(SAFE_REF_REGEX.test("javascript:void(0)"), false);
 console.log("✔ PASS: Safe reference IDs accepted; arbitrary scripts rejected.");
 
+// 8. Compliance & Security Claims Verification
+console.log("\n[TEST 8] Security & Legal Compliance Claim Sanitization");
+import { PRODUCTS_DATA } from "../src/data/products-data.ts";
+import { INDUSTRIES_DATA } from "../src/data/industries-data.ts";
+import { ABOUT_DATA } from "../src/data/about-data.ts";
+
+const productsStr = JSON.stringify(PRODUCTS_DATA);
+const industriesStr = JSON.stringify(INDUSTRIES_DATA);
+const aboutStr = JSON.stringify(ABOUT_DATA);
+
+assert.strictEqual(
+  productsStr.includes("FIPS 140-2"),
+  false,
+  "PRODUCTS_DATA must not contain unqualified FIPS 140-2 hardware certifications"
+);
+assert.strictEqual(
+  industriesStr.includes("FIPS 140-2"),
+  false,
+  "INDUSTRIES_DATA must not contain unqualified FIPS 140-2 hardware certifications"
+);
+assert.strictEqual(
+  aboutStr.includes("FIPS 140-2"),
+  false,
+  "ABOUT_DATA must not contain unqualified FIPS 140-2 hardware certifications"
+);
+assert.strictEqual(
+  productsStr.includes("legally binding"),
+  false,
+  "PRODUCTS_DATA must qualify legal drafting assistance rather than claiming legally binding outcomes"
+);
+console.log("✔ PASS: Zero unverified FIPS 140-2 or unqualified binding claims in dataset catalogs.");
+
+// 9. Location & Contact Consistency
+console.log("\n[TEST 9] Corporate Location & Contact Consistency");
+assert.strictEqual(
+  ABOUT_DATA.headquarters,
+  "AHMEDABAD (IN)",
+  "Headquarters must be standardized to AHMEDABAD (IN)"
+);
+console.log("✔ PASS: Corporate headquarters standardized to AHMEDABAD (IN).");
+
 console.log("\n=======================================================");
-console.log("ALL 7 CRITICAL REGRESSION SUITES PASSED SUCCESSFULLY!");
+console.log("ALL 9 CRITICAL REGRESSION SUITES PASSED SUCCESSFULLY!");
 console.log("=======================================================\n");

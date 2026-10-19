@@ -153,9 +153,9 @@ export const ABOUT_DATA = {
         "Customer proprietary files, documents, and telemetry are strictly isolated and never co-mingled or used to train public models.",
     },
     {
-      title: "Hardware Security Modules (HSM)",
+      title: "Enterprise Key Management (KMS)",
       description:
-        "FIPS 140-2 Level 3 validated encryption protects all credentials, database volumes, and session keys at rest and in transit.",
+        "KMS-managed AES-256 envelope encryption protects all credentials, database volumes, and session keys at rest and in transit.",
     },
     {
       title: "Ahmedabad Operations & Edge Infrastructure",

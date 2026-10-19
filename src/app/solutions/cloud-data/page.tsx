@@ -7,7 +7,7 @@ import SolutionDetailView from "@/components/SolutionDetailView";
 export const metadata: Metadata = {
   title: "Cloud Infrastructure, Data & Zero-Trust Security",
   description:
-    "Zero-trust cloud infrastructure, real-time streaming data pipelines (Kafka/Flink), and HSM cryptographic key management engineered for sovereign data isolation.",
+    "Zero-trust cloud infrastructure, real-time streaming data pipelines (Kafka/Flink), and KMS cryptographic key management engineered for sovereign data isolation.",
   alternates: {
     canonical: "https://www.krynexlabs.in/solutions/cloud-data",
   },

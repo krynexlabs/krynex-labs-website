@@ -257,7 +257,7 @@ export default function ProductDetailView({ product }: ProductDetailViewProps) {
                     <div className="space-y-2 text-zinc-300 animate-fade-in">
                       <div className="text-[11px] text-zinc-400 flex items-center justify-between border-b border-white/[0.06] pb-1.5">
                         <span className="text-white font-bold">
-                          [DOCKET COMPILED] // 18-PAGE BINDING LEGAL DOCKET READY
+                          [DOCKET COMPILED] // 18-PAGE VERIFIED DRAFT DOCKET READY
                         </span>
                         <span>COMPILED IN 1.18s</span>
                       </div>
@@ -284,10 +284,13 @@ export default function ProductDetailView({ product }: ProductDetailViewProps) {
                           </>
                         )}
                       </div>
-                      <div className="text-[10px] text-zinc-400 pt-2 flex items-center gap-3">
+                      <div className="text-[10px] text-zinc-400 pt-2 flex flex-wrap items-center gap-3">
                         <span>&bull; Statutory AST: VERIFIED</span>
-                        <span>&bull; Stamp Duty: 100% ACCURATE</span>
+                        <span>&bull; Stamp Duty Target: CALCULATED</span>
                         <span>&bull; Sub-Registrar Index-II: MATCHED</span>
+                      </div>
+                      <div className="text-[10px] text-zinc-500 pt-1.5 border-t border-white/[0.04] leading-relaxed">
+                        * Notice: Lexis provides automated drafting assistance for legal practitioners. Generated covenants require review and execution by qualified legal counsel.
                       </div>
                     </div>
                   ) : (

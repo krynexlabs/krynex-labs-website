@@ -78,11 +78,11 @@ export const INDUSTRIES_DATA: IndustryDetail[] = [
     whyExistingInadequate:
       "Static word processors and generic LLM chat wrappers lack statutory grammar guardrails, hallucinate non-existent citations, and risk confidentiality breaches when sensitive client property dockets are uploaded to public clouds.",
     krynexSolution:
-      "Krynex Lexis: India's premier bilingual legal drafting and title clearance intelligence platform, compiling legally binding deeds in seconds with mathematical statutory verification.",
+      "Krynex Lexis: India's premier bilingual legal drafting and title clearance intelligence platform, compiling verified draft deeds in seconds with deterministic statutory verification.",
     architectureDetails: [
       "Bilingual Gujarati and English legal vocabulary grammar compiler",
       "Automated revenue record ingestion (Village Form 7/12, 8A, Index-II)",
-      "Private HSM encryption with zero public model training retention",
+      "Dedicated KMS envelope encryption with zero public model training retention",
     ],
     beneficiaries:
       "Corporate legal counsel, title clearance advocates, real estate developers, and statutory compliance panels.",
@@ -156,7 +156,7 @@ export const INDUSTRIES_DATA: IndustryDetail[] = [
     architectureDetails: [
       "Streaming Apache Kafka & Flink feature ingestion (>85k events/sec design target)",
       "Sub-5ms Graph reasoning inference for synthetic identity detection",
-      "FIPS 140-2 Level 3 Hardware Security Module (HSM) encryption",
+      "Enterprise KMS cryptographic envelope encryption",
     ],
     beneficiaries:
       "Digital lending platforms, regional commercial banks, NBFCs, and compliance auditing teams.",
@@ -193,7 +193,7 @@ export const INDUSTRIES_DATA: IndustryDetail[] = [
     architectureDetails: [
       "Local DICOM gateway with 100% offline hospital LAN execution",
       "Zero-retention inference with immediate temporary buffer purge",
-      "Full HIPAA, GDPR, and Indian DPDP Act regulatory alignment",
+      "Designed in alignment with healthcare privacy guidelines (including HIPAA, GDPR, and Indian DPDP Act)",
     ],
     beneficiaries:
       "Hospital emergency departments, diagnostic imaging networks, and clinical radiologist teams.",

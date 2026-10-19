@@ -233,7 +233,7 @@ export const SOLUTIONS_DATA: Record<string, SolutionDetail> = {
       {
         title: "Zero-Trust Cloud Architecture",
         description:
-          "Identity-aware proxying, least-privilege IAM policies, automated HSM cryptographic key rotation, and isolated VPC networks.",
+          "Identity-aware proxying, least-privilege IAM policies, automated KMS cryptographic key rotation, and isolated VPC networks.",
         metrics: "Zero perimeter vulnerabilities",
       },
       {
@@ -257,9 +257,9 @@ export const SOLUTIONS_DATA: Record<string, SolutionDetail> = {
     ],
     architectureHighlights: [
       {
-        title: "Hardware Security Modules (HSM)",
+        title: "Enterprise Key Management (KMS)",
         detail:
-          "All cryptographic keys and data at rest are safeguarded via FIPS 140-2 Level 3 validated hardware modules.",
+          "All cryptographic keys and data at rest are safeguarded via KMS-managed AES-256 envelope encryption.",
       },
       {
         title: "Multi-Cloud & Hybrid Disaster Recovery",

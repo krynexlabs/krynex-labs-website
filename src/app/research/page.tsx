@@ -63,7 +63,7 @@ export default function ResearchPage() {
               </div>
               <div className="flex items-center gap-1.5">
                 <CheckCircle2 className="w-4 h-4 text-white" />
-                <span>Zero-Trust HSM Encryption</span>
+                <span>Zero-Trust KMS Encryption</span>
               </div>
             </div>
           </div>

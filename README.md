@@ -1,95 +1,85 @@
-# KRYNEX LABS — Enterprise AI & IT Flagship Website
+# KRYNEX LABS — Flagship Corporate & Software Product Platform
 
-A production-ready, MNC-grade corporate and product flagship platform for **KRYNEX LABS**—an AI/ML and Information Technology company headquartered in Ahmedabad, Gujarat, engineering custom AI architectures and rent-based (SaaS) software products for high-friction regional and enterprise industries.
+A production-ready, MNC-grade corporate website and software product catalog for **Krynex Labs**—a unified software product and SaaS company headquartered in **AHMEDABAD (IN)**.
 
----
-
-## 🎨 Visual Benchmark & Design System (Resend.com & Linear.app)
-
-1. **Theme & Color Palette:**
-   - Ultra-sleek pitch-black dark mode (`#000000` primary background, `#09090B` card surfaces).
-   - 1px solid borders using `rgba(255, 255, 255, 0.08)`.
-   - Dynamic mouse-tracking radial spotlight gradients (`rgba(56, 189, 248, 0.15)`) on all Bento grid cards.
-   - Accents: Electric Cyan (`#00f0ff`), Sky (`#38bdf8`), and Indigo (`#818cf8`).
-
-2. **Typography & Metallic Text:**
-   - Headings: `Inter` with tight tracking (`tracking-tight`) and metallic gradients (`bg-gradient-to-b from-white via-white/90 to-zinc-500 bg-clip-text text-transparent`).
-   - Technical badges, code blocks, and metrics: `JetBrains Mono` in uppercase with subtle cyan/silver glow.
-
-3. **3D Centerpiece (`@react-three/fiber` & Three.js):**
-   - Modular 3x3x3 dark-chrome and obsidian geometric cube assembly with clearcoat physical material (`MeshPhysicalMaterial`), studio rim lighting, an emissive cyan inner core, ambient sparkles, and smooth mouse-parallax rotation + orbital drag controls (`enableZoom: false`).
-   - Graceful SSR handling with dynamic import and zero hydration errors.
+Official Website: [https://www.krynexlabs.in](https://www.krynexlabs.in)  
+Official Contact: [support@krynexlabs.in](mailto:support@krynexlabs.in)  
+Official WhatsApp: [+91 9879418569](https://wa.me/919879418569) (WhatsApp Only • No Calls)
 
 ---
 
-## 🏗️ Architecture & Sections
+## 🏛️ Corporate Identity & Positioning
 
-1. **Sticky Glassmorphic Navigation Bar (`Navbar.tsx`):**
-   - Minimalist faceted geometric logo + `KRYNEX LABS` in bold tracking.
-   - Smooth anchor links to `Vision`, `AI Methodology`, `Regional Drafting SaaS`, `Enterprise Solutions`, and `Interactive Demo`.
-   - Pill-shaped CTA button with rotating glowing border (`@property --border-angle`).
+- **Company Type:** Software Product and SaaS Company.
+- **Operating Philosophy:** Problem-First Engineering. We identify real-world industry bottlenecks, understand operational pain points, build software products (web, mobile, AI-powered, automation), and deliver continuous software value through recurring subscription and rental access.
+- **Operating Model:** Build → Launch → Subscribe → Maintain → Improve.
 
-2. **Hero Section (`HeroSection.tsx` & `Hero3DCube.tsx`):**
-   - Division Pill Badge: `[ KRYNEX LABS // AI & IT RESEARCH DIVISION ]`
-   - Metallic Headline: `"Engineering Intelligence for Industry Pain Points."`
-   - Subheadline highlighting industrial bottleneck discovery and rent-based SaaS delivery.
-   - High-contrast white CTA `"Explore Flagship SaaS"` + glassmorphic `"Partner With Us"`.
-   - Real-time industrial telemetry badges: `10x Faster Turnaround`, `99.4% Precision`, `Rent-Based Model`.
+---
 
-3. **The Krynex Execution Engine (`Methodology.tsx`):**
-   - 3-Column Interactive Pipeline:
-     - **01 / Problem Discovery:** Deep-dive industrial audits across Gujarat & Indian corridors (Sanand, Dahej, Ahmedabad).
-     - **02 / AI/ML Engineering:** Custom LLM fine-tuning, Gujarati-English dual tokenizers, and 0%-hallucination statutory safeguards.
-     - **03 / Rent-Based SaaS Delivery:** Zero-Capex monthly subscription models replacing expensive legacy IT vendor lock-in.
-   - Live interactive terminal telemetry inspector for each pipeline phase.
+## 🎨 Design System: Resend-Inspired Monochrome Palette
 
-4. **Flagship Product Spotlight (`BentoGrid.tsx`):**
-   - **Large Main Card (Gujarat's First Regional AI Drafting System):**
-     - Tag: `FLAGSHIP SAAS // RENT-BASED MODEL`
-     - Interactive live animated UI preview converting prompts into structured Gujarati & English official deeds (`દસ્તાવેજ: વેચાણ કરાર અને ટાઈટલ ક્લિયરન્સ પ્રમાણપત્ર`).
-   - **Card 2 (Flexible SaaS Licensing):** Interactive tier switcher (Advocate Starter ₹1,499/mo, Pro MSME ₹4,999/mo, Enterprise Custom).
-   - **Card 3 (Custom Enterprise AI):** Bespoke IT & ML solutions for manufacturing, logistics, and finance.
-   - **Card 4 (Security & Speed Metrics):** Real-time counters showing `<1.2s Average Latency`, `AES-256 Encryption`, and `99.99% Uptime SLA`.
+- **Primary Background:** Pitch Black (`#000000`).
+- **Surface Cards:** Obsidian Deep Grey (`#080808` to `#0A0A0A`).
+- **Borders & Dividers:** Subtle white border strokes (`border-white/[0.08]` to `border-white/[0.15]`).
+- **Specular Top Rims:** 1px horizontal gradient specular lines (`from-transparent via-white/30 to-transparent`).
+- **Typography:** Inter for headings, JetBrains Mono for telemetry, data metrics, and technical consoles.
+- **3D Centerpiece:** Modular 3x3x3 unboxed obsidian Rubik's Cube (`@react-three/fiber` & Three.js) with interactive click-to-turn column and row mechanics, procedural bump micro-textures, studio lighting, and full `prefers-reduced-motion` compliance.
 
-5. **Interactive Live Demo Playground (`DraftingDemo.tsx`):**
-   - Tabbed interactive component across 3 sample industrial pain points:
-     - `Regional Legal/Revenue Drafting` (Sanand GIDC 7/12 & 8-A Title Search & Conveyance)
-     - `Industrial Compliance Automation` (Dahej PCPIR GPCB Environmental Manifest)
-     - `Enterprise Workflow AI` (Mundra Port APSEZ Multimodal Bill of Lading OCR)
-   - Real-time simulation runner with animated compiling steps, language switcher (`Bilingual`, `ગુજરાતી`, `English`), and one-click copy/PDF export simulation.
+---
 
-6. **Enterprise Matrix (`EnterpriseMatrix.tsx`):**
-   - Dedicated sector breakdowns for Gujarat’s high-impact industrial corridors:
-     - Chemical & Petrochemicals (Dahej, Ankleshwar)
-     - Maritime Ports & Logistics (Mundra, Kandla)
-     - Automotive & Engineering (Sanand, Changodar)
-     - Textiles, Diamonds & Ceramics (Surat, Morbi)
-     - Legal & BFSI Revenue Title Searches (Pan-Gujarat)
+## 📦 Verified Product Lineup
 
-7. **Direct Intake Console Modal (`DemoModal.tsx`):**
-   - Consultation booking dialog with field validation, model delivery preference selector, and celebratory confetti upon submission.
+1. **Krynex Lexis:**
+   - Regional AI Legal Drafting and Title Clearance Intelligence SaaS.
+   - Purpose-built for corporate counsel, real estate developers, and legal panels.
+   - Features sub-second bilingual Gujarati and English deed compilation, 30-year Index-II sub-registrar title record indexing, and deterministic statutory grammar decoders.
 
-8. **MNC-Grade Footer (`Footer.tsx`):**
-   - Pre-footer banner with radial horizon glow: `"Have an Industry Problem? Let's Engineer the Solution."`
-   - Corporate multi-column directory, newsletter subscription, and Ahmedabad HQ address.
-   - Giant subtle background wireframe text watermark: `KRYNEX`.
+2. **Krynex Flow:**
+   - High-Throughput Event Middleware and Process Automation Engine.
+   - Connects fragmented ERPs (SAP, Oracle), SCADA systems, and terminal logistics backbones.
+   - Automates multilingual bill of lading extraction, cross-system reconciliation, and audit compliance logging.
+
+3. **Krynex Vision:**
+   - Sub-15ms Edge Computer Vision for Industrial Quality Control.
+   - Embedded neural defect detection operating on high-speed factory conveyor lines with direct PLC actuation via Modbus and OPC-UA.
+
+---
+
+## 🛠️ Tech Stack & Architecture
+
+- **Framework:** Next.js 14 (App Router)
+- **Language:** TypeScript 5
+- **Styling:** Tailwind CSS 3
+- **3D Graphics:** Three.js, React Three Fiber, React Three Drei
+- **Motion & UI:** Framer Motion, Lucide React
+- **Security:** CSP, HSTS, X-Frame-Options, sanitization pipeline, sliding-window rate limiting, and honeypot bot defense
+- **Email Dispatch:** Server-side Resend API with validated templates and fallback support channels
 
 ---
 
 ## 🚀 Running Locally
 
 ```bash
-# Install dependencies
+# 1. Install dependencies
 npm install
 
-# Run development server
+# 2. Run development server
 npm run dev
 
-# Build production bundle
+# 3. Run regression test suite
+npm test
+
+# 4. Run ESLint code quality audit
+npm run lint
+
+# 5. Type-check TypeScript code
+npx tsc --noEmit
+
+# 6. Build production bundle
 npm run build
 
-# Start production server
+# 7. Start production server
 npm run start
 ```
 
-Visit [http://localhost:3000](http://localhost:3000) to view the website.
+Visit [http://localhost:3000](http://localhost:3000) to view the website locally.

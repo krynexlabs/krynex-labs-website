@@ -33,3 +33,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# internal operational reports
+*DEEP_AUDIT*.md
+*DEPLOYMENT_REPORT*.md

@@ -114,7 +114,7 @@ export default function Methodology() {
         "Next.js SSR web platforms with sub-100ms First Contentful Paint",
         "High-performance Go and Rust event-processing backends",
         "Deterministic grammar decoders and mathematical guardrails",
-        "Isolated tenant architecture with FIPS 140-2 Level 3 HSM keys",
+        "Isolated tenant architecture with per-tenant KMS envelope encryption",
       ],
       terminalSnippet: `// 05 // BUILD THE SOFTWARE
 >> Compiling: KRYNEX Production Engine Core v3.8
