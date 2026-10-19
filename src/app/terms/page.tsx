@@ -143,7 +143,7 @@ export default function TermsPage() {
               6. High Availability Service Target (SLA) &amp; Maintenance
             </h2>
             <p className="text-zinc-400 leading-relaxed">
-              For commercial production tiers, Krynex Labs targets continuous high availability during each calendar month, measured across core application endpoints. Scheduled maintenance windows (typically executed during low-traffic periods between 01:00 and 04:00 IST on Sundays) are announced in advance and are excluded from downtime calculations.
+              For commercial production tiers, Krynex Labs targets continuous high availability (99.9% monthly service availability target) during each calendar month, measured across core application endpoints. Scheduled maintenance windows (typically executed during low-traffic periods between 01:00 and 04:00 IST on Sundays) are announced in advance and are excluded from downtime calculations.
             </p>
             <p className="text-zinc-400 leading-relaxed">
               In the event that monthly service availability falls below scheduled targets due to verifiable Krynex infrastructure failure, affected enterprise subscribers are eligible to receive prorated service credits applicable toward future subscription renewals upon written request within 30 days of the incident.
