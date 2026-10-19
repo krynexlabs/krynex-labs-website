@@ -70,7 +70,7 @@ export default function SolutionsPage() {
               </div>
               <div className="flex items-center gap-1.5">
                 <CheckCircle2 className="w-4 h-4 text-white" />
-                <span>99.99% Reliability SLA</span>
+                <span>&gt; 99.9% Uptime Target</span>
               </div>
             </div>
           </div>

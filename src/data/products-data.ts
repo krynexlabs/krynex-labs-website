@@ -166,7 +166,7 @@ export const PRODUCTS_DATA: Record<string, ProductDetail> = {
           "Multi-user team collaboration (up to 5 seats)",
           "OCR document ingestion for 7/12 & Haq Patrak",
           "Export unbranded print-ready legal parchment documents",
-          "Priority 1-hour SLA WhatsApp & direct phone support",
+          "Priority 1-hour SLA WhatsApp business channel support",
         ],
         ctaText: "Get Professional License",
       },

@@ -92,7 +92,7 @@ export const SOLUTIONS_DATA: Record<string, SolutionDetail> = {
     category: "Division A // Applied AI & Enterprise Engineering",
     badge: "SYSTEMS ARCHITECTURE",
     overview:
-      "We design, build, and modernize enterprise software backbones that support millions of daily transactions. From decomposing monolithic legacy databases to engineering event-driven microservices with 99.99% availability, we deliver software that eliminates operational friction and scales predictably.",
+      "We design, build, and modernize enterprise software backbones that support millions of daily transactions. From decomposing monolithic legacy databases to engineering event-driven microservices with > 99.9% availability, we deliver software that eliminates operational friction and scales predictably.",
     keyProblemsSolved: [
       "Fragile monolithic legacy codebases causing operational downtime and slow feature release cycles.",
       "High data synchronization latency between disparate ERP, CRM, and supply chain databases.",
@@ -122,7 +122,7 @@ export const SOLUTIONS_DATA: Record<string, SolutionDetail> = {
         title: "High-Availability Database Engineering",
         description:
           "Multi-master PostgreSQL, distributed ClickHouse OLAP clusters, and low-latency Redis caching layers with automated failover.",
-        metrics: "99.99% SLA availability",
+        metrics: "> 99.9% availability target",
       },
     ],
     architectureHighlights: [

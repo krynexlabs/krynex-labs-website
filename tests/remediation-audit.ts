@@ -121,6 +121,36 @@ assert.strictEqual(
 );
 console.log("✔ PASS: Corporate headquarters standardized to AHMEDABAD (IN).");
 
+// 10. SLA & Support Channel Consistency
+console.log("\n[TEST 10] SLA & Support Channel Consistency");
+import { SOLUTIONS_DATA } from "../src/data/solutions-data.ts";
+const solutionsStr = JSON.stringify(SOLUTIONS_DATA);
+
+assert.strictEqual(
+  productsStr.includes("direct phone support"),
+  false,
+  "PRODUCTS_DATA must not promise direct phone support (WhatsApp-only channel policy)"
+);
+assert.strictEqual(
+  solutionsStr.includes("99.99%"),
+  false,
+  "SOLUTIONS_DATA must use standard > 99.9% uptime target rather than unverified 99.99%"
+);
+console.log("✔ PASS: Zero unverified 99.99% uptime or phone support contradictions.");
+
+// 11. Security Header & Configuration Verification
+console.log("\n[TEST 11] Security Header & Configuration Verification");
+import fs from "node:fs";
+const nextConfigContent = fs.readFileSync("next.config.mjs", "utf-8");
+assert.strictEqual(nextConfigContent.includes("Strict-Transport-Security"), true);
+assert.strictEqual(nextConfigContent.includes("Content-Security-Policy"), true);
+assert.strictEqual(nextConfigContent.includes("X-Frame-Options"), true);
+assert.strictEqual(nextConfigContent.includes("nosniff"), true);
+console.log("✔ PASS: Required enterprise security headers present in next.config.mjs.");
+
 console.log("\n=======================================================");
-console.log("ALL 9 CRITICAL REGRESSION SUITES PASSED SUCCESSFULLY!");
+console.log("ALL 11 CRITICAL REGRESSION SUITES PASSED SUCCESSFULLY!");
 console.log("=======================================================\n");
+
+process.exit(0);
+

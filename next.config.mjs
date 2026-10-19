@@ -40,6 +40,10 @@ const nextConfig = {
             key: 'X-XSS-Protection',
             value: '0',
           },
+          {
+            key: 'Cross-Origin-Opener-Policy',
+            value: 'same-origin',
+          },
         ],
       },
     ];

@@ -37,3 +37,5 @@ next-env.d.ts
 # internal operational reports
 *DEEP_AUDIT*.md
 *DEPLOYMENT_REPORT*.md
+*REMEDIATION_REPORT*.md
+/reports/
