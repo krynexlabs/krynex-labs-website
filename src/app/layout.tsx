@@ -2,7 +2,9 @@ import type { Metadata, Viewport } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import CookieBanner from "@/components/CookieBanner";
-import Analytics from "@/components/Analytics";
+import ClientTelemetry from "@/components/Analytics";
+import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Analytics as VercelAnalytics } from "@vercel/analytics/react";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -147,8 +149,14 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${jetbrainsMono.variable} bg-black font-sans antialiased text-zinc-100 min-h-screen selection:bg-white selection:text-black overflow-x-hidden max-w-[100vw] w-full`}
       >
-        {/* Analytics Telemetry Tracker */}
-        <Analytics />
+        {/* Internal Diagnostic Telemetry Tracker */}
+        <ClientTelemetry />
+
+        {/* Vercel Speed Insights Performance Metrics */}
+        <SpeedInsights />
+
+        {/* Vercel Web Analytics */}
+        <VercelAnalytics />
 
         {/* Background Grid & Spotlights */}
         <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
