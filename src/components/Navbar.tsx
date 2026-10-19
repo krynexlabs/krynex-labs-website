@@ -222,17 +222,27 @@ export default function Navbar({ onRequestDemo }: NavbarProps) {
               {onRequestDemo ? (
                 <button
                   type="button"
-                  onClick={onRequestDemo}
+                  onClick={() => {
+                    import("./Analytics").then(({ trackConversionEvent }) => {
+                      trackConversionEvent("demo_click", { location: "navbar_desktop" });
+                    });
+                    onRequestDemo();
+                  }}
                   className="bg-white text-black font-semibold hover:bg-zinc-200 px-5 py-2 rounded-full transition-all text-xs tracking-wide shadow-[0_0_20px_rgba(255,255,255,0.15)] flex items-center justify-center focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
                 >
-                  <span>Get in Touch</span>
+                  <span>Book a Demo</span>
                 </button>
               ) : (
                 <Link
                   href="/contact"
+                  onClick={() => {
+                    import("./Analytics").then(({ trackConversionEvent }) => {
+                      trackConversionEvent("demo_click", { location: "navbar_desktop" });
+                    });
+                  }}
                   className="bg-white text-black font-semibold hover:bg-zinc-200 px-5 py-2 rounded-full transition-all text-xs tracking-wide shadow-[0_0_20px_rgba(255,255,255,0.15)] flex items-center justify-center focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
                 >
-                  <span>Get in Touch</span>
+                  <span>Book a Demo</span>
                 </Link>
               )}
             </div>
@@ -320,12 +330,18 @@ export default function Navbar({ onRequestDemo }: NavbarProps) {
             <div className="text-[11px] font-mono text-zinc-400 flex items-center justify-between">
               <span>OFFICIAL WHATSAPP:</span>
               <a
-                href="https://wa.me/919879418569?text=Hello%20Krynex%20Labs"
+                href="https://wa.me/919879418569?text=Hello%20Krynex%20Labs%2C%20I%20am%20interested%20in%20your%20software%20products"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-white hover:underline"
+                onClick={() => {
+                  import("./Analytics").then(({ trackConversionEvent }) => {
+                    trackConversionEvent("whatsapp_click", { location: "navbar_mobile" });
+                  });
+                }}
+                className="text-white hover:underline flex items-center gap-1.5"
               >
-                +91 9879418569
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                <span>+91 9879418569</span>
               </a>
             </div>
 
@@ -334,21 +350,37 @@ export default function Navbar({ onRequestDemo }: NavbarProps) {
                 type="button"
                 onClick={() => {
                   setMobileMenuOpen(false);
+                  import("./Analytics").then(({ trackConversionEvent }) => {
+                    trackConversionEvent("demo_click", { location: "navbar_mobile" });
+                  });
                   onRequestDemo();
                 }}
-                className="w-full bg-white text-black font-semibold py-3 rounded-xl text-center text-xs tracking-wider uppercase hover:bg-zinc-200 transition-colors"
+                className="w-full bg-white text-black font-semibold py-3 rounded-xl text-center text-xs tracking-wider uppercase hover:bg-zinc-200 transition-colors shadow-[0_0_20px_rgba(255,255,255,0.15)]"
               >
-                Explore Software Products
+                Book a Demo
               </button>
             ) : (
               <Link
-                href="/products"
-                onClick={() => setMobileMenuOpen(false)}
-                className="w-full bg-white text-black font-semibold py-3 rounded-xl text-center text-xs tracking-wider uppercase hover:bg-zinc-200 transition-colors"
+                href="/contact"
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  import("./Analytics").then(({ trackConversionEvent }) => {
+                    trackConversionEvent("demo_click", { location: "navbar_mobile" });
+                  });
+                }}
+                className="w-full bg-white text-black font-semibold py-3 rounded-xl text-center text-xs tracking-wider uppercase hover:bg-zinc-200 transition-colors shadow-[0_0_20px_rgba(255,255,255,0.15)]"
               >
-                Explore Software Products
+                Book a Demo
               </Link>
             )}
+
+            <Link
+              href="/products"
+              onClick={() => setMobileMenuOpen(false)}
+              className="w-full bg-white/[0.04] border border-white/10 text-white font-medium py-2.5 rounded-xl text-center text-xs tracking-wider uppercase hover:bg-white/[0.08] transition-colors"
+            >
+              Explore Software Products
+            </Link>
           </div>
         </div>
       )}

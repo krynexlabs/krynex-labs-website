@@ -473,20 +473,22 @@ class WebGLErrorBoundary extends React.Component<WebGLErrorBoundaryProps, WebGLE
   }
 }
 
+import HeroCubeFallback from "./HeroCubeFallback";
+
 export default function Hero3DCube() {
   const [mounted, setMounted] = useState(false);
-  const [initTimeout, setInitTimeout] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
   const [hasWebGL, setHasWebGL] = useState(true);
 
   useEffect(() => {
     setMounted(true);
 
-    const timeoutId = setTimeout(() => {
-      setInitTimeout(true);
-    }, 3500);
-
     if (typeof window !== "undefined") {
+      // 1. Mobile viewport detection (<768px uses lightweight zero-JS SVG fallback)
+      setIsMobile(window.innerWidth < 768);
+
+      // 2. WebGL capability check
       try {
         const canvas = document.createElement("canvas");
         const gl =
@@ -499,35 +501,34 @@ export default function Hero3DCube() {
         setHasWebGL(false);
       }
 
+      // 3. User accessibility preference: prefers-reduced-motion
       const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
       setPrefersReducedMotion(mediaQuery.matches);
-      const listener = (event: MediaQueryListEvent) => {
+      const motionListener = (event: MediaQueryListEvent) => {
         setPrefersReducedMotion(event.matches);
       };
-      mediaQuery.addEventListener("change", listener);
+      mediaQuery.addEventListener("change", motionListener);
+
+      const resizeListener = () => {
+        setIsMobile(window.innerWidth < 768);
+      };
+      window.addEventListener("resize", resizeListener, { passive: true });
+
       return () => {
-        clearTimeout(timeoutId);
-        mediaQuery.removeEventListener("change", listener);
+        mediaQuery.removeEventListener("change", motionListener);
+        window.removeEventListener("resize", resizeListener);
       };
     }
-
-    return () => clearTimeout(timeoutId);
   }, []);
 
-  if (!mounted && !initTimeout) {
-    return (
-      <div className="w-full h-full min-h-[380px] sm:min-h-[480px] lg:min-h-[680px] flex items-center justify-center">
-        <div className="w-12 h-12 border-2 border-white/20 border-t-white rounded-full animate-spin" />
-      </div>
-    );
-  }
-
-  if (!hasWebGL || (!mounted && initTimeout)) {
-    return <StaticSvgFallback />;
+  // For mobile devices, users with reduced motion preference, or browsers without WebGL,
+  // serve the lightweight zero-load SVG isometric cube to ensure maximum mobile performance.
+  if (!mounted || isMobile || prefersReducedMotion || !hasWebGL) {
+    return <HeroCubeFallback />;
   }
 
   return (
-    <WebGLErrorBoundary fallback={<StaticSvgFallback />}>
+    <WebGLErrorBoundary fallback={<HeroCubeFallback />}>
       <div className="relative w-full h-full select-none [mask-image:radial-gradient(circle_at_center,black_70%,transparent_100%)] [-webkit-mask-image:radial-gradient(circle_at_center,black_70%,transparent_100%)] flex items-center justify-center">
         <Canvas
           shadows

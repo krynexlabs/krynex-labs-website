@@ -26,6 +26,18 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://www.krynexlabs.in/industries",
   },
+  openGraph: {
+    title: "Industries & Operational Problems | Krynex Labs",
+    description:
+      "Explore the operational bottlenecks Krynex Labs investigates across Manufacturing, LegalTech, Logistics, FinTech, and Healthcare—and the focused software products we engineer to solve them.",
+    url: "https://www.krynexlabs.in/industries",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Industries & Operational Problems | Krynex Labs",
+    description:
+      "Operational bottlenecks Krynex Labs investigates across Manufacturing, LegalTech, Logistics, FinTech, and Healthcare.",
+  },
 };
 
 export default function IndustriesPage() {
@@ -37,8 +49,31 @@ export default function IndustriesPage() {
     healthcare: <Activity className="w-6 h-6 text-white" />,
   };
 
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: "https://www.krynexlabs.in",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Industries",
+        item: "https://www.krynexlabs.in/industries",
+      },
+    ],
+  };
+
   return (
     <main className="min-h-screen bg-black text-white selection:bg-white selection:text-black">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
       <Navbar />
 
       {/* Hero Header */}

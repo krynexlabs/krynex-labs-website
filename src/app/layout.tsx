@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import CookieBanner from "@/components/CookieBanner";
+import WhatsAppButton from "@/components/WhatsAppButton";
 import ClientTelemetry from "@/components/Analytics";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics as VercelAnalytics } from "@vercel/analytics/react";
@@ -85,6 +86,8 @@ const jsonLd = {
       image: "https://www.krynexlabs.in/opengraph-image",
       email: "support@krynexlabs.in",
       telephone: "+91-98794-18569",
+      currenciesAccepted: "INR, USD",
+      priceRange: "₹1,499 - ₹18,500+",
       address: {
         "@type": "PostalAddress",
         streetAddress: "Sindhu Bhavan Road (SBR)",
@@ -132,6 +135,89 @@ const jsonLd = {
         "@id": "https://www.krynexlabs.in/#organization",
       },
     },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://www.krynexlabs.in/products/krynex-lexis#software",
+      name: "Krynex Lexis",
+      applicationCategory: "BusinessApplication",
+      operatingSystem: "Cloud SaaS, Web-based",
+      description: "Bilingual Gujarati and English AI legal drafting and statutory conveyancing platform with deterministic revenue record integration.",
+      offers: {
+        "@type": "Offer",
+        price: "1499",
+        priceCurrency: "INR",
+        priceValidUntil: "2027-12-31",
+        availability: "https://schema.org/InStock",
+      },
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://www.krynexlabs.in/products/krynex-flow#software",
+      name: "Krynex Flow",
+      applicationCategory: "BusinessApplication",
+      operatingSystem: "Cloud, Hybrid, On-Premise",
+      description: "Enterprise workflow orchestrator and event middleware with deterministic state isolation and real-time ledger synchronization.",
+      offers: {
+        "@type": "Offer",
+        price: "7999",
+        priceCurrency: "INR",
+        priceValidUntil: "2027-12-31",
+        availability: "https://schema.org/InStock",
+      },
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://www.krynexlabs.in/products/krynex-vision#software",
+      name: "Krynex Vision",
+      applicationCategory: "IndustrialApplication",
+      operatingSystem: "Embedded Linux, NVIDIA Jetson, Industrial PC",
+      description: "Sub-15ms edge computer vision and real-time telemetry inspection platform for zero-defect manufacturing lines.",
+      offers: {
+        "@type": "Offer",
+        price: "18500",
+        priceCurrency: "INR",
+        priceValidUntil: "2027-12-31",
+        availability: "https://schema.org/InStock",
+      },
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://www.krynexlabs.in/#faq",
+      mainEntity: [
+        {
+          "@type": "Question",
+          name: "What is Krynex Labs' software rental and subscription access model?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Krynex Labs operates on a problem-driven software rental model (Build → Launch → Subscribe → Maintain → Improve). Businesses pay a predictable monthly or annual recurring subscription to access production software, eliminating upfront capital expenditure while receiving continuous feature evolution, security patches, and 99.9% availability SLA.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "Can Krynex software products operate on-premise without cloud latency?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Yes. Products like Krynex Vision operate 100% offline at the factory edge using industrial computers (NVIDIA Jetson / IPC) with sub-15ms inference latency and local PLC pneumatic actuation. Products handling confidential corporate records, such as Krynex Lexis, feature zero-retention KMS envelope encryption.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "How can businesses in Gujarat schedule a live demonstration or sandbox trial?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Enterprises can request an executive walkthrough via our online contact portal or connect directly with our engineering team on WhatsApp at +91 9879418569 from our Ahmedabad headquarters on Sindhu Bhavan Road (SBR).",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "What industries does Krynex Labs build software products for?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Krynex Labs investigates operational friction across Continuous Manufacturing & Precision Fabrication, LegalTech & Real Estate Conveyancing, Multimodal Logistics & Port Telematics, FinTech Banking Infrastructure, and Diagnostic Healthcare Systems.",
+          },
+        },
+      ],
+    },
   ],
 };
 
@@ -171,9 +257,13 @@ export default function RootLayout({
         {/* Main Content Area */}
         <div className="relative z-10 w-full overflow-x-hidden">{children}</div>
 
+        {/* Floating WhatsApp Quick Action Button */}
+        <WhatsAppButton />
+
         {/* Global Privacy & Cookie Consent */}
         <CookieBanner />
       </body>
     </html>
   );
 }
+

@@ -20,13 +20,48 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://www.krynexlabs.in/products",
   },
+  openGraph: {
+    title: "Software Products Directory | Krynex Labs",
+    description:
+      "Explore Krynex Labs verified software products: Krynex Lexis, Krynex Flow, and Krynex Vision with transparent subscription pricing.",
+    url: "https://www.krynexlabs.in/products",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Software Products Directory | Krynex Labs",
+    description:
+      "Explore Krynex Labs verified software products: Krynex Lexis, Krynex Flow, and Krynex Vision.",
+  },
 };
 
 export default function ProductsPage() {
   const productsList = Object.values(PRODUCTS_DATA);
 
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: "https://www.krynexlabs.in",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Products",
+        item: "https://www.krynexlabs.in/products",
+      },
+    ],
+  };
+
   return (
     <main className="min-h-screen bg-black text-white selection:bg-white selection:text-black">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
       <Navbar />
 
       {/* Hero Section */}
