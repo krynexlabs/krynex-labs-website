@@ -1,6 +1,7 @@
 export interface PricingTier {
   name: string;
   price: string;
+  usdPrice?: string;
   period: string;
   description: string;
   badge?: string;
@@ -19,6 +20,11 @@ export interface ProductDetail {
   status: "GA (General Availability)" | "Enterprise Pilot" | "Early Access";
   version: string;
   summary: string;
+  startingPrice: {
+    inr: string;
+    usd: string;
+    period: string;
+  };
   theProblem: {
     title: string;
     description: string;
@@ -64,7 +70,12 @@ export const PRODUCTS_DATA: Record<string, ProductDetail> = {
     status: "GA (General Availability)",
     version: "v3.8.4",
     summary:
-      "Krynex Lexis is India's premier bilingual legal drafting and title clearance intelligence platform. Purpose-built for corporate legal counsel, title advocates, and enterprise compliance teams in Gujarat and across India, Lexis eliminates dozens of hours of manual legal drafting by compiling verified draft deeds, covenants, and statutory notices in seconds—in both Gujarati and English—while strictly adhering to Indian statutory acts.",
+      "India's bilingual legal drafting and title clearance intelligence platform, purpose-built for corporate legal counsel, title advocates, and real estate enterprises.",
+    startingPrice: {
+      inr: "₹1,499",
+      usd: "$19",
+      period: "/ month",
+    },
     theProblem: {
       title: "The Manual Drafting Bottleneck in Indian Statutory Practice",
       description:
@@ -140,6 +151,7 @@ export const PRODUCTS_DATA: Record<string, ProductDetail> = {
       {
         name: "Advocate Starter",
         price: "₹1,499",
+        usdPrice: "$19",
         period: "per month",
         description: "Ideal for individual advocates and boutique legal practitioners.",
         features: [
@@ -155,6 +167,7 @@ export const PRODUCTS_DATA: Record<string, ProductDetail> = {
       {
         name: "Professional MSME",
         price: "₹4,999",
+        usdPrice: "$59",
         period: "per month",
         badge: "MOST POPULAR",
         highlighted: true,
@@ -173,6 +186,7 @@ export const PRODUCTS_DATA: Record<string, ProductDetail> = {
       {
         name: "Enterprise Custom",
         price: "Bespoke",
+        usdPrice: "Custom",
         period: "annual licensing",
         description: "For large enterprise developers, banking legal panels, and statutory authorities.",
         features: [
@@ -204,7 +218,12 @@ export const PRODUCTS_DATA: Record<string, ProductDetail> = {
     status: "GA (General Availability)",
     version: "v2.6.0",
     summary:
-      "Krynex Flow is an enterprise orchestration middleware platform designed to bridge the chasm between legacy on-premise databases, modern cloud APIs, and autonomous AI triage agents. It enables organizations to automate complex, multi-system operational workflows with zero human re-keying, sub-second latency, and mathematical audit verification.",
+      "An enterprise orchestration middleware platform built to bridge legacy on-premise databases, modern cloud APIs, and autonomous approval workflows.",
+    startingPrice: {
+      inr: "₹7,999",
+      usd: "$99",
+      period: "/ month",
+    },
     theProblem: {
       title: "The Friction of Disparate Enterprise Systems",
       description:
@@ -280,6 +299,7 @@ export const PRODUCTS_DATA: Record<string, ProductDetail> = {
       {
         name: "Team Engine",
         price: "₹7,999",
+        usdPrice: "$99",
         period: "per month",
         description: "For mid-sized companies seeking to automate internal operational workflows.",
         features: [
@@ -295,6 +315,7 @@ export const PRODUCTS_DATA: Record<string, ProductDetail> = {
       {
         name: "Enterprise Fleet",
         price: "₹24,999",
+        usdPrice: "$299",
         period: "per month",
         badge: "ENTERPRISE GRADE",
         highlighted: true,
@@ -313,6 +334,7 @@ export const PRODUCTS_DATA: Record<string, ProductDetail> = {
       {
         name: "Custom Cluster",
         price: "Bespoke",
+        usdPrice: "Custom",
         period: "annual licensing",
         description: "For Fortune 500 conglomerates requiring private air-gapped infrastructure.",
         features: [
@@ -341,7 +363,12 @@ export const PRODUCTS_DATA: Record<string, ProductDetail> = {
     status: "Enterprise Pilot",
     version: "v1.4.2",
     summary:
-      "Krynex Vision is an edge-native industrial computer vision software platform designed for continuous manufacturing, pharmaceuticals, and precision engineering plants. It interfaces directly with high-speed industrial cameras and SCADA PLCs to identify microscopic surface defects, dimensional anomalies, and assembly omissions in under 15 milliseconds per unit—operating entirely on-premises without dependency on cloud internet connections.",
+      "An edge-native industrial computer vision software platform engineered for continuous manufacturing, pharmaceuticals, and precision quality control.",
+    startingPrice: {
+      inr: "₹18,500",
+      usd: "$229",
+      period: "/ station / mo",
+    },
     theProblem: {
       title: "The Unreliability of Manual Quality Control",
       description:
@@ -417,6 +444,7 @@ export const PRODUCTS_DATA: Record<string, ProductDetail> = {
       {
         name: "Pilot Line Station",
         price: "₹18,500",
+        usdPrice: "$229",
         period: "per station / mo",
         description: "For single-line pilot validation and ROI assessment.",
         features: [
@@ -432,6 +460,7 @@ export const PRODUCTS_DATA: Record<string, ProductDetail> = {
       {
         name: "Multi-Plant Fleet",
         price: "Custom",
+        usdPrice: "Custom",
         period: "annual licensing",
         badge: "INDUSTRIAL SCALE",
         highlighted: true,

@@ -17,6 +17,7 @@ export default function Navbar({ onRequestDemo }: NavbarProps) {
   const pathname = usePathname();
   const hamburgerBtnRef = useRef<HTMLButtonElement>(null);
   const drawerRef = useRef<HTMLDivElement>(null);
+  const productsBtnRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -113,40 +114,56 @@ export default function Navbar({ onRequestDemo }: NavbarProps) {
                   return (
                     <div
                       key={link.label}
-                      className="relative"
+                      className="relative inline-flex items-center rounded-full group"
                       onMouseEnter={() => setProductsDropdown(true)}
                       onMouseLeave={() => setProductsDropdown(false)}
-                      onFocus={() => setProductsDropdown(true)}
-                      onBlur={(e) => {
-                        if (!e.currentTarget.contains(e.relatedTarget as Node)) {
-                          setProductsDropdown(false);
-                        }
-                      }}
                       onKeyDown={(e) => {
                         if (e.key === "Escape") {
                           setProductsDropdown(false);
+                          productsBtnRef.current?.focus();
                         }
                       }}
                     >
                       <Link
                         href={link.href}
-                        aria-haspopup="true"
-                        aria-expanded={productsDropdown}
-                        className={`text-xs font-medium px-3 py-1.5 rounded-full transition-all flex items-center gap-1 focus:outline-none focus-visible:ring-1 focus-visible:ring-white/40 ${
+                        className={`text-xs font-medium pl-3 pr-1 py-1.5 rounded-l-full transition-all focus:outline-none focus-visible:ring-1 focus-visible:ring-white/40 ${
                           isActive
                             ? "text-white bg-white/[0.08] font-semibold"
                             : "text-zinc-400 hover:text-white hover:bg-white/[0.04]"
                         }`}
                       >
-                        <span>{link.label}</span>
-                        <ChevronDown className={`w-3 h-3 text-zinc-500 transition-transform ${productsDropdown ? "rotate-180 text-white" : ""}`} />
+                        {link.label}
                       </Link>
+                      <button
+                        ref={productsBtnRef}
+                        type="button"
+                        id="products-menu-button"
+                        aria-haspopup="true"
+                        aria-expanded={productsDropdown}
+                        aria-controls="products-menu"
+                        aria-label="Toggle Products dropdown menu"
+                        onClick={() => setProductsDropdown((prev) => !prev)}
+                        onKeyDown={(e) => {
+                          if (e.key === "ArrowDown") {
+                            e.preventDefault();
+                            setProductsDropdown(true);
+                          }
+                        }}
+                        className={`text-xs pr-2.5 pl-1 py-1.5 rounded-r-full transition-all focus:outline-none focus-visible:ring-1 focus-visible:ring-white/40 ${
+                          isActive
+                            ? "text-white bg-white/[0.08]"
+                            : "text-zinc-400 hover:text-white hover:bg-white/[0.04]"
+                        }`}
+                      >
+                        <ChevronDown className={`w-3 h-3 text-zinc-500 transition-transform ${productsDropdown ? "rotate-180 text-white" : ""}`} />
+                      </button>
 
                       {/* Dropdown Menu */}
                       {productsDropdown && (
                         <div
+                          id="products-menu"
                           role="menu"
-                          aria-label="Software Products Menu"
+                          aria-labelledby="products-menu-button"
                           className="absolute top-full left-0 mt-2 w-72 rounded-2xl bg-[#080808] border border-white/10 p-2 shadow-[0_10px_40px_rgba(0,0,0,0.9)] backdrop-blur-2xl animate-fade-in z-50"
                         >
                           <div className="absolute top-0 left-6 right-6 h-[1px] bg-gradient-to-r from-transparent via-white/25 to-transparent pointer-events-none" />

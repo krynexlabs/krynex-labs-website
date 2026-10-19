@@ -97,7 +97,7 @@ export default function PrivacyPage() {
               </li>
             </ul>
             <p className="text-zinc-400 text-xs">
-              Contact submissions are retained securely for the duration of the business evaluation or client relationship, and are never sold or rented to third-party commercial brokers.
+              Contact and inquiry submissions are retained for up to 24 months from the date of submission to maintain commercial continuity and technical evaluation records, unless earlier deletion is requested by the data subject. Inquiries are never sold, rented, or brokered to any third party.
             </p>
           </section>
 
@@ -105,7 +105,36 @@ export default function PrivacyPage() {
           <section className="space-y-4">
             <h2 className="text-xl font-bold text-white tracking-tight flex items-center gap-2">
               <Server className="w-5 h-5 text-zinc-400" />
-              3. Telemetry, Cookies &amp; User Choices
+              3. Categories of Infrastructure Sub-Processors
+            </h2>
+            <p className="text-zinc-400 leading-relaxed">
+              Krynex Labs engages enterprise cloud and edge infrastructure sub-processors subject to strict data processing agreements, zero-retention commitments, and KMS envelope encryption:
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs font-mono">
+              <div className="p-3.5 rounded-xl bg-[#080808] border border-white/[0.08]">
+                <div className="text-white font-semibold mb-1">Edge CDN &amp; Cloud Hosting</div>
+                <div className="text-zinc-400">Vercel Inc. (Edge Network &amp; Serverless SSR Runtime)</div>
+              </div>
+              <div className="p-3.5 rounded-xl bg-[#080808] border border-white/[0.08]">
+                <div className="text-white font-semibold mb-1">Transactional Communication</div>
+                <div className="text-zinc-400">Enterprise Email Relay (Inquiry Notification Delivery)</div>
+              </div>
+              <div className="p-3.5 rounded-xl bg-[#080808] border border-white/[0.08]">
+                <div className="text-white font-semibold mb-1">Data Storage &amp; Encryption</div>
+                <div className="text-zinc-400">Isolated VPC Instances with KMS Hardware Envelope Keys</div>
+              </div>
+              <div className="p-3.5 rounded-xl bg-[#080808] border border-white/[0.08]">
+                <div className="text-white font-semibold mb-1">Local Edge Inference</div>
+                <div className="text-zinc-400">100% On-Premise Air-Gapped Appliances (Krynex Vision)</div>
+              </div>
+            </div>
+          </section>
+
+          {/* Section 4 */}
+          <section className="space-y-4">
+            <h2 className="text-xl font-bold text-white tracking-tight flex items-center gap-2">
+              <EyeOff className="w-5 h-5 text-zinc-400" />
+              4. Telemetry, Cookies &amp; User Choices
             </h2>
             <p className="text-zinc-400 leading-relaxed">
               This website employs minimal, non-invasive cookies solely for essential session persistence, regional CDN routing,
@@ -116,21 +145,22 @@ export default function PrivacyPage() {
             </p>
           </section>
 
-          {/* Section 4 */}
+          {/* Section 5 */}
           <section className="space-y-4">
             <h2 className="text-xl font-bold text-white tracking-tight flex items-center gap-2">
               <Mail className="w-5 h-5 text-zinc-400" />
-              4. Data Subject Rights &amp; Contact Information
+              5. Data Subject Rights &amp; DPDP Grievance Officer
             </h2>
             <p className="text-zinc-400 leading-relaxed">
-              In accordance with applicable data protection laws (including the Digital Personal Data Protection Act and international privacy frameworks), you have the right to request access to, correction of, or deletion of personal contact details submitted to us.
+              In accordance with India&apos;s Digital Personal Data Protection (DPDP) Act 2023 and international privacy standards, data subjects hold the right to access, rectify, or request erasure of personal data held by Krynex Labs.
             </p>
-            <div className="p-4 rounded-xl bg-[#080808] border border-white/[0.08] font-mono text-xs text-zinc-400 space-y-1">
-              <div>DATA GOVERNANCE &amp; PRIVACY INQUIRIES</div>
-              <div>KRYNEX LABS</div>
-              <div>AHMEDABAD (IN)</div>
-              <div>Direct: <a href="mailto:support@krynexlabs.in" className="text-white underline">support@krynexlabs.in</a></div>
-              <div>Executive WhatsApp: <a href="https://wa.me/919879418569?text=Hello%20Krynex%20Labs,%20I%20have%20a%20data%20governance%20inquiry." target="_blank" rel="noopener noreferrer" className="text-white underline">+91 9879418569</a> <span className="text-[10px] text-zinc-400 font-mono">(WhatsApp Only • No Calls)</span></div>
+            <div className="p-4 rounded-xl bg-[#080808] border border-white/[0.08] font-mono text-xs text-zinc-400 space-y-1.5">
+              <div className="text-white font-bold">DESIGNATED PRIVACY &amp; GRIEVANCE OFFICER</div>
+              <div>Entity: KRYNEX LABS</div>
+              <div>Location: Sindhu Bhavan Road (SBR), Ahmedabad, Gujarat — 380054, India</div>
+              <div>Grievance Email: <a href="mailto:support@krynexlabs.in" className="text-white underline">support@krynexlabs.in</a></div>
+              <div>Direct Messaging: <a href="https://wa.me/919879418569?text=Hello%20Krynex%20Labs,%20I%20have%20a%20data%20governance%20inquiry." target="_blank" rel="noopener noreferrer" className="text-white underline">+91 9879418569</a> <span className="text-[10px] text-zinc-400 font-mono">(Direct Messaging • WhatsApp Business)</span></div>
+              <div className="text-[11px] text-zinc-500 pt-1">Response Window: All statutory data privacy and grievance inquiries are acknowledged within 24 hours.</div>
             </div>
           </section>
         </div>

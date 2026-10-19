@@ -147,9 +147,65 @@ assert.strictEqual(nextConfigContent.includes("Content-Security-Policy"), true);
 assert.strictEqual(nextConfigContent.includes("X-Frame-Options"), true);
 assert.strictEqual(nextConfigContent.includes("nosniff"), true);
 console.log("✔ PASS: Required enterprise security headers present in next.config.mjs.");
+// 12. Mid-Word Truncation Verification
+console.log("\n[TEST 12] Mid-Word Truncation Verification in Product Catalogs");
+Object.values(PRODUCTS_DATA).forEach((prod) => {
+  assert.strictEqual(
+    prod.summary.includes("..."),
+    false,
+    `Product summary for ${prod.name} must not contain mid-word truncation '...'`
+  );
+  assert.strictEqual(
+    prod.summary.endsWith("."),
+    true,
+    `Product summary for ${prod.name} must be a complete sentence ending in a period.`
+  );
+});
+console.log("✔ PASS: Zero mid-word truncations in product summaries; all are complete sentences.");
+
+// 13. Dual-Currency Pricing Verification
+console.log("\n[TEST 13] Dual-Currency (INR & USD) Pricing Verification");
+Object.values(PRODUCTS_DATA).forEach((prod) => {
+  assert.ok(prod.startingPrice?.inr, `${prod.name} must define an INR startingPrice`);
+  assert.ok(prod.startingPrice?.usd, `${prod.name} must define a USD startingPrice`);
+  prod.pricingTiers.forEach((tier) => {
+    assert.ok(tier.price, `${tier.name} must define INR price`);
+    assert.ok(tier.usdPrice, `${tier.name} must define USD price`);
+  });
+});
+console.log("✔ PASS: All products and tiers define both INR and USD subscription pricing.");
+
+// 14. Canonical Sitemap Verification
+console.log("\n[TEST 14] Canonical Sitemap Route Verification (Zero 301 paths)");
+const sitemapContent = fs.readFileSync("src/app/sitemap.ts", "utf-8");
+assert.strictEqual(
+  sitemapContent.includes("/solutions"),
+  false,
+  "Sitemap must not include 301 redirected /solutions routes"
+);
+assert.strictEqual(sitemapContent.includes("/products/krynex-lexis"), true);
+assert.strictEqual(sitemapContent.includes("/products/krynex-flow"), true);
+assert.strictEqual(sitemapContent.includes("/products/krynex-vision"), true);
+console.log("✔ PASS: Sitemap strictly contains canonical 200 OK routes.");
+
+// 15. Legacy String & Entity Name Hygiene
+console.log("\n[TEST 15] Legacy String & Entity Name Hygiene");
+const termsContent = fs.readFileSync("src/app/terms/page.tsx", "utf-8");
+const footerContent = fs.readFileSync("src/components/Footer.tsx", "utf-8");
+assert.strictEqual(termsContent.includes("Krynex Labs Inc"), false);
+assert.strictEqual(footerContent.includes("bespoke artificial intelligence"), false);
+assert.strictEqual(termsContent.includes("Statements of Work"), false);
+assert.strictEqual(footerContent.includes("https://github.com/krynexlabs"), false);
+console.log("✔ PASS: Zero legacy entity names, bespoke consulting copy, or dead GitHub links.");
+
+// 16. SLA Standardization (99.9%)
+console.log("\n[TEST 16] SLA Standardization to 99.9% Target");
+assert.strictEqual(termsContent.includes("99.99%"), false);
+assert.strictEqual(termsContent.includes("99.9% Service Availability Target"), true);
+console.log("✔ PASS: SLA standardized to 99.9% Service Availability Target.");
 
 console.log("\n=======================================================");
-console.log("ALL 11 CRITICAL REGRESSION SUITES PASSED SUCCESSFULLY!");
+console.log("ALL 16 CRITICAL REGRESSION SUITES PASSED SUCCESSFULLY!");
 console.log("=======================================================\n");
 
 process.exit(0);

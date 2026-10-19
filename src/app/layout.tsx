@@ -87,7 +87,10 @@ const jsonLd = {
       telephone: "+91-98794-18569",
       address: {
         "@type": "PostalAddress",
+        streetAddress: "Sindhu Bhavan Road (SBR)",
         addressLocality: "Ahmedabad",
+        addressRegion: "Gujarat",
+        postalCode: "380054",
         addressCountry: "IN",
       },
       geo: {
@@ -116,7 +119,7 @@ const jsonLd = {
         },
       ],
       sameAs: [
-        "https://github.com/krynexlabs",
+        "https://www.krynexlabs.in",
       ],
     },
     {

@@ -149,8 +149,6 @@ export default function ProblemSection() {
     },
   ];
 
-  const currentProblem = problemCategories[activeCategory];
-
   return (
     <section
       id="problem"
@@ -184,15 +182,25 @@ export default function ProblemSection() {
         </div>
 
         {/* 7 Interactive Pain Category Tabs */}
-        <div className="flex flex-wrap gap-2 p-1.5 rounded-2xl bg-[#080808] border border-white/10 mb-8">
+        <div
+          role="tablist"
+          aria-label="Operational Problem Categories"
+          className="flex flex-wrap gap-2 p-1.5 rounded-2xl bg-[#080808] border border-white/10 mb-8"
+        >
           {problemCategories.map((cat, idx) => {
             const Icon = cat.icon;
+            const isSelected = activeCategory === idx;
             return (
               <button
                 key={cat.id}
+                id={`problem-tab-${idx}`}
+                role="tab"
+                aria-selected={isSelected}
+                aria-controls={`problem-panel-${idx}`}
+                tabIndex={isSelected ? 0 : -1}
                 onClick={() => setActiveCategory(idx)}
-                className={`flex items-center gap-2 py-2 px-3.5 rounded-xl text-xs font-medium transition-all ${
-                  activeCategory === idx
+                className={`flex items-center gap-2 py-2 px-3.5 rounded-xl text-xs font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white ${
+                  isSelected
                     ? "bg-white text-black font-semibold shadow-md"
                     : "text-zinc-400 hover:text-white hover:bg-white/[0.04]"
                 }`}
@@ -204,79 +212,94 @@ export default function ProblemSection() {
           })}
         </div>
 
-        {/* Active Problem Exploration Card */}
+        {/* Problem Exploration Cards (All rendered for SSR/SEO; active one visible) */}
         <div className="spotlight-card rounded-3xl bg-[#080808] border border-white/10 p-6 sm:p-10 shadow-2xl relative overflow-hidden">
           <div className="absolute top-0 left-12 right-12 h-[1px] bg-gradient-to-r from-transparent via-white/30 to-transparent pointer-events-none" />
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-            {/* Left Column: Problem Anatomy */}
-            <div className="lg:col-span-7 space-y-6">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-white/[0.04] border border-white/10 flex items-center justify-center text-white">
-                  <currentProblem.icon className="w-5 h-5" />
-                </div>
-                <div>
-                  <span className="text-[10px] font-mono uppercase tracking-widest text-zinc-400">
-                    PROBLEM CATEGORY #{String(activeCategory + 1).padStart(2, "0")}
-                  </span>
-                  <h3 className="text-2xl font-bold text-white tracking-tight">
-                    {currentProblem.title}
-                  </h3>
-                </div>
-              </div>
+          {problemCategories.map((cat, idx) => {
+            const isSelected = activeCategory === idx;
+            const Icon = cat.icon;
+            return (
+              <div
+                key={cat.id}
+                id={`problem-panel-${idx}`}
+                role="tabpanel"
+                aria-labelledby={`problem-tab-${idx}`}
+                aria-hidden={!isSelected}
+                className={isSelected ? "block" : "hidden"}
+              >
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                  {/* Left Column: Problem Anatomy */}
+                  <div className="lg:col-span-7 space-y-6">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-xl bg-white/[0.04] border border-white/10 flex items-center justify-center text-white">
+                        <Icon className="w-5 h-5" />
+                      </div>
+                      <div>
+                        <span className="text-[10px] font-mono uppercase tracking-widest text-zinc-400">
+                          PROBLEM CATEGORY #{String(idx + 1).padStart(2, "0")}
+                        </span>
+                        <h3 className="text-2xl font-bold text-white tracking-tight">
+                          {cat.title}
+                        </h3>
+                      </div>
+                    </div>
 
-              <div className="text-sm font-mono text-zinc-300">
-                {currentProblem.subtitle}
-              </div>
+                    <div className="text-sm font-mono text-zinc-300">
+                      {cat.subtitle}
+                    </div>
 
-              <p className="text-sm text-zinc-400 leading-relaxed">
-                {currentProblem.frictionDetail}
-              </p>
+                    <p className="text-sm text-zinc-400 leading-relaxed">
+                      {cat.frictionDetail}
+                    </p>
 
-              {/* Discovery Questions Krynex Investigates */}
-              <div className="p-5 rounded-2xl bg-black border border-white/[0.06]">
-                <div className="text-[10px] font-mono text-zinc-400 uppercase tracking-wider mb-3 flex items-center gap-1.5">
-                  <HelpCircle className="w-3.5 h-3.5 text-zinc-400" />
-                  <span>Questions We Investigate in This Vector:</span>
-                </div>
-                <ul className="space-y-2">
-                  {currentProblem.questions.map((q, qIdx) => (
-                    <li key={qIdx} className="text-xs text-zinc-300 flex items-start gap-2">
-                      <span className="text-zinc-500 font-mono">0{qIdx + 1}.</span>
-                      <span>{q}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-
-            {/* Right Column: Software Opportunity & Product Result */}
-            <div className="lg:col-span-5 flex flex-col justify-between h-full space-y-6 p-6 rounded-2xl bg-black border border-white/[0.08]">
-              <div>
-                <span className="text-[10px] font-mono uppercase tracking-wider text-zinc-400 block mb-2">
-                  HOW WE TURN THIS INTO A SOFTWARE PRODUCT:
-                </span>
-                <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed mb-6">
-                  {currentProblem.investigationVector}
-                </p>
-
-                <div className="pt-4 border-t border-white/[0.06] space-y-3">
-                  <div className="text-[10px] font-mono uppercase tracking-wider text-zinc-500">
-                    Krynex Implementation Status:
+                    {/* Discovery Questions Krynex Investigates */}
+                    <div className="p-5 rounded-2xl bg-black border border-white/[0.06]">
+                      <div className="text-[10px] font-mono text-zinc-400 uppercase tracking-wider mb-3 flex items-center gap-1.5">
+                        <HelpCircle className="w-3.5 h-3.5 text-zinc-400" />
+                        <span>Questions We Investigate in This Vector:</span>
+                      </div>
+                      <ul className="space-y-2">
+                        {cat.questions.map((q, qIdx) => (
+                          <li key={qIdx} className="text-xs text-zinc-300 flex items-start gap-2">
+                            <span className="text-zinc-500 font-mono">0{qIdx + 1}.</span>
+                            <span>{q}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
                   </div>
-                  <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white/[0.04] border border-white/10 text-xs font-mono text-white">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-white" />
-                    <span>{currentProblem.solutionExample}</span>
+
+                  {/* Right Column: Software Opportunity & Product Result */}
+                  <div className="lg:col-span-5 flex flex-col justify-between h-full space-y-6 p-6 rounded-2xl bg-black border border-white/[0.08]">
+                    <div>
+                      <span className="text-[10px] font-mono uppercase tracking-wider text-zinc-400 block mb-2">
+                        HOW WE TURN THIS INTO A SOFTWARE PRODUCT:
+                      </span>
+                      <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed mb-6">
+                        {cat.investigationVector}
+                      </p>
+
+                      <div className="pt-4 border-t border-white/[0.06] space-y-3">
+                        <div className="text-[10px] font-mono uppercase tracking-wider text-zinc-500">
+                          Krynex Implementation Status:
+                        </div>
+                        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white/[0.04] border border-white/10 text-xs font-mono text-white">
+                          <CheckCircle2 className="w-3.5 h-3.5 text-white" />
+                          <span>{cat.solutionExample}</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="pt-4 border-t border-white/[0.06] flex items-center justify-between text-xs font-mono">
+                      <span className="text-zinc-500">Validation Protocol:</span>
+                      <span className="text-zinc-300">Empirical Demand Verification</span>
+                    </div>
                   </div>
                 </div>
               </div>
-
-              <div className="pt-4 border-t border-white/[0.06] flex items-center justify-between text-xs font-mono">
-                <span className="text-zinc-500">Validation Protocol:</span>
-                <span className="text-zinc-300">Empirical Demand Verification</span>
-              </div>
-            </div>
-          </div>
+            );
+          })}
         </div>
       </div>
     </section>

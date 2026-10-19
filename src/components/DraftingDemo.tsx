@@ -154,8 +154,6 @@ export default function DraftingDemo() {
     }, 1000);
   };
 
-  const currentSector = sectors[activeTab];
-
   return (
     <section
       id="console"
@@ -190,28 +188,40 @@ export default function DraftingDemo() {
         </div>
 
         {/* 4 Clickable Industry Domain Tabs */}
-        <div className="flex flex-wrap gap-2 p-1.5 rounded-2xl bg-[#080808] border border-white/10 mb-8 max-w-2xl">
-          {sectors.map((sec, idx) => (
-            <button
-              key={sec.id}
-              onClick={() => setActiveTab(idx)}
-              className={`flex-1 min-w-[120px] py-2.5 px-4 rounded-xl text-xs sm:text-sm font-medium transition-all text-center ${
-                activeTab === idx
-                  ? "bg-white text-black font-semibold shadow-md"
-                  : "text-zinc-400 hover:text-white hover:bg-white/[0.04]"
-              }`}
-            >
-              {sec.name}
-            </button>
-          ))}
+        <div
+          role="tablist"
+          aria-label="Diagnostic Sectors"
+          className="flex flex-wrap gap-2 p-1.5 rounded-2xl bg-[#080808] border border-white/10 mb-8 max-w-2xl"
+        >
+          {sectors.map((sec, idx) => {
+            const isSelected = activeTab === idx;
+            return (
+              <button
+                key={sec.id}
+                id={`demo-tab-${idx}`}
+                role="tab"
+                aria-selected={isSelected}
+                aria-controls={`demo-panel-${idx}`}
+                tabIndex={isSelected ? 0 : -1}
+                onClick={() => setActiveTab(idx)}
+                className={`flex-1 min-w-[120px] py-2.5 px-4 rounded-xl text-xs sm:text-sm font-medium transition-all text-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white ${
+                  isSelected
+                    ? "bg-white text-black font-semibold shadow-md"
+                    : "text-zinc-400 hover:text-white hover:bg-white/[0.04]"
+                }`}
+              >
+                {sec.name}
+              </button>
+            );
+          })}
         </div>
 
         {/* Main Diagnostic Terminal Container with Spotlight */}
-        <div className="spotlight-card grid grid-cols-1 lg:grid-cols-12 gap-8 rounded-3xl bg-[#080808] border border-white/10 p-6 sm:p-8 lg:p-10 shadow-2xl relative overflow-hidden">
+        <div className="spotlight-card rounded-3xl bg-[#080808] border border-white/10 p-6 sm:p-8 lg:p-10 shadow-2xl relative overflow-hidden">
           <div className="absolute top-0 left-12 right-12 h-[1px] bg-gradient-to-r from-transparent via-white/30 to-transparent pointer-events-none" />
 
           {/* Top Status Bar with Monochrome Window Controls */}
-          <div className="lg:col-span-12 flex flex-wrap items-center justify-between pb-6 border-b border-white/10 gap-4">
+          <div className="flex flex-wrap items-center justify-between pb-6 mb-8 border-b border-white/10 gap-4">
             <div className="flex items-center gap-3">
               <div className="flex items-center gap-1.5">
                 <span className="w-3 h-3 rounded-full bg-zinc-700 inline-block" />
@@ -244,111 +254,126 @@ export default function DraftingDemo() {
             </div>
           </div>
 
-          {/* Left Column: 3 Structured Analysis Panels */}
-          <div className="lg:col-span-7 flex flex-col gap-6">
-            {/* Panel 1: Identified Industry Pain */}
-            <div className="p-5 rounded-2xl bg-black border border-white/[0.08]">
-              <div className="flex items-center justify-between mb-3">
-                <span className="text-xs font-mono text-zinc-300 uppercase tracking-widest font-semibold">
-                  01 // IDENTIFIED INDUSTRY BOTTLENECK
-                </span>
-                <span className="text-[10px] font-mono text-zinc-500">OPERATIONAL AUDIT</span>
-              </div>
-              <p className="text-sm text-zinc-300 leading-relaxed mb-4">
-                {currentSector.painPoint}
-              </p>
-              <div className="space-y-1.5 pt-3 border-t border-white/5 text-xs text-zinc-400 font-mono">
-                {currentSector.painMetrics.map((pm, pIdx) => (
-                  <div key={pIdx} className="flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-zinc-400" />
-                    <span>{pm}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Panel 2: Krynex AI/IT Architecture */}
-            <div className="p-5 rounded-2xl bg-black border border-white/[0.08]">
-              <div className="flex items-center justify-between mb-3">
-                <span className="text-xs font-mono text-white uppercase tracking-widest font-semibold">
-                  02 // KRYNEX ENGINEERED ARCHITECTURE
-                </span>
-                <span className="text-[10px] font-mono text-zinc-500">PROPRIETARY R&amp;D</span>
-              </div>
-              <p className="text-sm text-zinc-300 leading-relaxed mb-4">
-                {currentSector.architecture}
-              </p>
-              <div className="space-y-1.5 pt-3 border-t border-white/5 text-xs text-zinc-400 font-mono">
-                {currentSector.archDetails.map((ad, aIdx) => (
-                  <div key={aIdx} className="flex items-center gap-2">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-white shrink-0" />
-                    <span>{ad}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Panel 3: Measured Enterprise Impact */}
-            <div className="p-5 rounded-2xl bg-black border border-white/[0.08]">
-              <div className="flex items-center justify-between mb-4">
-                <span className="text-xs font-mono text-white uppercase tracking-widest font-semibold">
-                  03 // MEASURED ENTERPRISE IMPACT
-                </span>
-                <span className="text-[10px] font-mono text-zinc-500">PRODUCTION BENCHMARK</span>
-              </div>
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                {currentSector.impact.map((imp, iIdx) => (
-                  <div key={iIdx} className="p-3.5 rounded-xl bg-[#050505] border border-white/10">
-                    <div className="text-2xl font-bold font-mono text-white mb-0.5">
-                      {imp.value}
+          {/* All 4 Sector Panels Rendered for SSR/SEO; Active Sector Visible */}
+          {sectors.map((sec, idx) => {
+            const isSelected = activeTab === idx;
+            return (
+              <div
+                key={sec.id}
+                id={`demo-panel-${idx}`}
+                role="tabpanel"
+                aria-labelledby={`demo-tab-${idx}`}
+                aria-hidden={!isSelected}
+                className={`grid grid-cols-1 lg:grid-cols-12 gap-8 ${isSelected ? "block" : "hidden"}`}
+              >
+                {/* Left Column: 3 Structured Analysis Panels */}
+                <div className="lg:col-span-7 flex flex-col gap-6">
+                  {/* Panel 1: Identified Industry Pain */}
+                  <div className="p-5 rounded-2xl bg-black border border-white/[0.08]">
+                    <div className="flex items-center justify-between mb-3">
+                      <span className="text-xs font-mono text-zinc-300 uppercase tracking-widest font-semibold">
+                        01 // IDENTIFIED INDUSTRY BOTTLENECK
+                      </span>
+                      <span className="text-[10px] font-mono text-zinc-500">OPERATIONAL AUDIT</span>
                     </div>
-                    <div className="text-xs font-semibold text-zinc-300 mb-1 font-mono">{imp.label}</div>
-                    <div className="text-[11px] text-zinc-500 leading-tight">{imp.detail}</div>
+                    <p className="text-sm text-zinc-300 leading-relaxed mb-4">
+                      {sec.painPoint}
+                    </p>
+                    <div className="space-y-1.5 pt-3 border-t border-white/5 text-xs text-zinc-400 font-mono">
+                      {sec.painMetrics.map((pm, pIdx) => (
+                        <div key={pIdx} className="flex items-center gap-2">
+                          <span className="w-1.5 h-1.5 rounded-full bg-zinc-400" />
+                          <span>{pm}</span>
+                        </div>
+                      ))}
+                    </div>
                   </div>
-                ))}
-              </div>
-            </div>
-          </div>
 
-          {/* Right Column: Monochrome Terminal Window */}
-          <div className="lg:col-span-5 flex flex-col justify-between rounded-2xl bg-[#030303] border border-white/10 p-5 font-mono shadow-inner overflow-hidden">
-            <div>
-              <div className="flex items-center justify-between pb-3 mb-4 border-b border-white/[0.08] text-xs text-zinc-400">
-                <div className="flex items-center gap-2">
-                  <Terminal className="w-4 h-4 text-zinc-400" />
-                  <span>runtime-telemetry.log</span>
+                  {/* Panel 2: Krynex AI/IT Architecture */}
+                  <div className="p-5 rounded-2xl bg-black border border-white/[0.08]">
+                    <div className="flex items-center justify-between mb-3">
+                      <span className="text-xs font-mono text-white uppercase tracking-widest font-semibold">
+                        02 // KRYNEX ENGINEERED ARCHITECTURE
+                      </span>
+                      <span className="text-[10px] font-mono text-zinc-500">PROPRIETARY R&amp;D</span>
+                    </div>
+                    <p className="text-sm text-zinc-300 leading-relaxed mb-4">
+                      {sec.architecture}
+                    </p>
+                    <div className="space-y-1.5 pt-3 border-t border-white/5 text-xs text-zinc-400 font-mono">
+                      {sec.archDetails.map((ad, aIdx) => (
+                        <div key={aIdx} className="flex items-center gap-2">
+                          <CheckCircle2 className="w-3.5 h-3.5 text-white shrink-0" />
+                          <span>{ad}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Panel 3: Measured Enterprise Impact */}
+                  <div className="p-5 rounded-2xl bg-black border border-white/[0.08]">
+                    <div className="flex items-center justify-between mb-4">
+                      <span className="text-xs font-mono text-white uppercase tracking-widest font-semibold">
+                        03 // MEASURED ENTERPRISE IMPACT
+                      </span>
+                      <span className="text-[10px] font-mono text-zinc-500">PRODUCTION BENCHMARK</span>
+                    </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                      {sec.impact.map((imp, iIdx) => (
+                        <div key={iIdx} className="p-3.5 rounded-xl bg-[#050505] border border-white/10">
+                          <div className="text-2xl font-bold font-mono text-white mb-0.5">
+                            {imp.value}
+                          </div>
+                          <div className="text-xs font-semibold text-zinc-300 mb-1 font-mono">{imp.label}</div>
+                          <div className="text-[11px] text-zinc-500 leading-tight">{imp.detail}</div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
                 </div>
-                <span className="text-[10px] text-white flex items-center gap-1.5">
-                  <span className="w-1.5 h-1.5 rounded-full bg-white animate-ping" />
-                  LIVE STREAM
-                </span>
-              </div>
 
-              {/* Terminal Logs in White / Zinc */}
-              <div className="space-y-3 text-xs leading-relaxed max-h-[380px] overflow-y-auto pr-1">
-                {currentSector.terminalLogs.map((log, lIdx) => (
-                  <div
-                    key={lIdx}
-                    className={`transition-all duration-300 ${
-                      lIdx === currentSector.terminalLogs.length - 1
-                        ? "p-2.5 rounded-lg bg-white/[0.05] border border-white/20 text-white font-semibold"
-                        : log.startsWith(">>")
-                        ? "text-zinc-200"
-                        : "text-zinc-400"
-                    }`}
-                  >
-                    {log}
+                {/* Right Column: Monochrome Terminal Window */}
+                <div className="lg:col-span-5 flex flex-col justify-between rounded-2xl bg-[#030303] border border-white/10 p-5 font-mono shadow-inner overflow-hidden">
+                  <div>
+                    <div className="flex items-center justify-between pb-3 mb-4 border-b border-white/[0.08] text-xs text-zinc-400">
+                      <div className="flex items-center gap-2">
+                        <Terminal className="w-4 h-4 text-zinc-400" />
+                        <span>runtime-telemetry.log</span>
+                      </div>
+                      <span className="text-[10px] text-white flex items-center gap-1.5">
+                        <span className="w-1.5 h-1.5 rounded-full bg-white animate-ping" />
+                        LIVE STREAM
+                      </span>
+                    </div>
+
+                    {/* Terminal Logs in White / Zinc */}
+                    <div className="space-y-3 text-xs leading-relaxed max-h-[380px] overflow-y-auto pr-1">
+                      {sec.terminalLogs.map((log, lIdx) => (
+                        <div
+                          key={lIdx}
+                          className={`transition-all duration-300 ${
+                            lIdx === sec.terminalLogs.length - 1
+                              ? "p-2.5 rounded-lg bg-white/[0.05] border border-white/20 text-white font-semibold"
+                              : log.startsWith(">>")
+                              ? "text-zinc-200"
+                              : "text-zinc-400"
+                          }`}
+                        >
+                          {log}
+                        </div>
+                      ))}
+                    </div>
                   </div>
-                ))}
-              </div>
-            </div>
 
-            {/* Bottom Terminal Telemetry Footer */}
-            <div className="pt-4 mt-6 border-t border-white/[0.08] flex items-center justify-between text-xs text-zinc-500">
-              <span className="text-[10px] font-mono text-zinc-400">CPU LOAD: 14% // GPU: 0.4ms</span>
-              <span className="text-white text-[11px] font-semibold">ALL NODES SYNCHRONIZED</span>
-            </div>
-          </div>
+                  {/* Bottom Terminal Telemetry Footer */}
+                  <div className="pt-4 mt-6 border-t border-white/[0.08] flex items-center justify-between text-xs text-zinc-500">
+                    <span className="text-[10px] font-mono text-zinc-400">CPU LOAD: 14% // GPU: 0.4ms</span>
+                    <span className="text-white text-[11px] font-semibold">ALL NODES SYNCHRONIZED</span>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>

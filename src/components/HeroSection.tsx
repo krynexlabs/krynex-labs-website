@@ -9,7 +9,7 @@ import { ArrowRight, ShieldCheck, Zap, Cpu, Globe2, Compass } from "lucide-react
 const Hero3DCube = dynamic(() => import("./Hero3DCube"), {
   ssr: false,
   loading: () => (
-    <div className="w-full h-[560px] lg:h-[680px] flex items-center justify-center">
+    <div className="w-full h-[380px] sm:h-[480px] lg:h-[680px] flex items-center justify-center">
       <div className="w-12 h-12 rounded-full border-2 border-white/20 border-t-white animate-spin" />
     </div>
   ),

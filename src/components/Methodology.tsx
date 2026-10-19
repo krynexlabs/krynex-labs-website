@@ -165,8 +165,6 @@ export default function Methodology() {
     },
   ];
 
-  const currentStep = steps[activeStep];
-
   return (
     <section
       id="approach"
@@ -192,93 +190,119 @@ export default function Methodology() {
         </div>
 
         {/* 7 Interactive Stage Selectors */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-2 p-1.5 rounded-2xl bg-[#080808] border border-white/10 mb-8 max-w-6xl mx-auto">
-          {steps.map((st, sIdx) => (
-            <button
-              key={st.step}
-              onClick={() => setActiveStep(sIdx)}
-              className={`py-2 px-2.5 rounded-xl text-center transition-all flex flex-col items-center gap-1 ${
-                activeStep === sIdx
-                  ? "bg-white text-black font-semibold shadow-md"
-                  : "text-zinc-400 hover:text-white hover:bg-white/[0.04]"
-              }`}
-            >
-              <span className={`text-[10px] font-mono uppercase ${activeStep === sIdx ? "text-zinc-700" : "text-zinc-500"}`}>
-                Step {st.step}
-              </span>
-              <span className="text-xs truncate max-w-full font-medium">
-                {st.title.replace("the ", "")}
-              </span>
-            </button>
-          ))}
+        <div
+          role="tablist"
+          aria-label="Product Lifecycle Stages"
+          className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-2 p-1.5 rounded-2xl bg-[#080808] border border-white/10 mb-8 max-w-6xl mx-auto"
+        >
+          {steps.map((st, sIdx) => {
+            const isSelected = activeStep === sIdx;
+            return (
+              <button
+                key={st.step}
+                id={`stage-tab-${sIdx}`}
+                role="tab"
+                aria-selected={isSelected}
+                aria-controls={`stage-panel-${sIdx}`}
+                tabIndex={isSelected ? 0 : -1}
+                onClick={() => setActiveStep(sIdx)}
+                className={`py-2 px-2.5 rounded-xl text-center transition-all flex flex-col items-center gap-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white ${
+                  isSelected
+                    ? "bg-white text-black font-semibold shadow-md"
+                    : "text-zinc-400 hover:text-white hover:bg-white/[0.04]"
+                }`}
+              >
+                <span className={`text-[10px] font-mono uppercase ${isSelected ? "text-zinc-700" : "text-zinc-500"}`}>
+                  Step {st.step}
+                </span>
+                <span className="text-xs truncate max-w-full font-medium">
+                  {st.title.replace("the ", "")}
+                </span>
+              </button>
+            );
+          })}
         </div>
 
-        {/* Active Stage Spotlight Card */}
+        {/* Stage Spotlight Card (All 7 panels rendered in SSR; active panel visible) */}
         <div className="spotlight-card rounded-3xl bg-[#080808] border border-white/10 p-6 sm:p-10 shadow-2xl relative overflow-hidden">
           <div className="absolute top-0 left-12 right-12 h-[1px] bg-gradient-to-r from-transparent via-white/30 to-transparent pointer-events-none" />
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-            {/* Left: Stage Overview & Action Points */}
-            <div className="lg:col-span-6 space-y-6">
-              <div className="flex items-center gap-3">
-                <span className="text-2xl font-mono font-bold text-white px-3 py-1 rounded-xl bg-white/[0.06] border border-white/10">
-                  {currentStep.step}
-                </span>
-                <div>
-                  <span className="text-[10px] font-mono text-zinc-400 uppercase tracking-widest block">
-                    {`STAGE ${currentStep.step} // ${currentStep.badge}`}
-                  </span>
-                  <h3 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
-                    {currentStep.title}
-                  </h3>
+          {steps.map((st, sIdx) => {
+            const isSelected = activeStep === sIdx;
+            return (
+              <div
+                key={st.step}
+                id={`stage-panel-${sIdx}`}
+                role="tabpanel"
+                aria-labelledby={`stage-tab-${sIdx}`}
+                aria-hidden={!isSelected}
+                className={isSelected ? "block" : "hidden"}
+              >
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                  {/* Left: Stage Overview & Action Points */}
+                  <div className="lg:col-span-6 space-y-6">
+                    <div className="flex items-center gap-3">
+                      <span className="text-2xl font-mono font-bold text-white px-3 py-1 rounded-xl bg-white/[0.06] border border-white/10">
+                        {st.step}
+                      </span>
+                      <div>
+                        <span className="text-[10px] font-mono text-zinc-400 uppercase tracking-widest block">
+                          {`STAGE ${st.step} // ${st.badge}`}
+                        </span>
+                        <h3 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
+                          {st.title}
+                        </h3>
+                      </div>
+                    </div>
+
+                    <div className="text-sm font-mono text-zinc-300">
+                      {st.subtitle}
+                    </div>
+
+                    <p className="text-sm text-zinc-400 leading-relaxed">
+                      {st.description}
+                    </p>
+
+                    <div className="space-y-2.5 pt-4 border-t border-white/[0.06]">
+                      <span className="text-[10px] font-mono uppercase tracking-wider text-zinc-500 block mb-2">
+                        Key Operational Objectives:
+                      </span>
+                      {st.points.map((pt, pIdx) => (
+                        <div key={pIdx} className="flex items-start gap-2.5 text-xs text-zinc-300">
+                          <CheckCircle2 className="w-3.5 h-3.5 text-white shrink-0 mt-0.5" />
+                          <span>{pt}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Right: Telemetry Console Snippet */}
+                  <div className="lg:col-span-6 flex flex-col justify-between h-full space-y-4">
+                    <div className="rounded-2xl bg-black border border-white/[0.08] p-5 font-mono text-xs shadow-inner relative overflow-hidden">
+                      <div className="flex items-center justify-between pb-3 mb-4 border-b border-white/[0.06] text-zinc-500">
+                        <div className="flex items-center gap-2">
+                          <span className="w-2 h-2 rounded-full bg-white animate-pulse" />
+                          <span className="text-zinc-300">krynex-lifecycle // step-{st.step}</span>
+                        </div>
+                        <span className="text-[10px]">EXECUTION_LOG</span>
+                      </div>
+
+                      <pre className="text-zinc-300 whitespace-pre-wrap leading-relaxed text-[11px] sm:text-xs overflow-x-auto">
+                        {st.terminalSnippet}
+                      </pre>
+                    </div>
+
+                    <div className="p-4 rounded-xl bg-white/[0.02] border border-white/[0.06] flex items-center justify-between text-xs font-mono">
+                      <span className="text-zinc-500">Current Phase:</span>
+                      <span className="text-white font-medium">
+                        {st.step} of 07 — {st.badge}
+                      </span>
+                    </div>
+                  </div>
                 </div>
               </div>
-
-              <div className="text-sm font-mono text-zinc-300">
-                {currentStep.subtitle}
-              </div>
-
-              <p className="text-sm text-zinc-400 leading-relaxed">
-                {currentStep.description}
-              </p>
-
-              <div className="space-y-2.5 pt-4 border-t border-white/[0.06]">
-                <span className="text-[10px] font-mono uppercase tracking-wider text-zinc-500 block mb-2">
-                  Key Operational Objectives:
-                </span>
-                {currentStep.points.map((pt, pIdx) => (
-                  <div key={pIdx} className="flex items-start gap-2.5 text-xs text-zinc-300">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-white shrink-0 mt-0.5" />
-                    <span>{pt}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Right: Telemetry Console Snippet */}
-            <div className="lg:col-span-6 flex flex-col justify-between h-full space-y-4">
-              <div className="rounded-2xl bg-black border border-white/[0.08] p-5 font-mono text-xs shadow-inner relative overflow-hidden">
-                <div className="flex items-center justify-between pb-3 mb-4 border-b border-white/[0.06] text-zinc-500">
-                  <div className="flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-white animate-pulse" />
-                    <span className="text-zinc-300">krynex-lifecycle // step-{currentStep.step}</span>
-                  </div>
-                  <span className="text-[10px]">EXECUTION_LOG</span>
-                </div>
-
-                <pre className="text-zinc-300 whitespace-pre-wrap leading-relaxed text-[11px] sm:text-xs overflow-x-auto">
-                  {currentStep.terminalSnippet}
-                </pre>
-              </div>
-
-              <div className="p-4 rounded-xl bg-white/[0.02] border border-white/[0.06] flex items-center justify-between text-xs font-mono">
-                <span className="text-zinc-500">Current Phase:</span>
-                <span className="text-white font-medium">
-                  {currentStep.step} of 07 — {currentStep.badge}
-                </span>
-              </div>
-            </div>
-          </div>
+            );
+          })}
         </div>
       </div>
     </section>
