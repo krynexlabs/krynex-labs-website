@@ -162,7 +162,7 @@ const jsonLd = {
         price: "7999",
         priceCurrency: "INR",
         priceValidUntil: "2027-12-31",
-        availability: "https://schema.org/InStock",
+        availability: "https://schema.org/PreOrder",
       },
     },
     {
@@ -171,13 +171,13 @@ const jsonLd = {
       name: "Krynex Vision",
       applicationCategory: "IndustrialApplication",
       operatingSystem: "Embedded Linux, NVIDIA Jetson, Industrial PC",
-      description: "Sub-15ms edge computer vision and real-time telemetry inspection platform for zero-defect manufacturing lines.",
+      description: "Edge computer vision and real-time telemetry inspection platform for manufacturing quality control.",
       offers: {
         "@type": "Offer",
         price: "18500",
         priceCurrency: "INR",
         priceValidUntil: "2027-12-31",
-        availability: "https://schema.org/InStock",
+        availability: "https://schema.org/PreOrder",
       },
     },
     {
@@ -189,7 +189,7 @@ const jsonLd = {
           name: "What is Krynex Labs' software rental and subscription access model?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "Krynex Labs operates on a problem-driven software rental model (Build → Launch → Subscribe → Maintain → Improve). Businesses pay a predictable monthly or annual recurring subscription to access production software, eliminating upfront capital expenditure while receiving continuous feature evolution, security patches, and 99.9% availability SLA.",
+            text: "Krynex Labs operates on a problem-driven software rental model (Build → Launch → Subscribe → Maintain → Improve). Businesses pay a predictable monthly or annual recurring subscription to access production software, eliminating upfront capital expenditure while receiving continuous feature evolution, security patches, and high-availability enterprise infrastructure.",
           },
         },
         {
@@ -197,7 +197,7 @@ const jsonLd = {
           name: "Can Krynex software products operate on-premise without cloud latency?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "Yes. Products like Krynex Vision operate 100% offline at the factory edge using industrial computers (NVIDIA Jetson / IPC) with sub-15ms inference latency and local PLC pneumatic actuation. Products handling confidential corporate records, such as Krynex Lexis, feature zero-retention KMS envelope encryption.",
+            text: "Yes. Products like Krynex Vision are engineered to operate offline at the factory edge using industrial computers (NVIDIA Jetson / IPC) with low-latency inference targets and local PLC pneumatic actuation. Products handling confidential corporate records, such as Krynex Lexis, feature zero-retention KMS envelope encryption.",
           },
         },
         {

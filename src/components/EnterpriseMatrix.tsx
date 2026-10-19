@@ -40,14 +40,14 @@ export default function EnterpriseMatrix() {
       icon: Factory,
       workflow: "High-speed line assembly, part inspection, and SCADA PLC logging.",
       painPoint:
-        "Human visual inspection suffers a 3% to 6% defect escape rate on fast-moving lines (500+ parts/min), while cloud-based AI fails due to 200ms+ network latency and factory internet dropouts.",
+        "Human visual inspection suffers elevated defect escape rates on fast-moving continuous lines, while cloud-based AI fails due to network latency and factory internet dropouts.",
       whyExistingFails:
         "Legacy machine vision requires expensive custom programming and cannot correlate detected defects with upstream PLC vibration and temperature sensors.",
       solution:
-        "Krynex Vision: Sub-15ms edge TensorRT computer vision operating entirely on-premise without cloud latency, coupled with real-time SCADA telemetry and pneumatic reject actuators.",
+        "Krynex Vision: Edge TensorRT computer vision operating entirely on-premise without cloud latency, coupled with real-time SCADA telemetry and pneumatic reject actuators.",
       beneficiaries: "Plant managers, quality control engineers, and precision component manufacturers.",
-      statusBadge: "Commercial Product (Krynex Vision)",
-      metrics: ["Sub-15ms Edge Inference", "0.02% Target Defect Escape", "100% Offline Autonomy"],
+      statusBadge: "Commercial Product (In Development)",
+      metrics: ["Edge Target Inference", "Minimized Target Defect Escape", "Offline Edge Autonomy"],
       productLink: "/products/krynex-vision",
     },
     {
@@ -55,16 +55,16 @@ export default function EnterpriseMatrix() {
       title: "Legal, Real Estate & Statutory Compliance",
       sectorType: "Statutory Practice & Conveyancing",
       icon: Scale,
-      workflow: "Real estate conveyancing, 30-year sub-registrar index searches, and bilingual notice drafting.",
+      workflow: "Real estate conveyancing, sub-registrar index searches, and bilingual notice drafting.",
       painPoint:
-        "Corporate legal counsel and advocates spend 4 to 8 hours per deed copying boilerplate clauses, risking omitted statutory covenants and clumsy bilingual Gujarati-English translation errors.",
+        "Corporate legal counsel and advocates spend hours per deed copying boilerplate clauses, risking omitted statutory covenants and clumsy bilingual Gujarati-English translation errors.",
       whyExistingFails:
         "Static Word templates and generic public AI tools hallucinate non-existent citations and risk serious confidentiality breaches under statutory privilege rules.",
       solution:
-        "Krynex Lexis: India's premier bilingual legal drafting and title clearance platform, compiling structured draft deeds in under 1.2 seconds with deterministic statutory guardrails.",
+        "Krynex Lexis: India's premier bilingual legal drafting and title clearance platform, compiling structured draft deeds with rapid deterministic statutory guardrails.",
       beneficiaries: "Corporate legal counsel, title advocates, real estate developers, and statutory compliance panels.",
-      statusBadge: "Commercial Product (Krynex Lexis)",
-      metrics: ["Sub-Second Compilation", "30-Year Index-II Triage", "Zero Public Model Training"],
+      statusBadge: "Commercial Product (Live)",
+      metrics: ["Rapid Compilation Target", "Multi-Year Index-II Triage", "Zero Public Model Training"],
       productLink: "/products/krynex-lexis",
     },
     {
@@ -74,14 +74,14 @@ export default function EnterpriseMatrix() {
       icon: Truck,
       workflow: "Container gate clearance, multilingual manifest extraction, and customs EDI filing.",
       painPoint:
-        "Container gate dwell times average 24 to 36 hours due to manual shipping manifest key-value extraction, leading to substantial demurrage penalties and truck queue congestion.",
+        "Container gate dwell times create bottlenecks due to manual shipping manifest key-value extraction, leading to substantial demurrage penalties and truck queue congestion.",
       whyExistingFails:
         "Traditional OCR tools choke on low-resolution multilingual scans and lack direct bi-directional integration with port operating systems (TOS).",
       solution:
-        "Krynex Flow: High-throughput event middleware and neural document extraction pipeline that parses shipping manifests and synchronizes ERP ledgers in under 4 minutes.",
+        "Krynex Flow: High-throughput event middleware and neural document extraction pipeline that parses shipping manifests and synchronizes ERP ledgers with rapid event dispatch.",
       beneficiaries: "Container terminal operators, customs house agents (CHA), freight forwarders, and logistics fleets.",
-      statusBadge: "Commercial Product (Krynex Flow)",
-      metrics: ["<3 Min Gate Clearance Target", "10x Ingestion Acceleration", "Automated 3-Way ERP Match"],
+      statusBadge: "Commercial Product (In Development)",
+      metrics: ["Rapid Gate Clearance Target", "Automated Ingestion Acceleration", "3-Way ERP Matching Target"],
       productLink: "/products/krynex-flow",
     },
     {
@@ -91,14 +91,14 @@ export default function EnterpriseMatrix() {
       icon: Landmark,
       workflow: "Real-time payment transaction scoring, synthetic identity detection, and loan collateral verification.",
       painPoint:
-        "Batch transaction scoring fails to catch multi-account circular fraud rings in real time, and manual collateral land registry searches stall commercial loan disbursements for 5 to 7 days.",
+        "Batch transaction scoring fails to catch multi-account circular fraud rings in real time, and manual collateral land registry searches stall commercial loan disbursements.",
       whyExistingFails:
         "Traditional rules engines cannot scale to graph topologies under high-concurrency loads and lack automated sub-registrar verification hooks.",
       solution:
         "Streaming Graph Neural Network (GNN) risk-scoring middleware coupled with automated collateral verification pipelines engineered for zero-trust compliance.",
       beneficiaries: "Commercial banks, MSME lenders, NBFCs, and financial risk compliance teams.",
       statusBadge: "Architectural Research & Prototyping",
-      metrics: ["<5ms Scoring Target", "<90s Collateral Verification", "Zero-Trust KMS Encryption"],
+      metrics: ["Real-Time Scoring Target", "Accelerated Collateral Verification", "Zero-Trust KMS Encryption"],
       productLink: "/industries#fintech",
     },
     {
@@ -108,14 +108,14 @@ export default function EnterpriseMatrix() {
       icon: Activity,
       workflow: "Emergency diagnostic scan ingestion, radiologist triage, and hospital EHR synchronization.",
       painPoint:
-        "Acute radiologist shortages cause critical scan review turnarounds to exceed 4 to 8 hours, while strict healthcare data laws prohibit uploading patient DICOM scans to public cloud APIs.",
+        "Acute radiologist shortages cause critical scan review turnarounds to experience significant delays, while strict healthcare data laws prohibit uploading patient DICOM scans to public cloud APIs.",
       whyExistingFails:
         "Cloud-based consumer AI violates patient privacy and data sovereignty laws, while legacy hospital software lacks modern neural prioritization.",
       solution:
         "Air-gapped on-premise convolutional neural network triage nodes that prioritize urgent emergency scans on local hospital servers without external cloud transmission.",
       beneficiaries: "Hospital emergency departments, diagnostic imaging networks, and clinical radiologist teams.",
       statusBadge: "Clinical Research & Regulatory Exploration",
-      metrics: ["<3 Min Triage Window Target", "100% Offline Hospital LAN", "Zero External Exposure"],
+      metrics: ["Rapid Triage Window Target", "Air-Gapped Hospital LAN", "Zero External Exposure"],
       productLink: "/industries#healthcare",
     },
   ];

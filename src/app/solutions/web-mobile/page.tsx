@@ -7,7 +7,7 @@ import SolutionDetailView from "@/components/SolutionDetailView";
 export const metadata: Metadata = {
   title: "Web & Mobile Application Engineering",
   description:
-    "Sub-100ms full-stack web platforms, offline-first mobile apps, and interactive enterprise data visualizations built with Next.js and React Native.",
+    "High-performance full-stack web platforms, offline-first mobile apps, and interactive enterprise data visualizations built with Next.js and React Native.",
   alternates: {
     canonical: "https://www.krynexlabs.in/solutions/web-mobile",
   },

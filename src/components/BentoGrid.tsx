@@ -74,7 +74,7 @@ export default function BentoGrid() {
                   APPLIED AI &amp; ML PIPELINES
                 </span>
                 <span className="text-xs font-mono text-zinc-500 uppercase tracking-wider">
-                  NEURAL MESH // v4.2
+                  NEURAL MESH // ARCHITECTURE
                 </span>
               </div>
 
@@ -93,7 +93,7 @@ export default function BentoGrid() {
                     <span className="w-2 h-2 rounded-full bg-white animate-pulse" />
                     <span>krynex-neural-topology // continuous-stream</span>
                   </div>
-                  <span className="text-zinc-400 text-[11px]">WEIGHTS: 64k VOCAB // ZERO-LOSS</span>
+                  <span className="text-zinc-400 text-[11px]">WEIGHTS: REGIONAL VOCABULARY // VERIFIED</span>
                 </div>
 
                 {/* Relative Node Container with Embedded SVG Curved Data Beams */}
@@ -222,7 +222,7 @@ export default function BentoGrid() {
                         KRYNEX NEURAL CORE
                       </div>
                       <div className="text-[9px] opacity-70 mt-1">
-                        Sub-10ms Quantized Model
+                        Quantized Edge Model
                       </div>
                     </button>
                   </div>
@@ -264,7 +264,7 @@ export default function BentoGrid() {
                       {selectedNode === "data" && "RAW INDUSTRY DATA: Real-time telemetry, SCADA sensors, and high-frequency edge logs."}
                       {selectedNode === "erp" && "LEGACY ERP LOGS: Ingesting SAP, Oracle, and enterprise transactional records."}
                       {selectedNode === "predictive" && "PREDICTIVE ANALYTICS: Anomaly forecasting, maintenance prevention, and cash-flow intelligence."}
-                      {selectedNode === "workflow" && "AUTONOMOUS WORKFLOW: Automated multi-system execution with 0% human touchpoint delay."}
+                      {selectedNode === "workflow" && "AUTONOMOUS WORKFLOW: Automated multi-system execution minimizing manual touchpoint delays."}
                     </span>
                   </div>
                   <span className="text-[11px] text-white shrink-0 font-semibold">STREAMING</span>
@@ -275,12 +275,12 @@ export default function BentoGrid() {
             {/* Bottom Proof Metrics */}
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 pt-6 mt-6 border-t border-white/[0.08]">
               <div>
-                <div className="text-xl sm:text-2xl font-bold font-mono text-white">99.6%</div>
-                <div className="text-xs text-zinc-500">Model F1 Accuracy</div>
+                <div className="text-xl sm:text-2xl font-bold font-mono text-white">High</div>
+                <div className="text-xs text-zinc-500">Model F1 Objective</div>
               </div>
               <div>
-                <div className="text-xl sm:text-2xl font-bold font-mono text-white">&lt;10ms</div>
-                <div className="text-xs text-zinc-500">GPU Tensor Latency</div>
+                <div className="text-xl sm:text-2xl font-bold font-mono text-white">Low Latency</div>
+                <div className="text-xs text-zinc-500">GPU Latency Target</div>
               </div>
               <div className="col-span-2 sm:col-span-1">
                 <div className="text-xl sm:text-2xl font-bold font-mono text-white">Zero Trust</div>
@@ -317,7 +317,7 @@ export default function BentoGrid() {
               <div className="p-3.5 rounded-xl bg-black border border-white/[0.08] mb-4">
                 <div className="flex items-center justify-between text-[10px] font-mono text-zinc-400 mb-2">
                   <span>MICROSERVICE LATENCY MESH</span>
-                  <span className="text-white font-semibold">P99: 0.38ms</span>
+                  <span className="text-white font-semibold">LOW LATENCY MESH</span>
                 </div>
                 {/* 14 Bar Histogram */}
                 <div className="flex items-end justify-between gap-1 h-12 pt-1">
@@ -330,9 +330,9 @@ export default function BentoGrid() {
                   ))}
                 </div>
                 <div className="flex items-center justify-between text-[9px] font-mono text-zinc-500 mt-2">
-                  <span>0ms</span>
-                  <span>INGRESS: 120k req/s</span>
-                  <span>1ms</span>
+                  <span>MIN</span>
+                  <span>HIGH-THROUGHPUT INGRESS</span>
+                  <span>MAX</span>
                 </div>
               </div>
 
@@ -350,7 +350,7 @@ export default function BentoGrid() {
             </div>
 
             <div className="pt-4 border-t border-white/[0.08] flex items-center justify-between text-xs text-zinc-500">
-              <span className="font-mono">99.9% TARGET AVAILABILITY</span>
+              <span className="font-mono">HIGH SERVICE AVAILABILITY</span>
               <span className="text-zinc-300 font-medium">Enterprise Baseline</span>
             </div>
           </div>
@@ -386,7 +386,7 @@ export default function BentoGrid() {
                     <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
                     <span>SCADA TELEMETRY STREAM</span>
                   </div>
-                  <span className="text-white font-semibold">120,450 EVENTS/SEC TARGET</span>
+                  <span className="text-white font-semibold">REAL-TIME SCADA TELEMETRY</span>
                 </div>
                 {/* SVG Real-time Sparkline */}
                 <div className="h-10 w-full overflow-hidden flex items-center">
@@ -427,7 +427,7 @@ export default function BentoGrid() {
 
             <div className="pt-4 border-t border-white/[0.08] flex items-center justify-between text-xs text-zinc-500">
               <span className="font-mono">STREAMING INGESTION</span>
-              <span className="text-zinc-300 font-medium">Sub-Second Refresh</span>
+              <span className="text-zinc-300 font-medium">Sub-Second Refresh Target</span>
             </div>
           </div>
 
@@ -458,7 +458,7 @@ export default function BentoGrid() {
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-6">
                 <div className="p-3.5 rounded-xl bg-black border border-white/[0.06]">
                   <div className="text-[10px] font-mono text-zinc-500 uppercase">API Latency Target</div>
-                  <div className="text-xl font-bold font-mono text-white my-0.5">&lt;10ms</div>
+                  <div className="text-xl font-bold font-mono text-white my-0.5">Low Latency</div>
                   <div className="text-[10px] text-zinc-500">Edge Gateway p99 Objective</div>
                 </div>
 

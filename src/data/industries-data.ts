@@ -27,38 +27,38 @@ export const INDUSTRIES_DATA: IndustryDetail[] = [
   {
     slug: "manufacturing",
     name: "Manufacturing & Industrial IoT",
-    badge: "RESEARCH & COMMERCIAL PRODUCT // KRYNEX VISION",
-    tagline: "Sub-15ms Edge Vision & Anomaly Telemetry for Zero-Downtime Plants",
+    badge: "RESEARCH & PRODUCT VECTOR // KRYNEX VISION",
+    tagline: "Edge Vision & Anomaly Telemetry for Zero-Downtime Plants",
     overview:
       "Modern continuous manufacturing facilities face severe margins erosion due to unplanned machinery downtime, uncalibrated visual quality defects on fast-moving assembly lines, and delayed ERP reconciliation. We research factory-floor operational bottlenecks and engineer edge-native software products.",
     targetWorkflow:
       "Continuous high-speed assembly, part fabrication, physical quality inspection, and shop-floor MES/SCADA logging.",
     bottlenecks: [
-      "Manual visual inspection error rates (3% to 6%) allowing microscopic defects to escape to downstream customers.",
-      "High-speed production lines (500+ parts/minute) moving too fast for physical human inspection.",
-      "Cloud-dependent monitoring tools introducing network latency (200ms+) and failing during factory internet drops.",
+      "Manual visual inspection error rates allowing microscopic defects to escape to downstream customers.",
+      "High-speed continuous production lines moving too fast for physical human inspection.",
+      "Cloud-dependent monitoring tools introducing network latency and failing during factory internet drops.",
     ],
     whyExistingInadequate:
       "Legacy machine vision systems require cumbersome bespoke programming, cost tens of lakhs in upfront capex, and fail to correlate detected defects with upstream PLC vibration and temperature sensors.",
     krynexSolution:
       "Krynex Vision: Edge TensorRT computer vision operating entirely on-premise without cloud latency, coupled with real-time SCADA vibration telemetry and direct pneumatic reject triggers.",
     architectureDetails: [
-      "Sub-15ms edge inference on NVIDIA Jetson / Industrial PCs",
+      "Edge inference on NVIDIA Jetson / Industrial PCs",
       "Air-gapped operation with local PLC actuation (Modbus / OPC-UA)",
       "Automated SAP and Oracle bidirectional ledger synchronization",
     ],
     beneficiaries:
       "Plant managers, quality control engineers, precision component makers, and discrete manufacturers.",
-    statusLabel: "Commercial Software Product (Krynex Vision)",
+    statusLabel: "Software Product Under Active Development (Krynex Vision)",
     quantifiedImpact: [
-      { metric: "42%", label: "Target Scrap Reduction", sublabel: "Simulated line defect containment" },
-      { metric: "Sub-15ms", label: "Edge Inference Latency", sublabel: "Offline factory gateway execution target" },
-      { metric: "0.02%", label: "Defect Escape Objective", sublabel: "Modeled improvement over manual inspection" },
+      { metric: "Reduced", label: "Target Scrap Reduction", sublabel: "Simulated line defect containment objective" },
+      { metric: "Edge", label: "Edge Inference Latency", sublabel: "Offline factory gateway execution target" },
+      { metric: "Minimized", label: "Defect Escape Objective", sublabel: "Modeled improvement over manual inspection" },
     ],
     caseDossier: {
       clientType: "Precision Component & Continuous Manufacturing Facilities",
       deployedSystem: "Krynex Vision Edge Inspection Station",
-      result: "Sub-15ms automated surface defect inspection operating 100% offline at line speed.",
+      result: "Automated surface defect inspection modeled for continuous line speed.",
     },
   },
   {
@@ -69,11 +69,11 @@ export const INDUSTRIES_DATA: IndustryDetail[] = [
     overview:
       "Corporate legal counsel, title advocates, and real estate developers in India face severe backlogs manually drafting deeds, search dockets, and statutory notices across Gujarati and English revenue records. We develop deterministic drafting software to eliminate manual typing and legal ambiguity.",
     targetWorkflow:
-      "Real estate conveyancing, 30-year sub-registrar index searches, revenue record title clearance, and bilingual statutory notice generation.",
+      "Real estate conveyancing, sub-registrar index searches, revenue record title clearance, and bilingual statutory notice generation.",
     bottlenecks: [
-      "Advocates spending 4 to 8 hours per document manually copying boilerplate clauses, risking omitted statutory covenants.",
+      "Advocates spending hours per document manually copying boilerplate clauses, risking omitted statutory covenants.",
       "Regional bilingual requirements (Gujarati & English) requiring clumsy manual translation with severe legal ambiguities.",
-      "Manual search of 30 years of sub-registrar records (Index-II) risking missed encumbrances and title disputes.",
+      "Manual search across multi-decade sub-registrar records (Index-II) risking missed encumbrances and title disputes.",
     ],
     whyExistingInadequate:
       "Static word processors and generic LLM chat wrappers lack statutory grammar guardrails, hallucinate non-existent citations, and risk confidentiality breaches when sensitive client property dockets are uploaded to public clouds.",
@@ -86,16 +86,16 @@ export const INDUSTRIES_DATA: IndustryDetail[] = [
     ],
     beneficiaries:
       "Corporate legal counsel, title clearance advocates, real estate developers, and statutory compliance panels.",
-    statusLabel: "Commercial Software Product (Krynex Lexis)",
+    statusLabel: "Live Software Product (Krynex Lexis)",
     quantifiedImpact: [
-      { metric: "92%", label: "Drafting Time Reduction", sublabel: "Deeds compiled in seconds instead of hours" },
-      { metric: "100%", label: "Bilingual Precision", sublabel: "Native Gujarati legal terminology alignment" },
-      { metric: "30 Years", label: "Title Chain Indexed", sublabel: "Encumbrance timeline triage in under 2 minutes" },
+      { metric: "Target", label: "Drafting Time Reduction", sublabel: "Modeled time reduction vs manual drafting" },
+      { metric: "Native", label: "Bilingual Alignment", sublabel: "Native Gujarati legal terminology alignment" },
+      { metric: "Multi-Year", label: "Title Chain Indexing", sublabel: "Encumbrance timeline triage objective" },
     ],
     caseDossier: {
       clientType: "Real Estate Developers & Legal Firm Title Teams",
       deployedSystem: "Krynex Lexis Statutory Drafting Suite",
-      result: "Sub-second bilingual deed compilation with automated stamp duty and registration calculations.",
+      result: "Rapid bilingual deed compilation prototype with automated stamp duty and registration calculations.",
     },
   },
   {
@@ -108,7 +108,7 @@ export const INDUSTRIES_DATA: IndustryDetail[] = [
     targetWorkflow:
       "Inbound container gate processing, multilingual bill-of-lading verification, customs EDI filing, and multi-modal fleet handoffs.",
     bottlenecks: [
-      "Container gate dwell times averaging 24 to 36 hours due to manual shipping manifest key-value extraction.",
+      "Container gate dwell times exacerbated by manual shipping manifest key-value extraction.",
       "Customs paperwork discrepancies creating substantial demurrage penalties and truck queue congestion.",
       "Disconnected transport databases forcing logistics staff into repetitive manual re-entry.",
     ],
@@ -123,25 +123,25 @@ export const INDUSTRIES_DATA: IndustryDetail[] = [
     ],
     beneficiaries:
       "Container terminal operators, customs house agents (CHA), freight forwarders, and intermodal transport fleets.",
-    statusLabel: "Active Product Exploration & Integration",
+    statusLabel: "Software Product Under Active Development (Krynex Flow)",
     quantifiedImpact: [
-      { metric: "<3 Min", label: "Target Gate Turnaround", sublabel: "Modeled improvement from 24-36 hour baselines" },
-      { metric: "10x", label: "Document Ingestion Speed", sublabel: "Automated extraction without human re-keying" },
+      { metric: "Rapid", label: "Target Gate Turnaround", sublabel: "Modeled improvement from manual baselines" },
+      { metric: "Rapid", label: "Document Ingestion Speed", sublabel: "Automated extraction without human re-keying" },
       { metric: "Zero", label: "Clerical Schema Errors", sublabel: "Enforced via deterministic validation rules" },
     ],
     caseDossier: {
       clientType: "Intermodal Container Freight Operators & Terminal Hubs",
       deployedSystem: "Krynex Flow Document & Event Middleware",
-      result: "Streamlined shipping manifest ingestion and real-time ERP/TOS synchronization.",
+      result: "Modeled shipping manifest ingestion and real-time ERP/TOS synchronization architecture.",
     },
   },
   {
     slug: "fintech",
     name: "FinTech & Banking Infrastructure",
     badge: "RESEARCH VECTOR // OPPORTUNITY EXPLORATION",
-    tagline: "Sub-5ms Graph Fraud Detection & Automated Collateral Verification",
+    tagline: "Streaming Graph Fraud Detection & Automated Collateral Verification",
     overview:
-      "Financial institutions and MSME lenders struggle with high-frequency transaction fraud rings and manual collateral title verifications that take 5 to 7 business days, stalling loan disbursement velocity.",
+      "Financial institutions and MSME lenders struggle with high-frequency transaction fraud rings and manual collateral title verifications, stalling loan disbursement velocity.",
     targetWorkflow:
       "Real-time payment transaction scoring, synthetic identity detection, and loan collateral asset verification.",
     bottlenecks: [
@@ -154,16 +154,16 @@ export const INDUSTRIES_DATA: IndustryDetail[] = [
     krynexSolution:
       "Streaming Graph Neural Network (GNN) risk-scoring middleware coupled with automated collateral verification pipelines engineered for zero-trust compliance.",
     architectureDetails: [
-      "Streaming Apache Kafka & Flink feature ingestion (>85k events/sec design target)",
-      "Sub-5ms Graph reasoning inference for synthetic identity detection",
+      "Streaming Apache Kafka & Flink feature ingestion design target",
+      "Graph reasoning inference for synthetic identity detection",
       "Enterprise KMS cryptographic envelope encryption",
     ],
     beneficiaries:
       "Digital lending platforms, regional commercial banks, NBFCs, and compliance auditing teams.",
     statusLabel: "Architectural Research & Prototyping",
     quantifiedImpact: [
-      { metric: "<5ms", label: "Target Scoring Latency", sublabel: "Streaming graph neural inference objective" },
-      { metric: "<90s", label: "Collateral Title Check", sublabel: "Automated Index-II search exploration target" },
+      { metric: "Real-Time", label: "Target Scoring Latency", sublabel: "Streaming graph neural inference objective" },
+      { metric: "Accelerated", label: "Collateral Title Check", sublabel: "Automated Index-II search exploration target" },
       { metric: "Zero-Trust", label: "Sovereign Architecture", sublabel: "Hardware-enforced encryption standards" },
     ],
     caseDossier: {
@@ -182,7 +182,7 @@ export const INDUSTRIES_DATA: IndustryDetail[] = [
     targetWorkflow:
       "Emergency diagnostic scan ingestion, radiologist worklist triage, and hospital electronic health record (EHR) synchronization.",
     bottlenecks: [
-      "Radiologist shortages causing critical triage delays exceeding 4 to 8 hours in acute emergency cases.",
+      "Radiologist shortages causing critical triage delays in acute emergency cases.",
       "Fragmented electronic health records (EHR) trapped across legacy proprietary software suites.",
       "Strict data sovereignty laws prohibiting patient imaging transmission to third-party public cloud APIs.",
     ],
@@ -199,8 +199,8 @@ export const INDUSTRIES_DATA: IndustryDetail[] = [
       "Hospital emergency departments, diagnostic imaging networks, and clinical radiologist teams.",
     statusLabel: "Clinical Research & Regulatory Exploration",
     quantifiedImpact: [
-      { metric: "<3 Min", label: "Target Triage Window", sublabel: "Simulated emergency scan prioritization target" },
-      { metric: "100%", label: "Air-Gapped Privacy", sublabel: "Zero patient data transmission outside hospital network" },
+      { metric: "Accelerated", label: "Target Triage Window", sublabel: "Simulated emergency scan prioritization target" },
+      { metric: "Air-Gapped", label: "Data Sovereignty", sublabel: "Zero patient data transmission outside hospital network" },
       { metric: "Zero Capex", label: "Subscription Delivery", sublabel: "Predictable recurring software access model" },
     ],
     caseDossier: {

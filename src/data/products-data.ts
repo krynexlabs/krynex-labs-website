@@ -17,8 +17,7 @@ export interface ProductDetail {
   fullTagline: string;
   category: string;
   division: string;
-  status: "GA (General Availability)" | "Enterprise Pilot" | "Early Access";
-  version: string;
+  status: "Live" | "In Development" | "Concept";
   summary: string;
   startingPrice: {
     inr: string;
@@ -67,8 +66,7 @@ export const PRODUCTS_DATA: Record<string, ProductDetail> = {
       "Deterministic Bilingual Drafting & Automated Title Clearance for Indian Statutory Jurisdictions",
     category: "LegalTech & Enterprise Compliance",
     division: "Krynex Software Products // Recurring SaaS",
-    status: "GA (General Availability)",
-    version: "v3.8.4",
+    status: "Live",
     summary:
       "India's bilingual legal drafting and title clearance intelligence platform, purpose-built for corporate legal counsel, title advocates, and real estate enterprises.",
     startingPrice: {
@@ -81,9 +79,9 @@ export const PRODUCTS_DATA: Record<string, ProductDetail> = {
       description:
         "Drafting real estate deeds, title clearance dockets, sale agreements, and legal notices in India has remained a painful, slow manual bottleneck for decades.",
       painPoints: [
-        "Advocates and corporate legal departments spend 4 to 8 hours per document manually copying boilerplate clauses, risking omitted statutory covenants.",
+        "Advocates and corporate legal departments spend hours per document manually copying boilerplate clauses, risking omitted statutory covenants.",
         "Regional bilingual requirements (Gujarati & English) require clumsy manual translation, often introducing severe legal ambiguities in property schedules.",
-        "Title search dockets across 30 years of sub-registrar records (Index-II) require manual chronological indexing and indexing error auditing.",
+        "Title search dockets across sub-registrar records (Index-II) require manual chronological indexing and indexing error auditing.",
         "Frequent statutory updates (Indian Stamp Act, Registration Act 1908, Gujarat Revenue Code) are easily missed in static Word templates.",
       ],
     },
@@ -92,7 +90,7 @@ export const PRODUCTS_DATA: Record<string, ProductDetail> = {
       description:
         "Krynex Lexis replaces static templates with an intelligent, deterministic clause compiler that drafts, cross-references, and validates property covenants in real time.",
       keyBenefits: [
-        "Sub-second compilation: Complete 18-page bilingual Sale Deed (વેચાણ કરાર) or Title Report compiled in under 1.2 seconds.",
+        "Target compilation speed: Designed for rapid bilingual Sale Deed (વેચાણ કરાર) and Title Report draft generation with deterministic statutory guardrails.",
         "Bilingual statutory precision: Full native vernacular support for Gujarati legal vocabulary (e.g., ખેતીની જમીન, બિનખેતી, બોજા મુક્ત પ્રમાણપત્ર) alongside high-standard English jurisprudence.",
         "Deterministic statutory guardrails: Automated calculations of stamp duty, registration fees, and mandatory statutory covenants.",
         "Client data sovereignty: Client case files and draft covenants are protected via AES-256 KMS encryption and never used to train public models.",
@@ -103,10 +101,10 @@ export const PRODUCTS_DATA: Record<string, ProductDetail> = {
         title: "Bilingual Clause Synthesis Engine",
         description:
           "Draft deeds simultaneously in Gujarati and English with parallel side-by-side covenant alignment, preserving exact statutory meaning.",
-        specs: "Sub-second AST compilation",
+        specs: "Rapid AST compilation target",
       },
       {
-        title: "30-Year Title Search & Index-II Triage",
+        title: "Title Search & Index-II Triage",
         description:
           "Ingest revenue records (Village Form 7/12, 8A, 6 Haq Patrak, and Index-II sub-registrar dockets) to generate automated chain-of-title chronologies.",
         specs: "Automated encumbrance detection",
@@ -115,7 +113,7 @@ export const PRODUCTS_DATA: Record<string, ProductDetail> = {
         title: "Statutory Stamp Duty & Fee Calculator",
         description:
           "Real-time calculation of Gujarat and national stamp duty rates, male/female concession rebates, and sub-registrar registration fees.",
-        specs: "Updated to 2026 revenue guidelines",
+        specs: "Updated to current statutory revenue guidelines",
       },
       {
         title: "Clause Bank & Redlining Audit Ledger",
@@ -155,7 +153,7 @@ export const PRODUCTS_DATA: Record<string, ProductDetail> = {
         period: "per month",
         description: "Ideal for individual advocates and boutique legal practitioners.",
         features: [
-          "Up to 60 document dockets per month",
+          "High-volume document dockets per month",
           "Full bilingual support (Gujarati & English)",
           "Standard deed & notice templates (Sale, Lease, POA, Notice)",
           "Gujarat Stamp Duty & Registration fee calculator",
@@ -174,12 +172,12 @@ export const PRODUCTS_DATA: Record<string, ProductDetail> = {
         description: "For established law firms, real estate developers, and corporate legal departments.",
         features: [
           "Unlimited document compilation dockets",
-          "Advanced 30-Year Title Search & Index-II triage",
+          "Advanced Title Search & Index-II triage",
           "Custom firm clause bank & custom branding",
-          "Multi-user team collaboration (up to 5 seats)",
+          "Multi-user team collaboration with dedicated seats",
           "OCR document ingestion for 7/12 & Haq Patrak",
           "Export unbranded print-ready legal parchment documents",
-          "Priority 1-hour SLA WhatsApp business channel support",
+          "Priority WhatsApp business channel support",
         ],
         ctaText: "Get Professional License",
       },
@@ -195,7 +193,7 @@ export const PRODUCTS_DATA: Record<string, ProductDetail> = {
           "Unlimited seats with role-based access control (RBAC)",
           "Hardware Security Module (HSM) dedicated key vaults or KMS envelope encryption",
           "Custom fine-tuned statutory models on your historic contracts",
-          "99.9% availability target with dedicated solutions architect",
+          "High availability architecture target with dedicated solutions architect",
           "Dedicated priority support via WhatsApp & corporate email channel",
         ],
         ctaText: "Request Enterprise Consultation",
@@ -215,8 +213,7 @@ export const PRODUCTS_DATA: Record<string, ProductDetail> = {
       "Event-Driven Process Orchestration Connecting Disparate Systems with Autonomous Triage",
     category: "Enterprise Automation & Middleware",
     division: "Krynex Software Products // Recurring SaaS",
-    status: "GA (General Availability)",
-    version: "v2.6.0",
+    status: "In Development",
     summary:
       "An enterprise orchestration middleware platform built to bridge legacy on-premise databases, modern cloud APIs, and autonomous approval workflows.",
     startingPrice: {
@@ -240,7 +237,7 @@ export const PRODUCTS_DATA: Record<string, ProductDetail> = {
       description:
         "Krynex Flow provides a high-throughput distributed pipeline that ingests events, executes automated validation rules, orchestrates AI decision agents, and synchronizes backends seamlessly.",
       keyBenefits: [
-        "10x workflow acceleration: Reduce end-to-end invoice and approval lifecycles from 3 days to under 4 minutes.",
+        "Workflow acceleration target: Designed to streamline end-to-end invoice and approval lifecycles into an automated sequence.",
         "Autonomous document triage: Automatically classify, extract, and reconcile incoming PDF invoices, POs, and logistics waybills.",
         "Bi-directional legacy connectors: Pre-built zero-trust agents that integrate with on-premise SQL, SAP, and Tally without opening inbound firewall ports.",
         "Guaranteed message delivery: Distributed Kafka-backed queuing with automatic retry backoff and dead-letter queue auditing.",
@@ -257,13 +254,13 @@ export const PRODUCTS_DATA: Record<string, ProductDetail> = {
         title: "Autonomous AI Document Parsing",
         description:
           "Ingest scanned invoices, delivery receipts, and customs manifests; extract line items with high-precision validation; and match against purchase orders.",
-        specs: "3-way ERP reconciliation",
+        specs: "3-way ERP reconciliation target",
       },
       {
         title: "Outbound Webhook & Reverse-ETL Gateway",
         description:
           "Push processed and enriched event streams back into PostgreSQL, Snowflake, ClickHouse, or legacy on-prem systems in real time.",
-        specs: ">50k events/sec capacity",
+        specs: "High-throughput design target",
       },
       {
         title: "Enterprise Role-Based Access & Audit Ledger",
@@ -288,11 +285,11 @@ export const PRODUCTS_DATA: Record<string, ProductDetail> = {
       subtitle: "Simulated enterprise multi-system dispatch",
       type: "workflow-engine",
       sampleData: {
-        trigger: "Inbound Vendor Invoice (PDF - ₹4,85,000)",
-        parser: "AI Extraction Engine: 100% field confidence",
-        validation: "3-Way Match Verified against SAP PO #88921",
+        trigger: "Inbound Vendor Invoice (PDF)",
+        parser: "AI Extraction Engine: High-confidence field matching",
+        validation: "Match Verified against SAP Purchase Order",
         action: "Payment Drafted in Banking Portal + ERP Ledger Synced",
-        totalTime: "1.8 seconds (vs 48 hrs manual)",
+        totalTime: "Automated simulation runtime",
       },
     },
     pricingTiers: [
@@ -303,11 +300,11 @@ export const PRODUCTS_DATA: Record<string, ProductDetail> = {
         period: "per month",
         description: "For mid-sized companies seeking to automate internal operational workflows.",
         features: [
-          "Up to 100,000 processed workflow events per month",
-          "Up to 15 active automated workflow pipelines",
+          "High-throughput processed workflow events",
+          "Active automated workflow pipelines",
           "Standard connectors (REST, Webhooks, SQL, Tally, Sheets)",
-          "AI Document Parser (up to 1,000 pages/mo)",
-          "30-day immutable audit log history",
+          "AI Document Parser included",
+          "Immutable audit log history",
           "Standard email & WhatsApp engineering support",
         ],
         ctaText: "Start Team Engine",
@@ -321,13 +318,13 @@ export const PRODUCTS_DATA: Record<string, ProductDetail> = {
         highlighted: true,
         description: "For multi-plant enterprises with high-throughput transaction pipelines.",
         features: [
-          "Up to 1,000,000 processed workflow events per month",
+          "High-capacity processed workflow events",
           "Unlimited automated workflow pipelines",
           "Advanced SAP, Oracle, and SCADA bi-directional connectors",
-          "AI Document Parser (up to 15,000 pages/mo)",
-          "1-year compliance audit log retention",
+          "High-volume AI Document Parser included",
+          "Extended compliance audit log retention",
           "Dedicated VPC deployment option",
-          "99.9% availability target with priority emergency escalation",
+          "High availability architecture target with priority emergency escalation",
         ],
         ctaText: "Deploy Enterprise Fleet",
       },
@@ -336,13 +333,13 @@ export const PRODUCTS_DATA: Record<string, ProductDetail> = {
         price: "Bespoke",
         usdPrice: "Custom",
         period: "annual licensing",
-        description: "For Fortune 500 conglomerates requiring private air-gapped infrastructure.",
+        description: "For large enterprises requiring private air-gapped infrastructure.",
         features: [
           "Unlimited event throughput with custom Kubernetes clustering",
           "Air-gapped on-premise installation option",
           "Custom protocol connectors (OPC-UA, Modbus, proprietary legacy APIs)",
           "Dedicated cryptographic key management and enterprise data isolation",
-          "99.9% uptime target with dedicated engineering escalation",
+          "High availability uptime architecture with dedicated engineering escalation",
         ],
         ctaText: "Consult Enterprise Architects",
       },
@@ -357,11 +354,10 @@ export const PRODUCTS_DATA: Record<string, ProductDetail> = {
     slug: "krynex-vision",
     name: "Krynex Vision",
     shortTagline: "Edge Industrial Computer Vision & QC Engine",
-    fullTagline: "Sub-15ms Surface Defect Detection & SCADA Correlation for High-Speed Production",
+    fullTagline: "Edge Surface Defect Detection & SCADA Correlation for High-Speed Production",
     category: "Industrial IoT & Edge AI",
     division: "Krynex Software Products // Recurring SaaS",
-    status: "Enterprise Pilot",
-    version: "v1.4.2",
+    status: "In Development",
     summary:
       "An edge-native industrial computer vision software platform engineered for continuous manufacturing, pharmaceuticals, and precision quality control.",
     startingPrice: {
@@ -374,35 +370,35 @@ export const PRODUCTS_DATA: Record<string, ProductDetail> = {
       description:
         "Human visual inspection on high-speed factory lines suffers from fatigue, subjective criteria, and slow throughput, allowing costly defects to escape to customers.",
       painPoints: [
-        "Manual inspection error rates typically hover between 3% to 6%, leading to expensive customer warranty claims and product recalls.",
-        "High-speed production lines (500+ parts/minute) cannot be physically inspected by human operators in real time.",
-        "Cloud-dependent AI systems introduce network latency (200ms+) and fail completely during factory internet outages.",
+        "Manual inspection error rates typically hover at elevated levels, leading to expensive customer warranty claims and product recalls.",
+        "High-speed production lines (continuous lines) cannot be physically inspected by human operators in real time.",
+        "Cloud-dependent AI systems introduce network latency and fail completely during factory internet outages.",
         "Lack of automatic correlation between detected visual defects and upstream machinery telemetry (temperatures, vibrations).",
       ],
     },
     theSolution: {
-      title: "Sub-15ms Edge TensorRT Vision Models with SCADA Feedback",
+      title: "Edge TensorRT Vision Models with SCADA Feedback",
       description:
         "Krynex Vision deploys lightweight, quantized neural networks directly onto factory-floor edge gateways, triggering pneumatic reject actuators in real time.",
       keyBenefits: [
-        "0.02% defect escape rate: Down from baseline 4.2% human manual inspection error.",
-        "Sub-15ms edge inference: Real-time inspection capable of tracking lines moving up to 1,200 units per minute.",
+        "Target defect escape objective: Modeled to significantly reduce defect escapes compared to manual visual inspection baselines.",
+        "Edge inference target: Modeled for high-speed continuous line inspection.",
         "100% offline edge autonomy: The system runs uninterrupted 24/7 without requiring external internet connectivity.",
-        "Closed-loop PLC actuation: Direct digital output triggering pneumatic air-blast reject mechanisms within 20 milliseconds.",
+        "Closed-loop PLC actuation: Direct digital output designed to trigger pneumatic air-blast reject mechanisms at line speed.",
       ],
     },
     features: [
       {
         title: "Multi-Camera Edge Orchestration",
         description:
-          "Connect up to 8 GigE or USB3 Vision cameras to a single edge gateway (NVIDIA Jetson / Industrial PC) with synchronized hardware strobe triggers.",
+          "Connect multiple industrial vision cameras (GigE or USB3 Vision) to a single edge gateway (NVIDIA Jetson / Industrial PC) with synchronized hardware strobe triggers.",
         specs: "Synchronized sub-millisecond triggering",
       },
       {
         title: "Defect Classification & Semantic Segmentation",
         description:
           "Identify scratches, micro-cracks, color variations, burrs, missing components, and barcode reading errors with sub-millimeter precision.",
-        specs: "0.1mm dimensional resolution",
+        specs: "High-resolution optical target",
       },
       {
         title: "OPC-UA & Modbus PLC Gateway",
@@ -433,29 +429,29 @@ export const PRODUCTS_DATA: Record<string, ProductDetail> = {
       subtitle: "Simulated industrial defect detection line",
       type: "edge-vision",
       sampleData: {
-        lineSpeed: "720 units/min",
-        inferenceTime: "11.4 ms (TensorRT INT8)",
-        defectType: "Micro-surface crack on high-pressure seal #A2",
-        actuatorStatus: "Pneumatic reject valve triggered (Output #4)",
-        operationalYield: "99.98% clean line yield",
+        lineSpeed: "Continuous conveyor speed",
+        inferenceTime: "TensorRT INT8 runtime",
+        defectType: "Micro-surface fracture detected on flange seal",
+        actuatorStatus: "Pneumatic reject valve triggered",
+        operationalYield: "High clean line yield objective",
       },
     },
     pricingTiers: [
       {
-        name: "Pilot Line Station",
+        name: "Single Inspection Station",
         price: "₹18,500",
         usdPrice: "$229",
         period: "per station / mo",
-        description: "For single-line pilot validation and ROI assessment.",
+        description: "For single-line inspection and operational evaluation.",
         features: [
-          "Supports 1 inspection station (up to 2 cameras)",
+          "Supports 1 inspection station with dual industrial cameras",
           "Standard surface defect & dimensional models",
-          "Sub-15ms edge inference runtime license",
+          "Edge inference runtime license",
           "Local touchscreen operator dashboard",
           "PLC reject trigger integration (Modbus/OPC-UA)",
           "Remote engineer onboarding & calibration",
         ],
-        ctaText: "Start Plant Pilot",
+        ctaText: "Inquire About Station",
       },
       {
         name: "Multi-Plant Fleet",
@@ -479,7 +475,7 @@ export const PRODUCTS_DATA: Record<string, ProductDetail> = {
     documentationLinks: [
       { label: "Industrial Camera Hardware Guide", href: "/products/krynex-vision#architecture" },
       { label: "Edge PLC Wiring Specifications", href: "/products/krynex-vision#features" },
-      { label: "Request On-Site Plant Pilot", href: "/contact?subject=vision-pilot" },
+      { label: "Inquire About Plant Deployment", href: "/contact?subject=vision-inspection" },
     ],
   },
 };

@@ -29,9 +29,9 @@ export default function ProductsShowcase({ onRequestDemo }: ProductsShowcaseProp
   };
 
   const statusBadges: Record<string, { label: string; color: string }> = {
-    "krynex-lexis": { label: "Available (GA)", color: "text-zinc-200 bg-white/[0.06] border-white/15" },
-    "krynex-flow": { label: "Available (GA)", color: "text-zinc-200 bg-white/[0.06] border-white/15" },
-    "krynex-vision": { label: "Early Access / Pilot", color: "text-zinc-300 bg-white/[0.04] border-white/10" },
+    "krynex-lexis": { label: "Live", color: "text-zinc-200 bg-white/[0.08] border-white/20" },
+    "krynex-flow": { label: "In Development", color: "text-zinc-400 bg-white/[0.04] border-white/10" },
+    "krynex-vision": { label: "In Development", color: "text-zinc-400 bg-white/[0.04] border-white/10" },
   };
 
   return (

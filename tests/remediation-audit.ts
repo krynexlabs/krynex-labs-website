@@ -198,11 +198,12 @@ assert.strictEqual(termsContent.includes("Statements of Work"), false);
 assert.strictEqual(footerContent.includes("https://github.com/krynexlabs"), false);
 console.log("✔ PASS: Zero legacy entity names, bespoke consulting copy, or dead GitHub links.");
 
-// 16. SLA Standardization (99.9%)
-console.log("\n[TEST 16] SLA Standardization to 99.9% Target");
+// 16. SLA Standardization to High Availability Target
+console.log("\n[TEST 16] SLA Standardization to High Availability Target");
 assert.strictEqual(termsContent.includes("99.99%"), false);
-assert.strictEqual(termsContent.includes("99.9% Service Availability Target"), true);
-console.log("✔ PASS: SLA standardized to 99.9% Service Availability Target.");
+assert.strictEqual(termsContent.includes("99.9%"), false);
+assert.strictEqual(termsContent.includes("High Availability Service Target"), true);
+console.log("✔ PASS: SLA standardized to High Availability Service Target without unverified numbers.");
 
 // 17. Contact Form SSR Field & Honeypot Verification
 console.log("\n[TEST 17] Contact Form SSR Canonical Fields & Honeypot Verification");

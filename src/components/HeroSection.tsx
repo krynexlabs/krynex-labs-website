@@ -96,9 +96,9 @@ export default function HeroSection({ onRequestDemo }: HeroSectionProps) {
                   <span>Reliability</span>
                 </div>
                 <div className="text-lg sm:text-xl font-bold text-white tracking-tight font-mono">
-                  99.9% Target
+                  High Availability
                 </div>
-                <span className="text-[11px] text-zinc-500">Service availability target</span>
+                <span className="text-[11px] text-zinc-500">Service uptime architecture</span>
               </div>
 
               <div className="flex flex-col">

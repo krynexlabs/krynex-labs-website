@@ -148,7 +148,7 @@ export default async function Image() {
                 Availability SLA
               </span>
               <span style={{ fontSize: "18px", fontWeight: "bold", color: "#ffffff", fontFamily: "monospace" }}>
-                99.9% Target
+                High Availability
               </span>
             </div>
           </div>

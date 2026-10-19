@@ -30,7 +30,7 @@ export const SOLUTIONS_DATA: Record<string, SolutionDetail> = {
       "We engineer bespoke neural networks, domain-adapted large language models, and high-frequency edge computer vision systems tailored to complex enterprise workflows. Unlike off-the-shelf consumer wrappers, our models operate under strict deterministic guardrails, zero-retention data sovereignty, and optimized micro-kernel execution.",
     keyProblemsSolved: [
       "Minimization of LLM hallucinations via deterministic AST verification and constrained grammar decoding.",
-      "High-latency inference bottlenecks overcome with 4-bit/8-bit TensorRT quantization on local edge hardware (<15ms per frame).",
+      "High-latency inference bottlenecks overcome with TensorRT quantization on local edge hardware (edge line speed).",
       "Protection of sensitive intellectual property with zero-retention private VPC and on-premise neural cluster deployments.",
       "Fragmented unstructured document processing transformed into verified JSON schemas with high-precision validation.",
     ],
@@ -39,25 +39,25 @@ export const SOLUTIONS_DATA: Record<string, SolutionDetail> = {
         title: "Domain-Adapted Foundation Models",
         description:
           "Targeted fine-tuning of open-weights models (Llama 3, Mistral, Gemma) on proprietary enterprise corpora using LoRA/QLoRA with rigorous benchmark evaluation.",
-        metrics: ">99% target schema adherence",
+        metrics: "Targeted schema adherence",
       },
       {
         title: "Deterministic RAG & Clause Validation",
         description:
           "Hybrid sparse-dense retrieval architectures augmented with AST (Abstract Syntax Tree) verification and statutory rule enforcement engines.",
-        metrics: "<180ms retrieval latency",
+        metrics: "Sub-second retrieval latency target",
       },
       {
         title: "High-Speed Edge Computer Vision",
         description:
-          "Industrial defect detection and SCADA telemetry correlation operating at 60+ FPS on edge NVIDIA Jetson and TensorRT runtime nodes.",
-        metrics: "0.02% defect escape rate",
+          "Industrial defect detection and SCADA telemetry correlation operating at high frame rates on edge NVIDIA Jetson and TensorRT runtime nodes.",
+        metrics: "Minimized defect escape objective",
       },
       {
         title: "Predictive Analytics & Anomaly Detection",
         description:
           "Temporal Convolutional Networks (TCN) and Graph Neural Networks for predictive maintenance, fraud mitigation, and demand forecasting.",
-        metrics: "42% maintenance cost reduction",
+        metrics: "Predictive maintenance cost reduction target",
       },
     ],
     architectureHighlights: [
@@ -92,7 +92,7 @@ export const SOLUTIONS_DATA: Record<string, SolutionDetail> = {
     category: "Division A // Applied AI & Enterprise Engineering",
     badge: "SYSTEMS ARCHITECTURE",
     overview:
-      "We design, build, and modernize enterprise software backbones that support millions of daily transactions. From decomposing monolithic legacy databases to engineering event-driven microservices with > 99.9% availability, we deliver software that eliminates operational friction and scales predictably.",
+      "We design, build, and modernize enterprise software backbones that support millions of daily transactions. From decomposing monolithic legacy databases to engineering event-driven microservices with high service availability, we deliver software that eliminates operational friction and scales predictably.",
     keyProblemsSolved: [
       "Fragile monolithic legacy codebases causing operational downtime and slow feature release cycles.",
       "High data synchronization latency between disparate ERP, CRM, and supply chain databases.",
@@ -104,25 +104,25 @@ export const SOLUTIONS_DATA: Record<string, SolutionDetail> = {
         title: "Event-Driven Microservices Architecture",
         description:
           "Distributed systems built on Go, Node.js, and Java utilizing Apache Kafka and RabbitMQ for asynchronous, non-blocking transaction throughput.",
-        metrics: "1.4M req/s capacity target",
+        metrics: "High-throughput capacity target",
       },
       {
         title: "Legacy Monolith Modernization",
         description:
           "Surgical strangler-fig pattern refactoring to migrate mission-critical legacy COBOL, .NET, and PHP systems without business interruption.",
-        metrics: "Zero unplanned migration downtime",
+        metrics: "Zero unplanned migration downtime objective",
       },
       {
         title: "Custom ERP & Operations Platforms",
         description:
           "Bespoke manufacturing execution systems (MES), multi-plant inventory control, and enterprise financial reconciliation portals.",
-        metrics: "10x workflow acceleration",
+        metrics: "Accelerated workflow execution target",
       },
       {
         title: "High-Availability Database Engineering",
         description:
           "Multi-master PostgreSQL, distributed ClickHouse OLAP clusters, and low-latency Redis caching layers with automated failover.",
-        metrics: "> 99.9% availability target",
+        metrics: "High availability target",
       },
     ],
     architectureHighlights: [
@@ -157,7 +157,7 @@ export const SOLUTIONS_DATA: Record<string, SolutionDetail> = {
     category: "Division A // Applied AI & Enterprise Engineering",
     badge: "FULL-STACK ENGINEERING",
     overview:
-      "We build modern, resilient web applications and native cross-platform mobile experiences that combine fluid 60 FPS interfaces with industrial-grade reliability. Leveraging Next.js, React, React Native, and WebAssembly, we engineer customer-facing and internal portals that load instantly and operate reliably even under spotty network conditions.",
+      "We build modern, resilient web applications and native cross-platform mobile experiences that combine fluid responsive interfaces with industrial-grade reliability. Leveraging Next.js, React, React Native, and WebAssembly, we engineer customer-facing and internal portals that load instantly and operate reliably even under spotty network conditions.",
     keyProblemsSolved: [
       "Sluggish web interfaces causing high customer drop-off and diminished user productivity.",
       "Mobile applications that fail or lose data when field personnel work in offline or low-bandwidth environments.",
@@ -168,26 +168,26 @@ export const SOLUTIONS_DATA: Record<string, SolutionDetail> = {
       {
         title: "Next.js & React Full-Stack Platforms",
         description:
-          "Server-side rendered (SSR) and edge-computed web applications optimized for sub-100ms First Contentful Paint and exceptional Core Web Vitals.",
-        metrics: "<100ms FCP on Edge",
+          "Server-side rendered (SSR) and edge-computed web applications optimized for Rapid First Contentful Paint and exceptional Core Web Vitals.",
+        metrics: "Rapid Edge FCP Target",
       },
       {
         title: "Offline-First Mobile Systems",
         description:
           "React Native and Flutter mobile applications engineered with local SQLite/WatermelonDB caching and automatic background conflict resolution.",
-        metrics: "100% offline data integrity",
+        metrics: "Offline data integrity architecture",
       },
       {
         title: "High-Density Data Visualizations",
         description:
-          "Interactive WebGL, Canvas, and SVG visualization engines capable of smoothly rendering hundreds of thousands of live datapoints.",
-        metrics: "60 FPS rendering performance",
+          "Interactive WebGL, Canvas, and SVG visualization engines capable of smoothly rendering live enterprise datasets.",
+        metrics: "Smooth fluid rendering target",
       },
       {
         title: "Enterprise Design Systems & PWA",
         description:
           "Accessible, keyboard-navigable component libraries aligned with WCAG 2.1 AA standards, progressive web app offline caching, and PWA installation.",
-        metrics: "100% accessibility compliance",
+        metrics: "WCAG 2.1 AA accessibility alignment",
       },
     ],
     architectureHighlights: [
@@ -234,25 +234,25 @@ export const SOLUTIONS_DATA: Record<string, SolutionDetail> = {
         title: "Zero-Trust Cloud Architecture",
         description:
           "Identity-aware proxying, least-privilege IAM policies, automated KMS cryptographic key rotation, and isolated VPC networks.",
-        metrics: "Zero perimeter vulnerabilities",
+        metrics: "Zero perimeter vulnerabilities objective",
       },
       {
         title: "Real-Time Streaming Data Pipelines",
         description:
           "High-throughput data ingestion using Apache Kafka, Apache Flink, and dbt to process millions of events per second with sub-second analytics.",
-        metrics: ">500k events/sec streaming",
+        metrics: "High-throughput streaming target",
       },
       {
         title: "Infrastructure as Code (IaC)",
         description:
           "Repeatable, audited infrastructure provisioning using Terraform and Pulumi with automated drift detection and compliance auditing.",
-        metrics: "100% codified infrastructure",
+        metrics: "Codified infrastructure architecture",
       },
       {
         title: "FinOps & Cloud Cost Optimization",
         description:
           "Deep architectural auditing, spot instance orchestration, and workload rightsizing that systematically slashes infrastructure bills.",
-        metrics: "30-55% cloud cost reduction",
+        metrics: "Targeted cloud infrastructure cost reduction",
       },
     ],
     architectureHighlights: [
@@ -264,7 +264,7 @@ export const SOLUTIONS_DATA: Record<string, SolutionDetail> = {
       {
         title: "Multi-Cloud & Hybrid Disaster Recovery",
         detail:
-          "Continuous automated database replication across multiple geographic regions with sub-60-second recovery point objectives (RPO).",
+          "Continuous automated database replication across multiple geographic regions with rapid recovery point objectives (RPO).",
       },
       {
         title: "Observability & Anomaly Telemetry",

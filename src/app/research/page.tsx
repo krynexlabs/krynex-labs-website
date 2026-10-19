@@ -55,7 +55,7 @@ export default function ResearchPage() {
             <div className="flex flex-wrap items-center gap-4 text-xs font-mono text-zinc-400">
               <div className="flex items-center gap-1.5">
                 <CheckCircle2 className="w-4 h-4 text-white" />
-                <span>Sub-15ms Inference Targets</span>
+                <span>Edge Inference Targets</span>
               </div>
               <div className="flex items-center gap-1.5">
                 <CheckCircle2 className="w-4 h-4 text-white" />
@@ -92,7 +92,7 @@ export default function ResearchPage() {
               <div className="p-5 rounded-2xl bg-black border border-white/[0.06]">
                 <div className="text-[10px] font-mono text-zinc-400 uppercase">Target Ingestion Throughput</div>
                 <div className="text-3xl font-bold font-mono text-white tracking-tight mt-1 mb-1">
-                  1.4M req/s
+                  High-Throughput
                 </div>
                 <div className="text-xs text-zinc-400">
                   Modeled across distributed Kafka &amp; Flink ingestion clusters
@@ -101,7 +101,7 @@ export default function ResearchPage() {
               <div className="p-5 rounded-2xl bg-black border border-white/[0.06]">
                 <div className="text-[10px] font-mono text-zinc-400 uppercase">Mathematical Guardrails Target</div>
                 <div className="text-3xl font-bold font-mono text-white tracking-tight mt-1 mb-1">
-                  99.98%
+                  Deterministic
                 </div>
                 <div className="text-xs text-zinc-400">
                   Deterministic AST grammar verification to minimize generative drift and schema divergence
@@ -110,7 +110,7 @@ export default function ResearchPage() {
               <div className="p-5 rounded-2xl bg-black border border-white/[0.06]">
                 <div className="text-[10px] font-mono text-zinc-400 uppercase">Micro-Kernel Latency Objective</div>
                 <div className="text-3xl font-bold font-mono text-white tracking-tight mt-1 mb-1">
-                  &lt; 0.4ms
+                  Optimized
                 </div>
                 <div className="text-xs text-zinc-400">
                   Optimized C++/Rust runtime on edge TensorRT hardware
@@ -162,10 +162,10 @@ export default function ResearchPage() {
               <div className="text-xs font-mono text-zinc-400 uppercase mb-3">01 // QUANTIZATION</div>
               <h3 className="text-xl font-bold text-white mb-2">Edge INT4/INT8 Quantization</h3>
               <p className="text-xs sm:text-sm text-zinc-400 leading-relaxed mb-4">
-                Developing post-training weight quantization harnesses that compress 7B and 14B parameter
-                models to run at full fidelity on edge industrial gateways with under 8GB VRAM.
+                Developing post-training weight quantization harnesses that compress open-weights models
+                to run at full fidelity on edge industrial gateways.
               </p>
-              <div className="text-[11px] font-mono text-zinc-300">Target: 3.8x memory footprint reduction</div>
+              <div className="text-[11px] font-mono text-zinc-300">Target: Significant memory footprint reduction</div>
             </div>
 
             <div className="p-8 rounded-3xl bg-[#080808] border border-white/[0.08] relative">
@@ -180,12 +180,12 @@ export default function ResearchPage() {
 
             <div className="p-8 rounded-3xl bg-[#080808] border border-white/[0.08] relative">
               <div className="text-xs font-mono text-zinc-400 uppercase mb-3">03 // STREAMING</div>
-              <h3 className="text-xl font-bold text-white mb-2">Sub-5ms Graph Convolution Networks</h3>
+              <h3 className="text-xl font-bold text-white mb-2">Low-Latency Graph Convolution Networks</h3>
               <p className="text-xs sm:text-sm text-zinc-400 leading-relaxed mb-4">
                 Real-time topological fraud pattern detection across financial transaction graphs using
                 custom GPU-accelerated sparse matrix multiplication kernels.
               </p>
-              <div className="text-[11px] font-mono text-zinc-300">Target: &gt;85,000 tx/sec throughput</div>
+              <div className="text-[11px] font-mono text-zinc-300">Target: High-concurrency transaction throughput</div>
             </div>
           </div>
         </div>

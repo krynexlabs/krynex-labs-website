@@ -118,7 +118,7 @@ export default function ContactPage({ searchParams }: ContactPageProps) {
                   <Link href="/privacy" className="underline hover:text-white transition-colors">
                     Privacy Policy
                   </Link>
-                  . Formal bilateral NDAs are executed prior to deep architectural discovery or pilot deployment.
+                  . Formal bilateral NDAs are executed prior to deep architectural discovery or enterprise software deployment.
                 </p>
                 <div className="flex items-center gap-2 text-[11px] text-zinc-300">
                   <Clock className="w-3.5 h-3.5 text-white" />

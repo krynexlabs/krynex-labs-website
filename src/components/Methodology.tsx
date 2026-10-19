@@ -47,7 +47,7 @@ export default function Methodology() {
       title: "Identify the Pain Point",
       subtitle: "Isolating Concrete Economic & Time Waste",
       frictionDetail:
-        "We pinpoint the exact mechanical or human bottleneck costing time or money. We ask: which tasks consume 4+ hours? Where do errors trigger legal disputes or scrap penalties? Which steps create friction?",
+        "We pinpoint the exact mechanical or human bottleneck costing time or money. We ask: which tasks consume hours? Where do errors trigger legal disputes or scrap penalties? Which steps create friction?",
       description:
         "We isolate specific tasks that consume excessive time, generate avoidable errors, or depend on bloated legacy systems, quantifying the exact economic burden.",
       points: [
@@ -58,9 +58,9 @@ export default function Methodology() {
       ],
       terminalSnippet: `// 02 // IDENTIFY THE PAIN POINT
 >> Target: Bottleneck Isolation & Friction Audit
->> Identified Choke Point: Manual 4-8 hr deed drafting & 30-yr Index-II search
+>> Identified Choke Point: Manual deed drafting & Index-II search
 >> Baseline Error Risk: Omitted statutory covenants & transcription drift
->> Measurable Impact: Advocate backlogs exceeding 14 working days
+>> Measurable Impact: Advocate backlogs exceeding multiple working days
 >> Status: BOTTLENECK_DEFINED_AND_QUANTIFIED`,
     },
     {
@@ -79,7 +79,7 @@ export default function Methodology() {
       terminalSnippet: `// 03 // VALIDATE THE OPPORTUNITY
 >> Target: Commercial Demand & Feasibility Gate
 >> Sampling: Corporate legal teams, developers, and title practitioners
->> Validation Result: 87% express strong urgency for deterministic drafting
+>> Validation Result: Strong practitioner demand for deterministic drafting
 >> Regulatory Check: Full alignment with Registration Act 1908 & Stamp Acts
 >> Decision: PROCEED_TO_PRODUCT_ARCHITECTURE`,
     },
@@ -93,14 +93,14 @@ export default function Methodology() {
       points: [
         "Frictionless user experience modeled around daily operator routines",
         "Deterministic input verification and contextual autocomplete",
-        "Zero-latency interface design with sub-100ms response targets",
+        "Zero-latency interface design with rapid response targets",
         "Bilingual typography and regional vocabulary support",
       ],
       terminalSnippet: `// 04 // DESIGN THE SOLUTION
 >> Target: Ergonomic Workflow Canvas & State Architecture
 >> Interface Specification: Dark-mode high-density telemetry canvas
 >> Vocabulary Engine: Gujarati revenue terms mapped to English covenants
->> Human Interaction Model: Form-to-compilation in under 3 clicks
+>> Human Interaction Model: Streamlined form-to-compilation workflow
 >> Status: ARCHITECTURAL_BLUEPRINT_SEALED`,
     },
     {
@@ -111,13 +111,13 @@ export default function Methodology() {
       description:
         "We build resilient, scalable software applications using modern production technologies: Next.js, Go, Rust, Python, and TensorRT. Every model is protected by mathematical guardrails, and every database is protected by zero-trust encryption.",
       points: [
-        "Next.js SSR web platforms with sub-100ms First Contentful Paint",
+        "Next.js SSR web platforms optimized for rapid First Contentful Paint",
         "High-performance Go and Rust event-processing backends",
         "Deterministic grammar decoders and mathematical guardrails",
         "Isolated tenant architecture with per-tenant KMS envelope encryption",
       ],
       terminalSnippet: `// 05 // BUILD THE SOFTWARE
->> Compiling: KRYNEX Production Engine Core v3.8
+>> Compiling: KRYNEX Production Engine Core
 >> Runtime Stack: Next.js + Go Event Mesh + TensorRT Quantized Engine
 >> AST Verification Layer: ACTIVE (Constrained grammar & deterministic schema verification)
 >> Security Boundary: Per-tenant KMS encryption & isolated tenant namespaces
@@ -137,9 +137,9 @@ export default function Methodology() {
         "Instant cloud onboarding with self-service or guided setup",
       ],
       terminalSnippet: `// 06 // TEST AND LAUNCH
->> Executing: 1,500+ Automated Statutory Vector Test Suites...
->> Stress Load: 50,000 concurrent simulation cycles | 0 errors
->> Commercial Status: GENERAL_AVAILABILITY (GA)
+>> Executing: Automated Statutory Vector & Regression Suites...
+>> Stress Load: High-concurrency simulation validation
+>> Commercial Status: STAGED_DEPLOYMENT
 >> Subscription Gateways: LIVE (Automated invoicing & seat management)
 >> Status: PRODUCT_LAUNCHED_TO_MARKET`,
     },
@@ -158,7 +158,7 @@ export default function Methodology() {
       ],
       terminalSnippet: `// 07 // IMPROVE CONTINUOUSLY
 >> Pipeline: Continuous Weekly Evolution Cycle
->> Telemetry Active: Sub-second deed compilation & 99.9% uptime target
+>> Telemetry Active: Rapid deed compilation & high service availability
 >> Customer Feedback: Ingested directly into product engineering backlog
 >> Revenue Engine: Recurring subscriptions directly funding R&D
 >> Status: COMPOUNDING_SOFTWARE_VALUE_ACTIVE`,

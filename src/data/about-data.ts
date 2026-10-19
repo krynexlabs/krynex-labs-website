@@ -30,7 +30,7 @@ export const ABOUT_DATA = {
       {
         step: "04",
         title: "Maintain",
-        description: "We manage hosting, security, zero-trust encryption, and 99.9% uptime targets.",
+        description: "We manage hosting, security, zero-trust encryption, and high availability uptime architecture.",
       },
       {
         step: "05",

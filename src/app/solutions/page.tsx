@@ -70,7 +70,7 @@ export default function SolutionsPage() {
               </div>
               <div className="flex items-center gap-1.5">
                 <CheckCircle2 className="w-4 h-4 text-white" />
-                <span>&gt; 99.9% Uptime Target</span>
+                <span>High Availability Target</span>
               </div>
             </div>
           </div>
@@ -188,7 +188,7 @@ export default function SolutionsPage() {
               {
                 step: "03",
                 title: "Rigorous Telemetry",
-                desc: "Every system undergoes high-load stress testing (85k req/s target) and rigorous error-boundary verification.",
+                desc: "Every system undergoes high-load stress testing and rigorous error-boundary verification.",
               },
               {
                 step: "04",

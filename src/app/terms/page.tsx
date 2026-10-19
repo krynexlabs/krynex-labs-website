@@ -8,14 +8,14 @@ import Footer from "@/components/Footer";
 export const metadata: Metadata = {
   title: "Terms of Service & SLA Governance",
   description:
-    "Enterprise terms of service, subscription billing, guided sandbox access, zero-retention data sovereignty, and 99.9% service availability targets for Krynex Labs SaaS products.",
+    "Enterprise terms of service, subscription billing, guided sandbox access, zero-retention data sovereignty, and high availability targets for Krynex Labs SaaS products.",
   alternates: {
     canonical: "https://www.krynexlabs.in/terms",
   },
   openGraph: {
     title: "Terms of Service & SLA Governance | Krynex Labs",
     description:
-      "Enterprise terms of service, subscription billing, guided sandbox access, zero-retention data sovereignty, and 99.9% service availability targets for Krynex Labs SaaS products.",
+      "Enterprise terms of service, subscription billing, guided sandbox access, zero-retention data sovereignty, and high availability targets for Krynex Labs SaaS products.",
     url: "https://www.krynexlabs.in/terms",
   },
 };
@@ -44,7 +44,7 @@ export default function TermsPage() {
         <div className="mb-12 border-b border-white/[0.08] pb-8">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/[0.04] border border-white/10 text-[11px] font-mono text-zinc-300 uppercase mb-4">
             <Shield className="w-3.5 h-3.5 text-zinc-300" />
-            <span>ENTERPRISE SAAS TERMS // 99.9% SLA TARGET</span>
+            <span>ENTERPRISE SAAS TERMS // HIGH AVAILABILITY GOVERNANCE</span>
           </div>
           <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-white mb-4">
             Terms of Service &amp; SLA Governance
@@ -57,7 +57,7 @@ export default function TermsPage() {
         {/* Summary Metric Strip */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 p-4 rounded-2xl bg-[#080808] border border-white/[0.08] font-mono text-xs text-zinc-400 mb-12">
           <div>
-            <div className="text-white font-bold text-sm">99.9% Target</div>
+            <div className="text-white font-bold text-sm">High Availability</div>
             <div className="text-zinc-500 text-[11px]">Monthly Service Availability Target</div>
           </div>
           <div>
@@ -140,13 +140,13 @@ export default function TermsPage() {
           <section className="space-y-4">
             <h2 className="text-xl font-bold text-white tracking-tight flex items-center gap-2">
               <CheckCircle className="w-5 h-5 text-zinc-400" />
-              6. 99.9% Service Availability Target (SLA) &amp; Maintenance
+              6. High Availability Service Target (SLA) &amp; Maintenance
             </h2>
             <p className="text-zinc-400 leading-relaxed">
-              For commercial production tiers, Krynex Labs commits to a <strong className="text-white">99.9% Service Availability Target</strong> during each calendar month, measured across core application endpoints. Scheduled maintenance windows (typically executed during low-traffic periods between 01:00 and 04:00 IST on Sundays) are announced at least 48 hours in advance and are excluded from downtime calculations.
+              For commercial production tiers, Krynex Labs targets continuous high availability during each calendar month, measured across core application endpoints. Scheduled maintenance windows (typically executed during low-traffic periods between 01:00 and 04:00 IST on Sundays) are announced in advance and are excluded from downtime calculations.
             </p>
             <p className="text-zinc-400 leading-relaxed">
-              In the event that monthly service availability falls below 99.9% due to verifiable Krynex infrastructure failure, affected enterprise subscribers are eligible to receive prorated service credits applicable toward future subscription renewals upon written request within 30 days of the incident.
+              In the event that monthly service availability falls below scheduled targets due to verifiable Krynex infrastructure failure, affected enterprise subscribers are eligible to receive prorated service credits applicable toward future subscription renewals upon written request within 30 days of the incident.
             </p>
           </section>
 

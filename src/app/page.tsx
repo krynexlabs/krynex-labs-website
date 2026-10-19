@@ -161,25 +161,25 @@ export default function Home() {
                 {/* Metric Columns */}
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-4">
                   <div>
-                    <div className="text-[10px] font-mono text-zinc-500 uppercase">Lexis Deed Compilation</div>
+                    <div className="text-[10px] font-mono text-zinc-500 uppercase">Lexis Compilation Target</div>
                     <div className="text-xl sm:text-2xl font-bold font-mono text-white tracking-tight">
-                      &lt; 1.2s
+                      Rapid
                     </div>
-                    <div className="text-[10px] text-zinc-500">18-page bilingual deed AST synthesis</div>
+                    <div className="text-[10px] text-zinc-500">Bilingual deed AST synthesis objective</div>
                   </div>
                   <div>
-                    <div className="text-[10px] font-mono text-zinc-500 uppercase">Vision Edge Latency</div>
+                    <div className="text-[10px] font-mono text-zinc-500 uppercase">Vision Edge Latency Target</div>
                     <div className="text-xl sm:text-2xl font-bold font-mono text-white tracking-tight">
-                      &lt; 15ms
+                      Low Latency
                     </div>
                     <div className="text-[10px] text-zinc-500">TensorRT INT8 offline line inference</div>
                   </div>
                   <div>
                     <div className="text-[10px] font-mono text-zinc-500 uppercase">Service Availability Target</div>
                     <div className="text-xl sm:text-2xl font-bold font-mono text-white tracking-tight">
-                      99.9%
+                      High Availability
                     </div>
-                    <div className="text-[10px] text-zinc-500">Standard SaaS uptime SLA objective</div>
+                    <div className="text-[10px] text-zinc-500">SaaS uptime architecture objective</div>
                   </div>
                 </div>
 

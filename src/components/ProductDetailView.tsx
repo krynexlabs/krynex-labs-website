@@ -114,9 +114,6 @@ export default function ProductDetailView({ product }: ProductDetailViewProps) {
             <span className="text-[10px] font-mono px-2.5 py-0.5 rounded bg-white/[0.06] border border-white/10 text-zinc-400">
               {product.status}
             </span>
-            <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.03] text-zinc-400">
-              {product.version}
-            </span>
           </div>
 
           <h1 className="text-3xl sm:text-5xl font-bold tracking-tight mb-4 leading-tight bg-gradient-to-b from-white via-zinc-100 to-zinc-500 bg-clip-text text-transparent">
@@ -189,9 +186,9 @@ export default function ProductDetailView({ product }: ProductDetailViewProps) {
       <section id="demo" className="py-24 bg-black border-b border-white/[0.08]">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-12">
-            <span className="text-[11px] font-mono tracking-widest text-zinc-500 uppercase">
-              INTERACTIVE ARCHITECTURAL SIMULATION
-            </span>
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-white/[0.08] border border-white/20 text-xs font-mono text-zinc-300 font-semibold mb-3">
+              Illustrative demo, not live data.
+            </div>
             <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight mt-1">
               {product.demoPreview.title}
             </h2>
@@ -245,7 +242,7 @@ export default function ProductDetailView({ product }: ProductDetailViewProps) {
                       className="w-full bg-black border border-white/10 rounded-xl px-3 py-2 text-xs font-mono text-white focus:outline-none focus:border-white/40"
                     >
                       <option value="sale-deed">Deed of Absolute Sale (વેચાણ દસ્તાવેજ)</option>
-                      <option value="title-report">30-Year Title Search Report (ટાઈટલ પ્રમાણપત્ર)</option>
+                      <option value="title-report">Title Search Report (ટાઈટલ પ્રમાણપત્ર)</option>
                       <option value="poa">General Power of Attorney (જનરલ મુખત્યારનામું)</option>
                       <option value="lease">Commercial Lease Deed (ભાડા કરાર)</option>
                     </select>
@@ -268,7 +265,7 @@ export default function ProductDetailView({ product }: ProductDetailViewProps) {
                     <input
                       type="text"
                       readOnly
-                      value="₹2,45,000 (4.9% Gujarat Stamp Act 2026)"
+                      value="Calculated Statutory Duty & Registration Fees (Gujarat Stamp Act 2026)"
                       className="w-full bg-black/60 border border-white/10 rounded-xl px-3 py-2 text-xs font-mono text-zinc-300 cursor-not-allowed"
                     />
                   </div>
@@ -280,16 +277,16 @@ export default function ProductDetailView({ product }: ProductDetailViewProps) {
                     <div className="py-8 flex flex-col items-center justify-center gap-3">
                       <div className="w-5 h-5 border-2 border-white/20 border-t-white rounded-full animate-spin" />
                       <span className="text-zinc-400 text-xs">
-                        Compiling 18 statutory property covenants across Gujarat Revenue Code &amp; Registration Act...
+                        Compiling statutory property covenants across Gujarat Revenue Code &amp; Registration Act...
                       </span>
                     </div>
                   ) : simulationComplete ? (
                     <div className="space-y-2 text-zinc-300 animate-fade-in">
                       <div className="text-[11px] text-zinc-400 flex items-center justify-between border-b border-white/[0.06] pb-1.5">
                         <span className="text-white font-bold">
-                          [DOCKET COMPILED] // 18-PAGE VERIFIED DRAFT DOCKET READY
+                          [DOCKET COMPILED] // VERIFIED DRAFT DOCKET READY
                         </span>
-                        <span>COMPILED IN 1.18s</span>
+                        <span>COMPILED AT RUNTIME</span>
                       </div>
                       <div className="text-zinc-400 text-[11px] pt-1">
                         {selectedLang === "gujarati" ? (
@@ -333,7 +330,7 @@ export default function ProductDetailView({ product }: ProductDetailViewProps) {
                 {/* Simulator Action Buttons */}
                 <div className="flex flex-wrap items-center justify-between gap-4">
                   <div className="text-xs font-mono text-zinc-400">
-                    Engine: <span className="text-white">Lexis-Statutory-AST-v3.8</span>
+                    Engine: <span className="text-white">Lexis-Statutory-AST</span>
                   </div>
                     <div className="flex items-center gap-3">
                       <button
@@ -362,7 +359,7 @@ export default function ProductDetailView({ product }: ProductDetailViewProps) {
                   <div className="flex items-center gap-2">
                     <span className="text-[10px] font-mono text-zinc-400">ENGINE:</span>
                     <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.06] border border-white/10 text-white">
-                      v2.6.0 EVENT RUNTIME
+                      EVENT RUNTIME
                     </span>
                   </div>
                 </div>
@@ -396,7 +393,7 @@ export default function ProductDetailView({ product }: ProductDetailViewProps) {
                       <span className={`w-2 h-2 rounded-full ${flowNodeStep >= 3 ? "bg-white" : "bg-zinc-700"}`} />
                     </div>
                     <div className="text-xs font-bold text-white mb-1">Policy Approval Gate</div>
-                    <div className="text-[11px] font-mono text-zinc-400">&lt; ₹5L Auto-Approve</div>
+                    <div className="text-[11px] font-mono text-zinc-400">Policy Limit Auto-Approve</div>
                   </div>
 
                   {/* Node 4 */}
@@ -414,7 +411,7 @@ export default function ProductDetailView({ product }: ProductDetailViewProps) {
                 <div className="p-4 rounded-2xl bg-black border border-white/[0.08] font-mono text-xs leading-relaxed">
                   <div className="text-zinc-500 mb-2 flex items-center justify-between text-[11px]">
                     <span>LIVE PIPELINE TELEMETRY</span>
-                    <span>LATENCY: {flowNodeStep > 0 ? "142ms total roundtrip" : "IDLE"}</span>
+                    <span>STATUS: {flowNodeStep > 0 ? "Pipeline Transition Complete" : "IDLE"}</span>
                   </div>
                   {flowNodeStep === 0 && (
                     <div className="text-zinc-400">
@@ -423,10 +420,10 @@ export default function ProductDetailView({ product }: ProductDetailViewProps) {
                   )}
                   {flowNodeStep >= 1 && (
                     <div className="text-zinc-300">
-                      &gt;&gt; [00:00.012] Ingested multipart invoice payload from SAP ERP instance #BOM-02.<br />
-                      &gt;&gt; [00:00.048] Extracted 42 line items, validated GSTIN &amp; HSN statutory codes.<br />
-                      &gt;&gt; [00:00.098] Policy rule PASS: Amount ₹3,40,000 matches Purchase Order #PO-9812.<br />
-                      &gt;&gt; [00:00.142] State machine COMPLETE: Ledger updated across Oracle &amp; Salesforce.
+                      &gt;&gt; Ingested multipart invoice payload from SAP ERP instance.<br />
+                      &gt;&gt; Extracted line items, validated GSTIN &amp; HSN statutory codes.<br />
+                      &gt;&gt; Policy rule PASS: Invoiced amount matches Purchase Order itemization.<br />
+                      &gt;&gt; State machine COMPLETE: Ledger updated across Oracle &amp; Salesforce.
                     </div>
                   )}
                 </div>
@@ -460,7 +457,7 @@ export default function ProductDetailView({ product }: ProductDetailViewProps) {
                   <div className="flex items-center gap-3">
                     <span className="text-[10px] text-zinc-400">INFERENCE:</span>
                     <span className="text-[10px] px-2 py-0.5 rounded bg-white/[0.06] border border-white/10 text-white font-bold">
-                      11.4 ms (TensorRT INT8)
+                      TensorRT INT8 Runtime
                     </span>
                   </div>
                 </div>
@@ -477,8 +474,8 @@ export default function ProductDetailView({ product }: ProductDetailViewProps) {
                   <div className="absolute bottom-3 right-3 w-4 h-4 border-b-2 border-r-2 border-white/40" />
 
                   <div className="relative z-10 flex items-center justify-between text-[11px] text-zinc-400">
-                    <span>CAM-01 // HIGH-SPEED LINE CONVEYOR #04</span>
-                    <span className="text-zinc-300">FPS: 120 // RES: 2048x1536</span>
+                    <span>CAM-01 // CONTINUOUS CONVEYOR LINE</span>
+                    <span className="text-zinc-300">HIGH-SPEED LINE INSPECTION</span>
                   </div>
 
                   {/* Defect Bounding Box */}
@@ -487,25 +484,25 @@ export default function ProductDetailView({ product }: ProductDetailViewProps) {
                       <span className="text-[10px] text-white font-bold uppercase tracking-wider bg-black/60 px-2 py-0.5 rounded border border-white/20">
                         {isVisionScanning ? "ANALYZING TENSOR KERNEL..." : "DEFECT DETECTED // #DF-409"}
                       </span>
-                      <span className="text-[10px] text-white font-bold">CONF: 99.8%</span>
+                      <span className="text-[10px] text-white font-bold">SIM CONF: HIGH</span>
                     </div>
                     <div className="text-xs text-zinc-200 mt-2 font-sans font-medium">
-                      Micro-surface fracture on high-pressure flange seal #A2 (Length: 0.14mm).
+                      Micro-surface fracture on flange seal.
                     </div>
                     <div className="text-[11px] text-zinc-400 mt-1 font-mono">
-                      PLC Actuation: Pneumatic Reject Valve Output #4 Triggered via Modbus TCP.
+                      PLC Actuation: Pneumatic Reject Valve Triggered via Modbus TCP.
                     </div>
                   </div>
 
                   <div className="relative z-10 flex flex-wrap items-center justify-between text-[11px] text-zinc-400 pt-2 border-t border-white/[0.04]">
                     <span>STATUS: REJECT DIVERTED TO SCRAP CHUTE</span>
-                    <span className="text-white font-bold">LINE YIELD: 99.98% CLEAN</span>
+                    <span className="text-white font-bold">SIMULATED CLEAN YIELD</span>
                   </div>
                 </div>
 
                 <div className="flex flex-wrap items-center justify-between gap-4 pt-2">
                   <span className="text-[11px] text-zinc-400">
-                    * 100% On-Premise Execution: Zero Cloud Dependency, Zero Network Lag.
+                    * On-Premise Edge Execution: Designed for zero cloud dependency and low network latency.
                   </span>
                   <button
                     onClick={triggerVisionScan}
@@ -700,7 +697,7 @@ export default function ProductDetailView({ product }: ProductDetailViewProps) {
           </div>
 
           <div className="mt-8 text-center text-xs font-mono text-zinc-500">
-            * Guided Sandbox &amp; Cloud Onboarding &bull; Flat Predictable Recurring Access &bull; SLA Target &gt; 99.9%
+            * Guided Sandbox &amp; Cloud Onboarding &bull; Flat Predictable Recurring Access &bull; High Availability Architecture
           </div>
         </div>
       </section>

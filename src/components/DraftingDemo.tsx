@@ -37,64 +37,76 @@ export default function DraftingDemo() {
       id: "manufacturing",
       name: "Manufacturing",
       painPoint:
-        "Severe unplanned machinery downtime, uncalibrated visual quality defects on high-speed lines, and 48-hour procurement invoice matching delays costing millions in operational waste.",
-      painMetrics: ["Unplanned line stoppages: ~14 hrs/mo", "Manual QC inspection error: 4.2%", "Vendor invoice processing lag: 48 hrs"],
+        "Severe unplanned machinery downtime, uncalibrated visual quality defects on high-speed lines, and prolonged procurement invoice matching delays costing significant operational waste.",
+      painMetrics: [
+        "Unplanned machinery stoppages across high-speed lines",
+        "Manual QC visual inspection error susceptibility",
+        "Multi-day vendor invoice reconciliation delays",
+      ],
       architecture:
         "Edge-deployed Computer Vision inference nodes coupled with an automated Industrial IoT anomaly pipeline and real-time 3-way ERP reconciliation agent.",
       archDetails: [
-        "Edge TensorRT vision models (<15ms per frame)",
+        "Edge TensorRT vision models for high-speed line inspection",
         "SCADA vibration & temperature predictive telemetry",
         "Automated SAP/Oracle bidirectional ledger connector",
       ],
       impact: [
-        { label: "Target Cost Reduction", value: "42%", detail: "Simulated scrap & maintenance downtime reduction" },
-        { label: "Target Processing Speed", value: "10x", detail: "Real-time edge inspection & ERP sync objective" },
-        { label: "Target Defect Rate", value: "0.02%", detail: "Modeled vs baseline 4.2% manual error" },
+        { label: "Target Cost Reduction", value: "Significant", detail: "Scrap & maintenance downtime reduction objective" },
+        { label: "Target Processing Speed", value: "Accelerated", detail: "Real-time edge inspection & ERP sync objective" },
+        { label: "Target Defect Rate", value: "Minimized", detail: "Objective compared to manual visual inspection baselines" },
       ],
       terminalLogs: [
-        ">> init krynex_audit --sector='Manufacturing' --facility='Simulated Facility: Global Heavy Works (Sandbox Demo)'",
-        ">> Ingesting 250 SCADA sensors + 12 High-Speed Vision cameras...",
-        ">> Operational Bottleneck: Bearing vibration anomaly detected on Line #4",
-        ">> Deploying KRYNEX-Edge-Predictive-v4.2 container to local gateway...",
-        ">> Latency: 1.2ms (Edge TensorRT) | Zero-Trust isolated LAN",
-        ">> Automated Work-Order generated in ERP (Simulated Ticket #SIM-WO-89102)",
-        ">> SIMULATED ARCHITECTURE TARGET: 42% Scrap & Downtime Target | 10x Pipeline Target",
+        ">> init krynex_audit --sector='Manufacturing' --facility='Simulated Facility: Heavy Works (Sandbox Demo)'",
+        ">> Ingesting SCADA sensor streams and High-Speed Vision cameras...",
+        ">> Operational Bottleneck: Bearing vibration anomaly detected on line",
+        ">> Deploying KRYNEX edge predictive container to local gateway...",
+        ">> Runtime: Edge TensorRT inference | Zero-Trust isolated LAN",
+        ">> Automated Work-Order generated in ERP (Simulated Ticket)",
+        ">> SIMULATED ARCHITECTURE TARGET: Scrap & Downtime Reduction | Accelerated Pipeline",
       ],
     },
     {
       id: "fintech",
       name: "FinTech",
       painPoint:
-        "High-latency fraud scoring, manual collateral title verification across fragmented government registries, and batch settlement bottlenecks causing capital lockup.",
-      painMetrics: ["Transaction fraud scoring lag: >450ms", "Manual loan audit turnaround: 5-7 days", "Legacy clearing reconciliation errors: 1.8%"],
+        "Latency in fraud scoring, manual collateral title verification across fragmented government registries, and batch settlement bottlenecks causing capital lockup.",
+      painMetrics: [
+        "Transaction fraud scoring delays during peak loads",
+        "Multi-day loan collateral and title verification turnaround",
+        "Clearing and reconciliation discrepancy exposure",
+      ],
       architecture:
-        "Low-latency streaming Graph Neural Network (GNN) for sub-5ms transaction fraud scoring combined with automated document verification and distributed ledger audit pipelines.",
+        "Streaming Graph Neural Network (GNN) for real-time transaction fraud scoring combined with automated document verification and distributed ledger audit pipelines.",
       archDetails: [
         "Streaming Kafka + Flink real-time feature store",
-        "Sub-5ms Graph Convolutional Network inference",
+        "Graph Convolutional Network inference at transaction speed",
         "Hardware-enforced cryptographic key vault",
       ],
       impact: [
-        { label: "Fraud Interception Target", value: "99.8%", detail: "Simulated multi-account correlation" },
-        { label: "Verification Target", value: "<90s", detail: "Modeled vs 5-7 business days manual turnaround" },
-        { label: "Capacity Target", value: "85k/sec", detail: "Concurrent transaction design envelope" },
+        { label: "Fraud Interception Target", value: "High", detail: "Simulated multi-account correlation objective" },
+        { label: "Verification Target", value: "Rapid", detail: "Modeled turnaround compared to multi-day manual review" },
+        { label: "Capacity Target", value: "Scalable", detail: "Concurrent transaction design envelope" },
       ],
       terminalLogs: [
         ">> init krynex_audit --sector='FinTech' --node='Simulated Core Banking Engine (Demo Sandbox)'",
-        ">> Monitoring streaming ledger: 65,000 tx/sec modeled under load...",
+        ">> Monitoring streaming ledger: high-volume concurrent transactions modeled under load...",
         ">> Anomaly Triggered: Multi-hop circular disbursement pattern flagged",
         ">> Executing GNN Graph Reasoning Model on GPU cluster...",
         ">> Decision: Transaction Suspended & Risk Payload routed to Compliance Vault",
-        ">> Latency: 3.8ms | Architecture Standard: Aligned with ISO 27001 Control Guidelines",
-        ">> SIMULATED ARCHITECTURE TARGET: 99.8% Fraud Interception Target | Sub-5ms Scoring",
+        ">> Latency: Optimized runtime | Architecture Standard: Aligned with ISO 27001 Control Guidelines",
+        ">> SIMULATED ARCHITECTURE TARGET: Comprehensive Fraud Interception Target | Real-Time Scoring",
       ],
     },
     {
       id: "logistics",
       name: "Logistics",
       painPoint:
-        "Multilingual shipping manifests, customs paperwork errors creating 24-48 hour port container gate bottlenecks, and unoptimized multi-modal route demurrage penalties.",
-      painMetrics: ["Container gate dwell time: 36 hrs avg", "Multilingual customs parsing lag: 4 hrs/manifest", "Demurrage penalty run-rate: ₹1.4 Cr/yr"],
+        "Multilingual shipping manifests, customs paperwork errors creating prolonged port container gate bottlenecks, and unoptimized multi-modal route demurrage penalties.",
+      painMetrics: [
+        "Container gate dwell time and port congestion delays",
+        "Manual multilingual customs manifest parsing overhead",
+        "Demurrage exposure from documentation clearing bottlenecks",
+      ],
       architecture:
         "Multimodal Computer Vision + multilingual document intelligence engine integrated with real-time port terminal gate telematics and predictive fleet dispatch optimization.",
       archDetails: [
@@ -103,9 +115,9 @@ export default function DraftingDemo() {
         "Dynamic route recalculation based on live maritime congestion",
       ],
       impact: [
-        { label: "Turnaround Target", value: "<3 Min", detail: "Gate clearance modeled from 36 hours" },
-        { label: "Manifest Accuracy Target", value: "99.9%", detail: "Zero customs clearance penalty objective" },
-        { label: "Fleet Utilization Target", value: "+38%", detail: "Simulated turnaround efficiency gain" },
+        { label: "Turnaround Target", value: "Rapid", detail: "Gate clearance modeled from multi-day manual queues" },
+        { label: "Manifest Accuracy Target", value: "High", detail: "Target zero customs clearance penalty objective" },
+        { label: "Fleet Utilization Target", value: "Optimized", detail: "Simulated turnaround efficiency gain" },
       ],
       terminalLogs: [
         ">> init krynex_audit --sector='Logistics' --hub='Simulated Maritime Terminal (Demo Sandbox)'",
@@ -113,16 +125,20 @@ export default function DraftingDemo() {
         ">> Discrepancy Found: HSN Code mismatch in legacy vendor scan",
         ">> Running Neural Document Parser with Automated Cross-Reference Engine...",
         ">> Auto-Corrected against National Tariff Database & verified with digital token",
-        ">> Gate Clearance Token dispatched to Driver Mobile App in 1.4s",
-        ">> SIMULATED ARCHITECTURE TARGET: Dwell Time Target <3 minutes | 38% Target Efficiency Gain",
+        ">> Gate Clearance Token dispatched to Driver Mobile App at line speed",
+        ">> SIMULATED ARCHITECTURE TARGET: Reduced Dwell Time Target | Fleet Turnaround Efficiency Gain",
       ],
     },
     {
       id: "enterprise-it",
       name: "Enterprise IT",
       painPoint:
-        "Knowledge workers trapped in repetitive cross-departmental data entry between CRM, ERP, and email systems, leading to high operational friction and severe clerical error rates.",
-      painMetrics: ["Repetitive administrative hours: 22 hrs/wk per worker", "Inter-departmental approval cycle: 6.4 days", "Data entry clerical discrepancy: 5.6%"],
+        "Knowledge workers trapped in repetitive cross-departmental data entry between CRM, ERP, and email systems, leading to high operational friction and clerical error rates.",
+      painMetrics: [
+        "Heavy weekly administrative hours lost to manual re-entry",
+        "Prolonged inter-departmental approval cycles",
+        "Clerical discrepancy and reconciliation error risks",
+      ],
       architecture:
         "Self-orchestrating autonomous enterprise AI agents that understand unstructured business requests, execute cross-system tasks, and compile verified audit trails.",
       archDetails: [
@@ -131,9 +147,9 @@ export default function DraftingDemo() {
         "Comprehensive human-in-the-loop exception escalations",
       ],
       impact: [
-        { label: "Target Workflow Velocity", value: "15x", detail: "Approvals modeled from days to minutes" },
+        { label: "Target Workflow Velocity", value: "Accelerated", detail: "Approvals modeled from days to rapid completion" },
         { label: "Syntax Schema Errors", value: "Zero", detail: "Enforced via deterministic schema grammar" },
-        { label: "Productivity Target", value: "70%", detail: "Administrative capacity reclaimed" },
+        { label: "Productivity Target", value: "Reclaimed", detail: "Administrative capacity reclaimed" },
       ],
       terminalLogs: [
         ">> init krynex_audit --sector='Enterprise IT' --domain='Simulated Corporate Operations (Demo)'",
@@ -141,8 +157,8 @@ export default function DraftingDemo() {
         ">> Parsing unstructured supplier quote into structured procurement schema...",
         ">> Verifying departmental budget allocations & statutory compliance...",
         ">> Autonomous PO Creation, Tax Verification, and Multi-Level Approval executed",
-        ">> Audit Trail Sealed: SHA-256 immutable signature generated",
-        ">> SIMULATED ARCHITECTURE TARGET: 15x Workflow Velocity Target | Verified Conformance",
+        ">> Audit Trail Sealed: Cryptographic immutable signature generated",
+        ">> SIMULATED ARCHITECTURE TARGET: Accelerated Workflow Velocity Target | Verified Conformance",
       ],
     },
   ];
@@ -175,7 +191,7 @@ export default function DraftingDemo() {
           </h2>
           <p className="text-base sm:text-lg text-zinc-400 leading-relaxed">
             Real-time industry bottleneck simulation &amp; IT telemetry. Select an industry domain below
-            to inspect Krynex Labs&apos; architectural resolution and quantifiable performance impacts.
+            to inspect Krynex Labs&apos; architectural resolution and performance objectives.
           </p>
         </div>
 
@@ -183,7 +199,7 @@ export default function DraftingDemo() {
         <div className="p-3.5 rounded-2xl bg-white/[0.02] border border-white/10 text-xs font-mono text-zinc-400 mb-8 flex items-start gap-3 max-w-4xl">
           <AlertCircle className="w-4 h-4 text-white shrink-0 mt-0.5" />
           <span>
-            <strong className="text-white">ILLUSTRATIVE ARCHITECTURAL SIMULATION:</strong> The facility names, telemetry waveforms, work orders, and metrics displayed in this interactive console represent simulated demonstration data modeling theoretical performance envelopes for custom enterprise neural and microservice architectures.
+            <strong className="text-white">ILLUSTRATIVE ARCHITECTURAL SIMULATION:</strong> The facility names, telemetry waveforms, work orders, and metrics displayed in this interactive console represent simulated demonstration data modeling theoretical performance envelopes for custom enterprise neural and microservice architectures. Illustrative demo, not live data.
           </span>
         </div>
 
@@ -220,7 +236,7 @@ export default function DraftingDemo() {
         <div className="spotlight-card rounded-3xl bg-[#080808] border border-white/10 p-6 sm:p-8 lg:p-10 shadow-2xl relative overflow-hidden">
           <div className="absolute top-0 left-12 right-12 h-[1px] bg-gradient-to-r from-transparent via-white/30 to-transparent pointer-events-none" />
 
-          {/* Top Status Bar with Monochrome Window Controls */}
+          {/* Top Status Bar with Monochrome Window Controls & Visible Demo Warning */}
           <div className="flex flex-wrap items-center justify-between pb-6 mb-8 border-b border-white/10 gap-4">
             <div className="flex items-center gap-3">
               <div className="flex items-center gap-1.5">
@@ -234,6 +250,9 @@ export default function DraftingDemo() {
             </div>
 
             <div className="flex items-center gap-3">
+              <span className="px-3 py-1 rounded-md bg-white/[0.08] border border-white/20 text-xs font-mono text-zinc-300 font-semibold">
+                Illustrative demo, not live data.
+              </span>
               <button
                 onClick={triggerSimulation}
                 disabled={isSimulating}
@@ -367,7 +386,7 @@ export default function DraftingDemo() {
 
                   {/* Bottom Terminal Telemetry Footer */}
                   <div className="pt-4 mt-6 border-t border-white/[0.08] flex items-center justify-between text-xs text-zinc-500">
-                    <span className="text-[10px] font-mono text-zinc-400">CPU LOAD: 14% // GPU: 0.4ms</span>
+                    <span className="text-[10px] font-mono text-zinc-400">TELEMETRY: NOMINAL // RUNTIME: OPTIMIZED</span>
                     <span className="text-white text-[11px] font-semibold">ALL NODES SYNCHRONIZED</span>
                   </div>
                 </div>

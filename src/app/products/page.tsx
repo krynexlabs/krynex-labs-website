@@ -128,9 +128,9 @@ export default function ProductsPage() {
               </p>
             </div>
             <div className="p-5 rounded-2xl bg-[#080808] border border-white/[0.08]">
-              <div className="text-white font-bold text-sm mb-1">Sub-Second Execution</div>
+              <div className="text-white font-bold text-sm mb-1">Target Compilation Speed</div>
               <p className="text-xs text-zinc-400">
-                18-page statutory legal deeds compiled in 1.2s; industrial vision inspected in under 15ms.
+                Modeled for rapid bilingual deed generation and low-latency edge computer vision inspection.
               </p>
             </div>
             <div className="p-5 rounded-2xl bg-[#080808] border border-white/[0.08]">

@@ -57,7 +57,7 @@ export default function ProblemSection() {
       title: "Repetitive Manual Work",
       subtitle: "Human Capital Trapped in Routine Data Re-Keying",
       frictionDetail:
-        "Skilled professionals spend 30% to 50% of their workday copying data from PDFs, re-typing invoice line items into ERPs, or manually assembling boilerplate legal agreements from static Word templates.",
+        "Skilled professionals frequently spend a major portion of their workday copying data from PDFs, re-typing invoice line items into ERPs, or manually assembling boilerplate legal agreements from static Word templates.",
       questions: [
         "Which workflows remain unnecessarily manual?",
         "Where are knowledge workers acting as human glue between software?",
@@ -81,7 +81,7 @@ export default function ProblemSection() {
       ],
       investigationVector:
         "Building unified ingestion backends, automated indexation pipelines, and zero-trust data bridges.",
-      solutionExample: "Addressed via 30-year automated title search in Krynex Lexis.",
+      solutionExample: "Addressed via statutory automated title search in Krynex Lexis.",
     },
     {
       id: "expensive-tools",
@@ -112,7 +112,7 @@ export default function ProblemSection() {
         "Where do unexpected bottlenecks blindside daily operations?",
       ],
       investigationVector:
-        "Deploying sub-15ms edge computer vision and real-time SCADA telemetry for instantaneous defect isolation.",
+        "Deploying edge computer vision and real-time SCADA telemetry for instantaneous defect isolation.",
       solutionExample: "Resolved in Krynex Vision via local edge inference nodes.",
     },
     {
@@ -121,7 +121,7 @@ export default function ProblemSection() {
       title: "Slow Decision-Making",
       subtitle: "Delayed Approvals Stalling Commercial Velocity",
       frictionDetail:
-        "Commercial loan approvals take 7 days, vendor payments take 48 hours, and procurement contracts stall because risk scoring and collateral audits depend on manual paper reviews.",
+        "Commercial loan approvals and vendor payments face prolonged administrative lag because risk scoring and collateral audits depend on manual paper reviews.",
       questions: [
         "Where does sluggish data access prevent immediate, confident decisions?",
         "How can automated mathematical guardrails replace slow manual vetting?",
@@ -129,7 +129,7 @@ export default function ProblemSection() {
       ],
       investigationVector:
         "Engineering high-frequency streaming analytics and deterministic verification engines.",
-      solutionExample: "Sub-5ms fraud and automated collateral verification pipelines.",
+      solutionExample: "Streaming fraud and automated collateral verification pipelines.",
     },
     {
       id: "industry-gaps",
@@ -145,7 +145,7 @@ export default function ProblemSection() {
       ],
       investigationVector:
         "Architecting software products specifically tailored to vernacular Indian jurisdictions and harsh edge physical environments.",
-      solutionExample: "Bilingual Gujarati-English legal models and 100% offline edge vision.",
+      solutionExample: "Bilingual Gujarati-English legal models and offline edge vision architectures.",
     },
   ];
 
