@@ -8,14 +8,14 @@ import Footer from "@/components/Footer";
 export const metadata: Metadata = {
   title: "Terms of Service & SLA Governance",
   description:
-    "Enterprise terms of service, subscription billing, data sovereignty, and high availability targets for Krynex Labs technology solutions and services.",
+    "Enterprise terms of service, subscription billing, guided sandbox access, zero-retention data sovereignty, and high availability targets for Krynex Labs SaaS products.",
   alternates: {
     canonical: "https://www.krynexlabs.in/terms",
   },
   openGraph: {
     title: "Terms of Service & SLA Governance | Krynex Labs",
     description:
-      "Enterprise terms of service, subscription billing, data sovereignty, and high availability targets for Krynex Labs technology solutions and services.",
+      "Enterprise terms of service, subscription billing, guided sandbox access, zero-retention data sovereignty, and high availability targets for Krynex Labs SaaS products.",
     url: "https://www.krynexlabs.in/terms",
   },
 };
@@ -44,7 +44,7 @@ export default function TermsPage() {
         <div className="mb-12 border-b border-white/[0.08] pb-8">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/[0.04] border border-white/10 text-[11px] font-mono text-zinc-300 uppercase mb-4">
             <Shield className="w-3.5 h-3.5 text-zinc-300" />
-            <span>ENTERPRISE TERMS // SERVICE GOVERNANCE</span>
+            <span>ENTERPRISE SAAS TERMS // HIGH AVAILABILITY GOVERNANCE</span>
           </div>
           <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-white mb-4">
             Terms of Service &amp; SLA Governance
@@ -61,8 +61,8 @@ export default function TermsPage() {
             <div className="text-zinc-500 text-[11px]">Monthly Service Availability Target</div>
           </div>
           <div>
-            <div className="text-white font-bold text-sm">Enterprise Agreements</div>
-            <div className="text-zinc-500 text-[11px]">Predictable Service &amp; Access Terms</div>
+            <div className="text-white font-bold text-sm">SaaS Subscriptions</div>
+            <div className="text-zinc-500 text-[11px]">Predictable Monthly / Annual Rented Access</div>
           </div>
           <div>
             <div className="text-white font-bold text-sm">Ahmedabad HQ</div>
@@ -76,13 +76,13 @@ export default function TermsPage() {
           <section className="space-y-4">
             <h2 className="text-xl font-bold text-white tracking-tight flex items-center gap-2">
               <FileText className="w-5 h-5 text-zinc-400" />
-              1. Scope of Technology Services &amp; Platform Terms
+              1. Scope of SaaS Products &amp; Subscription Terms
             </h2>
             <p className="text-zinc-400 leading-relaxed">
-              Krynex Labs (&ldquo;Krynex Labs&rdquo;, &ldquo;Company&rdquo;, &ldquo;we&rdquo;, &ldquo;our&rdquo;) operates as a technology solutions and enterprise software engineering company. We architect, deploy, and maintain specialized software systems, cloud architectures, and intelligent workflows for enterprise clients.
+              Krynex Labs (&ldquo;Krynex Labs&rdquo;, &ldquo;Company&rdquo;, &ldquo;we&rdquo;, &ldquo;our&rdquo;) operates as a unified software product company. We architect, operate, and maintain specialized software applications and platforms—including <strong className="text-white">Krynex Lexis</strong> (bilingual legal intelligence), <strong className="text-white">Krynex Flow</strong> (integration middleware), and <strong className="text-white">Krynex Vision</strong> (industrial edge quality control).
             </p>
             <p className="text-zinc-400 leading-relaxed">
-              Access to our platform capabilities, hosted environments, and proprietary modules is governed under executed enterprise service agreements. All rights to the underlying core architectures, proprietary algorithms, model orchestrations, and internal libraries remain the exclusive property of Krynex Labs.
+              Access to our software is delivered on a subscription and software-rental basis under standardized service tiers. Krynex Labs does not sell billable consulting hours, custom development agency contracts, or one-off work-for-hire statements of work. All rights to the underlying software products, engines, model weights, and application architectures remain the exclusive property of Krynex Labs.
             </p>
           </section>
 
@@ -90,13 +90,13 @@ export default function TermsPage() {
           <section className="space-y-4">
             <h2 className="text-xl font-bold text-white tracking-tight flex items-center gap-2">
               <Server className="w-5 h-5 text-zinc-400" />
-              2. Evaluation Access &amp; Staging Environments
+              2. Guided Sandbox Trials &amp; Evaluation Access
             </h2>
             <p className="text-zinc-400 leading-relaxed">
-              Prospective enterprise clients may be granted time-limited evaluation access to staging environments. These environments are configured to allow technical, security, and operational stakeholders to evaluate system capabilities against simulated data or controlled datasets.
+              Prospective enterprise subscribers may request access to a guided sandbox trial environment. Sandbox environments are configured to allow enterprise legal, technical, and operational stakeholders to evaluate software features against simulated data or controlled datasets.
             </p>
             <p className="text-zinc-400 leading-relaxed">
-              Evaluation access is provided for a defined evaluation window agreed upon in writing. Commercial use of staging outputs for production operations without an active enterprise agreement is strictly prohibited. Staging environments may be decommissioned upon completion of the evaluation period.
+              Sandbox trials are provided for a defined evaluation window (typically 14 calendar days unless extended in writing). Commercial use of sandbox outputs for production transactions without an active paid subscription is strictly prohibited. Sandbox environments may be throttled or decommissioned upon completion of the trial period.
             </p>
           </section>
 
@@ -107,7 +107,7 @@ export default function TermsPage() {
               3. Acceptable Use Policy &amp; Security Boundaries
             </h2>
             <p className="text-zinc-400 leading-relaxed">
-              Clients agree not to: (a) reverse-engineer, decompile, or disassemble any portion of Krynex proprietary binaries or engines; (b) probe, scan, or breach system security controls without explicit written authorization; (c) utilize Krynex platform APIs to train competing foundation models; or (d) transmit malicious code, destructive payloads, or unlawful content into any Krynex application.
+              Subscribers agree not to: (a) reverse-engineer, decompile, or disassemble any portion of Krynex software engines or edge inference binaries; (b) probe, scan, or breach system security controls without explicit written authorization; (c) utilize Krynex platform APIs to train competing generative AI or machine-learning models; or (d) input malicious scripts, defamatory payloads, or unlawful content into any Krynex application.
             </p>
           </section>
 
@@ -115,13 +115,13 @@ export default function TermsPage() {
           <section className="space-y-4">
             <h2 className="text-xl font-bold text-white tracking-tight flex items-center gap-2">
               <Key className="w-5 h-5 text-zinc-400" />
-              4. Commercial Terms, Billing &amp; Invoicing
+              4. Subscription Billing, Upgrades &amp; Cancellation
             </h2>
             <p className="text-zinc-400 leading-relaxed">
-              Service fees are billed according to executed service dockets and enterprise agreements in Indian Rupees (INR ₹) or United States Dollars (USD $). Applicable statutory taxes (including Indian GST) are itemized separately on all official invoices.
+              Subscription fees are billed in advance on a recurring monthly or annual schedule in Indian Rupees (INR ₹) or United States Dollars (USD $) as agreed during checkout or enterprise onboarding. All published subscription tiers (such as Krynex Lexis starting at ₹1,499/mo, Krynex Flow starting at ₹7,999/mo, and Krynex Vision starting at ₹18,500/station/mo) exclude applicable statutory GST/taxes.
             </p>
             <p className="text-zinc-400 leading-relaxed">
-              Clients may manage billing contacts or discuss contract renewals by contacting <a href="mailto:support@krynexlabs.in" className="text-white underline">support@krynexlabs.in</a>. Contract terminations are governed by the termination provisions specified in the respective enterprise agreement.
+              Subscribers may cancel their subscription at any time via the customer billing portal or by emailing <a href="mailto:support@krynexlabs.in" className="text-white underline">support@krynexlabs.in</a>. Upon cancellation, software access persists until the conclusion of the active billing period, after which access is revoked without recurring charges. Refunds are not granted for partial billing periods.
             </p>
           </section>
 
@@ -132,7 +132,7 @@ export default function TermsPage() {
               5. Customer Data Sovereignty &amp; Zero-Retention Handling
             </h2>
             <p className="text-zinc-400 leading-relaxed">
-              Clients retain 100% exclusive ownership of all client-supplied data, documents, database records, and operational payloads submitted to Krynex Labs solutions. Krynex Labs operates under strict zero-retention principles and cryptographic tenant isolation: client data is never co-mingled, sold, or utilized for unauthorized model training.
+              Customers retain 100% exclusive ownership of all documents, title extracts, ERP payloads, and camera frames submitted to Krynex Labs products. Krynex Labs operates under strict zero-retention and per-tenant cryptographic isolation: customer data is never co-mingled, sold, or utilized to train public foundation models. For edge deployments (Krynex Vision), inference runs 100% offline on on-premise edge hardware without cloud telemetry transmission.
             </p>
           </section>
 

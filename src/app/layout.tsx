@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Space_Grotesk, Manrope, JetBrains_Mono } from "next/font/google";
+import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import CookieBanner from "@/components/CookieBanner";
 import WhatsAppButton from "@/components/WhatsAppButton";
@@ -7,15 +7,9 @@ import ClientTelemetry from "@/components/Analytics";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics as VercelAnalytics } from "@vercel/analytics/react";
 
-const spaceGrotesk = Space_Grotesk({
+const inter = Inter({
   subsets: ["latin"],
-  variable: "--font-space-grotesk",
-  display: "swap",
-});
-
-const manrope = Manrope({
-  subsets: ["latin"],
-  variable: "--font-manrope",
+  variable: "--font-inter",
   display: "swap",
 });
 
@@ -28,11 +22,11 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.krynexlabs.in"),
   title: {
-    default: "Krynex Labs | Building What Comes Next.",
+    default: "Krynex Labs | Problem-Driven Software & SaaS Products",
     template: "%s | Krynex Labs",
   },
   description:
-    "Krynex Labs architects and engineers enterprise software systems, Applied AI architectures, and resilient technology solutions. Building What Comes Next.",
+    "Krynex Labs identifies real-world industry problems and develops software products, web applications, mobile apps, and SaaS platforms that businesses subscribe to and use.",
   authors: [{ name: "Krynex Labs" }],
   creator: "Krynex Labs",
   publisher: "Krynex Labs",
@@ -49,15 +43,15 @@ export const metadata: Metadata = {
     locale: "en_IN",
     url: "https://www.krynexlabs.in",
     siteName: "Krynex Labs",
-    title: "Krynex Labs | Building What Comes Next.",
+    title: "Krynex Labs | Problem-Driven Software & SaaS Products",
     description:
-      "Krynex Labs architects and engineers enterprise software systems, Applied AI architectures, and resilient technology solutions. Building What Comes Next.",
+      "Krynex Labs identifies real-world industry problems and develops software products, web applications, mobile apps, and SaaS platforms that businesses subscribe to and use.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Krynex Labs | Building What Comes Next.",
+    title: "Krynex Labs | Problem-Driven Software & SaaS Products",
     description:
-      "Krynex Labs architects and engineers enterprise software systems, Applied AI architectures, and resilient technology solutions. Building What Comes Next.",
+      "Krynex Labs identifies real-world industry problems and develops software products, web applications, mobile apps, and SaaS platforms that businesses subscribe to and use.",
   },
   robots: {
     index: true,
@@ -73,7 +67,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#07090D",
+  themeColor: "#000000",
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
@@ -92,6 +86,8 @@ const jsonLd = {
       image: "https://www.krynexlabs.in/opengraph-image",
       email: "support@krynexlabs.in",
       telephone: "+91-98794-18569",
+      currenciesAccepted: "INR, USD",
+      priceRange: "₹1,499 - ₹18,500+",
       address: {
         "@type": "PostalAddress",
         streetAddress: "Sindhu Bhavan Road (SBR)",
@@ -109,10 +105,11 @@ const jsonLd = {
         "Applied Artificial Intelligence",
         "Machine Learning",
         "Enterprise Software Architecture",
+        "SaaS Product Development",
         "Cloud & Data Infrastructure",
         "Industrial Computer Vision",
+        "Deterministic Legal Tech",
         "Zero-Trust Security",
-        "Web & Mobile Application Engineering",
       ],
       contactPoint: [
         {
@@ -133,9 +130,54 @@ const jsonLd = {
       "@id": "https://www.krynexlabs.in/#website",
       url: "https://www.krynexlabs.in",
       name: "Krynex Labs",
-      description: "Custom Enterprise Software & Applied AI Engineering",
+      description: "Problem-Driven Software Products and SaaS Company",
       publisher: {
         "@id": "https://www.krynexlabs.in/#organization",
+      },
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://www.krynexlabs.in/products/krynex-lexis#software",
+      name: "Krynex Lexis",
+      applicationCategory: "BusinessApplication",
+      operatingSystem: "Cloud SaaS, Web-based",
+      description: "Bilingual Gujarati and English AI legal drafting and statutory conveyancing platform with deterministic revenue record integration.",
+      offers: {
+        "@type": "Offer",
+        price: "1499",
+        priceCurrency: "INR",
+        priceValidUntil: "2027-12-31",
+        availability: "https://schema.org/InStock",
+      },
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://www.krynexlabs.in/products/krynex-flow#software",
+      name: "Krynex Flow",
+      applicationCategory: "BusinessApplication",
+      operatingSystem: "Cloud, Hybrid, On-Premise",
+      description: "Enterprise workflow orchestrator and event middleware with deterministic state isolation and real-time ledger synchronization.",
+      offers: {
+        "@type": "Offer",
+        price: "7999",
+        priceCurrency: "INR",
+        priceValidUntil: "2027-12-31",
+        availability: "https://schema.org/PreOrder",
+      },
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://www.krynexlabs.in/products/krynex-vision#software",
+      name: "Krynex Vision",
+      applicationCategory: "IndustrialApplication",
+      operatingSystem: "Embedded Linux, NVIDIA Jetson, Industrial PC",
+      description: "Edge computer vision and real-time telemetry inspection platform for manufacturing quality control.",
+      offers: {
+        "@type": "Offer",
+        price: "18500",
+        priceCurrency: "INR",
+        priceValidUntil: "2027-12-31",
+        availability: "https://schema.org/PreOrder",
       },
     },
     {
@@ -144,34 +186,34 @@ const jsonLd = {
       mainEntity: [
         {
           "@type": "Question",
-          name: "What services does Krynex Labs provide?",
+          name: "What is Krynex Labs' software rental and subscription access model?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "Krynex Labs provides custom enterprise software engineering, Applied AI & neural architectures, modern web and mobile application engineering, and zero-trust cloud data infrastructure.",
+            text: "Krynex Labs operates on a problem-driven software rental model (Build → Launch → Subscribe → Maintain → Improve). Businesses pay a predictable monthly or annual recurring subscription to access production software, eliminating upfront capital expenditure while receiving continuous feature evolution, security patches, and high-availability enterprise infrastructure.",
           },
         },
         {
           "@type": "Question",
-          name: "Can Krynex systems operate on-premise without cloud latency?",
+          name: "Can Krynex software products operate on-premise without cloud latency?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "Yes. Krynex engineers edge computer vision and local inference systems designed to run entirely on-premise on edge hardware without external cloud latency, protected by KMS envelope encryption.",
+            text: "Yes. Products like Krynex Vision are engineered to operate offline at the factory edge using industrial computers (NVIDIA Jetson / IPC) with low-latency inference targets and local PLC pneumatic actuation. Products handling confidential corporate records, such as Krynex Lexis, feature zero-retention KMS envelope encryption.",
           },
         },
         {
           "@type": "Question",
-          name: "How can businesses contact Krynex Labs?",
+          name: "How can businesses in Gujarat schedule a live demonstration or sandbox trial?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "Enterprises can submit an inquiry via our online contact portal or connect directly on WhatsApp at +91 9879418569 from our Ahmedabad headquarters on Sindhu Bhavan Road (SBR).",
+            text: "Enterprises can request an executive walkthrough via our online contact portal or connect directly with our engineering team on WhatsApp at +91 9879418569 from our Ahmedabad headquarters on Sindhu Bhavan Road (SBR).",
           },
         },
         {
           "@type": "Question",
-          name: "What industries does Krynex Labs investigate?",
+          name: "What industries does Krynex Labs build software products for?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "Krynex Labs investigates operational friction across Manufacturing & Industrial IoT, LegalTech, Multimodal Logistics & Supply Chain, FinTech Banking Infrastructure, and Healthcare.",
+            text: "Krynex Labs investigates operational friction across Continuous Manufacturing & Precision Fabrication, LegalTech & Real Estate Conveyancing, Multimodal Logistics & Port Telematics, FinTech Banking Infrastructure, and Diagnostic Healthcare Systems.",
           },
         },
       ],
@@ -194,7 +236,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${spaceGrotesk.variable} ${manrope.variable} ${jetbrainsMono.variable} bg-[#07090D] font-sans antialiased text-[#F5F7FA] min-h-screen selection:bg-[#00E5FF] selection:text-[#07090D] overflow-x-hidden max-w-[100vw] w-full`}
+        className={`${inter.variable} ${jetbrainsMono.variable} bg-black font-sans antialiased text-zinc-100 min-h-screen selection:bg-white selection:text-black overflow-x-hidden max-w-[100vw] w-full`}
       >
         {/* Internal Diagnostic Telemetry Tracker */}
         <ClientTelemetry />
@@ -205,13 +247,11 @@ export default function RootLayout({
         {/* Vercel Web Analytics */}
         <VercelAnalytics />
 
-        {/* Atmospheric Cinematic Lighting & Background Grid */}
+        {/* Background Grid & Spotlights */}
         <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
-          <div className="absolute inset-0 bg-grid-tech opacity-40" />
-          {/* Subtle Electric-Cyan Atmospheric Bloom */}
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1200px] h-[600px] bg-[radial-gradient(ellipse_70%_45%_at_50%_0%,rgba(0,229,255,0.08),transparent_70%)] pointer-events-none" />
-          {/* Subtle Electric-Blue Horizon Atmospheric Shadow */}
-          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[1400px] h-[500px] bg-[radial-gradient(ellipse_60%_40%_at_50%_100%,rgba(71,120,255,0.06),transparent_70%)] pointer-events-none" />
+          <div className="absolute inset-0 bg-grid-tech opacity-60" />
+          {/* Exact Resend Top Silver/White Radial Spotlight */}
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1100px] h-[550px] bg-[radial-gradient(ellipse_80%_50%_at_50%_0%,rgba(255,255,255,0.08),transparent_70%)] pointer-events-none" />
         </div>
 
         {/* Main Content Area */}
@@ -226,3 +266,4 @@ export default function RootLayout({
     </html>
   );
 }
+

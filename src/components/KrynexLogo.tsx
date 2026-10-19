@@ -41,9 +41,9 @@ export default function KrynexLogo({
       </div>
       {showTagline && (
         <span
-          className={`block font-mono text-[#929BAA] uppercase mt-1 ${taglineClasses[size]}`}
+          className={`block font-mono text-zinc-500 uppercase mt-1 ${taglineClasses[size]}`}
         >
-          BUILDING WHAT COMES NEXT<span className="text-[#00E5FF]">.</span>
+          ARCHITECTING INTELLIGENCE FOR INDUSTRY.
         </span>
       )}
     </div>

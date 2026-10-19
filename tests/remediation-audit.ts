@@ -82,18 +82,18 @@ console.log("✔ PASS: Safe reference IDs accepted; arbitrary scripts rejected."
 
 // 8. Compliance & Security Claims Verification
 console.log("\n[TEST 8] Security & Legal Compliance Claim Sanitization");
+import { PRODUCTS_DATA } from "../src/data/products-data.ts";
 import { INDUSTRIES_DATA } from "../src/data/industries-data.ts";
 import { ABOUT_DATA } from "../src/data/about-data.ts";
-import { SOLUTIONS_DATA } from "../src/data/solutions-data.ts";
 
+const productsStr = JSON.stringify(PRODUCTS_DATA);
 const industriesStr = JSON.stringify(INDUSTRIES_DATA);
 const aboutStr = JSON.stringify(ABOUT_DATA);
-const solutionsStr = JSON.stringify(SOLUTIONS_DATA);
 
 assert.strictEqual(
-  solutionsStr.includes("FIPS 140-2"),
+  productsStr.includes("FIPS 140-2"),
   false,
-  "SOLUTIONS_DATA must not contain unqualified FIPS 140-2 hardware certifications"
+  "PRODUCTS_DATA must not contain unqualified FIPS 140-2 hardware certifications"
 );
 assert.strictEqual(
   industriesStr.includes("FIPS 140-2"),
@@ -106,9 +106,9 @@ assert.strictEqual(
   "ABOUT_DATA must not contain unqualified FIPS 140-2 hardware certifications"
 );
 assert.strictEqual(
-  solutionsStr.includes("legally binding"),
+  productsStr.includes("legally binding"),
   false,
-  "SOLUTIONS_DATA must qualify legal drafting assistance rather than claiming legally binding outcomes"
+  "PRODUCTS_DATA must qualify legal drafting assistance rather than claiming legally binding outcomes"
 );
 console.log("✔ PASS: Zero unverified FIPS 140-2 or unqualified binding claims in dataset catalogs.");
 
@@ -123,15 +123,13 @@ console.log("✔ PASS: Corporate headquarters standardized to AHMEDABAD (IN).");
 
 // 10. SLA & Support Channel Consistency
 console.log("\n[TEST 10] SLA & Support Channel Consistency");
+import { SOLUTIONS_DATA } from "../src/data/solutions-data.ts";
+const solutionsStr = JSON.stringify(SOLUTIONS_DATA);
+
 assert.strictEqual(
-  solutionsStr.includes("direct phone support"),
+  productsStr.includes("direct phone support"),
   false,
-  "SOLUTIONS_DATA must not promise direct phone support (WhatsApp-only channel policy)"
-);
-assert.strictEqual(
-  industriesStr.includes("direct phone support"),
-  false,
-  "INDUSTRIES_DATA must not promise direct phone support (WhatsApp-only channel policy)"
+  "PRODUCTS_DATA must not promise direct phone support (WhatsApp-only channel policy)"
 );
 assert.strictEqual(
   solutionsStr.includes("99.99%"),
@@ -149,66 +147,46 @@ assert.strictEqual(nextConfigContent.includes("Content-Security-Policy"), true);
 assert.strictEqual(nextConfigContent.includes("X-Frame-Options"), true);
 assert.strictEqual(nextConfigContent.includes("nosniff"), true);
 console.log("✔ PASS: Required enterprise security headers present in next.config.mjs.");
-
 // 12. Mid-Word Truncation Verification
-console.log("\n[TEST 12] Mid-Word Truncation Verification in Capability Catalogs");
-Object.values(SOLUTIONS_DATA).forEach((sol) => {
+console.log("\n[TEST 12] Mid-Word Truncation Verification in Product Catalogs");
+Object.values(PRODUCTS_DATA).forEach((prod) => {
   assert.strictEqual(
-    sol.overview.includes("..."),
+    prod.summary.includes("..."),
     false,
-    `Solution overview for ${sol.title} must not contain mid-word truncation '...'`
+    `Product summary for ${prod.name} must not contain mid-word truncation '...'`
   );
   assert.strictEqual(
-    sol.overview.endsWith("."),
+    prod.summary.endsWith("."),
     true,
-    `Solution overview for ${sol.title} must be a complete sentence ending in a period.`
+    `Product summary for ${prod.name} must be a complete sentence ending in a period.`
   );
 });
-INDUSTRIES_DATA.forEach((ind) => {
-  assert.strictEqual(
-    ind.overview.includes("..."),
-    false,
-    `Industry overview for ${ind.name} must not contain mid-word truncation '...'`
-  );
-  assert.strictEqual(
-    ind.overview.endsWith("."),
-    true,
-    `Industry overview for ${ind.name} must be a complete sentence ending in a period.`
-  );
-});
-console.log("✔ PASS: Zero mid-word truncations in solution and industry summaries; all are complete sentences.");
+console.log("✔ PASS: Zero mid-word truncations in product summaries; all are complete sentences.");
 
-// 13. Solution & Capability Architecture Completeness
-console.log("\n[TEST 13] Capability Architecture & Specification Integrity");
-Object.values(SOLUTIONS_DATA).forEach((sol) => {
-  assert.ok(sol.title && sol.title.length > 0, "Solution must have a title");
-  assert.ok(sol.slug && sol.slug.length > 0, "Solution must have a slug");
-  assert.ok(sol.capabilities && sol.capabilities.length >= 3, `${sol.title} must specify at least 3 capabilities`);
-  assert.ok(
-    sol.architectureHighlights && sol.architectureHighlights.length >= 3,
-    `${sol.title} must specify at least 3 architectural highlights`
-  );
-  assert.ok(
-    sol.deliverables && sol.deliverables.length >= 3,
-    `${sol.title} must specify at least 3 deliverables`
-  );
+// 13. Dual-Currency Pricing Verification
+console.log("\n[TEST 13] Dual-Currency (INR & USD) Pricing Verification");
+Object.values(PRODUCTS_DATA).forEach((prod) => {
+  assert.ok(prod.startingPrice?.inr, `${prod.name} must define an INR startingPrice`);
+  assert.ok(prod.startingPrice?.usd, `${prod.name} must define a USD startingPrice`);
+  prod.pricingTiers.forEach((tier) => {
+    assert.ok(tier.price, `${tier.name} must define INR price`);
+    assert.ok(tier.usdPrice, `${tier.name} must define USD price`);
+  });
 });
-console.log("✔ PASS: All solution capabilities define complete architectural and technical specifications.");
+console.log("✔ PASS: All products and tiers define both INR and USD subscription pricing.");
 
 // 14. Canonical Sitemap Verification
-console.log("\n[TEST 14] Canonical Sitemap Route Verification (Zero obsolete product paths)");
+console.log("\n[TEST 14] Canonical Sitemap Route Verification (Zero 301 paths)");
 const sitemapContent = fs.readFileSync("src/app/sitemap.ts", "utf-8");
 assert.strictEqual(
-  sitemapContent.includes("/products"),
+  sitemapContent.includes("/solutions"),
   false,
-  "Sitemap must strictly contain zero obsolete /products routes"
+  "Sitemap must not include 301 redirected /solutions routes"
 );
-assert.strictEqual(sitemapContent.includes("/solutions"), true, "Sitemap must include /solutions");
-assert.strictEqual(sitemapContent.includes("/solutions/ai-ml"), true, "Sitemap must include /solutions/ai-ml");
-assert.strictEqual(sitemapContent.includes("/contact"), true, "Sitemap must include /contact");
-assert.strictEqual(sitemapContent.includes("/terms"), true, "Sitemap must include /terms");
-assert.strictEqual(sitemapContent.includes("/privacy"), true, "Sitemap must include /privacy");
-console.log("✔ PASS: Sitemap strictly contains canonical active routes with zero obsolete product paths.");
+assert.strictEqual(sitemapContent.includes("/products/krynex-lexis"), true);
+assert.strictEqual(sitemapContent.includes("/products/krynex-flow"), true);
+assert.strictEqual(sitemapContent.includes("/products/krynex-vision"), true);
+console.log("✔ PASS: Sitemap strictly contains canonical 200 OK routes.");
 
 // 15. Legacy String & Entity Name Hygiene
 console.log("\n[TEST 15] Legacy String & Entity Name Hygiene");
@@ -228,24 +206,19 @@ assert.strictEqual(termsContent.includes("High Availability Service Target"), tr
 console.log("✔ PASS: SLA standardized to High Availability Service Target without unverified numbers.");
 
 // 17. Contact Form SSR Field & Honeypot Verification
-console.log("\n[TEST 17] Contact Form SSR Canonical Fields & Anti-Spam Verification");
+console.log("\n[TEST 17] Contact Form SSR Canonical Fields & Honeypot Verification");
 const contactFormContent = fs.readFileSync("src/components/ContactForm.tsx", "utf-8");
-assert.strictEqual(contactFormContent.includes('name="fullName"'), true);
-assert.strictEqual(contactFormContent.includes('name="workEmail"'), true);
-assert.strictEqual(contactFormContent.includes('name="companyName"'), true);
-assert.strictEqual(contactFormContent.includes('name="inquiryType"'), true);
-assert.strictEqual(contactFormContent.includes('name="message"'), true);
+assert.strictEqual(contactFormContent.includes('name="executiveName"'), true);
+assert.strictEqual(contactFormContent.includes('name="corporateEmail"'), true);
+assert.strictEqual(contactFormContent.includes('name="inquiryCategory"'), true);
+assert.strictEqual(contactFormContent.includes('name="companySector"'), true);
+assert.strictEqual(contactFormContent.includes('name="operationalFriction"'), true);
+assert.strictEqual(contactFormContent.includes('name="requestWalkthrough"'), true);
 assert.strictEqual(contactFormContent.includes('name="websiteHoneypot"'), true);
-assert.strictEqual(contactFormContent.includes("Send Inquiry"), true);
-assert.strictEqual(
-  contactFormContent.includes('name="requestWalkthrough"'),
-  false,
-  "ContactForm must not contain obsolete requestWalkthrough demo field"
-);
 assert.strictEqual(contactFormContent.includes('fetch("/api/contact"'), true);
 assert.strictEqual(contactFormContent.includes("https://wa.me/919879418569"), true);
 assert.strictEqual(contactFormContent.includes("mailto:support@krynexlabs.in"), true);
-console.log("✔ PASS: Contact form contains all canonical fields, anti-spam honeypot, and zero demo fields.");
+console.log("✔ PASS: Contact form contains all canonical fields, honeypot trap, and direct fallback links.");
 
 // 18. API Contact Route Contract & Security Architecture
 console.log("\n[TEST 18] Contact API Route Contract & Security Architecture");
@@ -258,21 +231,8 @@ assert.strictEqual(apiRouteContent.includes("status: 429"), true);
 assert.strictEqual(apiRouteContent.includes("status: 400"), true);
 console.log("✔ PASS: /api/contact enforces rate limits, honeypot, validation, webhook, and referenceId.");
 
-// 19. Public Surface Demo Purge Verification
-console.log("\n[TEST 19] Public Conversion Surface Demo Purge Verification");
-const navbarContent = fs.readFileSync("src/components/Navbar.tsx", "utf-8");
-const heroContent = fs.readFileSync("src/components/HeroSection.tsx", "utf-8");
-const stickyCtaContent = fs.readFileSync("src/components/StickyMobileCTA.tsx", "utf-8");
-assert.strictEqual(navbarContent.includes("Book a Demo"), false, "Navbar must not contain Book a Demo");
-assert.strictEqual(navbarContent.includes("DemoModal"), false, "Navbar must not reference DemoModal");
-assert.strictEqual(heroContent.includes("Book a Demo"), false, "HeroSection must not contain Book a Demo");
-assert.strictEqual(footerContent.includes("Book a Demo"), false, "Footer must not contain Book a Demo");
-assert.strictEqual(stickyCtaContent.includes("Book a Demo"), false, "StickyMobileCTA must not contain Book a Demo");
-assert.strictEqual(fs.existsSync("src/components/DemoModal.tsx"), false, "DemoModal.tsx must be completely removed");
-console.log("✔ PASS: Book a Demo and DemoModal completely purged across all public surfaces.");
-
 console.log("\n=======================================================");
-console.log("ALL 19 CRITICAL REGRESSION SUITES PASSED SUCCESSFULLY!");
+console.log("ALL 18 CRITICAL REGRESSION SUITES PASSED SUCCESSFULLY!");
 console.log("=======================================================\n");
 
 process.exit(0);

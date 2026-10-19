@@ -12,9 +12,9 @@ import Footer from "@/components/Footer";
 import ContactForm from "@/components/ContactForm";
 
 export const metadata: Metadata = {
-  title: "Contact Us | Engineering & Inquiry Portal",
+  title: "Contact Us | Executive Consultation Portal",
   description:
-    "Submit an enterprise software, technology, or business partnership inquiry to Krynex Labs engineering headquarters in Ahmedabad, India.",
+    "Initiate an enterprise software product inquiry, request a sandbox trial, or submit an operational bottleneck to Krynex Labs engineering headquarters in Ahmedabad, India.",
   alternates: {
     canonical: "https://www.krynexlabs.in/contact",
   },
@@ -22,12 +22,12 @@ export const metadata: Metadata = {
 
 interface ContactPageProps {
   searchParams?: {
-    type?: string;
+    product?: string;
   };
 }
 
 export default function ContactPage({ searchParams }: ContactPageProps) {
-  const initialInquiryType = searchParams?.type;
+  const initialProduct = searchParams?.product;
 
   return (
     <main className="min-h-screen bg-black text-white selection:bg-white selection:text-black">
@@ -39,13 +39,13 @@ export default function ContactPage({ searchParams }: ContactPageProps) {
 
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/[0.04] border border-white/10 text-[11px] font-mono tracking-widest text-zinc-300 uppercase mb-5">
-            <span>EXECUTIVE INQUIRY &amp; CONSULTATION</span>
+            <span>PRODUCT &amp; PARTNERSHIP INQUIRIES</span>
           </div>
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight mb-4 leading-tight bg-gradient-to-b from-white via-zinc-100 to-zinc-500 bg-clip-text text-transparent">
-            Initiate Engineering Dialogue.
+            Initiate Product Dialogue.
           </h1>
           <p className="text-base sm:text-lg text-zinc-400 leading-relaxed max-w-3xl">
-            Whether you are exploring custom software development, SaaS &amp; technology services, or submitting an unsolved operational bottleneck for our team to investigate, our software architects respond within 1–2 business days.
+            Whether you are evaluating a software product trial, exploring subscription onboarding, or submitting an unsolved industry problem for our R&amp;D team to investigate, our software architects respond within 1–2 business days.
           </p>
         </div>
       </section>
@@ -62,7 +62,7 @@ export default function ContactPage({ searchParams }: ContactPageProps) {
                     Direct Messaging &amp; Inquiries
                   </div>
                   <a
-                    href="https://wa.me/919879418569?text=Hello%20Krynex%20Labs,%20I%20would%20like%20to%20discuss%20an%20engineering%20inquiry."
+                    href="https://wa.me/919879418569?text=Hello%20Krynex%20Labs,%20I%20would%20like%20to%20discuss%20an%20industry%20inquiry."
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex flex-col gap-1.5 text-white hover:text-zinc-300 transition-colors group"
@@ -73,11 +73,11 @@ export default function ContactPage({ searchParams }: ContactPageProps) {
                       </span>
                     </div>
                     <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-white/[0.06] border border-white/10 text-zinc-400 w-fit">
-                      Direct Messaging (WhatsApp Business) &bull; No Calls
+                      Direct Messaging (WhatsApp Business) &bull; Scheduled Calls via Portal
                     </span>
                   </a>
                   <p className="text-xs text-zinc-400 mt-2">
-                    Direct executive messaging for technical inquiries and project briefs. Scheduled voice/video calls arranged upon inquiry review.
+                    Direct executive messaging for urgent technical inquiries and project briefs. Scheduled voice/video calls arranged upon inquiry review.
                   </p>
                 </div>
 
@@ -129,7 +129,7 @@ export default function ContactPage({ searchParams }: ContactPageProps) {
 
             {/* Right Column: Server-Rendered Inquiry Form */}
             <div className="lg:col-span-7">
-              <ContactForm initialInquiryType={initialInquiryType} />
+              <ContactForm initialProduct={initialProduct} />
             </div>
           </div>
         </div>

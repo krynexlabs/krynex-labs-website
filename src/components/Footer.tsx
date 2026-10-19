@@ -2,11 +2,18 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import {
+  Sparkles,
   ArrowRight,
   Shield,
+  Activity,
   MapPin,
   Mail,
+  Github,
+  Twitter,
+  Linkedin,
+  Terminal,
   CheckCircle2,
   Cpu,
   AlertCircle,
@@ -14,14 +21,19 @@ import {
 import confetti from "canvas-confetti";
 import KrynexLogo from "./KrynexLogo";
 
-export default function Footer() {
-  const [fullName, setFullName] = useState("");
-  const [workEmail, setWorkEmail] = useState("");
-  const [companyName, setCompanyName] = useState("");
-  const [inquiryType, setInquiryType] = useState("General Inquiry");
-  const [message, setMessage] = useState("");
-  const [honeypot, setHoneypot] = useState("");
+interface FooterProps {
+  onRequestDemo?: () => void;
+}
 
+export default function Footer({ onRequestDemo }: FooterProps = {}) {
+  const router = useRouter();
+  const [inquiryName, setInquiryName] = useState("");
+  const [inquiryEmail, setInquiryEmail] = useState("");
+  const [inquiryCompany, setInquiryCompany] = useState("");
+  const [inquiryChallenge, setInquiryChallenge] = useState("");
+  const [honeypot, setHoneypot] = useState("");
+  
+  // Validation errors
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
@@ -29,35 +41,30 @@ export default function Footer() {
 
   const validateForm = () => {
     const newErrors: Record<string, string> = {};
-
-    const trimmedName = fullName.trim();
-    if (!trimmedName) {
-      newErrors.fullName = "Full Name is required.";
-    } else if (trimmedName.length < 2) {
-      newErrors.fullName = "Full Name must be at least 2 characters.";
+    if (!inquiryName.trim()) {
+      newErrors.name = "Executive Name is required.";
     }
-
-    const trimmedEmail = workEmail.trim();
-    const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)+$/;
-    if (!trimmedEmail) {
-      newErrors.workEmail = "Work Email is required.";
-    } else if (!emailRegex.test(trimmedEmail)) {
-      newErrors.workEmail = "Please provide a valid corporate email.";
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!inquiryEmail.trim()) {
+      newErrors.email = "Corporate Email is required.";
+    } else if (!emailRegex.test(inquiryEmail.trim())) {
+      newErrors.email = "Please provide a valid corporate email.";
     }
-
-    const trimmedMessage = message.trim();
-    if (!trimmedMessage) {
-      newErrors.message = "Message is required.";
-    } else if (trimmedMessage.length < 10) {
-      newErrors.message = "Please provide at least 10 characters describing your inquiry.";
+    if (!inquiryCompany.trim()) {
+      newErrors.company = "Company and sector are required.";
     }
-
+    if (!inquiryChallenge.trim()) {
+      newErrors.challenge = "Brief description of operational friction is required.";
+    } else if (inquiryChallenge.trim().length < 15) {
+      newErrors.challenge = "Please provide at least 15 characters describing the challenge.";
+    }
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
   const handleInquirySubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    // Bot honeypot filter
     if (honeypot) return;
 
     if (!validateForm()) return;
@@ -72,38 +79,28 @@ export default function Footer() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          fullName: fullName.trim(),
-          workEmail: workEmail.trim(),
-          companyName: companyName.trim(),
-          inquiryType,
-          message: message.trim(),
-          websiteHoneypot: honeypot,
-          // Backwards compatibility mappings
-          name: fullName.trim(),
-          email: workEmail.trim(),
-          company: companyName.trim(),
-          challenge: message.trim(),
+          name: inquiryName,
+          email: inquiryEmail,
+          company: inquiryCompany,
+          challenge: inquiryChallenge,
           _security_honeypot: honeypot,
         }),
       });
 
       const result = await response.json();
 
-      if (response.ok && (result.ok || result.success)) {
-        setTicketId(result.referenceId || `KL-REQ-${Math.floor(1000 + Math.random() * 9000)}`);
+      if (response.ok && result.success) {
+        setTicketId(result.referenceId || `KRX-RD-${Math.floor(1000 + Math.random() * 9000)}`);
         setIsSubmitting(false);
         setSubmitted(true);
 
-        try {
-          confetti({
-            particleCount: 70,
-            spread: 55,
-            origin: { y: 0.7 },
-            colors: ["#ffffff", "#d4d4d8", "#a1a1aa", "#71717a"],
-          });
-        } catch {
-          // Non-blocking
-        }
+        // Pure Silver & White Confetti
+        confetti({
+          particleCount: 80,
+          spread: 60,
+          origin: { y: 0.7 },
+          colors: ["#ffffff", "#d4d4d8", "#a1a1aa", "#71717a"],
+        });
       } else {
         setIsSubmitting(false);
         setErrors((prev) => ({
@@ -136,7 +133,7 @@ export default function Footer() {
           {/* Section Header */}
           <div className="text-center max-w-3xl mx-auto mb-12">
             <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/[0.03] border border-white/10 text-[11px] font-mono tracking-widest text-zinc-300 uppercase mb-5">
-              <span>EXECUTIVE INQUIRY &amp; CONSULTATION</span>
+              <span>09 // EXECUTIVE INQUIRY &amp; PARTNERSHIP</span>
             </div>
 
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mb-5 leading-tight bg-gradient-to-b from-white via-zinc-100 to-zinc-500 bg-clip-text text-transparent">
@@ -144,22 +141,22 @@ export default function Footer() {
             </h2>
 
             <p className="text-base sm:text-lg text-zinc-400 leading-relaxed mb-6">
-              Connect directly with our engineering team in Ahmedabad to discuss custom enterprise software, AI architectures, or operational automation challenges.
+              We explore industry challenges, develop useful software, and turn promising solutions into products businesses can use.
             </p>
 
             <div className="flex flex-wrap items-center justify-center gap-4 mb-8">
               <Link
-                href="/solutions"
+                href="/products"
                 className="px-6 py-2.5 rounded-full bg-white text-black font-semibold text-xs hover:bg-zinc-200 transition-all shadow-md flex items-center gap-2"
               >
-                <span>Explore Services</span>
+                <span>Explore Products</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </Link>
               <Link
                 href="/contact"
                 className="px-6 py-2.5 rounded-full bg-white/[0.04] text-white hover:bg-white/[0.08] border border-white/10 font-medium text-xs transition-all"
               >
-                <span>Contact Us</span>
+                <span>Contact Krynex Labs</span>
               </Link>
             </div>
           </div>
@@ -169,22 +166,22 @@ export default function Footer() {
             <div
               role="status"
               aria-live="polite"
-              className="max-w-xl mx-auto p-8 rounded-2xl bg-black border border-white/10 text-center animate-fade-in space-y-4"
+              className="max-w-xl mx-auto p-8 rounded-2xl bg-black border border-white/10 text-center animate-fade-in"
             >
-              <div className="w-14 h-14 rounded-2xl bg-white/[0.05] border border-white/20 flex items-center justify-center mx-auto mb-2">
+              <div className="w-14 h-14 rounded-2xl bg-white/[0.05] border border-white/20 flex items-center justify-center mx-auto mb-4">
                 <CheckCircle2 className="w-7 h-7 text-white" />
               </div>
-              <h3 className="text-xl font-bold text-white tracking-tight">
-                Thank you for contacting Krynex Labs.
+              <div className="text-xs font-mono text-zinc-300 mb-2">
+                {`INQUIRY REGISTERED // ${ticketId}`}
+              </div>
+              <h3 className="text-xl font-bold text-white mb-2">
+                Inquiry Routed to Corporate Engineering
               </h3>
-              <p className="text-sm text-zinc-300">
-                Your inquiry has been submitted successfully.
+              <p className="text-xs sm:text-sm text-zinc-400 mb-6 leading-relaxed">
+                Thank you, <span className="text-white font-medium">{inquiryName}</span>. Your technical inquiry has been securely registered under reference <span className="font-mono text-white">{ticketId}</span>. A Systems Architect will evaluate your operational brief and reach out to{" "}
+                <span className="text-white font-medium">{inquiryEmail}</span> promptly during standard business hours.
               </p>
-              <p className="text-xs text-zinc-400 leading-relaxed max-w-md mx-auto">
-                Thank you, <span className="text-white font-medium">{fullName}</span>. Your technical inquiry has been securely registered under reference <span className="font-mono text-white">{ticketId}</span>. A Systems Architect will evaluate your brief and reach out to{" "}
-                <span className="text-white font-medium">{workEmail}</span> promptly during business hours.
-              </p>
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
                 <Link
                   href={`/thank-you?ref=${encodeURIComponent(ticketId)}`}
                   className="w-full sm:w-auto px-6 py-2.5 rounded-full bg-white text-black font-semibold text-xs hover:bg-zinc-200 transition-colors"
@@ -195,10 +192,7 @@ export default function Footer() {
                   type="button"
                   onClick={() => {
                     setSubmitted(false);
-                    setMessage("");
-                    setFullName("");
-                    setWorkEmail("");
-                    setCompanyName("");
+                    setInquiryChallenge("");
                   }}
                   className="w-full sm:w-auto px-6 py-2.5 rounded-full bg-white/[0.04] text-zinc-300 border border-white/10 hover:bg-white/[0.08] text-xs transition-colors"
                 >
@@ -209,18 +203,16 @@ export default function Footer() {
           ) : (
             <form onSubmit={handleInquirySubmit} noValidate className="max-w-2xl mx-auto space-y-4">
               {/* Anti-spam honeypot */}
-              <div className="hidden" aria-hidden="true">
-                <label htmlFor="footer-honeypot">Leave empty</label>
-                <input
-                  id="footer-honeypot"
-                  type="text"
-                  name="websiteHoneypot"
-                  value={honeypot}
-                  onChange={(e) => setHoneypot(e.target.value)}
-                  tabIndex={-1}
-                  autoComplete="off"
-                />
-              </div>
+              <input
+                type="text"
+                name="_security_honeypot"
+                value={honeypot}
+                onChange={(e) => setHoneypot(e.target.value)}
+                tabIndex={-1}
+                autoComplete="off"
+                className="hidden"
+                aria-hidden="true"
+              />
 
               {errors.general && (
                 <div className="flex items-center gap-2 p-3.5 rounded-xl bg-red-950/20 border border-red-500/40 text-xs text-red-400 font-mono">
@@ -229,139 +221,110 @@ export default function Footer() {
                 </div>
               )}
 
-              {/* 1. Full Name & 2. Work Email */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label htmlFor="footer-inquiry-name" className="block text-xs font-mono text-zinc-400 mb-1.5 uppercase cursor-pointer">
-                    Full Name *
+                    Your Name *
                   </label>
                   <input
                     id="footer-inquiry-name"
-                    name="fullName"
                     type="text"
-                    required
-                    value={fullName}
+                    value={inquiryName}
                     maxLength={100}
                     onChange={(e) => {
-                      setFullName(e.target.value);
-                      if (errors.fullName) setErrors({ ...errors, fullName: "" });
+                      setInquiryName(e.target.value);
+                      if (errors.name) setErrors({ ...errors, name: "" });
                     }}
                     placeholder="e.g. Vikramaditya Mehta"
                     className={`w-full px-4 py-3 rounded-xl bg-black border text-sm text-white focus:outline-none font-sans transition-colors placeholder:text-zinc-600 focus-visible:ring-1 focus-visible:ring-white/40 ${
-                      errors.fullName ? "border-red-500/50 bg-red-950/10" : "border-white/15 focus:border-white"
+                      errors.name ? "border-red-500/50 bg-red-950/10" : "border-white/15 focus:border-white"
                     }`}
                   />
-                  {errors.fullName && (
+                  {errors.name && (
                     <div className="flex items-center gap-1.5 text-xs text-red-400 font-mono mt-1.5">
                       <AlertCircle className="w-3.5 h-3.5 shrink-0" />
-                      <span>{errors.fullName}</span>
+                      <span>{errors.name}</span>
                     </div>
                   )}
                 </div>
 
                 <div>
                   <label htmlFor="footer-inquiry-email" className="block text-xs font-mono text-zinc-400 mb-1.5 uppercase cursor-pointer">
-                    Work Email *
+                    Corporate Email *
                   </label>
                   <input
                     id="footer-inquiry-email"
-                    name="workEmail"
                     type="email"
-                    required
-                    value={workEmail}
+                    value={inquiryEmail}
                     maxLength={120}
                     onChange={(e) => {
-                      setWorkEmail(e.target.value);
-                      if (errors.workEmail) setErrors({ ...errors, workEmail: "" });
+                      setInquiryEmail(e.target.value);
+                      if (errors.email) setErrors({ ...errors, email: "" });
                     }}
                     placeholder="v.mehta@enterprise.com"
                     className={`w-full px-4 py-3 rounded-xl bg-black border text-sm text-white focus:outline-none font-sans transition-colors placeholder:text-zinc-600 focus-visible:ring-1 focus-visible:ring-white/40 ${
-                      errors.workEmail ? "border-red-500/50 bg-red-950/10" : "border-white/15 focus:border-white"
+                      errors.email ? "border-red-500/50 bg-red-950/10" : "border-white/15 focus:border-white"
                     }`}
                   />
-                  {errors.workEmail && (
+                  {errors.email && (
                     <div className="flex items-center gap-1.5 text-xs text-red-400 font-mono mt-1.5">
                       <AlertCircle className="w-3.5 h-3.5 shrink-0" />
-                      <span>{errors.workEmail}</span>
+                      <span>{errors.email}</span>
                     </div>
                   )}
                 </div>
               </div>
 
-              {/* 3. Company Name & 4. Inquiry Type */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                  <label htmlFor="footer-inquiry-company" className="block text-xs font-mono text-zinc-400 mb-1.5 uppercase cursor-pointer">
-                    Company Name <span className="text-zinc-500 font-normal">(Optional)</span>
-                  </label>
-                  <input
-                    id="footer-inquiry-company"
-                    name="companyName"
-                    type="text"
-                    value={companyName}
-                    maxLength={120}
-                    onChange={(e) => setCompanyName(e.target.value)}
-                    placeholder="e.g. Continental Industrial Group"
-                    className="w-full px-4 py-3 rounded-xl bg-black border border-white/15 text-sm text-white focus:outline-none font-sans transition-colors placeholder:text-zinc-600 focus-visible:ring-1 focus-visible:ring-white/40 focus:border-white"
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="footer-inquiry-type" className="block text-xs font-mono text-zinc-400 mb-1.5 uppercase cursor-pointer">
-                    Inquiry Type *
-                  </label>
-                  <select
-                    id="footer-inquiry-type"
-                    name="inquiryType"
-                    value={inquiryType}
-                    onChange={(e) => setInquiryType(e.target.value)}
-                    className="w-full px-4 py-3 rounded-xl bg-black border border-white/15 text-sm text-white focus:outline-none font-sans transition-colors focus-visible:ring-1 focus-visible:ring-white/40 focus:border-white cursor-pointer"
-                  >
-                    <option value="General Inquiry">General Inquiry</option>
-                    <option value="Software Development">Software Development</option>
-                    <option value="SaaS & Technology Services">SaaS &amp; Technology Services</option>
-                    <option value="Business Partnership">Business Partnership</option>
-                    <option value="Other">Other</option>
-                  </select>
-                </div>
-              </div>
-
-              {/* 5. Message */}
               <div>
-                <label htmlFor="footer-inquiry-message" className="block text-xs font-mono text-zinc-400 mb-1.5 uppercase cursor-pointer">
-                  Message *
+                <label htmlFor="footer-inquiry-company" className="block text-xs font-mono text-zinc-400 mb-1.5 uppercase cursor-pointer">
+                  Company / Industry Vertical *
                 </label>
-                <textarea
-                  id="footer-inquiry-message"
-                  name="message"
-                  rows={3}
-                  required
-                  value={message}
-                  maxLength={3000}
+                <input
+                  id="footer-inquiry-company"
+                  type="text"
+                  value={inquiryCompany}
+                  maxLength={120}
                   onChange={(e) => {
-                    setMessage(e.target.value);
-                    if (errors.message) setErrors({ ...errors, message: "" });
+                    setInquiryCompany(e.target.value);
+                    if (errors.company) setErrors({ ...errors, company: "" });
                   }}
-                  placeholder="Describe your technical challenge, software requirements, or partnership objective..."
-                  className={`w-full px-4 py-3 rounded-xl bg-black border text-sm text-white focus:outline-none font-sans transition-colors placeholder:text-zinc-600 resize-none focus-visible:ring-1 focus-visible:ring-white/40 ${
-                    errors.message ? "border-red-500/50 bg-red-950/10" : "border-white/15 focus:border-white"
+                  placeholder="e.g. Continental Logistics & Ports / Manufacturing"
+                  className={`w-full px-4 py-3 rounded-xl bg-black border text-sm text-white focus:outline-none font-sans transition-colors placeholder:text-zinc-600 focus-visible:ring-1 focus-visible:ring-white/40 ${
+                    errors.company ? "border-red-500/50 bg-red-950/10" : "border-white/15 focus:border-white"
                   }`}
                 />
-                {errors.message && (
+                {errors.company && (
                   <div className="flex items-center gap-1.5 text-xs text-red-400 font-mono mt-1.5">
                     <AlertCircle className="w-3.5 h-3.5 shrink-0" />
-                    <span>{errors.message}</span>
+                    <span>{errors.company}</span>
                   </div>
                 )}
               </div>
 
-              {/* Privacy Consent Notice */}
-              <div className="text-[11px] text-zinc-400 leading-relaxed pt-1">
-                By submitting this inquiry, you agree to our{" "}
-                <Link href="/privacy" className="text-white underline underline-offset-2 hover:text-zinc-300 transition-colors">
-                  Privacy Policy
-                </Link>
-                . Your information is handled under strict corporate data isolation standards.
+              <div>
+                <label htmlFor="footer-inquiry-challenge" className="block text-xs font-mono text-zinc-400 mb-1.5 uppercase cursor-pointer">
+                  Describe the Operational Challenge *
+                </label>
+                <textarea
+                  id="footer-inquiry-challenge"
+                  rows={3}
+                  value={inquiryChallenge}
+                  maxLength={1000}
+                  onChange={(e) => {
+                    setInquiryChallenge(e.target.value);
+                    if (errors.challenge) setErrors({ ...errors, challenge: "" });
+                  }}
+                  placeholder="Briefly outline your current technical friction, data bottleneck, or AI automation objective..."
+                  className={`w-full px-4 py-3 rounded-xl bg-black border text-sm text-white focus:outline-none font-sans transition-colors placeholder:text-zinc-600 resize-none focus-visible:ring-1 focus-visible:ring-white/40 ${
+                    errors.challenge ? "border-red-500/50 bg-red-950/10" : "border-white/15 focus:border-white"
+                  }`}
+                />
+                {errors.challenge && (
+                  <div className="flex items-center gap-1.5 text-xs text-red-400 font-mono mt-1.5">
+                    <AlertCircle className="w-3.5 h-3.5 shrink-0" />
+                    <span>{errors.challenge}</span>
+                  </div>
+                )}
               </div>
 
               <div className="pt-2">
@@ -373,12 +336,11 @@ export default function Footer() {
                   {isSubmitting ? (
                     <>
                       <Cpu className="w-4 h-4 animate-spin text-black" />
-                      <span>Sending Inquiry...</span>
+                      <span>Encrypting &amp; Transmitting Brief...</span>
                     </>
                   ) : (
                     <>
-                      <span>Send Inquiry</span>
-                      <ArrowRight className="w-4 h-4" />
+                      <span>Initiate R&amp;D Inquiry &rarr;</span>
                     </>
                   )}
                 </button>
@@ -414,7 +376,7 @@ export default function Footer() {
             </Link>
 
             <p className="text-xs text-zinc-400 max-w-sm leading-relaxed mb-6">
-              Researching real-world operational bottlenecks and engineering high-impact enterprise software, AI architectures, and cloud systems for compounding business utility.
+              Researching real-world operational bottlenecks and engineering practical, subscription-based software products for compounding business utility.
             </p>
 
             <div className="space-y-2.5 text-xs text-zinc-400 font-mono mb-6">
@@ -439,7 +401,7 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="group inline-flex flex-wrap items-center gap-2 text-zinc-400 hover:text-white transition-colors focus:outline-none focus-visible:ring-1 focus-visible:ring-white/40 rounded py-0.5"
-                  aria-label="Direct Messaging (WhatsApp Business): +91 9879418569"
+                  aria-label="Direct Messaging (WhatsApp Business) • Scheduled Voice/Video Calls via Inquiry Portal: +91 9879418569"
                 >
                   <svg
                     className="w-4 h-4 text-zinc-400 group-hover:text-white transition-colors shrink-0"
@@ -453,7 +415,7 @@ export default function Footer() {
                     +91 9879418569
                   </span>
                   <span className="text-[10px] font-mono uppercase tracking-wider px-2 py-0.5 rounded-full bg-white/[0.06] border border-white/10 text-zinc-400 group-hover:border-white/25 group-hover:text-zinc-300 transition-colors">
-                    Direct Messaging (WhatsApp Business) • No Unsolicited Calls
+                    Direct Messaging (WhatsApp Business) • Scheduled Voice/Video Calls via Inquiry Portal
                   </span>
                 </a>
               </div>
@@ -483,40 +445,35 @@ export default function Footer() {
                 className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/[0.04] border border-white/10 hover:border-white/30 text-xs text-zinc-300 hover:text-white transition-colors focus:outline-none focus-visible:ring-1 focus-visible:ring-white"
               >
                 <Mail className="w-3.5 h-3.5 text-zinc-300" />
-                <span>Contact Us</span>
+                <span>Portal Inquiry</span>
               </Link>
             </div>
           </div>
 
-          {/* Col 2: Services & Engineering */}
+          {/* Col 2: Software Products */}
           <div>
             <div className="text-xs font-mono font-semibold text-white uppercase tracking-wider mb-4 flex items-center gap-1.5">
-              <span>Services &amp; Engineering</span>
+              <span>Software Products</span>
             </div>
             <ul className="space-y-2.5 text-xs text-zinc-400">
               <li>
-                <Link href="/solutions" className="hover:text-white transition-colors">
-                  Services Overview
+                <Link href="/products" className="hover:text-white transition-colors">
+                  Product Directory
                 </Link>
               </li>
               <li>
-                <Link href="/solutions/ai-ml" className="hover:text-white transition-colors">
-                  Applied AI &amp; Neural Architectures
+                <Link href="/products/krynex-lexis" className="hover:text-white transition-colors">
+                  Krynex Lexis (Legal AI SaaS)
                 </Link>
               </li>
               <li>
-                <Link href="/solutions/enterprise-software" className="hover:text-white transition-colors">
-                  Custom Enterprise Software
+                <Link href="/products/krynex-flow" className="hover:text-white transition-colors">
+                  Krynex Flow (Integration Engine)
                 </Link>
               </li>
               <li>
-                <Link href="/solutions/web-mobile" className="hover:text-white transition-colors">
-                  Web &amp; Mobile Applications
-                </Link>
-              </li>
-              <li>
-                <Link href="/solutions/cloud-data" className="hover:text-white transition-colors">
-                  Cloud Infrastructure &amp; Zero-Trust
+                <Link href="/products/krynex-vision" className="hover:text-white transition-colors">
+                  Krynex Vision (Edge QC Engine)
                 </Link>
               </li>
             </ul>
@@ -540,7 +497,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link href="/approach#business-model" className="hover:text-white transition-colors">
-                  Engineering Model
+                  Rented Software Model
                 </Link>
               </li>
               <li>
@@ -574,7 +531,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link href="/contact" className="hover:text-white transition-colors">
-                  Contact Us
+                  Executive Consultation
                 </Link>
               </li>
               <li>

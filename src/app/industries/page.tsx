@@ -236,28 +236,28 @@ export default function IndustriesPage() {
                 <div className="flex items-center gap-3">
                   {ind.slug === "manufacturing" && (
                     <Link
-                      href="/solutions/ai-ml"
+                      href="/products/krynex-vision"
                       className="bg-white text-black font-medium hover:bg-zinc-200 px-4 py-2 rounded-xl transition-all text-xs tracking-wide flex items-center gap-1.5"
                     >
-                      <span>Explore AI & Vision Solutions</span>
+                      <span>Explore Krynex Vision</span>
                       <ArrowRight className="w-3.5 h-3.5" />
                     </Link>
                   )}
                   {ind.slug === "legal" && (
                     <Link
-                      href="/solutions/enterprise-software"
+                      href="/products/krynex-lexis"
                       className="bg-white text-black font-medium hover:bg-zinc-200 px-4 py-2 rounded-xl transition-all text-xs tracking-wide flex items-center gap-1.5"
                     >
-                      <span>Explore Enterprise Software</span>
+                      <span>Explore Krynex Lexis</span>
                       <ArrowRight className="w-3.5 h-3.5" />
                     </Link>
                   )}
                   {ind.slug === "logistics" && (
                     <Link
-                      href="/solutions/enterprise-software"
+                      href="/products/krynex-flow"
                       className="bg-white text-black font-medium hover:bg-zinc-200 px-4 py-2 rounded-xl transition-all text-xs tracking-wide flex items-center gap-1.5"
                     >
-                      <span>Explore Middleware Systems</span>
+                      <span>Explore Krynex Flow</span>
                       <ArrowRight className="w-3.5 h-3.5" />
                     </Link>
                   )}

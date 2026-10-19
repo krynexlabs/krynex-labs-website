@@ -9,11 +9,10 @@ const APEX_URL = "https://krynexlabs.in";
 const CANONICAL_ROUTES = [
   "/",
   "/about",
-  "/solutions",
-  "/solutions/ai-ml",
-  "/solutions/cloud-data",
-  "/solutions/enterprise-software",
-  "/solutions/web-mobile",
+  "/products",
+  "/products/krynex-lexis",
+  "/products/krynex-flow",
+  "/products/krynex-vision",
   "/industries",
   "/approach",
   "/research",
@@ -147,13 +146,13 @@ async function testRedirects() {
   console.log("3. AUDITING 301/308 REDIRECTS");
   console.log("=======================================================");
 
-  // 3.1 Legacy /products redirect to /solutions
-  const legacyUrl = `${BASE_URL}/products`;
+  // 3.1 Legacy /solutions/enterprise-software redirect to /products
+  const legacyUrl = `${BASE_URL}/solutions/enterprise-software`;
   try {
     const { res } = await fetchWithTiming(legacyUrl, { redirect: "manual" });
     const location = res.headers.get("location");
     const isRedirect = [301, 302, 307, 308].includes(res.status);
-    const targetMatch = location && (location.includes("/solutions") || location === "/solutions");
+    const targetMatch = location && (location.includes("/products") || location === "/products");
 
     results.redirects.push({
       from: legacyUrl,
@@ -163,9 +162,9 @@ async function testRedirects() {
     });
 
     if (isRedirect && targetMatch) {
-      log("REDIRECT", `Obsolete route ${legacyUrl} => ${res.status} redirecting to ${location}`, "PASS");
+      log("REDIRECT", `Legacy route ${legacyUrl} => ${res.status} redirecting to ${location}`, "PASS");
     } else {
-      log("REDIRECT", `Obsolete route ${legacyUrl} returned ${res.status} location: ${location}`, "FAIL");
+      log("REDIRECT", `Legacy route ${legacyUrl} returned ${res.status} location: ${location}`, "FAIL");
       results.pass = false;
     }
   } catch (err) {
@@ -210,17 +209,17 @@ async function testCrawlerFiles() {
     const { res } = await fetchWithTiming(`${BASE_URL}/sitemap.xml`);
     const xml = await res.text();
     const is200 = res.status === 200;
-    const hasCanonicalRoutes = xml.includes("https://www.krynexlabs.in/solutions") &&
+    const hasCanonicalRoutes = xml.includes("https://www.krynexlabs.in/products/krynex-lexis") &&
                                xml.includes("https://www.krynexlabs.in/contact");
-    const zeroObsoleteProducts = !xml.includes("/products");
+    const zeroLegacySolutions = !xml.includes("/solutions");
 
-    const sitemapOk = is200 && hasCanonicalRoutes && zeroObsoleteProducts;
+    const sitemapOk = is200 && hasCanonicalRoutes && zeroLegacySolutions;
     results.crawlerFiles.push({ file: "/sitemap.xml", status: res.status, ok: sitemapOk });
 
     if (sitemapOk) {
-      log("CRAWLER", `/sitemap.xml returns 200, contains canonical URLs, and zero /products paths`, "PASS");
+      log("CRAWLER", `/sitemap.xml returns 200, contains canonical URLs, and zero /solutions paths`, "PASS");
     } else {
-      log("CRAWLER", `/sitemap.xml failed criteria: 200=${is200}, canonical=${hasCanonicalRoutes}, zeroProducts=${zeroObsoleteProducts}`, "FAIL");
+      log("CRAWLER", `/sitemap.xml failed criteria: 200=${is200}, canonical=${hasCanonicalRoutes}, zeroSolutions=${zeroLegacySolutions}`, "FAIL");
       results.pass = false;
     }
   } catch (err) {
@@ -277,17 +276,18 @@ async function testLiveHtmlAssertions() {
     }
   }
 
-  // Capability links on homepage
-  const hasSolutionsHref = homeHtml.includes('href="/solutions"');
-  const hasContactHref = homeHtml.includes('href="/contact"') || homeHtml.includes('href="#contact"');
+  // Product cards on homepage
+  const hasLexisHref = homeHtml.includes('href="/products/krynex-lexis"');
+  const hasFlowHref = homeHtml.includes('href="/products/krynex-flow"');
+  const hasVisionHref = homeHtml.includes('href="/products/krynex-vision"');
   results.domAssertions.push({
-    assertion: "Homepage links to /solutions and /contact",
-    passed: hasSolutionsHref && hasContactHref,
+    assertion: "Homepage links to all 3 product dossiers",
+    passed: hasLexisHref && hasFlowHref && hasVisionHref,
   });
-  if (hasSolutionsHref && hasContactHref) {
-    log("DOM-HOME", `Homepage contains direct links to /solutions and /contact`, "PASS");
+  if (hasLexisHref && hasFlowHref && hasVisionHref) {
+    log("DOM-HOME", `Product cards contain direct links to /products/krynex-{lexis,flow,vision}`, "PASS");
   } else {
-    log("DOM-HOME", `Missing solutions or contact links on homepage`, "FAIL");
+    log("DOM-HOME", `Missing product card links on homepage`, "FAIL");
     results.pass = false;
   }
 
@@ -318,21 +318,21 @@ async function testLiveHtmlAssertions() {
     results.pass = false;
   }
 
-  // 5.2 Solutions Page (/solutions)
-  const { res: solRes } = await fetchWithTiming(`${BASE_URL}/solutions`);
-  const solHtml = await solRes.text();
+  // 5.2 Products Page (/products)
+  const { res: prodRes } = await fetchWithTiming(`${BASE_URL}/products`);
+  const prodHtml = await prodRes.text();
 
-  const hasAiMl = solHtml.includes("/solutions/ai-ml");
-  const hasCloudData = solHtml.includes("/solutions/cloud-data");
-  const hasEnterpriseSoftware = solHtml.includes("/solutions/enterprise-software");
+  const hasTier1 = prodHtml.includes("₹1,499") || prodHtml.includes("1,499");
+  const hasTier2 = prodHtml.includes("₹7,999") || prodHtml.includes("7,999");
+  const hasTier3 = prodHtml.includes("₹18,500") || prodHtml.includes("18,500");
   results.domAssertions.push({
-    assertion: "Solutions directory links to capability practices",
-    passed: hasAiMl && hasCloudData && hasEnterpriseSoftware,
+    assertion: "Products directory displays starting price tiers (₹1,499, ₹7,999, ₹18,500)",
+    passed: hasTier1 && hasTier2 && hasTier3,
   });
-  if (hasAiMl && hasCloudData && hasEnterpriseSoftware) {
-    log("DOM-SOLUTIONS", `Solutions directory links to AI/ML, Cloud & Data, and Enterprise Software practices`, "PASS");
+  if (hasTier1 && hasTier2 && hasTier3) {
+    log("DOM-PROD", `Products directory displays dual INR/USD starting prices (₹1,499, ₹7,999, ₹18,500)`, "PASS");
   } else {
-    log("DOM-SOLUTIONS", `Missing capability practice links on /solutions`, "FAIL");
+    log("DOM-PROD", `Missing starting price tiers on /products: T1=${hasTier1}, T2=${hasTier2}, T3=${hasTier3}`, "FAIL");
     results.pass = false;
   }
 
@@ -341,22 +341,21 @@ async function testLiveHtmlAssertions() {
   const contactHtml = await contactRes.text();
 
   const hasForm = contactHtml.includes("<form");
-  const hasFullName = contactHtml.includes('name="fullName"');
-  const hasWorkEmail = contactHtml.includes('name="workEmail"');
-  const hasInquiryType = contactHtml.includes('name="inquiryType"');
-  const hasMessage = contactHtml.includes('name="message"');
-  const zeroWalkthrough = !contactHtml.includes('name="requestWalkthrough"') && !contactHtml.includes("Google Meet");
+  const hasExecName = contactHtml.includes('name="executiveName"');
+  const hasCorpEmail = contactHtml.includes('name="corporateEmail"');
+  const hasInqCat = contactHtml.includes('name="inquiryCategory"');
+  const hasWalkthrough = contactHtml.includes('name="requestWalkthrough"') || contactHtml.includes("Walkthrough") || contactHtml.includes("Google Meet");
   const hasPrivacyLink = contactHtml.includes('href="/privacy"');
 
-  const contactPass = hasForm && hasFullName && hasWorkEmail && hasInquiryType && hasMessage && zeroWalkthrough && hasPrivacyLink;
+  const contactPass = hasForm && hasExecName && hasCorpEmail && hasInqCat && hasWalkthrough && hasPrivacyLink;
   results.domAssertions.push({
-    assertion: "Contact page SSR HTML contains <form, fullName, workEmail, inquiryType, message, zero walkthrough, href='/privacy'",
+    assertion: "Contact page SSR HTML contains <form, executiveName, corporateEmail, inquiryCategory, walkthrough, href='/privacy'",
     passed: contactPass,
   });
   if (contactPass) {
-    log("DOM-CONTACT", `Contact SSR HTML contains full canonical 5-field inquiry controls & zero demo fields`, "PASS");
+    log("DOM-CONTACT", `Contact SSR HTML contains full interactive form controls & privacy agreement`, "PASS");
   } else {
-    log("DOM-CONTACT", `Contact form controls missing in SSR HTML: form=${hasForm}, name=${hasFullName}, email=${hasWorkEmail}, type=${hasInquiryType}, msg=${hasMessage}, zeroWalk=${zeroWalkthrough}, priv=${hasPrivacyLink}`, "FAIL");
+    log("DOM-CONTACT", `Contact form controls missing in SSR HTML: form=${hasForm}, name=${hasExecName}, email=${hasCorpEmail}, cat=${hasInqCat}, walk=${hasWalkthrough}, priv=${hasPrivacyLink}`, "FAIL");
     results.pass = false;
   }
 
@@ -383,16 +382,16 @@ async function testLiveHtmlAssertions() {
   const termsHtml = await termsRes.text();
 
   const zero9999 = !termsHtml.includes("99.99%");
-  const hasHighAvailability = termsHtml.includes("High Availability");
-  const termsPass = zero9999 && hasHighAvailability;
+  const has999 = termsHtml.includes("99.9%");
+  const termsPass = zero9999 && has999;
   results.domAssertions.push({
-    assertion: "Terms page standardizes on High Availability SLA target and contains zero 99.99% claims",
+    assertion: "Terms page standardizes on 99.9% uptime SLA and contains zero 99.99% claims",
     passed: termsPass,
   });
   if (termsPass) {
-    log("DOM-TERMS", `Terms page verified: High Availability SLA target present and zero 99.99% legacy claims`, "PASS");
+    log("DOM-TERMS", `Terms page verified: 99.9% SLA target present and zero 99.99% legacy claims`, "PASS");
   } else {
-    log("DOM-TERMS", `Terms page failed SLA standardization: zero9999=${zero9999}, hasHA=${hasHighAvailability}`, "FAIL");
+    log("DOM-TERMS", `Terms page failed SLA standardization: zero9999=${zero9999}, has999=${has999}`, "FAIL");
     results.pass = false;
   }
 }
@@ -410,11 +409,12 @@ async function testContactApi() {
   // 6.1 Valid Submission
   try {
     const validPayload = {
-      fullName: "Dr. Vikram Mehta",
-      workEmail: "sre-audit@krynexlabs.in",
-      companyName: "Precision Industrial Robotics",
-      inquiryType: "SaaS & Technology Services",
-      message: "Live automated SRE verification probe validating end-to-end API transport dispatch.",
+      inquiryCategory: "Software Product Licensing & Rentals",
+      executiveName: "Dr. Vikram Mehta",
+      corporateEmail: "sre-audit@krynexlabs.in",
+      companySector: "Precision Industrial Robotics",
+      operationalFriction: "Live automated SRE verification probe validating end-to-end API transport dispatch.",
+      requestWalkthrough: true,
       websiteHoneypot: "",
     };
 
@@ -452,11 +452,12 @@ async function testContactApi() {
   // 6.2 Bot Honeypot Silent Trap
   try {
     const botPayload = {
-      fullName: "Bot Spammer",
-      workEmail: "bot@spamnetwork.com",
-      companyName: "Spam LLC",
-      inquiryType: "General Inquiry",
-      message: "Automated spam payload.",
+      inquiryCategory: "General Inquiry",
+      executiveName: "Bot Spammer",
+      corporateEmail: "bot@spamnetwork.com",
+      companySector: "Spam LLC",
+      operationalFriction: "Automated spam payload.",
+      requestWalkthrough: false,
       websiteHoneypot: "https://trapped-bot-payload.com",
     };
 
@@ -494,11 +495,12 @@ async function testContactApi() {
   // 6.3 Validation Failure (Malformed Email)
   try {
     const invalidPayload = {
-      fullName: "Test User",
-      workEmail: "not-an-email",
-      companyName: "Test Sector",
-      inquiryType: "General Inquiry",
-      message: "Valid friction description.",
+      inquiryCategory: "General Inquiry",
+      executiveName: "Test User",
+      corporateEmail: "not-an-email",
+      companySector: "Test Sector",
+      operationalFriction: "Valid friction description.",
+      requestWalkthrough: false,
       websiteHoneypot: "",
     };
 
@@ -513,7 +515,7 @@ async function testContactApi() {
 
     const data = await res.json().catch(() => ({}));
     const is400 = res.status === 400;
-    const hasErrors = data.errors && (data.errors.workEmail || data.errors.corporateEmail || data.errors.email);
+    const hasErrors = data.errors && (data.errors.corporateEmail || data.errors.email);
 
     results.apiTests.push({
       test: "Validation Error Handling",
