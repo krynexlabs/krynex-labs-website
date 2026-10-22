@@ -23,6 +23,18 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://www.krynexlabs.in/research",
   },
+  openGraph: {
+    title: "R&D Lab & Engineering Research | Krynex Labs",
+    description:
+      "Explore Krynex Labs R&D telemetry, model quantization experiments, deterministic mathematical guardrails, and our architectural simulation diagnostic console.",
+    url: "https://www.krynexlabs.in/research",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "R&D Lab & Engineering Research | Krynex Labs",
+    description:
+      "Explore Krynex Labs R&D telemetry, model quantization experiments, deterministic mathematical guardrails, and our architectural simulation diagnostic console.",
+  },
 };
 
 export default function ResearchPage() {

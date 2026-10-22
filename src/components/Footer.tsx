@@ -520,13 +520,8 @@ export default function Footer({ onRequestDemo }: FooterProps = {}) {
                 </Link>
               </li>
               <li>
-                <Link href="/industries" className="hover:text-white transition-colors">
-                  Target Industries
-                </Link>
-              </li>
-              <li>
-                <Link href="/research" className="hover:text-white transition-colors">
-                  R&amp;D Diagnostic Lab
+                <Link href="/solutions" className="hover:text-white transition-colors">
+                  Capabilities &amp; Solutions
                 </Link>
               </li>
               <li>

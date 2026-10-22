@@ -333,9 +333,9 @@ export default function DraftingDemo() {
                   <div className="p-5 rounded-2xl bg-black border border-white/[0.08]">
                     <div className="flex items-center justify-between mb-4">
                       <span className="text-xs font-mono text-white uppercase tracking-widest font-semibold">
-                        03 // MEASURED ENTERPRISE IMPACT
+                        03 // DESIGN TARGETS
                       </span>
-                      <span className="text-[10px] font-mono text-zinc-500">PRODUCTION BENCHMARK</span>
+                      <span className="text-[10px] font-mono text-zinc-500">ENGINEERING OBJECTIVES</span>
                     </div>
                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                       {sec.impact.map((imp, iIdx) => (
@@ -361,7 +361,7 @@ export default function DraftingDemo() {
                       </div>
                       <span className="text-[10px] text-white flex items-center gap-1.5">
                         <span className="w-1.5 h-1.5 rounded-full bg-white animate-ping" />
-                        LIVE STREAM
+                        SIMULATION
                       </span>
                     </div>
 

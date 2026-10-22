@@ -78,7 +78,7 @@ export const INDUSTRIES_DATA: IndustryDetail[] = [
     whyExistingInadequate:
       "Static word processors and generic LLM chat wrappers lack statutory grammar guardrails, hallucinate non-existent citations, and risk confidentiality breaches when sensitive client property dockets are uploaded to public clouds.",
     krynexSolution:
-      "Krynex Lexis: India's premier bilingual legal drafting and title clearance intelligence platform, compiling verified draft deeds in seconds with deterministic statutory verification.",
+      "Krynex Lexis: India's bilingual legal drafting and title clearance intelligence platform, compiling verified draft deeds in seconds with deterministic statutory verification.",
     architectureDetails: [
       "Bilingual Gujarati and English legal vocabulary grammar compiler",
       "Automated revenue record ingestion (Village Form 7/12, 8A, Index-II)",
@@ -176,7 +176,7 @@ export const INDUSTRIES_DATA: IndustryDetail[] = [
     slug: "healthcare",
     name: "Healthcare & Clinical Diagnostics",
     badge: "RESEARCH VECTOR // OPPORTUNITY EXPLORATION",
-    tagline: "HIPAA-Aligned Medical Imaging Triage & Secure Hospital Workflows",
+    tagline: "DPDP-Aligned Medical Imaging Triage & Secure Hospital Workflows",
     overview:
       "Diagnostic centers and hospital networks handle massive volumes of DICOM imaging and patient records amidst acute specialist shortages, creating critical turnaround delays in emergency wards.",
     targetWorkflow:
@@ -193,7 +193,7 @@ export const INDUSTRIES_DATA: IndustryDetail[] = [
     architectureDetails: [
       "Local DICOM gateway with 100% offline hospital LAN execution",
       "Zero-retention inference with immediate temporary buffer purge",
-      "Designed in alignment with healthcare privacy guidelines (including HIPAA, GDPR, and Indian DPDP Act)",
+      "Designed in alignment with Indian DPDP Act, ABDM health data standards, and international guidelines (HIPAA, GDPR)",
     ],
     beneficiaries:
       "Hospital emergency departments, diagnostic imaging networks, and clinical radiologist teams.",

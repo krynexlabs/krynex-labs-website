@@ -450,9 +450,18 @@ export default function DemoModal({ isOpen, onClose }: DemoModalProps) {
                 )}
               </button>
 
-              <div className="flex items-center justify-center gap-2 text-[10px] font-mono text-zinc-500 pt-2">
-                <Shield className="w-3 h-3 text-zinc-400" />
-                <span>ENTERPRISE PRIVACY &amp; DATA ISOLATION PROTECTED • AHMEDABAD (IN)</span>
+              <div className="flex flex-col items-center justify-center gap-1.5 text-[10px] font-mono text-zinc-500 pt-2 text-center">
+                <div className="flex items-center gap-2">
+                  <Shield className="w-3 h-3 text-zinc-400" />
+                  <span>ENTERPRISE PRIVACY &amp; DATA ISOLATION PROTECTED • AHMEDABAD (IN)</span>
+                </div>
+                <div>
+                  By submitting, you agree to our{" "}
+                  <Link href="/privacy" onClick={resetAndClose} className="underline text-zinc-400 hover:text-white transition-colors">
+                    Privacy Policy
+                  </Link>
+                  .
+                </div>
               </div>
             </form>
           </div>

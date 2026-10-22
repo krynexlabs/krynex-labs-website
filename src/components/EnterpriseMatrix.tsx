@@ -61,7 +61,7 @@ export default function EnterpriseMatrix() {
       whyExistingFails:
         "Static Word templates and generic public AI tools hallucinate non-existent citations and risk serious confidentiality breaches under statutory privilege rules.",
       solution:
-        "Krynex Lexis: India's premier bilingual legal drafting and title clearance platform, compiling structured draft deeds with rapid deterministic statutory guardrails.",
+        "Krynex Lexis: India's bilingual legal drafting and title clearance platform, compiling structured draft deeds with rapid deterministic statutory guardrails.",
       beneficiaries: "Corporate legal counsel, title advocates, real estate developers, and statutory compliance panels.",
       statusBadge: "Commercial Product (Live)",
       metrics: ["Rapid Compilation Target", "Multi-Year Index-II Triage", "Zero Public Model Training"],

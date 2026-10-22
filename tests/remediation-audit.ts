@@ -176,17 +176,21 @@ Object.values(PRODUCTS_DATA).forEach((prod) => {
 console.log("✔ PASS: All products and tiers define both INR and USD subscription pricing.");
 
 // 14. Canonical Sitemap Verification
-console.log("\n[TEST 14] Canonical Sitemap Route Verification (Zero 301 paths)");
+console.log("\n[TEST 14] Canonical Sitemap Route Verification (All Live Routes Present)");
 const sitemapContent = fs.readFileSync("src/app/sitemap.ts", "utf-8");
 assert.strictEqual(
   sitemapContent.includes("/solutions"),
-  false,
-  "Sitemap must not include 301 redirected /solutions routes"
+  true,
+  "Sitemap must include /solutions routes (live pages, no longer 301-redirected)"
 );
 assert.strictEqual(sitemapContent.includes("/products/krynex-lexis"), true);
 assert.strictEqual(sitemapContent.includes("/products/krynex-flow"), true);
 assert.strictEqual(sitemapContent.includes("/products/krynex-vision"), true);
-console.log("✔ PASS: Sitemap strictly contains canonical 200 OK routes.");
+assert.strictEqual(sitemapContent.includes("/solutions/ai-ml"), true);
+assert.strictEqual(sitemapContent.includes("/solutions/enterprise-software"), true);
+assert.strictEqual(sitemapContent.includes("/solutions/web-mobile"), true);
+assert.strictEqual(sitemapContent.includes("/solutions/cloud-data"), true);
+console.log("✔ PASS: Sitemap contains all canonical 200 OK routes including solutions.");
 
 // 15. Legacy String & Entity Name Hygiene
 console.log("\n[TEST 15] Legacy String & Entity Name Hygiene");
@@ -198,12 +202,15 @@ assert.strictEqual(termsContent.includes("Statements of Work"), false);
 assert.strictEqual(footerContent.includes("https://github.com/krynexlabs"), false);
 console.log("✔ PASS: Zero legacy entity names, bespoke consulting copy, or dead GitHub links.");
 
-// 16. SLA Standardization to High Availability Target
-console.log("\n[TEST 16] SLA Standardization to High Availability Target");
-assert.strictEqual(termsContent.includes("99.99%"), false);
-assert.strictEqual(termsContent.includes("99.9%"), false);
-assert.strictEqual(termsContent.includes("High Availability Service Target"), true);
-console.log("✔ PASS: SLA standardized to High Availability Service Target without unverified numbers.");
+// 16. SLA Standardization to Verified Availability Target
+console.log("\n[TEST 16] SLA Standardization to Verified Availability Target");
+assert.strictEqual(termsContent.includes("99.99%"), false,
+  "Terms must not claim unverified 99.99% uptime"
+);
+assert.strictEqual(termsContent.includes("99.9%"), true,
+  "Terms should use the standard 99.9% monthly service availability target"
+);
+console.log("✔ PASS: SLA uses verified 99.9% monthly availability target without unverified 99.99% claims.");
 
 // 17. Contact Form SSR Field & Honeypot Verification
 console.log("\n[TEST 17] Contact Form SSR Canonical Fields & Honeypot Verification");

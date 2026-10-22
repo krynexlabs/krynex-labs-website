@@ -23,9 +23,21 @@ import {
 export const metadata: Metadata = {
   title: "Our Approach | Problem-First Software Product Lifecycle",
   description:
-    "Explore Krynex Labs' 7-stage product lifecycle: Discover, Research, Validate, Build, Launch, Subscribe, and Continuously Improve software built around real industry challenges.",
+    "Explore Krynex Labs' 7-stage product lifecycle: Discover, Identify, Validate, Design, Build, Launch, and Continuously Improve software built around real industry challenges.",
   alternates: {
     canonical: "https://www.krynexlabs.in/approach",
+  },
+  openGraph: {
+    title: "Our Approach | Problem-First Software Product Lifecycle",
+    description:
+      "Explore Krynex Labs' 7-stage product lifecycle: Discover, Identify, Validate, Design, Build, Launch, and Continuously Improve software built around real industry challenges.",
+    url: "https://www.krynexlabs.in/approach",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Our Approach | Problem-First Software Product Lifecycle",
+    description:
+      "Explore Krynex Labs' 7-stage product lifecycle: Discover, Identify, Validate, Design, Build, Launch, and Continuously Improve software built around real industry challenges.",
   },
 };
 
@@ -92,7 +104,7 @@ export default function ApproachPage() {
               </h2>
             </div>
             <div className="text-xs font-mono text-zinc-400">
-              DISCOVER &rarr; RESEARCH &rarr; VALIDATE &rarr; BUILD &rarr; LAUNCH &rarr; SUBSCRIBE &rarr; IMPROVE
+              DISCOVER &rarr; IDENTIFY &rarr; VALIDATE &rarr; DESIGN &rarr; BUILD &rarr; LAUNCH &rarr; IMPROVE
             </div>
           </div>
 

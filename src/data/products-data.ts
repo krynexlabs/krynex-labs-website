@@ -68,7 +68,7 @@ export const PRODUCTS_DATA: Record<string, ProductDetail> = {
     division: "Krynex Software Products // Recurring SaaS",
     status: "Live",
     summary:
-      "India's bilingual legal drafting and title clearance intelligence platform, purpose-built for corporate legal counsel, title advocates, and real estate enterprises.",
+      "Bilingual legal drafting engine compiling verified statutory deeds and title clearance documentation against Gujarat revenue codes deterministically.",
     startingPrice: {
       inr: "₹1,499",
       usd: "$19",
@@ -90,7 +90,7 @@ export const PRODUCTS_DATA: Record<string, ProductDetail> = {
       description:
         "Krynex Lexis replaces static templates with an intelligent, deterministic clause compiler that drafts, cross-references, and validates property covenants in real time.",
       keyBenefits: [
-        "Target compilation speed: Designed for rapid bilingual Sale Deed (વેચાણ કરાર) and Title Report draft generation with deterministic statutory guardrails.",
+        "Target compilation speed: Designed for rapid bilingual Sale Deed (વેચાણ દસ્તાવેજ) and Title Report draft generation with deterministic statutory guardrails.",
         "Bilingual statutory precision: Full native vernacular support for Gujarati legal vocabulary (e.g., ખેતીની જમીન, બિનખેતી, બોજા મુક્ત પ્રમાણપત્ર) alongside high-standard English jurisprudence.",
         "Deterministic statutory guardrails: Automated calculations of stamp duty, registration fees, and mandatory statutory covenants.",
         "Client data sovereignty: Client case files and draft covenants are protected via AES-256 KMS encryption and never used to train public models.",
@@ -275,7 +275,7 @@ export const PRODUCTS_DATA: Record<string, ProductDetail> = {
         "Constructed for resilience with zero single point of failure and stateless horizontal scaling.",
       specs: [
         "High-performance Go and Rust event-processing core",
-        "Kafka-backed event streaming with exactly-once delivery guarantees",
+        "Kafka-backed event streaming with at-least-once delivery and deterministic idempotent deduplication",
         "Outbound-only reverse proxy tunnels for secure on-premise database sync",
         "Multi-tenant cryptographic tenant isolation",
       ],
@@ -300,8 +300,8 @@ export const PRODUCTS_DATA: Record<string, ProductDetail> = {
         period: "per month",
         description: "For mid-sized companies seeking to automate internal operational workflows.",
         features: [
-          "High-throughput processed workflow events",
-          "Active automated workflow pipelines",
+          "Up to 250,000 processed workflow events / month",
+          "Up to 15 active automated workflow pipelines",
           "Standard connectors (REST, Webhooks, SQL, Tally, Sheets)",
           "AI Document Parser included",
           "Immutable audit log history",
@@ -318,7 +318,7 @@ export const PRODUCTS_DATA: Record<string, ProductDetail> = {
         highlighted: true,
         description: "For multi-plant enterprises with high-throughput transaction pipelines.",
         features: [
-          "High-capacity processed workflow events",
+          "Up to 2,500,000 processed workflow events / month",
           "Unlimited automated workflow pipelines",
           "Advanced SAP, Oracle, and SCADA bi-directional connectors",
           "High-volume AI Document Parser included",

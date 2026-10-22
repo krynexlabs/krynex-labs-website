@@ -663,7 +663,12 @@ export default function ProductDetailView({ product }: ProductDetailViewProps) {
                       <div className="text-3xl sm:text-4xl font-bold text-white tracking-tight">
                         {displayPrice}
                       </div>
-                      <div className="text-xs font-mono text-zinc-400 mt-1">{tier.period}</div>
+                      <div className="text-xs font-mono text-zinc-400 mt-1">
+                        {tier.period}
+                        {currency === "INR" && tier.price !== "Custom" && tier.price !== "Bespoke" && (
+                          <span className="text-[10px] text-zinc-500 ml-1.5">(+ 18% GST)</span>
+                        )}
+                      </div>
                     </div>
 
                     <p className="text-xs text-zinc-400 leading-relaxed mb-6 pb-6 border-b border-white/[0.06]">
@@ -697,7 +702,7 @@ export default function ProductDetailView({ product }: ProductDetailViewProps) {
           </div>
 
           <div className="mt-8 text-center text-xs font-mono text-zinc-500">
-            * Guided Sandbox &amp; Cloud Onboarding &bull; Flat Predictable Recurring Access &bull; High Availability Architecture
+            * All published pricing excludes statutory GST &bull; Guided Sandbox &amp; Cloud Onboarding &bull; High Availability Architecture
           </div>
         </div>
       </section>
@@ -707,9 +712,9 @@ export default function ProductDetailView({ product }: ProductDetailViewProps) {
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-6 p-6 rounded-2xl bg-[#080808] border border-white/[0.08]">
             <div>
-              <div className="text-sm font-bold text-white">Need Technical Documentation or Runbooks?</div>
+              <div className="text-sm font-bold text-white">Need Technical Documentation or Architecture Dossiers?</div>
               <div className="text-xs text-zinc-400 mt-1">
-                Access developer guides, API schemas, and deployment checklists.
+                Access technical architecture blueprints, vocabulary guides, or request compliance whitepapers.
               </div>
             </div>
             <div className="flex flex-wrap items-center gap-3">

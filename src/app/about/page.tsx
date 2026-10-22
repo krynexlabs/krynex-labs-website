@@ -21,9 +21,21 @@ import {
 export const metadata: Metadata = {
   title: "About Us | Problem-First Software Product Company",
   description:
-    "Learn about Krynex Labs: Software Product and SaaS Company headquartered in Sindhu Bhavan Road (SBR), Ahmedabad, Gujarat, India. We research real operational bottlenecks and engineer software products that businesses subscribe to and use.",
+    "Learn about Krynex Labs: Software Product and SaaS Company headquartered in Ahmedabad, India. We research real operational bottlenecks and engineer software products businesses subscribe to and use.",
   alternates: {
     canonical: "https://www.krynexlabs.in/about",
+  },
+  openGraph: {
+    title: "About Us | Problem-First Software Product Company",
+    description:
+      "Learn about Krynex Labs: Software Product and SaaS Company headquartered in Ahmedabad, India. We research real operational bottlenecks and engineer software products businesses subscribe to and use.",
+    url: "https://www.krynexlabs.in/about",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "About Us | Problem-First Software Product Company",
+    description:
+      "Learn about Krynex Labs: Software Product and SaaS Company headquartered in Ahmedabad, India. We research real operational bottlenecks and engineer software products businesses subscribe to and use.",
   },
 };
 

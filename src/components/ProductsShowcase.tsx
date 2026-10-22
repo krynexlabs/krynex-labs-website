@@ -123,10 +123,10 @@ export default function ProductsShowcase({ onRequestDemo }: ProductsShowcaseProp
                     </div>
                   </div>
 
-                  {/* Main Verified Features */}
+                  {/* Main Verified / Planned Features */}
                   <div className="space-y-1.5 mb-6 pt-3 border-t border-white/[0.04]">
                     <div className="text-[10px] font-mono uppercase tracking-wider text-zinc-500 mb-1">
-                      Verified Capabilities:
+                      {product.status === "Live" ? "Verified Capabilities:" : "Planned Capabilities:"}
                     </div>
                     {product.features.slice(0, 2).map((feat, fIdx) => (
                       <div key={fIdx} className="text-[11px] text-zinc-400 flex items-center gap-1.5">

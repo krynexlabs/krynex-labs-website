@@ -19,11 +19,23 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Solutions // Division A: Applied AI & Enterprise Engineering",
+  title: "Capabilities & Enterprise Solutions | Krynex Labs",
   description:
-    "Explore Krynex Labs' custom engineering services: Applied AI, custom neural architectures, enterprise systems modernization, web/mobile platforms, and zero-trust cloud data pipelines.",
+    "Explore Krynex Labs engineering capabilities: Applied AI systems, enterprise software architectures, web and mobile platforms, and resilient cloud data pipelines.",
   alternates: {
     canonical: "https://www.krynexlabs.in/solutions",
+  },
+  openGraph: {
+    title: "Capabilities & Enterprise Solutions | Krynex Labs",
+    description:
+      "Explore Krynex Labs engineering capabilities: Applied AI systems, enterprise software architectures, web and mobile platforms, and resilient cloud data pipelines.",
+    url: "https://www.krynexlabs.in/solutions",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Capabilities & Enterprise Solutions | Krynex Labs",
+    description:
+      "Explore Krynex Labs engineering capabilities: Applied AI systems, enterprise software architectures, web and mobile platforms, and resilient cloud data pipelines.",
   },
 };
 
@@ -221,7 +233,7 @@ export default function SolutionsPage() {
             </h2>
             <p className="text-xs sm:text-sm text-zinc-400 max-w-xl mx-auto mb-8">
               Consult directly with our principal software architects. We provide an initial technical
-              feasibility assessment and architecture proposal within 48 business hours.
+              feasibility assessment and architecture proposal within 1–2 business days.
             </p>
             <div className="flex flex-wrap items-center justify-center gap-4">
               <Link

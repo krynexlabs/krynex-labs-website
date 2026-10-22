@@ -1,6 +1,9 @@
 /**
  * Sliding window rate limiter for API endpoints (Contact / Inquiries)
  * Protects against bot floods and repeated submissions.
+ *
+ * Uses lazy cleanup instead of setInterval to avoid timer leaks
+ * in serverless environments (Vercel, Lambda, etc.).
  */
 
 interface RateLimitRecord {
@@ -9,20 +12,27 @@ interface RateLimitRecord {
 
 const windowMs = 10 * 60 * 1000; // 10 minutes
 const maxRequests = 5; // Max 5 requests per 10 minutes per IP
+const MAX_IP_ENTRIES = 10_000; // Safety cap to prevent unbounded memory growth
+const CLEANUP_INTERVAL_MS = 2 * 60 * 1000; // Lazy cleanup at most every 2 minutes
 
 const ipStore = new Map<string, RateLimitRecord>();
+let lastCleanup = Date.now();
 
-// Periodic cleanup of stale IP records every 5 minutes
-if (typeof setInterval !== "undefined") {
-  setInterval(() => {
-    const now = Date.now();
-    ipStore.forEach((record, ip) => {
-      record.timestamps = record.timestamps.filter((t) => now - t < windowMs);
-      if (record.timestamps.length === 0) {
-        ipStore.delete(ip);
-      }
-    });
-  }, 5 * 60 * 1000);
+/**
+ * Lazy cleanup: prune stale IP records on demand, throttled to avoid
+ * excessive iteration on high-traffic endpoints.
+ */
+function lazyCleanup(now: number): void {
+  if (now - lastCleanup < CLEANUP_INTERVAL_MS && ipStore.size < MAX_IP_ENTRIES) {
+    return;
+  }
+  lastCleanup = now;
+  ipStore.forEach((record, ip) => {
+    record.timestamps = record.timestamps.filter((t) => now - t < windowMs);
+    if (record.timestamps.length === 0) {
+      ipStore.delete(ip);
+    }
+  });
 }
 
 export function checkRateLimit(clientIp: string): {
@@ -31,6 +41,10 @@ export function checkRateLimit(clientIp: string): {
   resetInSeconds: number;
 } {
   const now = Date.now();
+
+  // Run lazy cleanup (throttled)
+  lazyCleanup(now);
+
   const record = ipStore.get(clientIp) || { timestamps: [] };
 
   // Filter timestamps within current sliding window

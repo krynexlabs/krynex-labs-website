@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     template: "%s | Krynex Labs",
   },
   description:
-    "Krynex Labs identifies real-world industry problems and develops software products, web applications, mobile apps, and SaaS platforms that businesses subscribe to and use.",
+    "Krynex Labs identifies real industry problems to engineer software products, web apps, mobile apps, and SaaS platforms businesses subscribe to and rely on.",
   authors: [{ name: "Krynex Labs" }],
   creator: "Krynex Labs",
   publisher: "Krynex Labs",
@@ -45,13 +45,13 @@ export const metadata: Metadata = {
     siteName: "Krynex Labs",
     title: "Krynex Labs | Problem-Driven Software & SaaS Products",
     description:
-      "Krynex Labs identifies real-world industry problems and develops software products, web applications, mobile apps, and SaaS platforms that businesses subscribe to and use.",
+      "Krynex Labs identifies real industry problems to engineer software products, web apps, mobile apps, and SaaS platforms businesses subscribe to and rely on.",
   },
   twitter: {
     card: "summary_large_image",
     title: "Krynex Labs | Problem-Driven Software & SaaS Products",
     description:
-      "Krynex Labs identifies real-world industry problems and develops software products, web applications, mobile apps, and SaaS platforms that businesses subscribe to and use.",
+      "Krynex Labs identifies real industry problems to engineer software products, web apps, mobile apps, and SaaS platforms businesses subscribe to and rely on.",
   },
   robots: {
     index: true,

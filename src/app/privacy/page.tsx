@@ -18,6 +18,12 @@ export const metadata: Metadata = {
       "Enterprise data sovereignty, cryptographic security standards, and privacy disclosures governing Krynex Labs client workflows, SaaS products, and contact inquiries.",
     url: "https://www.krynexlabs.in/privacy",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Privacy Policy | Krynex Labs",
+    description:
+      "Enterprise data sovereignty, cryptographic security standards, and privacy disclosures governing Krynex Labs client workflows, SaaS products, and contact inquiries.",
+  },
 };
 
 export default function PrivacyPage() {

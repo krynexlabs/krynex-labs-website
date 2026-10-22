@@ -18,6 +18,12 @@ export const metadata: Metadata = {
       "Enterprise terms of service, subscription billing, guided sandbox access, zero-retention data sovereignty, and high availability targets for Krynex Labs SaaS products.",
     url: "https://www.krynexlabs.in/terms",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Terms of Service & SLA Governance | Krynex Labs",
+    description:
+      "Enterprise terms of service, subscription billing, guided sandbox access, zero-retention data sovereignty, and high availability targets for Krynex Labs SaaS products.",
+  },
 };
 
 export default function TermsPage() {
@@ -132,15 +138,43 @@ export default function TermsPage() {
               5. Customer Data Sovereignty &amp; Zero-Retention Handling
             </h2>
             <p className="text-zinc-400 leading-relaxed">
-              Customers retain 100% exclusive ownership of all documents, title extracts, ERP payloads, and camera frames submitted to Krynex Labs products. Krynex Labs operates under strict zero-retention and per-tenant cryptographic isolation: customer data is never co-mingled, sold, or utilized to train public foundation models. For edge deployments (Krynex Vision), inference runs 100% offline on on-premise edge hardware without cloud telemetry transmission.
+              Customers retain 100% exclusive ownership of all documents, title extracts, ERP payloads, and camera frames submitted to Krynex Labs products. Krynex Labs operates under strict zero-retention and per-tenant cryptographic isolation: customer data is never co-mingled, sold, or utilized to train public foundation models. For edge deployments (Krynex Vision), core neural inference runs 100% locally and air-gapped on on-premise edge hardware without mandatory cloud telemetry. Optional scheduled synchronization with customer-controlled cloud lakehouses is activated strictly upon explicit customer configuration.
             </p>
           </section>
 
           {/* Section 6 */}
           <section className="space-y-4">
             <h2 className="text-xl font-bold text-white tracking-tight flex items-center gap-2">
+              <Shield className="w-5 h-5 text-zinc-400" />
+              6. Assistive Legal Technology Disclaimer (Krynex Lexis)
+            </h2>
+            <p className="text-zinc-400 leading-relaxed">
+              Krynex Lexis and affiliated software modules provide assistive computational document assembly, bilingual terminology translation, and statutory reference extraction. <strong className="text-white">Krynex Labs is a software technology provider, not a law firm, and does not provide legal advice, legal opinions, or legal representation.</strong>
+            </p>
+            <p className="text-zinc-400 leading-relaxed">
+              Use of Krynex software does not create an advocate-client relationship. All AI-assisted compilations, title clearance summaries, and deed drafts must be independently reviewed, verified, and executed under the professional responsibility of a qualified legal practitioner or advocate licensed under the Advocates Act, 1961. Krynex Labs assumes no liability for legal interpretations or conveyancing actions executed without independent advocate verification.
+            </p>
+          </section>
+
+          {/* Section 7 */}
+          <section className="space-y-4">
+            <h2 className="text-xl font-bold text-white tracking-tight flex items-center gap-2">
+              <AlertTriangle className="w-5 h-5 text-zinc-400" />
+              7. Disclaimer of Warranties &amp; Limitation of Liability
+            </h2>
+            <p className="text-zinc-400 leading-relaxed">
+              Except as expressly set forth in a signed enterprise master subscription agreement, Krynex Labs software applications, APIs, and sandbox environments are provided on an &ldquo;as is&rdquo; and &ldquo;as available&rdquo; basis without warranties of any kind, whether express or implied.
+            </p>
+            <p className="text-zinc-400 leading-relaxed">
+              To the maximum extent permitted under applicable law, in no event shall Krynex Labs, its founders, or engineering personnel be liable for any indirect, incidental, punitive, or consequential damages (including loss of business revenue, legal dispute costs, or production scrap penalties) arising out of or in connection with the use of our software. In all events, Krynex Labs&rsquo; total aggregate cumulative liability arising from any claim shall be strictly capped at the total subscription fees paid by the subscriber to Krynex Labs during the twelve (12) months immediately preceding the event giving rise to liability.
+            </p>
+          </section>
+
+          {/* Section 8 */}
+          <section className="space-y-4">
+            <h2 className="text-xl font-bold text-white tracking-tight flex items-center gap-2">
               <CheckCircle className="w-5 h-5 text-zinc-400" />
-              6. High Availability Service Target (SLA) &amp; Maintenance
+              8. High Availability Service Target (SLA) &amp; Maintenance
             </h2>
             <p className="text-zinc-400 leading-relaxed">
               For commercial production tiers, Krynex Labs targets continuous high availability (99.9% monthly service availability target) during each calendar month, measured across core application endpoints. Scheduled maintenance windows (typically executed during low-traffic periods between 01:00 and 04:00 IST on Sundays) are announced in advance and are excluded from downtime calculations.
@@ -150,11 +184,11 @@ export default function TermsPage() {
             </p>
           </section>
 
-          {/* Section 7 */}
+          {/* Section 9 */}
           <section className="space-y-4">
             <h2 className="text-xl font-bold text-white tracking-tight flex items-center gap-2">
               <Building2 className="w-5 h-5 text-zinc-400" />
-              7. Governing Law &amp; Dispute Resolution
+              9. Governing Law &amp; Dispute Resolution
             </h2>
             <p className="text-zinc-400 leading-relaxed">
               These Terms and any subscription agreements shall be governed by, interpreted, and construed in accordance with the laws of the Republic of India, without regard to conflict of law principles. Any legal suit, action, or proceeding arising out of or related to these Terms shall be instituted exclusively in the competent courts situated in Ahmedabad, Gujarat, India.

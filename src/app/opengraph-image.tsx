@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 
 export const runtime = "edge";
-export const alt = "KRYNEX LABS — Applied AI/ML & Enterprise IT Engineering Company";
+export const alt = "KRYNEX LABS — Problem-Driven Software & SaaS Products";
 export const size = {
   width: 1200,
   height: 630,

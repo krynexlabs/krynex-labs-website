@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import Link from "next/link";
 import { CheckCircle2, AlertCircle, ArrowRight } from "lucide-react";
 import confetti from "canvas-confetti";
 
@@ -392,8 +393,17 @@ export default function ContactForm({ initialProduct }: ContactFormProps) {
             )}
           </button>
 
-          <div className="text-[10px] font-mono text-zinc-400 text-center pt-2">
-            Encrypted transmission &bull; Zero public model co-mingling &bull; 1–2 business day SLA response
+          <div className="text-[10px] font-mono text-zinc-400 text-center pt-2 space-y-1">
+            <div>
+              By submitting, you agree to our{" "}
+              <Link href="/privacy" className="underline hover:text-white transition-colors">
+                Privacy &amp; Data Sovereignty Policy
+              </Link>
+              .
+            </div>
+            <div>
+              Encrypted transmission &bull; Zero public model co-mingling &bull; 1–2 business day SLA response
+            </div>
           </div>
         </form>
       )}

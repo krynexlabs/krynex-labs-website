@@ -293,7 +293,7 @@ export default function Methodology() {
                     </div>
 
                     <div className="p-4 rounded-xl bg-white/[0.02] border border-white/[0.06] flex items-center justify-between text-xs font-mono">
-                      <span className="text-zinc-500">Current Phase:</span>
+                      <span className="text-zinc-500">Stage:</span>
                       <span className="text-white font-medium">
                         {st.step} of 07 — {st.badge}
                       </span>

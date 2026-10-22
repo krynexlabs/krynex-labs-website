@@ -49,7 +49,7 @@ export default function ProblemSection() {
       ],
       investigationVector:
         "Investigating event-driven state machines and automated routing to shrink day-long approval cycles into sub-minute executions.",
-      solutionExample: "Resolved in Krynex Flow via automated event-driven middleware.",
+      solutionExample: "Being built in Krynex Flow via automated event-driven middleware.",
     },
     {
       id: "manual-work",
@@ -113,7 +113,7 @@ export default function ProblemSection() {
       ],
       investigationVector:
         "Deploying edge computer vision and real-time SCADA telemetry for instantaneous defect isolation.",
-      solutionExample: "Resolved in Krynex Vision via local edge inference nodes.",
+      solutionExample: "Being built in Krynex Vision via local edge inference nodes.",
     },
     {
       id: "slow-decisions",
@@ -137,7 +137,7 @@ export default function ProblemSection() {
       title: "Industry-Specific Process Gaps",
       subtitle: "Generic Software Failing Specialized Regional Realities",
       frictionDetail:
-        "Silicon Valley software completely overlooks regional Indian statutory nuances (e.g. Gujarati revenue terms, Gujarat Stamp Act, Village Form 7/12) and offline industrial plant constraints.",
+        "Silicon Valley software often overlooks regional Indian statutory nuances (e.g. Gujarati revenue terms, Gujarat Stamp Act, Village Form 7/12) and offline industrial plant constraints.",
       questions: [
         "Which regional, vernacular, or legal requirements are ignored by global tools?",
         "Why do standard SaaS platforms fail when internet connections drop on factory floors?",

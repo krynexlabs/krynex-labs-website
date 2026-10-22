@@ -41,6 +41,8 @@ const config: Config = {
         "shimmer": "shimmer 2.5s linear infinite",
         "float": "float 6s ease-in-out infinite",
         "border-glow": "border-rotate 4s linear infinite",
+        "fade-in": "fadeIn 0.4s ease-out forwards",
+        "slide-up": "slideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards",
       },
       keyframes: {
         shimmer: {
@@ -54,6 +56,14 @@ const config: Config = {
         "border-rotate": {
           "0%": { "--border-angle": "0deg" },
           "100%": { "--border-angle": "360deg" },
+        },
+        fadeIn: {
+          from: { opacity: "0" },
+          to: { opacity: "1" },
+        },
+        slideUp: {
+          from: { opacity: "0", transform: "translateY(16px)" },
+          to: { opacity: "1", transform: "translateY(0)" },
         },
       },
     },
