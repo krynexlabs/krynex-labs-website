@@ -6,7 +6,6 @@ import WhatsAppButton from "@/components/WhatsAppButton";
 import ClientTelemetry from "@/components/Analytics";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics as VercelAnalytics } from "@vercel/analytics/react";
-import Script from "next/script";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -230,6 +229,25 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark scroll-smooth overflow-x-hidden max-w-[100vw]">
       <head>
+        {/* Google tag (gtag.js) */}
+        {/* eslint-disable-next-line @next/next/next-script-for-ga */}
+        <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-KZCMWZSRFN"
+        />
+        {/* eslint-disable-next-line @next/next/next-script-for-ga */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+
+              gtag('config', 'G-KZCMWZSRFN');
+            `,
+          }}
+        />
+
         {/* Schema.org Knowledge Graph Structured Data */}
         <script
           type="application/ld+json"
@@ -239,24 +257,6 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${jetbrainsMono.variable} bg-black font-sans antialiased text-zinc-100 min-h-screen selection:bg-white selection:text-black overflow-x-hidden max-w-[100vw] w-full`}
       >
-        {/* Google Tag (gtag.js) */}
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-KZCMWZSRFN"
-          strategy="afterInteractive"
-        />
-        <Script
-          id="google-tag-manager-gtag"
-          strategy="afterInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', 'G-KZCMWZSRFN');
-            `,
-          }}
-        />
-
         {/* Internal Diagnostic Telemetry Tracker */}
         <ClientTelemetry />
 
