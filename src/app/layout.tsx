@@ -22,11 +22,11 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.krynexlabs.in"),
   title: {
-    default: "Krynex Labs | Problem-Driven Software & SaaS Products",
+    default: "Krynex Labs | AI & Software Engineering Studio",
     template: "%s | Krynex Labs",
   },
   description:
-    "Krynex Labs identifies real industry problems to engineer software products, web apps, mobile apps, and SaaS platforms businesses subscribe to and rely on.",
+    "Krynex Labs designs custom AI solutions, scalable cloud systems, and enterprise software that solve real operational bottlenecks.",
   authors: [{ name: "Krynex Labs" }],
   creator: "Krynex Labs",
   publisher: "Krynex Labs",
@@ -43,15 +43,15 @@ export const metadata: Metadata = {
     locale: "en_IN",
     url: "https://www.krynexlabs.in",
     siteName: "Krynex Labs",
-    title: "Krynex Labs | Problem-Driven Software & SaaS Products",
+    title: "Krynex Labs | AI & Software Engineering Studio",
     description:
-      "Krynex Labs identifies real industry problems to engineer software products, web apps, mobile apps, and SaaS platforms businesses subscribe to and rely on.",
+      "Krynex Labs designs custom AI solutions, scalable cloud systems, and enterprise software that solve real operational bottlenecks.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Krynex Labs | Problem-Driven Software & SaaS Products",
+    title: "Krynex Labs | AI & Software Engineering Studio",
     description:
-      "Krynex Labs identifies real industry problems to engineer software products, web apps, mobile apps, and SaaS platforms businesses subscribe to and rely on.",
+      "Krynex Labs designs custom AI solutions, scalable cloud systems, and enterprise software that solve real operational bottlenecks.",
   },
   robots: {
     index: true,
@@ -86,8 +86,6 @@ const jsonLd = {
       image: "https://www.krynexlabs.in/opengraph-image",
       email: "support@krynexlabs.in",
       telephone: "+91-98794-18569",
-      currenciesAccepted: "INR, USD",
-      priceRange: "₹1,499 - ₹18,500+",
       address: {
         "@type": "PostalAddress",
         streetAddress: "Sindhu Bhavan Road (SBR)",
@@ -105,10 +103,8 @@ const jsonLd = {
         "Applied Artificial Intelligence",
         "Machine Learning",
         "Enterprise Software Architecture",
-        "SaaS Product Development",
         "Cloud & Data Infrastructure",
-        "Industrial Computer Vision",
-        "Deterministic Legal Tech",
+        "System & ERP Integration",
         "Zero-Trust Security",
       ],
       contactPoint: [
@@ -130,54 +126,9 @@ const jsonLd = {
       "@id": "https://www.krynexlabs.in/#website",
       url: "https://www.krynexlabs.in",
       name: "Krynex Labs",
-      description: "Problem-Driven Software Products and SaaS Company",
+      description: "AI & Custom Enterprise Software Engineering Studio",
       publisher: {
         "@id": "https://www.krynexlabs.in/#organization",
-      },
-    },
-    {
-      "@type": "SoftwareApplication",
-      "@id": "https://www.krynexlabs.in/products/krynex-lexis#software",
-      name: "Krynex Lexis",
-      applicationCategory: "BusinessApplication",
-      operatingSystem: "Cloud SaaS, Web-based",
-      description: "Bilingual Gujarati and English AI legal drafting and statutory conveyancing platform with deterministic revenue record integration.",
-      offers: {
-        "@type": "Offer",
-        price: "1499",
-        priceCurrency: "INR",
-        priceValidUntil: "2027-12-31",
-        availability: "https://schema.org/InStock",
-      },
-    },
-    {
-      "@type": "SoftwareApplication",
-      "@id": "https://www.krynexlabs.in/products/krynex-flow#software",
-      name: "Krynex Flow",
-      applicationCategory: "BusinessApplication",
-      operatingSystem: "Cloud, Hybrid, On-Premise",
-      description: "Enterprise workflow orchestrator and event middleware with deterministic state isolation and real-time ledger synchronization.",
-      offers: {
-        "@type": "Offer",
-        price: "7999",
-        priceCurrency: "INR",
-        priceValidUntil: "2027-12-31",
-        availability: "https://schema.org/PreOrder",
-      },
-    },
-    {
-      "@type": "SoftwareApplication",
-      "@id": "https://www.krynexlabs.in/products/krynex-vision#software",
-      name: "Krynex Vision",
-      applicationCategory: "IndustrialApplication",
-      operatingSystem: "Embedded Linux, NVIDIA Jetson, Industrial PC",
-      description: "Edge computer vision and real-time telemetry inspection platform for manufacturing quality control.",
-      offers: {
-        "@type": "Offer",
-        price: "18500",
-        priceCurrency: "INR",
-        priceValidUntil: "2027-12-31",
-        availability: "https://schema.org/PreOrder",
       },
     },
     {
@@ -186,34 +137,26 @@ const jsonLd = {
       mainEntity: [
         {
           "@type": "Question",
-          name: "What is Krynex Labs' software rental and subscription access model?",
+          name: "What services does Krynex Labs provide?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "Krynex Labs operates on a problem-driven software rental model (Build → Launch → Subscribe → Maintain → Improve). Businesses pay a predictable monthly or annual recurring subscription to access production software, eliminating upfront capital expenditure while receiving continuous feature evolution, security patches, and high-availability enterprise infrastructure.",
+            text: "Krynex Labs engineers custom AI solutions, predictive machine learning models, bespoke enterprise web and mobile applications, ERP integrations, and resilient cloud infrastructure.",
           },
         },
         {
           "@type": "Question",
-          name: "Can Krynex software products operate on-premise without cloud latency?",
+          name: "Where is Krynex Labs located?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "Yes. Products like Krynex Vision are engineered to operate offline at the factory edge using industrial computers (NVIDIA Jetson / IPC) with low-latency inference targets and local PLC pneumatic actuation. Products handling confidential corporate records, such as Krynex Lexis, feature zero-retention KMS envelope encryption.",
+            text: "Krynex Labs is headquartered at Sindhu Bhavan Road (SBR), Ahmedabad, Gujarat, India.",
           },
         },
         {
           "@type": "Question",
-          name: "How can businesses in Gujarat schedule a live demonstration or sandbox trial?",
+          name: "How can businesses start a project with Krynex Labs?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "Enterprises can request an executive walkthrough via our online contact portal or connect directly with our engineering team on WhatsApp at +91 9879418569 from our Ahmedabad headquarters on Sindhu Bhavan Road (SBR).",
-          },
-        },
-        {
-          "@type": "Question",
-          name: "What industries does Krynex Labs build software products for?",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text: "Krynex Labs investigates operational friction across Continuous Manufacturing & Precision Fabrication, LegalTech & Real Estate Conveyancing, Multimodal Logistics & Port Telematics, FinTech Banking Infrastructure, and Diagnostic Healthcare Systems.",
+            text: "Enterprises can reach out via our contact portal or message our engineering team directly on WhatsApp at +91 9879418569.",
           },
         },
       ],

@@ -2,7 +2,7 @@ import { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://www.krynexlabs.in";
-  const lastReleaseDate = new Date("2026-10-19");
+  const lastReleaseDate = new Date();
 
   const routes: {
     path: string;
@@ -10,22 +10,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     changeFrequency: "always" | "hourly" | "daily" | "weekly" | "monthly" | "yearly" | "never";
   }[] = [
     { path: "", priority: 1.0, changeFrequency: "daily" },
-    { path: "/products", priority: 0.95, changeFrequency: "daily" },
-    { path: "/products/krynex-lexis", priority: 0.9, changeFrequency: "weekly" },
-    { path: "/products/krynex-flow", priority: 0.9, changeFrequency: "weekly" },
-    { path: "/products/krynex-vision", priority: 0.9, changeFrequency: "weekly" },
-    { path: "/solutions", priority: 0.85, changeFrequency: "weekly" },
-    { path: "/solutions/ai-ml", priority: 0.85, changeFrequency: "weekly" },
-    { path: "/solutions/enterprise-software", priority: 0.85, changeFrequency: "weekly" },
-    { path: "/solutions/web-mobile", priority: 0.85, changeFrequency: "weekly" },
-    { path: "/solutions/cloud-data", priority: 0.85, changeFrequency: "weekly" },
-    { path: "/industries", priority: 0.85, changeFrequency: "weekly" },
-    { path: "/approach", priority: 0.85, changeFrequency: "monthly" },
+    { path: "/solutions", priority: 0.9, changeFrequency: "weekly" },
+    { path: "/industries", priority: 0.9, changeFrequency: "weekly" },
     { path: "/about", priority: 0.85, changeFrequency: "monthly" },
     { path: "/contact", priority: 0.85, changeFrequency: "monthly" },
-    { path: "/research", priority: 0.8, changeFrequency: "weekly" },
-    { path: "/privacy", priority: 0.6, changeFrequency: "monthly" },
-    { path: "/terms", priority: 0.6, changeFrequency: "monthly" },
+    { path: "/privacy", priority: 0.5, changeFrequency: "monthly" },
+    { path: "/terms", priority: 0.5, changeFrequency: "monthly" },
   ];
 
   return routes.map((route) => ({

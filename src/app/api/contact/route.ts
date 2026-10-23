@@ -62,8 +62,8 @@ export async function POST(request: Request) {
     // 4. Field Normalization (Supports canonical & legacy payload naming)
     const rawName = body.executiveName || body.name;
     const rawEmail = body.corporateEmail || body.email;
-    const rawCompany = body.companySector || body.company;
-    const rawFriction = body.operationalFriction || body.challenge;
+    const rawCompany = body.companySector || body.company || "General / Enterprise";
+    const rawFriction = body.operationalFriction || body.challenge || body.message;
     const rawCategory = body.inquiryCategory || "General Inquiry";
     const requestWalkthrough = Boolean(body.requestWalkthrough || body.requestMeeting);
 

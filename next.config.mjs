@@ -71,6 +71,31 @@ const nextConfig = {
         destination: '/terms',
         permanent: true,
       },
+      {
+        source: '/products/:path*',
+        destination: '/solutions',
+        permanent: true,
+      },
+      {
+        source: '/products',
+        destination: '/solutions',
+        permanent: true,
+      },
+      {
+        source: '/research',
+        destination: '/solutions',
+        permanent: true,
+      },
+      {
+        source: '/approach',
+        destination: '/about',
+        permanent: true,
+      },
+      {
+        source: '/solutions/:slug',
+        destination: '/solutions',
+        permanent: true,
+      },
     ];
   },
 };
