@@ -498,14 +498,22 @@ export default function Hero3DCube() {
       // 1. Mobile viewport detection (<768px uses lightweight zero-JS SVG fallback)
       setIsMobile(window.innerWidth < 768);
 
-      // 2. WebGL capability check
+      // 2. WebGL capability check with software rasterizer filter
       try {
         const canvas = document.createElement("canvas");
         const gl =
-          canvas.getContext("webgl") ||
-          canvas.getContext("experimental-webgl");
+          (canvas.getContext("webgl") ||
+          canvas.getContext("experimental-webgl")) as WebGLRenderingContext | null;
         if (!gl) {
           setHasWebGL(false);
+        } else {
+          const debugInfo = gl.getExtension("WEBGL_debug_renderer_info");
+          if (debugInfo) {
+            const renderer = gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL) || "";
+            if (/swiftshader|llvmpipe|software|mesa/i.test(renderer)) {
+              setHasWebGL(false);
+            }
+          }
         }
       } catch {
         setHasWebGL(false);

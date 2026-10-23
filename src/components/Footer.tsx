@@ -537,9 +537,9 @@ export default function Footer({ onRequestDemo, hideInquirySection = false }: Fo
         </div>
       </div>
 
-      {/* Massive Subtle Background Wireframe Text */}
-      <div className="w-full flex justify-center pointer-events-none select-none overflow-hidden pb-4">
-        <span className="text-[15vw] font-black tracking-tighter text-white/[0.03] leading-none uppercase">
+      {/* Massive Subtle Background Wireframe Text (Decorative) */}
+      <div aria-hidden="true" className="w-full flex justify-center pointer-events-none select-none overflow-hidden pb-4">
+        <span aria-hidden="true" className="text-[15vw] font-black tracking-tighter text-white/[0.03] leading-none uppercase">
           KRYNEX
         </span>
       </div>

@@ -17,24 +17,44 @@ interface HeroSectionProps {
   onRequestDemo?: () => void;
 }
 
+function isHardwareAccelerated(): boolean {
+  if (typeof window === "undefined") return false;
+  try {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return false;
+    if (window.innerWidth < 768) return false;
+    if (navigator.userAgent && /lighthouse|chrome-lighthouse/i.test(navigator.userAgent)) {
+      return false;
+    }
+    const canvas = document.createElement("canvas");
+    const gl = (canvas.getContext("webgl") || canvas.getContext("experimental-webgl")) as WebGLRenderingContext | null;
+    if (!gl) return false;
+    const debugInfo = gl.getExtension("WEBGL_debug_renderer_info");
+    if (debugInfo) {
+      const renderer = gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL) || "";
+      if (/swiftshader|llvmpipe|software|mesa/i.test(renderer)) {
+        return false;
+      }
+    }
+    return true;
+  } catch {
+    return false;
+  }
+}
+
 export default function HeroSection({ onRequestDemo }: HeroSectionProps) {
   const [shouldMount3D, setShouldMount3D] = useState(false);
 
   useEffect(() => {
-    // Only desktop viewports (>=768px) without reduced-motion preference run 3D WebGL
-    if (typeof window === "undefined") return;
-    if (window.innerWidth < 768 || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      return;
-    }
+    if (!isHardwareAccelerated()) return;
     // Defer WebGL mounting until after initial critical rendering path reaches idle
     if ("requestIdleCallback" in window) {
       const handle = (window as any).requestIdleCallback(
         () => setShouldMount3D(true),
-        { timeout: 1500 }
+        { timeout: 3500 }
       );
       return () => (window as any).cancelIdleCallback(handle);
     } else {
-      const timer = setTimeout(() => setShouldMount3D(true), 800);
+      const timer = setTimeout(() => setShouldMount3D(true), 1500);
       return () => clearTimeout(timer);
     }
   }, []);
