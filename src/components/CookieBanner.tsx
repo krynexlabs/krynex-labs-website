@@ -20,6 +20,14 @@ export default function CookieBanner() {
 
   const handleChoice = (choice: "all" | "essential") => {
     safeLocalStorage.setItem("krynex_cookie_consent", choice);
+    if (typeof window !== "undefined") {
+      const win = window as any;
+      if (typeof win.gtag === "function") {
+        win.gtag("consent", "update", {
+          analytics_storage: choice === "all" ? "granted" : "denied",
+        });
+      }
+    }
     setVisible(false);
   };
 

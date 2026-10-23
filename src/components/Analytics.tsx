@@ -29,7 +29,12 @@ export function trackConversionEvent(
       });
     }
 
-    // 3. Local diagnostic telemetry logging
+    // 3. Dispatch to Google Analytics (gtag.js) if available
+    if (typeof win.gtag === "function") {
+      win.gtag("event", eventName, properties);
+    }
+
+    // 4. Local diagnostic telemetry logging
     if (process.env.NODE_ENV === "development") {
       console.log(`[CONVERSION TRACKER] Event: "${eventName}"`, properties);
     }
@@ -43,6 +48,14 @@ export default function Analytics() {
   const pathname = usePathname();
 
   useEffect(() => {
+    // Notify Google Analytics of route transitions in Single Page Application navigation
+    const win = window as any;
+    if (typeof win.gtag === "function") {
+      win.gtag("config", "G-KZCMWZSRFN", {
+        page_path: pathname,
+      });
+    }
+
     // Lightweight privacy-first telemetry logger for aggregate internal routing metrics
     const consent = safeLocalStorage.getItem("krynex_cookie_consent");
     if (consent === "all") {
