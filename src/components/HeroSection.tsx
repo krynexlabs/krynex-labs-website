@@ -60,13 +60,13 @@ export default function HeroSection({ onRequestDemo }: HeroSectionProps) {
 
             {/* Primary Action Buttons */}
             <div className="flex flex-wrap items-center gap-4 w-full sm:w-auto mb-10">
-              <a
-                href="#products"
+              <Link
+                href="/products"
                 className="w-full sm:w-auto px-6 py-3.5 rounded-full bg-white text-black font-semibold text-sm hover:bg-zinc-200 transition-all flex items-center justify-center gap-2 group shadow-[0_0_25px_rgba(255,255,255,0.2)]"
               >
                 <span>Explore Our Products</span>
                 <ArrowRight className="w-4 h-4 text-black group-hover:translate-x-1 transition-transform" />
-              </a>
+              </Link>
 
               <a
                 href="#approach"

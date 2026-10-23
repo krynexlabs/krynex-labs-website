@@ -5,7 +5,6 @@ import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import ProblemSection from "@/components/ProblemSection";
 import Methodology from "@/components/Methodology";
-import ProductsShowcase from "@/components/ProductsShowcase";
 import EnterpriseMatrix from "@/components/EnterpriseMatrix";
 import DraftingDemo from "@/components/DraftingDemo";
 import BentoGrid from "@/components/BentoGrid";
@@ -48,13 +47,6 @@ export default function Home() {
       {/* SECTION 3 — HOW WE BUILD: The 7-Stage Creation Process */}
       {/* ======================================================== */}
       <Methodology />
-
-      <SectionDivider />
-
-      {/* ======================================================== */}
-      {/* SECTION 4 — OUR SOFTWARE PRODUCTS: Verified Platforms */}
-      {/* ======================================================== */}
-      <ProductsShowcase onRequestDemo={() => setIsDemoModalOpen(true)} />
 
       <SectionDivider />
 
