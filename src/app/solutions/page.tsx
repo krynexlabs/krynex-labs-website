@@ -19,7 +19,7 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Capabilities & Enterprise Solutions | Krynex Labs",
+  title: "Capabilities & Enterprise Solutions",
   description:
     "Explore Krynex Labs engineering capabilities: Applied AI systems, enterprise software architectures, web and mobile platforms, and resilient cloud data pipelines.",
   alternates: {

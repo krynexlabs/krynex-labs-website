@@ -2,7 +2,7 @@ import Link from "next/link";
 import { CheckCircle2, Shield, ArrowLeft, Clock, Lock, Server } from "lucide-react";
 
 export const metadata = {
-  title: "Inquiry Confirmed | Krynex Labs",
+  title: "Inquiry Confirmed",
   description: "Inquiry securely received by Krynex Labs software engineering team.",
   robots: {
     index: false,

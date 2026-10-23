@@ -44,11 +44,11 @@ export default function EnterpriseMatrix() {
       whyExistingFails:
         "Legacy machine vision requires expensive custom programming and cannot correlate detected defects with upstream PLC vibration and temperature sensors.",
       solution:
-        "Krynex Vision: Edge TensorRT computer vision operating entirely on-premise without cloud latency, coupled with real-time SCADA telemetry and pneumatic reject actuators.",
+        "Edge TensorRT computer vision operating entirely on-premise without cloud latency, coupled with real-time SCADA telemetry and pneumatic reject actuators.",
       beneficiaries: "Plant managers, quality control engineers, and precision component manufacturers.",
-      statusBadge: "Commercial Product (In Development)",
+      statusBadge: "Engineering Capability (Live)",
       metrics: ["Edge Target Inference", "Minimized Target Defect Escape", "Offline Edge Autonomy"],
-      productLink: "/products/krynex-vision",
+      productLink: "/solutions/ai-ml",
     },
     {
       id: "legal",
@@ -61,11 +61,11 @@ export default function EnterpriseMatrix() {
       whyExistingFails:
         "Static Word templates and generic public AI tools hallucinate non-existent citations and risk serious confidentiality breaches under statutory privilege rules.",
       solution:
-        "Krynex Lexis: India's bilingual legal drafting and title clearance platform, compiling structured draft deeds with rapid deterministic statutory guardrails.",
+        "India's bilingual legal drafting and title clearance architecture, compiling structured draft deeds with rapid deterministic statutory guardrails.",
       beneficiaries: "Corporate legal counsel, title advocates, real estate developers, and statutory compliance panels.",
-      statusBadge: "Commercial Product (Live)",
+      statusBadge: "Enterprise Software (Live)",
       metrics: ["Rapid Compilation Target", "Multi-Year Index-II Triage", "Zero Public Model Training"],
-      productLink: "/products/krynex-lexis",
+      productLink: "/solutions/enterprise-software",
     },
     {
       id: "logistics",
@@ -78,11 +78,11 @@ export default function EnterpriseMatrix() {
       whyExistingFails:
         "Traditional OCR tools choke on low-resolution multilingual scans and lack direct bi-directional integration with port operating systems (TOS).",
       solution:
-        "Krynex Flow: High-throughput event middleware and neural document extraction pipeline that parses shipping manifests and synchronizes ERP ledgers with rapid event dispatch.",
+        "High-throughput event middleware and neural document extraction pipeline that parses shipping manifests and synchronizes ERP ledgers with rapid event dispatch.",
       beneficiaries: "Container terminal operators, customs house agents (CHA), freight forwarders, and logistics fleets.",
-      statusBadge: "Commercial Product (In Development)",
+      statusBadge: "Cloud Data Architecture (Live)",
       metrics: ["Rapid Gate Clearance Target", "Automated Ingestion Acceleration", "3-Way ERP Matching Target"],
-      productLink: "/products/krynex-flow",
+      productLink: "/solutions/cloud-data",
     },
     {
       id: "fintech",

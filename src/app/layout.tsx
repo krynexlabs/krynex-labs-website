@@ -26,6 +26,20 @@ export const metadata: Metadata = {
   },
   description:
     "Krynex Labs identifies real industry problems to engineer software products, web apps, mobile apps, and SaaS platforms businesses subscribe to and rely on.",
+  keywords: [
+    "Software Product Company Ahmedabad",
+    "SaaS Products India",
+    "Enterprise Software Engineering",
+    "Applied AI Solutions",
+    "Machine Learning Engineering",
+    "Cloud Architecture & Data Engineering",
+    "Web and Mobile App Development India",
+    "Industrial Automation Software",
+    "Deterministic Legal Tech",
+    "Software Rental Subscription",
+    "Krynex Labs Ahmedabad",
+    "Krynex Labs",
+  ],
   authors: [{ name: "Krynex Labs" }],
   creator: "Krynex Labs",
   publisher: "Krynex Labs",
@@ -36,6 +50,11 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: "https://www.krynexlabs.in",
+    languages: {
+      "en-IN": "https://www.krynexlabs.in",
+      "en": "https://www.krynexlabs.in",
+      "x-default": "https://www.krynexlabs.in",
+    },
   },
   openGraph: {
     type: "website",
@@ -72,48 +91,64 @@ export const viewport: Viewport = {
   maximumScale: 5,
 };
 
-// Rich Snippets / JSON-LD Knowledge Graph
+// Rich Snippets / JSON-LD Knowledge Graph (Enterprise Schema 2.0)
 const jsonLd = {
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": "Organization",
+      "@type": ["Organization", "Corporation", "ProfessionalService"],
       "@id": "https://www.krynexlabs.in/#organization",
       name: "Krynex Labs",
+      legalName: "Krynex Labs",
       url: "https://www.krynexlabs.in",
       logo: "https://www.krynexlabs.in/opengraph-image",
       image: "https://www.krynexlabs.in/opengraph-image",
       email: "support@krynexlabs.in",
+      slogan: "Architecting Intelligence for Industry.",
       currenciesAccepted: "INR, USD",
-      priceRange: "₹1,499 - ₹18,500+",
+      priceRange: "$$$",
       address: {
         "@type": "PostalAddress",
         addressLocality: "Ahmedabad",
         addressRegion: "Gujarat",
         addressCountry: "IN",
+        postalCode: "380015",
       },
       geo: {
         "@type": "GeoCoordinates",
         latitude: "23.0225",
         longitude: "72.5714",
       },
+      openingHoursSpecification: [
+        {
+          "@type": "OpeningHoursSpecification",
+          dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          opens: "09:30",
+          closes: "18:30",
+        },
+      ],
+      areaServed: [
+        { "@type": "AdministrativeArea", name: "Ahmedabad" },
+        { "@type": "AdministrativeArea", name: "Gujarat" },
+        { "@type": "Country", name: "India" },
+        { "@type": "Place", name: "Global" },
+      ],
       knowsAbout: [
         "Applied Artificial Intelligence",
-        "Machine Learning",
+        "Machine Learning & Neural Architectures",
         "Enterprise Software Architecture",
         "SaaS Product Development",
         "Cloud & Data Infrastructure",
         "Industrial Computer Vision",
-        "Deterministic Legal Tech",
-        "Zero-Trust Security",
+        "Zero-Trust Security & Cryptography",
+        "High-Throughput Distributed Systems",
       ],
       contactPoint: [
         {
           "@type": "ContactPoint",
-          telephone: "+91-98794-18569",
-          contactType: "customer support",
+          contactType: "technical support & executive briefing",
           email: "support@krynexlabs.in",
-          areaServed: "IN",
+          areaServed: ["IN", "US", "GB", "AE", "SG"],
           availableLanguage: ["English", "Hindi", "Gujarati"],
         },
       ],
@@ -127,54 +162,62 @@ const jsonLd = {
       url: "https://www.krynexlabs.in",
       name: "Krynex Labs",
       description: "Problem-Driven Software Products and SaaS Company",
+      inLanguage: "en-IN",
       publisher: {
         "@id": "https://www.krynexlabs.in/#organization",
       },
     },
     {
-      "@type": "SoftwareApplication",
-      "@id": "https://www.krynexlabs.in/products/krynex-lexis#software",
-      name: "Krynex Lexis",
-      applicationCategory: "BusinessApplication",
-      operatingSystem: "Cloud SaaS, Web-based",
-      description: "Bilingual Gujarati and English AI legal drafting and statutory conveyancing platform with deterministic revenue record integration.",
-      offers: {
-        "@type": "Offer",
-        price: "1499",
-        priceCurrency: "INR",
-        priceValidUntil: "2027-12-31",
-        availability: "https://schema.org/InStock",
+      "@type": "Service",
+      "@id": "https://www.krynexlabs.in/solutions/ai-ml#service",
+      name: "Applied AI & Neural Architectures",
+      serviceType: "Artificial Intelligence & Machine Learning Engineering",
+      provider: {
+        "@id": "https://www.krynexlabs.in/#organization",
       },
+      url: "https://www.krynexlabs.in/solutions/ai-ml",
+      description:
+        "Custom neural architectures, LLM fine-tuning, deterministic RAG, and edge computer vision engineered for zero-error enterprise execution.",
+      areaServed: "India, Global",
     },
     {
-      "@type": "SoftwareApplication",
-      "@id": "https://www.krynexlabs.in/products/krynex-flow#software",
-      name: "Krynex Flow",
-      applicationCategory: "BusinessApplication",
-      operatingSystem: "Cloud, Hybrid, On-Premise",
-      description: "Enterprise workflow orchestrator and event middleware with deterministic state isolation and real-time ledger synchronization.",
-      offers: {
-        "@type": "Offer",
-        price: "7999",
-        priceCurrency: "INR",
-        priceValidUntil: "2027-12-31",
-        availability: "https://schema.org/PreOrder",
+      "@type": "Service",
+      "@id": "https://www.krynexlabs.in/solutions/enterprise-software#service",
+      name: "Custom Enterprise Software & Architecture",
+      serviceType: "Enterprise Software Engineering & Modernization",
+      provider: {
+        "@id": "https://www.krynexlabs.in/#organization",
       },
+      url: "https://www.krynexlabs.in/solutions/enterprise-software",
+      description:
+        "Event-driven microservices, legacy monolith refactoring, and high-availability database engineering built for mission-critical enterprise throughput.",
+      areaServed: "India, Global",
     },
     {
-      "@type": "SoftwareApplication",
-      "@id": "https://www.krynexlabs.in/products/krynex-vision#software",
-      name: "Krynex Vision",
-      applicationCategory: "IndustrialApplication",
-      operatingSystem: "Embedded Linux, NVIDIA Jetson, Industrial PC",
-      description: "Edge computer vision and real-time telemetry inspection platform for manufacturing quality control.",
-      offers: {
-        "@type": "Offer",
-        price: "18500",
-        priceCurrency: "INR",
-        priceValidUntil: "2027-12-31",
-        availability: "https://schema.org/PreOrder",
+      "@type": "Service",
+      "@id": "https://www.krynexlabs.in/solutions/cloud-data#service",
+      name: "Cloud Infrastructure, Data & Zero-Trust Security",
+      serviceType: "Cloud Architecture & Data Engineering",
+      provider: {
+        "@id": "https://www.krynexlabs.in/#organization",
       },
+      url: "https://www.krynexlabs.in/solutions/cloud-data",
+      description:
+        "Zero-trust cloud infrastructure, real-time streaming data pipelines (Kafka/Flink), and KMS cryptographic key management engineered for sovereign data isolation.",
+      areaServed: "India, Global",
+    },
+    {
+      "@type": "Service",
+      "@id": "https://www.krynexlabs.in/solutions/web-mobile#service",
+      name: "Web Platforms & Mission-Critical Mobile Systems",
+      serviceType: "Web & Mobile Platforms",
+      provider: {
+        "@id": "https://www.krynexlabs.in/#organization",
+      },
+      url: "https://www.krynexlabs.in/solutions/web-mobile",
+      description:
+        "High-performance Next.js and React native/hybrid mobile engineering with offline-first synchronization and sub-100ms transactional responsiveness.",
+      areaServed: "India, Global",
     },
     {
       "@type": "FAQPage",
@@ -190,15 +233,15 @@ const jsonLd = {
         },
         {
           "@type": "Question",
-          name: "Can Krynex software products operate on-premise without cloud latency?",
+          name: "Can Krynex software systems operate on-premise without cloud latency?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "Yes. Products like Krynex Vision are engineered to operate offline at the factory edge using industrial computers (NVIDIA Jetson / IPC) with low-latency inference targets and local PLC pneumatic actuation. Products handling confidential corporate records, such as Krynex Lexis, feature zero-retention KMS envelope encryption.",
+            text: "Yes. Krynex engineering systems can be containerized to operate air-gapped at the enterprise edge or on-premise data center using local hardware with low-latency inference targets and zero-retention KMS envelope encryption.",
           },
         },
         {
           "@type": "Question",
-          name: "How can businesses in Gujarat schedule a live demonstration or sandbox trial?",
+          name: "How can businesses in Ahmedabad or globally schedule an engineering briefing?",
           acceptedAnswer: {
             "@type": "Answer",
             text: "Enterprises can request an executive walkthrough via our online contact portal or connect directly with our engineering team via support@krynexlabs.in from our Ahmedabad (India) headquarters.",
@@ -209,7 +252,7 @@ const jsonLd = {
           name: "What industries does Krynex Labs build software products for?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "Krynex Labs investigates operational friction across Continuous Manufacturing & Precision Fabrication, LegalTech & Real Estate Conveyancing, Multimodal Logistics & Port Telematics, FinTech Banking Infrastructure, and Diagnostic Healthcare Systems.",
+            text: "Krynex Labs investigates operational friction across Continuous Manufacturing & Precision Fabrication, LegalTech & Statutory Compliance, Multimodal Logistics & Telematics, FinTech Banking Infrastructure, and Diagnostic Healthcare Systems.",
           },
         },
       ],
@@ -243,6 +286,12 @@ export default function RootLayout({
             `,
           }}
         />
+
+        {/* Geo Audit & Local Search Optimization (Ahmedabad, Gujarat, India) */}
+        <meta name="geo.region" content="IN-GJ" />
+        <meta name="geo.placename" content="Ahmedabad, Gujarat, India" />
+        <meta name="geo.position" content="23.0225;72.5714" />
+        <meta name="ICBM" content="23.0225, 72.5714" />
 
         {/* Schema.org Knowledge Graph Structured Data */}
         <script

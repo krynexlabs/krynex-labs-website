@@ -8,7 +8,7 @@ import Footer from "@/components/Footer";
 import ContactForm from "@/components/ContactForm";
 
 export const metadata: Metadata = {
-  title: "Contact Us | Krynex Labs",
+  title: "Contact Us",
   description:
     "Get personal, reliable engineering from people who understand your architecture. Reach out to Krynex Labs in Ahmedabad, India.",
   alternates: {
