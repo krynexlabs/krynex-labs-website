@@ -24,12 +24,12 @@ export const SOLUTIONS_DATA: Record<string, SolutionDetail> = {
     slug: "ai-ml",
     title: "Applied AI & Neural Architectures",
     tagline: "Custom Neural Pipelines Engineered for Zero-Error Industrial Execution",
-    category: "Division A // Applied AI & Enterprise Engineering",
+    category: "Applied AI & Machine Learning Architecture",
     badge: "NEURAL ENGINEERING",
     overview:
       "We engineer bespoke neural networks, domain-adapted large language models, and high-frequency edge computer vision systems tailored to complex enterprise workflows. Unlike off-the-shelf consumer wrappers, our models operate under strict deterministic guardrails, zero-retention data sovereignty, and optimized micro-kernel execution.",
     keyProblemsSolved: [
-      "Minimization of LLM hallucinations via deterministic AST verification and constrained grammar decoding.",
+      "Minimization of LLM hallucinations via automated syntax verification and constrained grammar decoding.",
       "High-latency inference bottlenecks overcome with TensorRT quantization on local edge hardware (edge line speed).",
       "Protection of sensitive intellectual property with zero-retention private VPC and on-premise neural cluster deployments.",
       "Fragmented unstructured document processing transformed into verified JSON schemas with high-precision validation.",
@@ -89,7 +89,7 @@ export const SOLUTIONS_DATA: Record<string, SolutionDetail> = {
     slug: "enterprise-software",
     title: "Custom Enterprise Software & Modernization",
     tagline: "Resilient Distributed Systems Built for Mission-Critical Corporate Velocity",
-    category: "Division A // Applied AI & Enterprise Engineering",
+    category: "Enterprise Systems Architecture",
     badge: "SYSTEMS ARCHITECTURE",
     overview:
       "We design, build, and modernize enterprise software backbones that support millions of daily transactions. From decomposing monolithic legacy databases to engineering event-driven microservices with high service availability, we deliver software that eliminates operational friction and scales predictably.",
@@ -154,7 +154,7 @@ export const SOLUTIONS_DATA: Record<string, SolutionDetail> = {
     slug: "web-mobile",
     title: "Web & Mobile Application Engineering",
     tagline: "High-Performance Digital Products Engineered for Instant Responsiveness",
-    category: "Division A // Applied AI & Enterprise Engineering",
+    category: "Full-Stack Web & Mobile Platforms",
     badge: "FULL-STACK ENGINEERING",
     overview:
       "We build modern, resilient web applications and native cross-platform mobile experiences that combine fluid responsive interfaces with industrial-grade reliability. Leveraging Next.js, React, React Native, and WebAssembly, we engineer customer-facing and internal portals that load instantly and operate reliably even under spotty network conditions.",
@@ -219,7 +219,7 @@ export const SOLUTIONS_DATA: Record<string, SolutionDetail> = {
     slug: "cloud-data",
     title: "Cloud Infrastructure, Data & Zero-Trust Security",
     tagline: "Scalable Cloud Foundations Engineered for Sovereign Data Isolation",
-    category: "Division A // Applied AI & Enterprise Engineering",
+    category: "Cloud Foundations & Data Infrastructure",
     badge: "CLOUD & DATA INFRASTRUCTURE",
     overview:
       "We engineer enterprise cloud foundations, high-throughput real-time streaming pipelines, and zero-trust security postures across AWS, GCP, Azure, and private datacenter infrastructure. We ensure your corporate data is encrypted, compliant, and instantly accessible to analytics and AI pipelines without latency bottlenecks.",

@@ -82,8 +82,8 @@ export default function BentoGrid() {
                 Applied Artificial Intelligence &amp; Custom ML Pipelines
               </h3>
               <p className="text-sm sm:text-base text-zinc-400 leading-relaxed mb-8 max-w-2xl">
-                Architecting neural networks, high-speed computer vision, domain-adapted NLP,
-                and automated enterprise decision systems with deterministic AST verification and validation guardrails.
+                Architecting practical neural models, high-speed computer vision, domain-adapted document intelligence,
+                and automated enterprise decision systems with verified logic and strict validation guardrails.
               </p>
 
               {/* Monochrome Node Graph with Animated Bezier Data Beams */}
