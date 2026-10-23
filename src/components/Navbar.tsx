@@ -127,7 +127,7 @@ export default function Navbar({ onRequestDemo }: NavbarProps) {
                   }}
                   className="bg-white text-black font-semibold hover:bg-zinc-200 px-5 py-2 rounded-full transition-all text-xs tracking-wide shadow-[0_0_20px_rgba(255,255,255,0.15)] flex items-center justify-center focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
                 >
-                  <span>Book a Demo</span>
+                  <span>Contact Us</span>
                 </button>
               ) : (
                 <Link
@@ -139,7 +139,7 @@ export default function Navbar({ onRequestDemo }: NavbarProps) {
                   }}
                   className="bg-white text-black font-semibold hover:bg-zinc-200 px-5 py-2 rounded-full transition-all text-xs tracking-wide shadow-[0_0_20px_rgba(255,255,255,0.15)] flex items-center justify-center focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
                 >
-                  <span>Book a Demo</span>
+                  <span>Contact Us</span>
                 </Link>
               )}
             </div>
@@ -223,7 +223,7 @@ export default function Navbar({ onRequestDemo }: NavbarProps) {
                 }}
                 className="w-full py-3 rounded-xl bg-white text-black font-semibold text-sm hover:bg-zinc-200 transition-colors text-center shadow-[0_0_20px_rgba(255,255,255,0.2)]"
               >
-                Book a Demo
+                Contact Us
               </button>
             ) : (
               <Link
@@ -231,7 +231,7 @@ export default function Navbar({ onRequestDemo }: NavbarProps) {
                 onClick={() => setMobileMenuOpen(false)}
                 className="w-full py-3 rounded-xl bg-white text-black font-semibold text-sm hover:bg-zinc-200 transition-colors text-center shadow-[0_0_20px_rgba(255,255,255,0.2)]"
               >
-                Book a Demo
+                Contact Us
               </Link>
             )}
           </div>

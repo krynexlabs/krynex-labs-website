@@ -171,7 +171,7 @@ alternates: {
 
 | Touchpoint | Implementation / Value | Consistency Status |
 | :--- | :--- | :---: |
-| **Navbar & Header** | Typographic monogram + "Book a Demo" modal trigger | ✅ Consistent |
+| **Navbar & Header** | Typographic monogram + "Contact Us" modal trigger | ✅ Consistent |
 | **Hero Telemetry** | `AHMEDABAD DC-01 CLUSTER // LATENCY: 2.1MS // STATUS: NOMINAL` | ✅ Consistent |
 | **Contact Page** | `Business Hours: 9:30 AM to 6:30 PM IST • Ahmedabad, India` | ✅ Consistent |
 | **Footer Badges** | `AHMEDABAD (IN) • support@krynexlabs.in` | ✅ Consistent |
