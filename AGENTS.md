@@ -61,3 +61,19 @@
 - Form Security: Anti-spam honeypot fields (`_security_honeypot`), strict client email validation, character length constraints, and anti-bot sanitization.
 - `CookieBanner.tsx`: Non-intrusive bottom glassmorphic banner with localStorage persistence (`krynex_cookie_consent`).
 - `Analytics.tsx`: Privacy-first client route logger respecting user cookie consent.
+
+---
+
+## Loop Engineering Protocol (Performance & Optimization Tasks)
+- **Workflow:** `PLAN → MEASURE → CHANGE → TEST → MEASURE AGAIN → COMPARE → ACCEPT OR ITERATE`.
+- **Iteration Bound:** Maximum 5 iterations per task. Each iteration must have one falsifiable hypothesis and one measurable success metric.
+- **Standardized Test Suite:**
+  1. `npm test` — Unit & regression test suite (18 suites covering sanitization, rate limiting, and route contracts).
+  2. `npm run lint` — ESLint rules.
+  3. `npx tsc --noEmit` — TypeScript type checker.
+  4. `npm run build` — Production build & First Load JS analysis.
+- **Safety Rules:**
+  - Work strictly on dedicated feature branches.
+  - No pushes, production deployments, or configuration alterations without explicit user authorization.
+  - Never sacrifice security headers, rate limiters, or Resend monochrome design integrity for performance score gains.
+

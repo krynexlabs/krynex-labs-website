@@ -3,7 +3,6 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { CheckCircle2, AlertCircle, ArrowRight, ChevronRight } from "lucide-react";
-import confetti from "canvas-confetti";
 
 interface ContactFormProps {
   initialProduct?: string;
@@ -101,6 +100,7 @@ export default function ContactForm({ initialProduct }: ContactFormProps) {
         setSubmitted(true);
 
         try {
+          const confetti = (await import("canvas-confetti")).default;
           confetti({
             particleCount: 80,
             spread: 60,
