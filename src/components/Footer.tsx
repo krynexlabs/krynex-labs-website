@@ -409,30 +409,35 @@ export default function Footer({ onRequestDemo }: FooterProps = {}) {
             </div>
           </div>
 
-          {/* Col 2: Software Products */}
+          {/* Col 2: Capabilities & Solutions */}
           <div>
             <div className="text-xs font-mono font-semibold text-white uppercase tracking-wider mb-4 flex items-center gap-1.5">
-              <span>Software Products</span>
+              <span>Capabilities</span>
             </div>
             <ul className="space-y-2.5 text-xs text-zinc-400">
               <li>
-                <Link href="/products" className="hover:text-white transition-colors">
-                  Product Directory
+                <Link href="/solutions" className="hover:text-white transition-colors">
+                  Overview &amp; Architecture
                 </Link>
               </li>
               <li>
-                <Link href="/products/krynex-lexis" className="hover:text-white transition-colors">
-                  Krynex Lexis (Legal AI SaaS)
+                <Link href="/solutions/ai-ml" className="hover:text-white transition-colors">
+                  AI &amp; Machine Learning
                 </Link>
               </li>
               <li>
-                <Link href="/products/krynex-flow" className="hover:text-white transition-colors">
-                  Krynex Flow (Integration Engine)
+                <Link href="/solutions/cloud-data" className="hover:text-white transition-colors">
+                  Cloud &amp; Data Infrastructure
                 </Link>
               </li>
               <li>
-                <Link href="/products/krynex-vision" className="hover:text-white transition-colors">
-                  Krynex Vision (Edge QC Engine)
+                <Link href="/solutions/enterprise-software" className="hover:text-white transition-colors">
+                  Enterprise Software
+                </Link>
+              </li>
+              <li>
+                <Link href="/solutions/web-mobile" className="hover:text-white transition-colors">
+                  Web &amp; Mobile Platforms
                 </Link>
               </li>
             </ul>

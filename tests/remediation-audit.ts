@@ -183,14 +183,14 @@ assert.strictEqual(
   true,
   "Sitemap must include /solutions routes (live pages, no longer 301-redirected)"
 );
-assert.strictEqual(sitemapContent.includes("/products/krynex-lexis"), true);
-assert.strictEqual(sitemapContent.includes("/products/krynex-flow"), true);
-assert.strictEqual(sitemapContent.includes("/products/krynex-vision"), true);
+assert.strictEqual(sitemapContent.includes("/products/krynex-lexis"), false);
+assert.strictEqual(sitemapContent.includes("/products/krynex-flow"), false);
+assert.strictEqual(sitemapContent.includes("/products/krynex-vision"), false);
 assert.strictEqual(sitemapContent.includes("/solutions/ai-ml"), true);
 assert.strictEqual(sitemapContent.includes("/solutions/enterprise-software"), true);
 assert.strictEqual(sitemapContent.includes("/solutions/web-mobile"), true);
 assert.strictEqual(sitemapContent.includes("/solutions/cloud-data"), true);
-console.log("✔ PASS: Sitemap contains all canonical 200 OK routes including solutions.");
+console.log("✔ PASS: Sitemap contains all canonical 200 OK routes without obsolete products.");
 
 // 15. Legacy String & Entity Name Hygiene
 console.log("\n[TEST 15] Legacy String & Entity Name Hygiene");

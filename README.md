@@ -4,7 +4,7 @@ A production-ready, MNC-grade corporate website and software product catalog for
 
 Official Website: [https://www.krynexlabs.in](https://www.krynexlabs.in)  
 Official Contact: [support@krynexlabs.in](mailto:support@krynexlabs.in)  
-Official WhatsApp: [+91 9879418569](https://wa.me/919879418569) (WhatsApp Only • No Calls)
+
 
 ---
 

@@ -71,6 +71,16 @@ const nextConfig = {
         destination: '/terms',
         permanent: true,
       },
+      {
+        source: '/products',
+        destination: '/solutions',
+        permanent: true,
+      },
+      {
+        source: '/products/:slug*',
+        destination: '/solutions',
+        permanent: true,
+      },
     ];
   },
 };

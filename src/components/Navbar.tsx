@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, X, ArrowUpRight, ChevronDown } from "lucide-react";
+import { Menu, X, ArrowUpRight } from "lucide-react";
 import KrynexLogo from "./KrynexLogo";
 
 interface NavbarProps {
@@ -13,11 +13,9 @@ interface NavbarProps {
 export default function Navbar({ onRequestDemo }: NavbarProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [productsDropdown, setProductsDropdown] = useState(false);
   const pathname = usePathname();
   const hamburgerBtnRef = useRef<HTMLButtonElement>(null);
   const drawerRef = useRef<HTMLDivElement>(null);
-  const productsBtnRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -67,17 +65,7 @@ export default function Navbar({ onRequestDemo }: NavbarProps) {
 
   const navLinks = [
     { label: "Home", href: "/" },
-    {
-      label: "Products",
-      href: "/products",
-      hasDropdown: true,
-      subItems: [
-        { label: "Product Directory", href: "/products", desc: "Overview of all software products & subscription tiers" },
-        { label: "Krynex Lexis", href: "/products/krynex-lexis", desc: "Regional AI Legal & Statutory Drafting SaaS" },
-        { label: "Krynex Flow", href: "/products/krynex-flow", desc: "Enterprise Workflow & Legacy Integration Engine" },
-        { label: "Krynex Vision", href: "/products/krynex-vision", desc: "Edge Industrial Computer Vision & QC Engine" },
-      ],
-    },
+    { label: "Solutions", href: "/solutions" },
     { label: "Industries", href: "/industries" },
     { label: "Our Approach", href: "/approach" },
     { label: "About", href: "/about" },
@@ -110,94 +98,11 @@ export default function Navbar({ onRequestDemo }: NavbarProps) {
                 const isActive =
                   link.href === "/" ? pathname === "/" : pathname.startsWith(link.href);
 
-                if (link.hasDropdown) {
-                  return (
-                    <div
-                      key={link.label}
-                      className="relative inline-flex items-center rounded-full group"
-                      onMouseEnter={() => setProductsDropdown(true)}
-                      onMouseLeave={() => setProductsDropdown(false)}
-                      onKeyDown={(e) => {
-                        if (e.key === "Escape") {
-                          setProductsDropdown(false);
-                          productsBtnRef.current?.focus();
-                        }
-                      }}
-                    >
-                      <Link
-                        href={link.href}
-                        className={`text-xs font-medium pl-3 pr-1 py-1.5 rounded-l-full transition-all focus:outline-none focus-visible:ring-1 focus-visible:ring-white/40 ${
-                          isActive
-                            ? "text-white bg-white/[0.08] font-semibold"
-                            : "text-zinc-400 hover:text-white hover:bg-white/[0.04]"
-                        }`}
-                      >
-                        {link.label}
-                      </Link>
-                      <button
-                        ref={productsBtnRef}
-                        type="button"
-                        id="products-menu-button"
-                        aria-haspopup="true"
-                        aria-expanded={productsDropdown}
-                        aria-controls="products-menu"
-                        aria-label="Toggle Products dropdown menu"
-                        onClick={() => setProductsDropdown((prev) => !prev)}
-                        onKeyDown={(e) => {
-                          if (e.key === "ArrowDown") {
-                            e.preventDefault();
-                            setProductsDropdown(true);
-                          }
-                        }}
-                        className={`text-xs pr-2.5 pl-1 py-1.5 rounded-r-full transition-all focus:outline-none focus-visible:ring-1 focus-visible:ring-white/40 ${
-                          isActive
-                            ? "text-white bg-white/[0.08]"
-                            : "text-zinc-400 hover:text-white hover:bg-white/[0.04]"
-                        }`}
-                      >
-                        <ChevronDown className={`w-3 h-3 text-zinc-500 transition-transform ${productsDropdown ? "rotate-180 text-white" : ""}`} />
-                      </button>
-
-                      {/* Dropdown Menu */}
-                      {productsDropdown && (
-                        <div
-                          id="products-menu"
-                          role="menu"
-                          aria-labelledby="products-menu-button"
-                          className="absolute top-full left-0 mt-2 w-72 rounded-2xl bg-[#080808] border border-white/10 p-2 shadow-[0_10px_40px_rgba(0,0,0,0.9)] backdrop-blur-2xl animate-fade-in z-50"
-                        >
-                          <div className="absolute top-0 left-6 right-6 h-[1px] bg-gradient-to-r from-transparent via-white/25 to-transparent pointer-events-none" />
-                          <div className="text-[10px] font-mono text-zinc-400 uppercase tracking-wider px-3 py-1.5 border-b border-white/[0.04] mb-1">
-                            KRYNEX SOFTWARE PRODUCTS
-                          </div>
-                          {link.subItems?.map((sub) => (
-                            <Link
-                              key={sub.label}
-                              href={sub.href}
-                              role="menuitem"
-                              onClick={() => setProductsDropdown(false)}
-                              className="block px-3 py-2 rounded-xl hover:bg-white/[0.06] transition-colors group focus:outline-none focus-visible:ring-1 focus-visible:ring-white/40"
-                            >
-                              <div className="text-xs font-medium text-zinc-200 group-hover:text-white flex items-center justify-between">
-                                <span>{sub.label}</span>
-                                <ArrowUpRight className="w-3 h-3 text-zinc-400 group-hover:text-white transition-colors opacity-0 group-hover:opacity-100" />
-                              </div>
-                              <div className="text-[11px] text-zinc-400 mt-0.5 line-clamp-1">
-                                {sub.desc}
-                              </div>
-                            </Link>
-                          ))}
-                        </div>
-                      )}
-                    </div>
-                  );
-                }
-
                 return (
                   <Link
                     key={link.label}
                     href={link.href}
-                    className={`text-xs font-medium px-3 py-1.5 rounded-full transition-all focus:outline-none focus-visible:ring-1 focus-visible:ring-white/40 ${
+                    className={`text-xs font-medium px-3.5 py-1.5 rounded-full transition-all focus:outline-none focus-visible:ring-1 focus-visible:ring-white/40 ${
                       isActive
                         ? "text-white bg-white/[0.08] font-semibold"
                         : "text-zinc-400 hover:text-white hover:bg-white/[0.04]"
@@ -211,14 +116,6 @@ export default function Navbar({ onRequestDemo }: NavbarProps) {
 
             {/* Right Action CTA Button */}
             <div className="hidden sm:flex items-center gap-3">
-              <Link
-                href="/products"
-                className="text-xs font-medium text-zinc-400 hover:text-white px-3.5 py-2 rounded-full border border-white/10 hover:border-white/20 hover:bg-white/[0.04] transition-all flex items-center gap-1.5 focus:outline-none focus-visible:ring-1 focus-visible:ring-white/40"
-              >
-                <span>Explore Products</span>
-              </Link>
-
-              {/* Consultation / Contact Button */}
               {onRequestDemo ? (
                 <button
                   type="button"
@@ -250,20 +147,23 @@ export default function Navbar({ onRequestDemo }: NavbarProps) {
             {/* Mobile Hamburger Button */}
             <button
               ref={hamburgerBtnRef}
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden p-2 rounded-lg text-zinc-400 hover:text-white hover:bg-zinc-900 border border-white/[0.08] focus:outline-none focus-visible:ring-1 focus-visible:ring-white/40"
-              aria-label={mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+              type="button"
+              className="lg:hidden p-2 rounded-lg text-zinc-400 hover:text-white hover:bg-white/[0.06] transition-colors focus:outline-none focus-visible:ring-1 focus-visible:ring-white/40"
+              onClick={() => setMobileMenuOpen(true)}
+              aria-label="Open mobile navigation menu"
               aria-expanded={mobileMenuOpen}
+              aria-controls="mobile-navigation-drawer"
             >
-              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+              <Menu className="w-6 h-6" />
             </button>
           </div>
         </div>
       </header>
 
-      {/* Animated Mobile Drawer */}
+      {/* Mobile Drawer Backdrop & Menu */}
       {mobileMenuOpen && (
         <div
+          id="mobile-navigation-drawer"
           ref={drawerRef}
           role="dialog"
           aria-modal="true"
@@ -304,22 +204,6 @@ export default function Navbar({ onRequestDemo }: NavbarProps) {
                     <span>{link.label}</span>
                     <ArrowUpRight className="w-4 h-4 text-zinc-400" />
                   </Link>
-
-                  {/* Mobile Submenu Items */}
-                  {link.hasDropdown && link.subItems && (
-                    <div className="pl-3 mt-1 space-y-1">
-                      {link.subItems.slice(1).map((sub) => (
-                        <Link
-                          key={sub.label}
-                          href={sub.href}
-                          onClick={() => setMobileMenuOpen(false)}
-                          className="block text-xs text-zinc-400 hover:text-zinc-200 py-1"
-                        >
-                          &bull; {sub.label}
-                        </Link>
-                      ))}
-                    </div>
-                  )}
                 </div>
               );
             })}
@@ -327,7 +211,6 @@ export default function Navbar({ onRequestDemo }: NavbarProps) {
 
           {/* Drawer Footer Actions */}
           <div className="pt-6 border-t border-white/10 flex flex-col gap-3">
-
             {onRequestDemo ? (
               <button
                 type="button"
@@ -338,32 +221,19 @@ export default function Navbar({ onRequestDemo }: NavbarProps) {
                   });
                   onRequestDemo();
                 }}
-                className="w-full bg-white text-black font-semibold py-3 rounded-xl text-center text-xs tracking-wider uppercase hover:bg-zinc-200 transition-colors shadow-[0_0_20px_rgba(255,255,255,0.15)]"
+                className="w-full py-3 rounded-xl bg-white text-black font-semibold text-sm hover:bg-zinc-200 transition-colors text-center shadow-[0_0_20px_rgba(255,255,255,0.2)]"
               >
                 Book a Demo
               </button>
             ) : (
               <Link
                 href="/contact"
-                onClick={() => {
-                  setMobileMenuOpen(false);
-                  import("./Analytics").then(({ trackConversionEvent }) => {
-                    trackConversionEvent("demo_click", { location: "navbar_mobile" });
-                  });
-                }}
-                className="w-full bg-white text-black font-semibold py-3 rounded-xl text-center text-xs tracking-wider uppercase hover:bg-zinc-200 transition-colors shadow-[0_0_20px_rgba(255,255,255,0.15)]"
+                onClick={() => setMobileMenuOpen(false)}
+                className="w-full py-3 rounded-xl bg-white text-black font-semibold text-sm hover:bg-zinc-200 transition-colors text-center shadow-[0_0_20px_rgba(255,255,255,0.2)]"
               >
                 Book a Demo
               </Link>
             )}
-
-            <Link
-              href="/products"
-              onClick={() => setMobileMenuOpen(false)}
-              className="w-full bg-white/[0.04] border border-white/10 text-white font-medium py-2.5 rounded-xl text-center text-xs tracking-wider uppercase hover:bg-white/[0.08] transition-colors"
-            >
-              Explore Software Products
-            </Link>
           </div>
         </div>
       )}
