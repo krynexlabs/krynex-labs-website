@@ -157,16 +157,6 @@ export default function ContactForm({ initialProduct }: ContactFormProps) {
             </div>
             <div className="flex flex-wrap items-center justify-center gap-3">
               <a
-                href={`https://wa.me/919879418569?text=${encodeURIComponent(
-                  `Hello Krynex Labs, I have logged inquiry ticket ${ticketId}. Requesting architectural follow-up.`
-                )}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 text-xs font-mono text-white transition-colors"
-              >
-                <span>Send Backup via WhatsApp</span>
-              </a>
-              <a
                 href={`mailto:support@krynexlabs.in?subject=${encodeURIComponent(
                   `Inquiry Docket ${ticketId} - ${inquiryCompany}`
                 )}&body=${encodeURIComponent(

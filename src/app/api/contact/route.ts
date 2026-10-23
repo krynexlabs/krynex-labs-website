@@ -250,7 +250,7 @@ export async function POST(request: Request) {
       {
         ok: false,
         success: false,
-        error: "Internal server error. Please email support@krynexlabs.in or WhatsApp +91 9879418569 directly.",
+        error: "Internal server error. Please email support@krynexlabs.in directly.",
       },
       { status: 500 }
     );

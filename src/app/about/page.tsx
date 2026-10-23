@@ -61,12 +61,12 @@ export default function AboutPage() {
               Software Built Around Real Problems.
             </h1>
             <p className="text-base sm:text-lg text-zinc-400 leading-relaxed mb-8">
-              {ABOUT_DATA.coreMessage} Headquartered in Sindhu Bhavan Road (SBR), Ahmedabad, Gujarat, India, we identify the operational bottlenecks holding organizations back and build software applications that provide compounding utility.
+              {ABOUT_DATA.coreMessage} Headquartered in Ahmedabad, India, we identify the operational bottlenecks holding organizations back and build software applications that provide compounding utility.
             </p>
             <div className="flex flex-wrap items-center gap-4 text-xs font-mono text-zinc-400">
               <div className="flex items-center gap-1.5">
                 <MapPin className="w-4 h-4 text-white" />
-                <span>Sindhu Bhavan Road (SBR), Ahmedabad, Gujarat — 380054, India</span>
+                <span>Ahmedabad, India</span>
               </div>
               <div className="flex items-center gap-1.5">
                 <CheckCircle2 className="w-4 h-4 text-white" />

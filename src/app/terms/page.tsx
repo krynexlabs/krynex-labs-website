@@ -72,7 +72,7 @@ export default function TermsPage() {
           </div>
           <div>
             <div className="text-white font-bold text-sm">Ahmedabad HQ</div>
-            <div className="text-zinc-500 text-[11px]">Sindhu Bhavan Road (SBR), Gujarat, India</div>
+            <div className="text-zinc-500 text-[11px]">Ahmedabad, India</div>
           </div>
         </div>
 
@@ -196,9 +196,8 @@ export default function TermsPage() {
             <div className="p-4 rounded-xl bg-[#080808] border border-white/[0.08] font-mono text-xs text-zinc-400 space-y-1.5">
               <div className="text-white font-bold">LEGAL &amp; COMMERCIAL GOVERNANCE</div>
               <div>Entity: KRYNEX LABS</div>
-              <div>Headquarters: Sindhu Bhavan Road (SBR), Ahmedabad, Gujarat — 380054, India</div>
+              <div>Headquarters: Ahmedabad, India</div>
               <div>Official Contact: <a href="mailto:support@krynexlabs.in" className="text-white underline">support@krynexlabs.in</a></div>
-              <div>Direct Messaging: <a href="https://wa.me/919879418569?text=Hello%20Krynex%20Labs,%20I%20have%20a%20governance%20inquiry." target="_blank" rel="noopener noreferrer" className="text-white underline">+91 9879418569</a> (WhatsApp Business)</div>
             </div>
           </section>
         </div>

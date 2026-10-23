@@ -5,7 +5,7 @@ export default function manifest(): MetadataRoute.Manifest {
     name: "Krynex Labs",
     short_name: "Krynex",
     description:
-      "Software Product and SaaS Company headquartered in Sindhu Bhavan Road (SBR), Ahmedabad, Gujarat — 380054, India.",
+      "Software Product and SaaS Company headquartered in Ahmedabad, India.",
     start_url: "/",
     display: "standalone",
     background_color: "#000000",

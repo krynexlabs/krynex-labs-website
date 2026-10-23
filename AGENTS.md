@@ -5,7 +5,6 @@
 - **Headquarters:** AHMEDABAD (IN)
 - **Official Domain:** https://www.krynexlabs.in
 - **Official Contact Email:** support@krynexlabs.in
-- **Official WhatsApp:** +91 9879418569 (WhatsApp Only • No Calls)
 - **Corporate Positioning:** Unified Software Product & SaaS Company. We identify real-world industry bottlenecks, understand operational pain points, build software products (web, mobile, AI-powered, automation), and earn recurring software revenue through subscriptions and software-rental access.
 - **Core Business Model:** Rented software access via recurring subscriptions (Build → Launch → Subscribe → Maintain → Improve). Not a custom development agency or hourly contractor.
 

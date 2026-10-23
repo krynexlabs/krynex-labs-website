@@ -210,16 +210,6 @@ export default function SolutionDetailView({ solution }: SolutionDetailViewProps
                 >
                   {solution.ctaText}
                 </Link>
-                <a
-                  href={`https://wa.me/919879418569?text=Hello%20Krynex%20Labs,%20I%20would%20like%20to%20discuss%20${encodeURIComponent(
-                    solution.title
-                  )}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-4 py-2.5 rounded-full border border-white/10 hover:border-white/20 text-xs font-mono text-zinc-300 hover:text-white transition-colors"
-                >
-                  WhatsApp Consultation
-                </a>
               </div>
             </div>
           </div>

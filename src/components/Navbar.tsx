@@ -327,23 +327,6 @@ export default function Navbar({ onRequestDemo }: NavbarProps) {
 
           {/* Drawer Footer Actions */}
           <div className="pt-6 border-t border-white/10 flex flex-col gap-3">
-            <div className="text-[11px] font-mono text-zinc-400 flex items-center justify-between">
-              <span>OFFICIAL WHATSAPP:</span>
-              <a
-                href="https://wa.me/919879418569?text=Hello%20Krynex%20Labs%2C%20I%20am%20interested%20in%20your%20software%20products"
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => {
-                  import("./Analytics").then(({ trackConversionEvent }) => {
-                    trackConversionEvent("whatsapp_click", { location: "navbar_mobile" });
-                  });
-                }}
-                className="text-white hover:underline flex items-center gap-1.5"
-              >
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                <span>+91 9879418569</span>
-              </a>
-            </div>
 
             {onRequestDemo ? (
               <button

@@ -242,14 +242,6 @@ export default function SolutionsPage() {
               >
                 Schedule Technical Consultation
               </Link>
-              <a
-                href="https://wa.me/919879418569?text=Hello%20Krynex%20Labs,%20I%20would%20like%20to%20discuss%20a%20custom%20engineering%20solution."
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-white/[0.04] text-white hover:bg-white/[0.08] border border-white/10 px-6 py-3 rounded-full transition-all text-xs font-mono"
-              >
-                WhatsApp Direct: +91 9879418569
-              </a>
             </div>
           </div>
         </div>

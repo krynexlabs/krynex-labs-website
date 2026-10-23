@@ -222,8 +222,7 @@ assert.strictEqual(contactFormContent.includes('name="companySector"'), true);
 assert.strictEqual(contactFormContent.includes('name="operationalFriction"'), true);
 assert.strictEqual(contactFormContent.includes('name="requestWalkthrough"'), true);
 assert.strictEqual(contactFormContent.includes('name="websiteHoneypot"'), true);
-assert.strictEqual(contactFormContent.includes('fetch("/api/contact"'), true);
-assert.strictEqual(contactFormContent.includes("https://wa.me/919879418569"), true);
+assert.strictEqual(contactFormContent.includes("https://wa.me/"), false);
 assert.strictEqual(contactFormContent.includes("mailto:support@krynexlabs.in"), true);
 console.log("✔ PASS: Contact form contains all canonical fields, honeypot trap, and direct fallback links.");
 

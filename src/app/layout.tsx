@@ -2,7 +2,6 @@ import type { Metadata, Viewport } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import CookieBanner from "@/components/CookieBanner";
-import WhatsAppButton from "@/components/WhatsAppButton";
 import ClientTelemetry from "@/components/Analytics";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics as VercelAnalytics } from "@vercel/analytics/react";
@@ -85,15 +84,12 @@ const jsonLd = {
       logo: "https://www.krynexlabs.in/opengraph-image",
       image: "https://www.krynexlabs.in/opengraph-image",
       email: "support@krynexlabs.in",
-      telephone: "+91-98794-18569",
       currenciesAccepted: "INR, USD",
       priceRange: "₹1,499 - ₹18,500+",
       address: {
         "@type": "PostalAddress",
-        streetAddress: "Sindhu Bhavan Road (SBR)",
         addressLocality: "Ahmedabad",
         addressRegion: "Gujarat",
-        postalCode: "380054",
         addressCountry: "IN",
       },
       geo: {
@@ -205,7 +201,7 @@ const jsonLd = {
           name: "How can businesses in Gujarat schedule a live demonstration or sandbox trial?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "Enterprises can request an executive walkthrough via our online contact portal or connect directly with our engineering team on WhatsApp at +91 9879418569 from our Ahmedabad headquarters on Sindhu Bhavan Road (SBR).",
+            text: "Enterprises can request an executive walkthrough via our online contact portal or connect directly with our engineering team via support@krynexlabs.in from our Ahmedabad (India) headquarters.",
           },
         },
         {
@@ -275,9 +271,6 @@ export default function RootLayout({
 
         {/* Main Content Area */}
         <div className="relative z-10 w-full overflow-x-hidden">{children}</div>
-
-        {/* Floating WhatsApp Quick Action Button */}
-        <WhatsAppButton />
 
         {/* Global Privacy & Cookie Consent */}
         <CookieBanner />

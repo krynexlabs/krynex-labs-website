@@ -58,30 +58,6 @@ export default function ContactPage({ searchParams }: ContactPageProps) {
             <div className="lg:col-span-5 space-y-6">
               <div className="p-6 rounded-3xl bg-[#080808] border border-white/[0.08] space-y-6">
                 <div>
-                  <div className="text-[10px] font-mono uppercase tracking-wider text-zinc-500 mb-2">
-                    Direct Messaging &amp; Inquiries
-                  </div>
-                  <a
-                    href="https://wa.me/919879418569?text=Hello%20Krynex%20Labs,%20I%20would%20like%20to%20discuss%20an%20industry%20inquiry."
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex flex-col gap-1.5 text-white hover:text-zinc-300 transition-colors group"
-                  >
-                    <div className="flex items-center gap-2">
-                      <span className="font-mono font-bold text-lg group-hover:underline">
-                        +91 9879418569
-                      </span>
-                    </div>
-                    <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-white/[0.06] border border-white/10 text-zinc-400 w-fit">
-                      Direct Messaging (WhatsApp Business) &bull; Scheduled Calls via Portal
-                    </span>
-                  </a>
-                  <p className="text-xs text-zinc-400 mt-2">
-                    Direct executive messaging for urgent technical inquiries and project briefs. Scheduled voice/video calls arranged upon inquiry review.
-                  </p>
-                </div>
-
-                <div className="pt-6 border-t border-white/[0.06]">
                   <div className="text-[10px] font-mono uppercase tracking-wider text-zinc-500 mb-1">
                     Corporate Email
                   </div>
@@ -101,7 +77,7 @@ export default function ContactPage({ searchParams }: ContactPageProps) {
                   <div className="flex items-start gap-2 text-xs text-zinc-300">
                     <MapPin className="w-4 h-4 text-white shrink-0 mt-0.5" />
                     <span className="font-mono font-medium text-white leading-relaxed">
-                      Sindhu Bhavan Road (SBR), Ahmedabad, Gujarat — 380054, India
+                      Ahmedabad, India
                     </span>
                   </div>
                 </div>

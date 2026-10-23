@@ -37,32 +37,9 @@ export default function StickyMobileCTA({ onRequestDemo }: StickyMobileCTAProps)
     }
   };
 
-  const handleWhatsAppClick = () => {
-    trackConversionEvent("whatsapp_click", { location: "sticky_mobile_cta" });
-  };
-
-  const whatsappUrl =
-    "https://wa.me/919879418569?text=Hello%20Krynex%20Labs%2C%20I%20am%20interested%20in%20a%20demo%20of%20your%20software%20products.";
-
   return (
     <div className="md:hidden fixed bottom-4 inset-x-3 z-50 animate-slide-up">
       <div className="rounded-2xl bg-[#080808]/95 backdrop-blur-2xl border border-white/15 p-2 shadow-[0_10px_35px_rgba(0,0,0,0.9)] flex items-center justify-between gap-2">
-        {/* WhatsApp Direct Action */}
-        <a
-          href={whatsappUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          onClick={handleWhatsAppClick}
-          aria-label="Direct WhatsApp Consultation"
-          className="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-white/[0.06] hover:bg-white/[0.1] border border-white/10 text-white text-xs font-mono transition-colors shrink-0"
-        >
-          <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
-          </span>
-          <span className="text-[11px] text-zinc-300">WhatsApp</span>
-        </a>
-
         {/* Primary Book a Demo CTA */}
         <a
           href="#contact"
