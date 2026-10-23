@@ -5,8 +5,13 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls, RoundedBox, Edges, Environment, Lightformer, PerspectiveCamera } from "@react-three/drei";
 import * as THREE from "three";
 
-// 3x3x3 Resend-style Rubik's Assembly with true 90-degree slice mechanics & micro-textures
-function ResendRubiksAssembly({ prefersReducedMotion }: { prefersReducedMotion: boolean }) {
+function ResendRubiksAssembly({
+  prefersReducedMotion,
+  isInView = true,
+}: {
+  prefersReducedMotion: boolean;
+  isInView?: boolean;
+}) {
   const outerGroupRef = useRef<THREE.Group>(null);
   const [hoveredCubeId, setHoveredCubeId] = useState<number | null>(null);
 
@@ -269,6 +274,9 @@ function ResendRubiksAssembly({ prefersReducedMotion }: { prefersReducedMotion: 
   };
 
   useFrame((state, delta) => {
+    // Suspend rendering computations when scrolled out of viewport
+    if (!isInView) return;
+
     // A11Y-03: Respect prefers-reduced-motion preference
     if (prefersReducedMotion) {
       if (outerGroupRef.current) {
@@ -394,10 +402,8 @@ function ResendRubiksAssembly({ prefersReducedMotion }: { prefersReducedMotion: 
             <RoundedBox
               args={[0.94, 0.94, 0.94]}
               radius={0.07}
-              smoothness={5}
+              smoothness={2}
               material={activeMat}
-              castShadow
-              receiveShadow
               onClick={(e) => handleCubeClick(e, cube)}
               onPointerOver={(e) => handlePointerOver(e, cube.id)}
               onPointerOut={(e) => handlePointerOut(e, cube.id)}
@@ -415,6 +421,8 @@ function StaticSvgFallback() {
   return (
     <div className="relative w-full h-full min-h-[380px] sm:min-h-[480px] lg:min-h-[680px] flex items-center justify-center p-8 select-none">
       <svg
+        role="img"
+        aria-label="Krynex Modular Engineering Cube Visual"
         viewBox="0 0 400 400"
         className="w-full max-w-[380px] h-auto drop-shadow-[0_0_35px_rgba(255,255,255,0.12)]"
         fill="none"
@@ -476,10 +484,12 @@ class WebGLErrorBoundary extends React.Component<WebGLErrorBoundaryProps, WebGLE
 import HeroCubeFallback from "./HeroCubeFallback";
 
 export default function Hero3DCube() {
+  const containerRef = useRef<HTMLDivElement>(null);
   const [mounted, setMounted] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
   const [hasWebGL, setHasWebGL] = useState(true);
+  const [isInView, setIsInView] = useState(true);
 
   useEffect(() => {
     setMounted(true);
@@ -514,7 +524,20 @@ export default function Hero3DCube() {
       };
       window.addEventListener("resize", resizeListener, { passive: true });
 
+      // 4. Viewport IntersectionObserver to pause rendering when out of sight
+      let observer: IntersectionObserver | null = null;
+      if (containerRef.current && "IntersectionObserver" in window) {
+        observer = new IntersectionObserver(
+          ([entry]) => {
+            setIsInView(entry.isIntersecting);
+          },
+          { threshold: 0.05 }
+        );
+        observer.observe(containerRef.current);
+      }
+
       return () => {
+        observer?.disconnect();
         mediaQuery.removeEventListener("change", motionListener);
         window.removeEventListener("resize", resizeListener);
       };
@@ -529,16 +552,20 @@ export default function Hero3DCube() {
 
   return (
     <WebGLErrorBoundary fallback={<HeroCubeFallback />}>
-      <div className="relative w-full h-full select-none [mask-image:radial-gradient(circle_at_center,black_70%,transparent_100%)] [-webkit-mask-image:radial-gradient(circle_at_center,black_70%,transparent_100%)] flex items-center justify-center">
+      <div
+        ref={containerRef}
+        className="relative w-full h-full select-none [mask-image:radial-gradient(circle_at_center,black_70%,transparent_100%)] [-webkit-mask-image:radial-gradient(circle_at_center,black_70%,transparent_100%)] flex items-center justify-center"
+      >
         <Canvas
-          shadows
+          dpr={[1, 1.5]}
+          gl={{ powerPreference: "high-performance", antialias: true, alpha: true }}
           className="cursor-grab active:cursor-grabbing w-full h-full"
         >
         {/* Exact camera setup requested: position [0, 0, 6.2], fov 38 */}
         <PerspectiveCamera makeDefault position={[0, 0, 6.2]} fov={38} />
 
         <ambientLight intensity={0.4} />
-        <directionalLight position={[6, 8, 5]} intensity={3.0} color="#ffffff" castShadow />
+        <directionalLight position={[6, 8, 5]} intensity={3.0} color="#ffffff" />
         <directionalLight position={[-6, -4, -6]} intensity={4.5} color="#ffffff" />
 
         {/* High-Contrast Monochrome Studio Lighting with 4 Softbox Lightformers (100% offline) */}
@@ -580,7 +607,7 @@ export default function Hero3DCube() {
           />
         </Environment>
 
-        <ResendRubiksAssembly prefersReducedMotion={prefersReducedMotion} />
+        <ResendRubiksAssembly prefersReducedMotion={prefersReducedMotion} isInView={isInView} />
 
         <OrbitControls
           enableZoom={false}

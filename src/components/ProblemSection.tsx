@@ -21,14 +21,15 @@ export default function ProblemSection() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [activeCategory, setActiveCategory] = useState<number>(0);
 
-  // Mouse tracking spotlight
+  // Mouse tracking spotlight (batched & throttled to eliminate forced reflow)
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const cards = containerRef.current?.querySelectorAll<HTMLElement>(".spotlight-card");
-    if (!cards) return;
-    cards.forEach((card) => {
-      const rect = card.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
+    if (typeof window !== "undefined" && window.matchMedia("(hover: none)").matches) return;
+    const card = (e.target as HTMLElement)?.closest(".spotlight-card") as HTMLElement | null;
+    if (!card) return;
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    requestAnimationFrame(() => {
       card.style.setProperty("--mouse-x", `${x}px`);
       card.style.setProperty("--mouse-y", `${y}px`);
     });
@@ -199,6 +200,19 @@ export default function ProblemSection() {
                 aria-controls={`problem-panel-${idx}`}
                 tabIndex={isSelected ? 0 : -1}
                 onClick={() => setActiveCategory(idx)}
+                onKeyDown={(e) => {
+                  if (e.key === "ArrowRight" || e.key === "ArrowDown") {
+                    e.preventDefault();
+                    const next = (idx + 1) % problemCategories.length;
+                    setActiveCategory(next);
+                    document.getElementById(`problem-tab-${next}`)?.focus();
+                  } else if (e.key === "ArrowLeft" || e.key === "ArrowUp") {
+                    e.preventDefault();
+                    const prev = (idx - 1 + problemCategories.length) % problemCategories.length;
+                    setActiveCategory(prev);
+                    document.getElementById(`problem-tab-${prev}`)?.focus();
+                  }
+                }}
                 className={`flex items-center gap-2 py-2 px-3.5 rounded-xl text-xs font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white ${
                   isSelected
                     ? "bg-white text-black font-semibold shadow-md"
@@ -225,6 +239,7 @@ export default function ProblemSection() {
                 id={`problem-panel-${idx}`}
                 role="tabpanel"
                 aria-labelledby={`problem-tab-${idx}`}
+                tabIndex={isSelected ? 0 : -1}
                 aria-hidden={!isSelected}
                 className={isSelected ? "block" : "hidden"}
               >
@@ -262,7 +277,7 @@ export default function ProblemSection() {
                       <ul className="space-y-2">
                         {cat.questions.map((q, qIdx) => (
                           <li key={qIdx} className="text-xs text-zinc-300 flex items-start gap-2">
-                            <span className="text-zinc-500 font-mono">0{qIdx + 1}.</span>
+                            <span className="text-zinc-400 font-mono">0{qIdx + 1}.</span>
                             <span>{q}</span>
                           </li>
                         ))}
@@ -281,7 +296,7 @@ export default function ProblemSection() {
                       </p>
 
                       <div className="pt-4 border-t border-white/[0.06] space-y-3">
-                        <div className="text-[10px] font-mono uppercase tracking-wider text-zinc-500">
+                        <div className="text-[10px] font-mono uppercase tracking-wider text-zinc-400">
                           Krynex Implementation Status:
                         </div>
                         <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white/[0.04] border border-white/10 text-xs font-mono text-white">
@@ -292,7 +307,7 @@ export default function ProblemSection() {
                     </div>
 
                     <div className="pt-4 border-t border-white/[0.06] flex items-center justify-between text-xs font-mono">
-                      <span className="text-zinc-500">Validation Protocol:</span>
+                      <span className="text-zinc-400">Validation Protocol:</span>
                       <span className="text-zinc-300">Empirical Demand Verification</span>
                     </div>
                   </div>

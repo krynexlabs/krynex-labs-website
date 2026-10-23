@@ -20,7 +20,6 @@ import {
   AlertCircle,
   ChevronRight,
 } from "lucide-react";
-import confetti from "canvas-confetti";
 import KrynexLogo from "./KrynexLogo";
 
 interface FooterProps {
@@ -105,6 +104,7 @@ export default function Footer({ onRequestDemo, hideInquirySection = false }: Fo
 
         // Pure Silver & White Confetti
         try {
+          const confetti = (await import("canvas-confetti")).default;
           confetti({
             particleCount: 80,
             spread: 60,
@@ -523,7 +523,7 @@ export default function Footer({ onRequestDemo, hideInquirySection = false }: Fo
         </div>
 
         {/* System Telemetry Bar */}
-        <div className="pt-8 border-t border-white/[0.08] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-zinc-500">
+        <div className="pt-8 border-t border-white/[0.08] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-zinc-400">
           <div className="flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-white animate-pulse" />
             <span className="text-zinc-300">DIAGNOSTIC STATUS: NOMINAL</span>

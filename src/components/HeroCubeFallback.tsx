@@ -8,10 +8,11 @@ import React from "react";
 export default function HeroCubeFallback() {
   return (
     <div
-      aria-label="Krynex Modular Engineering Cube Visual"
       className="relative w-full h-full min-h-[380px] sm:min-h-[480px] lg:min-h-[680px] flex items-center justify-center p-8 select-none"
     >
       <svg
+        role="img"
+        aria-label="Krynex Modular Engineering Cube Visual"
         viewBox="0 0 400 400"
         className="w-full max-w-[360px] sm:max-w-[420px] h-auto drop-shadow-[0_0_35px_rgba(255,255,255,0.12)]"
         fill="none"

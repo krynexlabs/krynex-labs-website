@@ -4,7 +4,6 @@ import React, { useState, useEffect, useRef, useCallback } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { X, CheckCircle2, ChevronRight, AlertCircle } from "lucide-react";
-import confetti from "canvas-confetti";
 
 interface DemoModalProps {
   isOpen: boolean;
@@ -139,12 +138,17 @@ export default function DemoModal({ isOpen, onClose }: DemoModalProps) {
         setIsSubmitting(false);
         setIsSuccess(true);
 
-        confetti({
-          particleCount: 80,
-          spread: 60,
-          origin: { y: 0.6 },
-          colors: ["#ffffff", "#d4d4d8", "#a1a1aa", "#71717a"],
-        });
+        try {
+          const confetti = (await import("canvas-confetti")).default;
+          confetti({
+            particleCount: 80,
+            spread: 60,
+            origin: { y: 0.6 },
+            colors: ["#ffffff", "#d4d4d8", "#a1a1aa", "#71717a"],
+          });
+        } catch {
+          // Non-blocking
+        }
       } else {
         setIsSubmitting(false);
         setFormErrors({ general: result.error || "Submission rejected by server. Please verify your details." });

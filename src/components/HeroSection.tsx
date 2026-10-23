@@ -1,14 +1,13 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import { ArrowRight, ShieldCheck, Zap, Cpu, Globe2, Compass } from "lucide-react";
 
 import HeroCubeFallback from "./HeroCubeFallback";
 
-// Dynamically import 3D Cube with SSR disabled to prevent hydration errors;
-// lightweight static wireframe renders instantly during load and for non-interactive clients
+// Dynamically import 3D Cube with SSR disabled
 const Hero3DCube = dynamic(() => import("./Hero3DCube"), {
   ssr: false,
   loading: () => <HeroCubeFallback />,
@@ -19,6 +18,27 @@ interface HeroSectionProps {
 }
 
 export default function HeroSection({ onRequestDemo }: HeroSectionProps) {
+  const [shouldMount3D, setShouldMount3D] = useState(false);
+
+  useEffect(() => {
+    // Only desktop viewports (>=768px) without reduced-motion preference run 3D WebGL
+    if (typeof window === "undefined") return;
+    if (window.innerWidth < 768 || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      return;
+    }
+    // Defer WebGL mounting until after initial critical rendering path reaches idle
+    if ("requestIdleCallback" in window) {
+      const handle = (window as any).requestIdleCallback(
+        () => setShouldMount3D(true),
+        { timeout: 1500 }
+      );
+      return () => (window as any).cancelIdleCallback(handle);
+    } else {
+      const timer = setTimeout(() => setShouldMount3D(true), 800);
+      return () => clearTimeout(timer);
+    }
+  }, []);
+
   return (
     <section
       id="vision"
@@ -44,7 +64,7 @@ export default function HeroSection({ onRequestDemo }: HeroSectionProps) {
               <span className="text-[11px] sm:text-xs font-mono font-medium tracking-wider text-zinc-300 uppercase">
                 KRYNEX LABS // SOFTWARE PRODUCT COMPANY
               </span>
-              <span className="text-zinc-600">|</span>
+              <span className="text-zinc-500">|</span>
               <span className="text-[10px] font-mono text-zinc-400 font-semibold">AHMEDABAD, INDIA</span>
             </div>
 
@@ -80,54 +100,54 @@ export default function HeroSection({ onRequestDemo }: HeroSectionProps) {
             {/* Monochrome Telemetry Proof Matrix */}
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-6 border-t border-white/[0.08] w-full">
               <div className="flex flex-col">
-                <div className="flex items-center gap-1.5 text-xs text-zinc-500 font-mono uppercase mb-1">
+                <div className="flex items-center gap-1.5 text-xs text-zinc-400 font-mono uppercase mb-1">
                   <Globe2 className="w-3.5 h-3.5 text-zinc-400" />
                   <span>Business Model</span>
                 </div>
                 <div className="text-lg sm:text-xl font-bold text-white tracking-tight font-mono">
                   Rented SaaS
                 </div>
-                <span className="text-[11px] text-zinc-500">Zero upfront capex</span>
+                <span className="text-[11px] text-zinc-400">Zero upfront capex</span>
               </div>
 
               <div className="flex flex-col">
-                <div className="flex items-center gap-1.5 text-xs text-zinc-500 font-mono uppercase mb-1">
+                <div className="flex items-center gap-1.5 text-xs text-zinc-400 font-mono uppercase mb-1">
                   <ShieldCheck className="w-3.5 h-3.5 text-zinc-400" />
                   <span>Reliability</span>
                 </div>
                 <div className="text-lg sm:text-xl font-bold text-white tracking-tight font-mono">
                   High Availability
                 </div>
-                <span className="text-[11px] text-zinc-500">Service uptime architecture</span>
+                <span className="text-[11px] text-zinc-400">Service uptime architecture</span>
               </div>
 
               <div className="flex flex-col">
-                <div className="flex items-center gap-1.5 text-xs text-zinc-500 font-mono uppercase mb-1">
+                <div className="flex items-center gap-1.5 text-xs text-zinc-400 font-mono uppercase mb-1">
                   <Cpu className="w-3.5 h-3.5 text-zinc-400" />
                   <span>Precision</span>
                 </div>
                 <div className="text-lg sm:text-xl font-bold text-white tracking-tight font-mono">
                   Deterministic
                 </div>
-                <span className="text-[11px] text-zinc-500">Constrained AST guardrails</span>
+                <span className="text-[11px] text-zinc-400">Constrained AST guardrails</span>
               </div>
 
               <div className="flex flex-col">
-                <div className="flex items-center gap-1.5 text-xs text-zinc-500 font-mono uppercase mb-1">
+                <div className="flex items-center gap-1.5 text-xs text-zinc-400 font-mono uppercase mb-1">
                   <Zap className="w-3.5 h-3.5 text-zinc-400" />
                   <span>Evolution</span>
                 </div>
                 <div className="text-lg sm:text-xl font-bold text-white tracking-tight font-mono">
                   Continuous
                 </div>
-                <span className="text-[11px] text-zinc-500">Compounding product updates</span>
+                <span className="text-[11px] text-zinc-400">Compounding product updates</span>
               </div>
             </div>
           </div>
 
           {/* Right Column: Large Unboxed Floating 3D Canvas bleeding naturally into pitch black */}
           <div className="lg:col-span-5 relative w-full h-[380px] sm:h-[480px] lg:h-[680px] flex items-center justify-center">
-            <Hero3DCube />
+            {shouldMount3D ? <Hero3DCube /> : <HeroCubeFallback />}
           </div>
         </div>
       </div>

@@ -19,14 +19,15 @@ export default function DraftingDemo() {
   const [isSimulating, setIsSimulating] = useState<boolean>(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // Mouse tracking for Resend-style radial spotlight
+  // Mouse tracking for Resend-style radial spotlight (batched & throttled to eliminate forced reflow)
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const cards = containerRef.current?.querySelectorAll<HTMLElement>(".spotlight-card");
-    if (!cards) return;
-    cards.forEach((card) => {
-      const rect = card.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
+    if (typeof window !== "undefined" && window.matchMedia("(hover: none)").matches) return;
+    const card = (e.target as HTMLElement)?.closest(".spotlight-card") as HTMLElement | null;
+    if (!card) return;
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    requestAnimationFrame(() => {
       card.style.setProperty("--mouse-x", `${x}px`);
       card.style.setProperty("--mouse-y", `${y}px`);
     });
@@ -220,6 +221,19 @@ export default function DraftingDemo() {
                 aria-controls={`demo-panel-${idx}`}
                 tabIndex={isSelected ? 0 : -1}
                 onClick={() => setActiveTab(idx)}
+                onKeyDown={(e) => {
+                  if (e.key === "ArrowRight" || e.key === "ArrowDown") {
+                    e.preventDefault();
+                    const next = (idx + 1) % sectors.length;
+                    setActiveTab(next);
+                    document.getElementById(`demo-tab-${next}`)?.focus();
+                  } else if (e.key === "ArrowLeft" || e.key === "ArrowUp") {
+                    e.preventDefault();
+                    const prev = (idx - 1 + sectors.length) % sectors.length;
+                    setActiveTab(prev);
+                    document.getElementById(`demo-tab-${prev}`)?.focus();
+                  }
+                }}
                 className={`flex-1 min-w-[120px] py-2.5 px-4 rounded-xl text-xs sm:text-sm font-medium transition-all text-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white ${
                   isSelected
                     ? "bg-white text-black font-semibold shadow-md"
@@ -282,6 +296,7 @@ export default function DraftingDemo() {
                 id={`demo-panel-${idx}`}
                 role="tabpanel"
                 aria-labelledby={`demo-tab-${idx}`}
+                tabIndex={isSelected ? 0 : -1}
                 aria-hidden={!isSelected}
                 className={`grid grid-cols-1 lg:grid-cols-12 gap-8 ${isSelected ? "block" : "hidden"}`}
               >
@@ -293,7 +308,7 @@ export default function DraftingDemo() {
                       <span className="text-xs font-mono text-zinc-300 uppercase tracking-widest font-semibold">
                         01 // IDENTIFIED INDUSTRY BOTTLENECK
                       </span>
-                      <span className="text-[10px] font-mono text-zinc-500">OPERATIONAL AUDIT</span>
+                      <span className="text-[10px] font-mono text-zinc-400">OPERATIONAL AUDIT</span>
                     </div>
                     <p className="text-sm text-zinc-300 leading-relaxed mb-4">
                       {sec.painPoint}
@@ -314,7 +329,7 @@ export default function DraftingDemo() {
                       <span className="text-xs font-mono text-white uppercase tracking-widest font-semibold">
                         02 // KRYNEX ENGINEERED ARCHITECTURE
                       </span>
-                      <span className="text-[10px] font-mono text-zinc-500">PROPRIETARY R&amp;D</span>
+                      <span className="text-[10px] font-mono text-zinc-400">PROPRIETARY R&amp;D</span>
                     </div>
                     <p className="text-sm text-zinc-300 leading-relaxed mb-4">
                       {sec.architecture}
@@ -335,7 +350,7 @@ export default function DraftingDemo() {
                       <span className="text-xs font-mono text-white uppercase tracking-widest font-semibold">
                         03 // DESIGN TARGETS
                       </span>
-                      <span className="text-[10px] font-mono text-zinc-500">ENGINEERING OBJECTIVES</span>
+                      <span className="text-[10px] font-mono text-zinc-400">ENGINEERING OBJECTIVES</span>
                     </div>
                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                       {sec.impact.map((imp, iIdx) => (
@@ -344,7 +359,7 @@ export default function DraftingDemo() {
                             {imp.value}
                           </div>
                           <div className="text-xs font-semibold text-zinc-300 mb-1 font-mono">{imp.label}</div>
-                          <div className="text-[11px] text-zinc-500 leading-tight">{imp.detail}</div>
+                          <div className="text-[11px] text-zinc-400 leading-tight">{imp.detail}</div>
                         </div>
                       ))}
                     </div>

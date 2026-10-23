@@ -19,14 +19,15 @@ export default function EnterpriseMatrix() {
   const [activeSector, setActiveSector] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // Mouse tracking for Resend-style radial spotlight
+  // Mouse tracking for Resend-style radial spotlight (batched & throttled to eliminate forced reflow)
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const cards = containerRef.current?.querySelectorAll<HTMLElement>(".spotlight-card");
-    if (!cards) return;
-    cards.forEach((card) => {
-      const rect = card.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
+    if (typeof window !== "undefined" && window.matchMedia("(hover: none)").matches) return;
+    const card = (e.target as HTMLElement)?.closest(".spotlight-card") as HTMLElement | null;
+    if (!card) return;
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    requestAnimationFrame(() => {
       card.style.setProperty("--mouse-x", `${x}px`);
       card.style.setProperty("--mouse-y", `${y}px`);
     });
@@ -164,6 +165,19 @@ export default function EnterpriseMatrix() {
                   aria-controls={`sector-panel-${idx}`}
                   tabIndex={isSelected ? 0 : -1}
                   onClick={() => setActiveSector(idx)}
+                  onKeyDown={(e) => {
+                    if (e.key === "ArrowDown" || e.key === "ArrowRight") {
+                      e.preventDefault();
+                      const next = (idx + 1) % sectors.length;
+                      setActiveSector(next);
+                      document.getElementById(`sector-tab-${next}`)?.focus();
+                    } else if (e.key === "ArrowUp" || e.key === "ArrowLeft") {
+                      e.preventDefault();
+                      const prev = (idx - 1 + sectors.length) % sectors.length;
+                      setActiveSector(prev);
+                      document.getElementById(`sector-tab-${prev}`)?.focus();
+                    }
+                  }}
                   className={`p-4 sm:p-5 rounded-2xl border text-left transition-all duration-300 flex items-start gap-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white ${
                     isSelected
                       ? "bg-[#0a0a0a] border-white/30 shadow-[0_0_25px_rgba(255,255,255,0.08)]"
@@ -180,16 +194,16 @@ export default function EnterpriseMatrix() {
 
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center justify-between mb-1">
-                      <h4 className="text-sm sm:text-base font-semibold text-white tracking-tight truncate">
+                      <span className="text-sm sm:text-base font-semibold text-white tracking-tight truncate block">
                         {sec.title}
-                      </h4>
+                      </span>
                       <ArrowUpRight
                         className={`w-4 h-4 shrink-0 transition-transform ${
-                          isSelected ? "text-white translate-x-0.5 -translate-y-0.5" : "text-zinc-600"
+                          isSelected ? "text-white translate-x-0.5 -translate-y-0.5" : "text-zinc-400"
                         }`}
                       />
                     </div>
-                    <span className="text-xs font-mono text-zinc-500 block truncate">{sec.sectorType}</span>
+                    <span className="text-xs font-mono text-zinc-400 block truncate">{sec.sectorType}</span>
                   </div>
                 </button>
               );
@@ -208,6 +222,7 @@ export default function EnterpriseMatrix() {
                   id={`sector-panel-${idx}`}
                   role="tabpanel"
                   aria-labelledby={`sector-tab-${idx}`}
+                  tabIndex={isSelected ? 0 : -1}
                   aria-hidden={!isSelected}
                   className={isSelected ? "flex flex-col justify-between h-full" : "hidden"}
                 >
@@ -272,7 +287,7 @@ export default function EnterpriseMatrix() {
                   </div>
 
                   <div className="pt-6 mt-6 border-t border-white/10 flex flex-wrap items-center justify-between gap-3 text-xs font-mono">
-                    <span className="text-zinc-500">
+                    <span className="text-zinc-400">
                       Category: {sec.statusBadge}
                     </span>
                     <Link

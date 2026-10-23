@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import CookieBanner from "@/components/CookieBanner";
 import ClientTelemetry from "@/components/Analytics";
@@ -268,25 +269,6 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark scroll-smooth overflow-x-hidden max-w-[100vw]">
       <head>
-        {/* Google tag (gtag.js) */}
-        {/* eslint-disable-next-line @next/next/next-script-for-ga */}
-        <script
-          async
-          src="https://www.googletagmanager.com/gtag/js?id=G-KZCMWZSRFN"
-        />
-        {/* eslint-disable-next-line @next/next/next-script-for-ga */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-
-              gtag('config', 'G-KZCMWZSRFN');
-            `,
-          }}
-        />
-
         {/* Geo Audit & Local Search Optimization (Ahmedabad, Gujarat, India) */}
         <meta name="geo.region" content="IN-GJ" />
         <meta name="geo.placename" content="Ahmedabad, Gujarat, India" />
@@ -323,6 +305,21 @@ export default function RootLayout({
 
         {/* Global Privacy & Cookie Consent */}
         <CookieBanner />
+
+        {/* Google tag (gtag.js) - Non-render-blocking via next/script */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-KZCMWZSRFN"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-KZCMWZSRFN');
+          `}
+        </Script>
       </body>
     </html>
   );

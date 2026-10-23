@@ -10,10 +10,12 @@ import DraftingDemo from "@/components/DraftingDemo";
 import BentoGrid from "@/components/BentoGrid";
 import BusinessModelSection from "@/components/BusinessModelSection";
 import Footer from "@/components/Footer";
-import DemoModal from "@/components/DemoModal";
 import SectionDivider from "@/components/SectionDivider";
 import StickyMobileCTA from "@/components/StickyMobileCTA";
+import dynamic from "next/dynamic";
 import { CheckCircle2, ShieldCheck, Zap, Sparkles } from "lucide-react";
+
+const DemoModal = dynamic(() => import("@/components/DemoModal"), { ssr: false });
 
 export default function Home() {
   const [isDemoModalOpen, setIsDemoModalOpen] = useState(false);
@@ -153,25 +155,25 @@ export default function Home() {
                 {/* Metric Columns */}
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-4">
                   <div>
-                    <div className="text-[10px] font-mono text-zinc-500 uppercase">Lexis Compilation Target</div>
+                    <div className="text-[10px] font-mono text-zinc-400 uppercase">Lexis Compilation Target</div>
                     <div className="text-xl sm:text-2xl font-bold font-mono text-white tracking-tight">
                       Rapid
                     </div>
-                    <div className="text-[10px] text-zinc-500">Bilingual deed AST synthesis objective</div>
+                    <div className="text-[10px] text-zinc-400">Bilingual deed AST synthesis objective</div>
                   </div>
                   <div>
-                    <div className="text-[10px] font-mono text-zinc-500 uppercase">Vision Edge Latency Target</div>
+                    <div className="text-[10px] font-mono text-zinc-400 uppercase">Vision Edge Latency Target</div>
                     <div className="text-xl sm:text-2xl font-bold font-mono text-white tracking-tight">
                       Low Latency
                     </div>
-                    <div className="text-[10px] text-zinc-500">TensorRT INT8 offline line inference</div>
+                    <div className="text-[10px] text-zinc-400">TensorRT INT8 offline line inference</div>
                   </div>
                   <div>
-                    <div className="text-[10px] font-mono text-zinc-500 uppercase">Service Availability Target</div>
+                    <div className="text-[10px] font-mono text-zinc-400 uppercase">Service Availability Target</div>
                     <div className="text-xl sm:text-2xl font-bold font-mono text-white tracking-tight">
                       High Availability
                     </div>
-                    <div className="text-[10px] text-zinc-500">SaaS uptime architecture objective</div>
+                    <div className="text-[10px] text-zinc-400">SaaS uptime architecture objective</div>
                   </div>
                 </div>
 
@@ -187,7 +189,7 @@ export default function Home() {
                 </div>
 
                 {/* Engineering Qualification Footnote */}
-                <div className="mt-2 text-[9px] font-mono text-zinc-500">
+                <div className="mt-2 text-[9px] font-mono text-zinc-400">
                   * Operational specifications and benchmark latency targets modeled across Krynex software platforms and edge inference gateways.
                 </div>
               </div>

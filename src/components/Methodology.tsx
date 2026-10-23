@@ -7,14 +7,15 @@ export default function Methodology() {
   const [activeStep, setActiveStep] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // Mouse tracking spotlight
+  // Mouse tracking spotlight (batched & throttled to eliminate forced reflow)
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const cards = containerRef.current?.querySelectorAll<HTMLElement>(".spotlight-card");
-    if (!cards) return;
-    cards.forEach((card) => {
-      const rect = card.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
+    if (typeof window !== "undefined" && window.matchMedia("(hover: none)").matches) return;
+    const card = (e.target as HTMLElement)?.closest(".spotlight-card") as HTMLElement | null;
+    if (!card) return;
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    requestAnimationFrame(() => {
       card.style.setProperty("--mouse-x", `${x}px`);
       card.style.setProperty("--mouse-y", `${y}px`);
     });
@@ -206,13 +207,26 @@ export default function Methodology() {
                 aria-controls={`stage-panel-${sIdx}`}
                 tabIndex={isSelected ? 0 : -1}
                 onClick={() => setActiveStep(sIdx)}
+                onKeyDown={(e) => {
+                  if (e.key === "ArrowRight" || e.key === "ArrowDown") {
+                    e.preventDefault();
+                    const next = (sIdx + 1) % steps.length;
+                    setActiveStep(next);
+                    document.getElementById(`stage-tab-${next}`)?.focus();
+                  } else if (e.key === "ArrowLeft" || e.key === "ArrowUp") {
+                    e.preventDefault();
+                    const prev = (sIdx - 1 + steps.length) % steps.length;
+                    setActiveStep(prev);
+                    document.getElementById(`stage-tab-${prev}`)?.focus();
+                  }
+                }}
                 className={`py-2 px-2.5 rounded-xl text-center transition-all flex flex-col items-center gap-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white ${
                   isSelected
                     ? "bg-white text-black font-semibold shadow-md"
                     : "text-zinc-400 hover:text-white hover:bg-white/[0.04]"
                 }`}
               >
-                <span className={`text-[10px] font-mono uppercase ${isSelected ? "text-zinc-700" : "text-zinc-500"}`}>
+                <span className={`text-[10px] font-mono uppercase ${isSelected ? "text-zinc-800" : "text-zinc-400"}`}>
                   Step {st.step}
                 </span>
                 <span className="text-xs truncate max-w-full font-medium">
@@ -235,6 +249,7 @@ export default function Methodology() {
                 id={`stage-panel-${sIdx}`}
                 role="tabpanel"
                 aria-labelledby={`stage-tab-${sIdx}`}
+                tabIndex={isSelected ? 0 : -1}
                 aria-hidden={!isSelected}
                 className={isSelected ? "block" : "hidden"}
               >
@@ -264,7 +279,7 @@ export default function Methodology() {
                     </p>
 
                     <div className="space-y-2.5 pt-4 border-t border-white/[0.06]">
-                      <span className="text-[10px] font-mono uppercase tracking-wider text-zinc-500 block mb-2">
+                      <span className="text-[10px] font-mono uppercase tracking-wider text-zinc-400 block mb-2">
                         Key Operational Objectives:
                       </span>
                       {st.points.map((pt, pIdx) => (
@@ -279,7 +294,7 @@ export default function Methodology() {
                   {/* Right: Telemetry Console Snippet */}
                   <div className="lg:col-span-6 flex flex-col justify-between h-full space-y-4">
                     <div className="rounded-2xl bg-black border border-white/[0.08] p-5 font-mono text-xs shadow-inner relative overflow-hidden">
-                      <div className="flex items-center justify-between pb-3 mb-4 border-b border-white/[0.06] text-zinc-500">
+                      <div className="flex items-center justify-between pb-3 mb-4 border-b border-white/[0.06] text-zinc-400">
                         <div className="flex items-center gap-2">
                           <span className="w-2 h-2 rounded-full bg-white animate-pulse" />
                           <span className="text-zinc-300">krynex-lifecycle // step-{st.step}</span>
@@ -293,7 +308,7 @@ export default function Methodology() {
                     </div>
 
                     <div className="p-4 rounded-xl bg-white/[0.02] border border-white/[0.06] flex items-center justify-between text-xs font-mono">
-                      <span className="text-zinc-500">Stage:</span>
+                      <span className="text-zinc-400">Stage:</span>
                       <span className="text-white font-medium">
                         {st.step} of 07 — {st.badge}
                       </span>

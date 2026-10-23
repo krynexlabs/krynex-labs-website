@@ -19,14 +19,15 @@ export default function BentoGrid() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [selectedNode, setSelectedNode] = useState<string>("core");
 
-  // Mouse tracking for Resend-style radial spotlight
+  // Mouse tracking for Resend-style radial spotlight (batched & throttled to eliminate forced reflow)
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const cards = containerRef.current?.querySelectorAll<HTMLElement>(".spotlight-card");
-    if (!cards) return;
-    cards.forEach((card) => {
-      const rect = card.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
+    if (typeof window !== "undefined" && window.matchMedia("(hover: none)").matches) return;
+    const card = (e.target as HTMLElement)?.closest(".spotlight-card") as HTMLElement | null;
+    if (!card) return;
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    requestAnimationFrame(() => {
       card.style.setProperty("--mouse-x", `${x}px`);
       card.style.setProperty("--mouse-y", `${y}px`);
     });
@@ -73,7 +74,7 @@ export default function BentoGrid() {
                   <span>●</span>
                   APPLIED AI &amp; ML PIPELINES
                 </span>
-                <span className="text-xs font-mono text-zinc-500 uppercase tracking-wider">
+                <span className="text-xs font-mono text-zinc-400 uppercase tracking-wider">
                   NEURAL MESH // ARCHITECTURE
                 </span>
               </div>
@@ -121,7 +122,7 @@ export default function BentoGrid() {
                       stroke="url(#beamGrad)"
                       strokeWidth="2"
                       strokeDasharray="8 14"
-                      className="animate-shimmer"
+                      className="animate-pulse"
                     />
 
                     {/* Beam 2: Ingestion 2 -> Core */}
@@ -137,7 +138,7 @@ export default function BentoGrid() {
                       stroke="url(#beamGrad)"
                       strokeWidth="2"
                       strokeDasharray="8 14"
-                      className="animate-shimmer"
+                      className="animate-pulse"
                     />
 
                     {/* Beam 3: Core -> Output 1 */}
@@ -153,7 +154,7 @@ export default function BentoGrid() {
                       stroke="url(#beamGrad)"
                       strokeWidth="2"
                       strokeDasharray="8 14"
-                      className="animate-shimmer"
+                      className="animate-pulse"
                     />
 
                     {/* Beam 4: Core -> Output 2 */}
@@ -169,7 +170,7 @@ export default function BentoGrid() {
                       stroke="url(#beamGrad)"
                       strokeWidth="2"
                       strokeDasharray="8 14"
-                      className="animate-shimmer"
+                      className="animate-pulse"
                     />
                   </svg>
 
@@ -183,7 +184,7 @@ export default function BentoGrid() {
                           : "bg-[#080808] border-white/10 text-zinc-300 hover:text-white hover:border-white/25"
                       }`}
                     >
-                      <div className="text-[10px] text-zinc-500 uppercase">Input Node 01</div>
+                      <div className="text-[10px] text-zinc-400 uppercase">Input Node 01</div>
                       <div>Raw Industry Data</div>
                     </button>
 
@@ -195,7 +196,7 @@ export default function BentoGrid() {
                           : "bg-[#080808] border-white/10 text-zinc-300 hover:text-white hover:border-white/25"
                       }`}
                     >
-                      <div className="text-[10px] text-zinc-500 uppercase">Input Node 02</div>
+                      <div className="text-[10px] text-zinc-400 uppercase">Input Node 02</div>
                       <div>Legacy ERP Logs</div>
                     </button>
                   </div>
@@ -237,7 +238,7 @@ export default function BentoGrid() {
                           : "bg-[#080808] border-white/10 text-zinc-300 hover:text-white hover:border-white/25"
                       }`}
                     >
-                      <div className="text-[10px] text-zinc-500 uppercase">Output Node 01</div>
+                      <div className="text-[10px] text-zinc-400 uppercase">Output Node 01</div>
                       <div>Predictive Analytics</div>
                     </button>
 
@@ -249,7 +250,7 @@ export default function BentoGrid() {
                           : "bg-[#080808] border-white/10 text-zinc-300 hover:text-white hover:border-white/25"
                       }`}
                     >
-                      <div className="text-[10px] text-zinc-500 uppercase">Output Node 02</div>
+                      <div className="text-[10px] text-zinc-400 uppercase">Output Node 02</div>
                       <div>Autonomous Workflow</div>
                     </button>
                   </div>
@@ -276,15 +277,15 @@ export default function BentoGrid() {
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 pt-6 mt-6 border-t border-white/[0.08]">
               <div>
                 <div className="text-xl sm:text-2xl font-bold font-mono text-white">High</div>
-                <div className="text-xs text-zinc-500">Model F1 Objective</div>
+                <div className="text-xs text-zinc-400">Model F1 Objective</div>
               </div>
               <div>
                 <div className="text-xl sm:text-2xl font-bold font-mono text-white">Low Latency</div>
-                <div className="text-xs text-zinc-500">GPU Latency Target</div>
+                <div className="text-xs text-zinc-400">GPU Latency Target</div>
               </div>
               <div className="col-span-2 sm:col-span-1">
                 <div className="text-xl sm:text-2xl font-bold font-mono text-white">Zero Trust</div>
-                <div className="text-xs text-zinc-500">Enterprise Isolation</div>
+                <div className="text-xs text-zinc-400">Enterprise Isolation</div>
               </div>
             </div>
           </div>
@@ -329,7 +330,7 @@ export default function BentoGrid() {
                     />
                   ))}
                 </div>
-                <div className="flex items-center justify-between text-[9px] font-mono text-zinc-500 mt-2">
+                <div className="flex items-center justify-between text-[9px] font-mono text-zinc-400 mt-2">
                   <span>MIN</span>
                   <span>HIGH-THROUGHPUT INGRESS</span>
                   <span>MAX</span>
@@ -349,7 +350,7 @@ export default function BentoGrid() {
               </div>
             </div>
 
-            <div className="pt-4 border-t border-white/[0.08] flex items-center justify-between text-xs text-zinc-500">
+            <div className="pt-4 border-t border-white/[0.08] flex items-center justify-between text-xs text-zinc-400">
               <span className="font-mono">HIGH SERVICE AVAILABILITY</span>
               <span className="text-zinc-300 font-medium">Enterprise Baseline</span>
             </div>
@@ -408,7 +409,7 @@ export default function BentoGrid() {
                     <Database className="w-3.5 h-3.5 text-zinc-400" />
                     <span>Automated Data Cleaning</span>
                   </div>
-                  <p className="text-[11px] text-zinc-500">
+                  <p className="text-[11px] text-zinc-400">
                     Real-time schema mapping across heterogeneous databases.
                   </p>
                 </div>
@@ -418,14 +419,14 @@ export default function BentoGrid() {
                     <Zap className="w-3.5 h-3.5 text-zinc-400" />
                     <span>Autonomous Execution</span>
                   </div>
-                  <p className="text-[11px] text-zinc-500">
+                  <p className="text-[11px] text-zinc-400">
                     Triggering ERP work-orders without human latency.
                   </p>
                 </div>
               </div>
             </div>
 
-            <div className="pt-4 border-t border-white/[0.08] flex items-center justify-between text-xs text-zinc-500">
+            <div className="pt-4 border-t border-white/[0.08] flex items-center justify-between text-xs text-zinc-400">
               <span className="font-mono">STREAMING INGESTION</span>
               <span className="text-zinc-300 font-medium">Sub-Second Refresh Target</span>
             </div>
@@ -457,21 +458,21 @@ export default function BentoGrid() {
 
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-6">
                 <div className="p-3.5 rounded-xl bg-black border border-white/[0.06]">
-                  <div className="text-[10px] font-mono text-zinc-500 uppercase">API Latency Target</div>
+                  <div className="text-[10px] font-mono text-zinc-400 uppercase">API Latency Target</div>
                   <div className="text-xl font-bold font-mono text-white my-0.5">Low Latency</div>
-                  <div className="text-[10px] text-zinc-500">Edge Gateway p99 Objective</div>
+                  <div className="text-[10px] text-zinc-400">Edge Gateway p99 Objective</div>
                 </div>
 
                 <div className="p-3.5 rounded-xl bg-black border border-white/[0.06]">
-                  <div className="text-[10px] font-mono text-zinc-500 uppercase">Transport &amp; Storage</div>
+                  <div className="text-[10px] font-mono text-zinc-400 uppercase">Transport &amp; Storage</div>
                   <div className="text-xl font-bold font-mono text-white my-0.5">TLS / AES</div>
-                  <div className="text-[10px] text-zinc-500">In-Transit &amp; At-Rest</div>
+                  <div className="text-[10px] text-zinc-400">In-Transit &amp; At-Rest</div>
                 </div>
 
                 <div className="p-3.5 rounded-xl bg-black border border-white/[0.06] col-span-2 sm:col-span-1">
-                  <div className="text-[10px] font-mono text-zinc-500 uppercase">Framework Alignment</div>
+                  <div className="text-[10px] font-mono text-zinc-400 uppercase">Framework Alignment</div>
                   <div className="text-xl font-bold font-mono text-white my-0.5">ISO 27001</div>
-                  <div className="text-[10px] text-zinc-500">Control Guidelines Target</div>
+                  <div className="text-[10px] text-zinc-400">Control Guidelines Target</div>
                 </div>
               </div>
 
@@ -483,7 +484,7 @@ export default function BentoGrid() {
               </div>
             </div>
 
-            <div className="pt-4 border-t border-white/[0.08] flex items-center justify-between text-xs text-zinc-500">
+            <div className="pt-4 border-t border-white/[0.08] flex items-center justify-between text-xs text-zinc-400">
               <span className="font-mono">SECURITY PROTOCOL: ACTIVE</span>
               <span className="text-zinc-300 font-mono text-[11px] flex items-center gap-1.5">
                 <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />

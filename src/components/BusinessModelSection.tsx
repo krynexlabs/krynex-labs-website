@@ -18,14 +18,15 @@ import {
 export default function BusinessModelSection() {
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // Mouse tracking spotlight
+  // Mouse tracking spotlight (batched & throttled to eliminate forced reflow)
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const cards = containerRef.current?.querySelectorAll<HTMLElement>(".spotlight-card");
-    if (!cards) return;
-    cards.forEach((card) => {
-      const rect = card.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
+    if (typeof window !== "undefined" && window.matchMedia("(hover: none)").matches) return;
+    const card = (e.target as HTMLElement)?.closest(".spotlight-card") as HTMLElement | null;
+    if (!card) return;
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    requestAnimationFrame(() => {
       card.style.setProperty("--mouse-x", `${x}px`);
       card.style.setProperty("--mouse-y", `${y}px`);
     });
@@ -111,7 +112,7 @@ export default function BusinessModelSection() {
             <br className="hidden sm:inline" />
             <span className="text-zinc-400"> Krynex Labs Continuously Improves the Software.</span>
             <br className="hidden sm:inline" />
-            <span className="text-zinc-500"> Recurring Subscriptions Fund the Business.</span>
+            <span className="text-zinc-400"> Recurring Subscriptions Fund the Business.</span>
           </h3>
 
           <p className="text-xs sm:text-sm text-zinc-400 max-w-2xl mx-auto leading-relaxed">
@@ -135,7 +136,7 @@ export default function BusinessModelSection() {
                     <div className="w-8 h-8 rounded-lg bg-white/[0.04] border border-white/10 flex items-center justify-center text-white">
                       <Icon className="w-4 h-4" />
                     </div>
-                    <span className="text-xs font-mono text-zinc-500 font-bold">
+                    <span className="text-xs font-mono text-zinc-400 font-bold">
                       {step.step}
                     </span>
                   </div>
@@ -151,7 +152,7 @@ export default function BusinessModelSection() {
                   </p>
                 </div>
 
-                <div className="pt-4 mt-4 border-t border-white/[0.04] text-[10px] font-mono text-zinc-500 flex items-center gap-1">
+                <div className="pt-4 mt-4 border-t border-white/[0.04] text-[10px] font-mono text-zinc-400 flex items-center gap-1">
                   <span>Phase {step.step} of 05</span>
                 </div>
               </div>
