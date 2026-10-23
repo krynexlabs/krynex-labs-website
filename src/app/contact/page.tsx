@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Metadata } from "next";
 import { MapPin, Mail, Clock } from "lucide-react";
 import Navbar from "@/components/Navbar";
@@ -25,16 +26,25 @@ export default function ContactPage({ searchParams }: ContactPageProps) {
   const initialProduct = searchParams?.product;
 
   return (
-    <main className="min-h-screen bg-black text-white selection:bg-white selection:text-black">
+    <main className="min-h-screen bg-black text-white selection:bg-white selection:text-black relative">
       <Navbar />
 
-      {/* Resend-Style Hero & Centered Form Section */}
-      <section className="relative pt-32 pb-24 sm:pt-36 sm:pb-32 overflow-hidden">
-        {/* Soft Monochromatic Silk Drapery Highlights (Resend brand visual) */}
-        <div className="absolute -top-20 -right-20 w-[600px] h-[600px] bg-[radial-gradient(ellipse_at_top_right,rgba(255,255,255,0.07),rgba(255,255,255,0.02)_40%,transparent_70%)] pointer-events-none blur-2xl" />
-        <div className="absolute top-1/4 -left-32 w-[500px] h-[500px] bg-[radial-gradient(circle_at_left,rgba(255,255,255,0.04),transparent_65%)] pointer-events-none blur-3xl" />
-        {/* Top Center Specular Glow */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[400px] bg-[radial-gradient(ellipse_60%_40%_at_50%_0%,rgba(255,255,255,0.08),transparent_70%)] pointer-events-none" />
+      {/* Resend-Style Hero & Centered Form Section with Silk Drapery Backdrop */}
+      <section className="relative pt-32 pb-24 sm:pt-36 sm:pb-32 overflow-hidden min-h-[92vh] flex items-center justify-center">
+        {/* Resend 3D Silk Drapery Photographic Backdrop (Exact authentic visual) */}
+        <div className="absolute inset-0 z-0 pointer-events-none select-none overflow-hidden">
+          <Image
+            src="/static/background-auth.jpg"
+            alt="Ambient Silk Drapery"
+            fill
+            priority
+            quality={100}
+            className="object-cover object-top opacity-60 sm:opacity-85"
+          />
+          {/* Contrast and Vignette Mask: Keeps center form ultra crisp while silk shines on periphery */}
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_65%_55%_at_50%_45%,rgba(0,0,0,0.85)_0%,rgba(0,0,0,0.45)_65%,rgba(0,0,0,0.92)_100%)]" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black" />
+        </div>
 
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
           {/* Top Business Hours Text (Exact Resend format) */}
@@ -78,7 +88,7 @@ export default function ContactPage({ searchParams }: ContactPageProps) {
         </div>
       </section>
 
-      <Footer />
+      <Footer hideInquirySection={true} />
     </main>
   );
 }

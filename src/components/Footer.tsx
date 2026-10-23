@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import {
   Sparkles,
@@ -17,15 +18,17 @@ import {
   CheckCircle2,
   Cpu,
   AlertCircle,
+  ChevronRight,
 } from "lucide-react";
 import confetti from "canvas-confetti";
 import KrynexLogo from "./KrynexLogo";
 
 interface FooterProps {
   onRequestDemo?: () => void;
+  hideInquirySection?: boolean;
 }
 
-export default function Footer({ onRequestDemo }: FooterProps = {}) {
+export default function Footer({ onRequestDemo, hideInquirySection = false }: FooterProps = {}) {
   const router = useRouter();
   const [inquiryName, setInquiryName] = useState("");
   const [inquiryEmail, setInquiryEmail] = useState("");
@@ -42,21 +45,21 @@ export default function Footer({ onRequestDemo }: FooterProps = {}) {
   const validateForm = () => {
     const newErrors: Record<string, string> = {};
     if (!inquiryName.trim()) {
-      newErrors.name = "Executive Name is required.";
+      newErrors.name = "Please enter your name.";
     }
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!inquiryEmail.trim()) {
-      newErrors.email = "Corporate Email is required.";
+      newErrors.email = "Please enter your corporate email.";
     } else if (!emailRegex.test(inquiryEmail.trim())) {
       newErrors.email = "Please provide a valid corporate email.";
     }
     if (!inquiryCompany.trim()) {
-      newErrors.company = "Company and sector are required.";
+      newErrors.company = "Please enter your company / industry.";
     }
     if (!inquiryChallenge.trim()) {
-      newErrors.challenge = "Brief description of operational friction is required.";
-    } else if (inquiryChallenge.trim().length < 15) {
-      newErrors.challenge = "Please provide at least 15 characters describing the challenge.";
+      newErrors.challenge = "Please describe how we can help you.";
+    } else if (inquiryChallenge.trim().length < 10) {
+      newErrors.challenge = "Please provide at least 10 characters.";
     }
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -83,24 +86,34 @@ export default function Footer({ onRequestDemo }: FooterProps = {}) {
           email: inquiryEmail,
           company: inquiryCompany,
           challenge: inquiryChallenge,
+          executiveName: inquiryName,
+          corporateEmail: inquiryEmail,
+          companySector: inquiryCompany,
+          operationalFriction: inquiryChallenge,
+          inquiryCategory: "Technical Architecture Consultation",
+          websiteHoneypot: honeypot,
           _security_honeypot: honeypot,
         }),
       });
 
       const result = await response.json();
 
-      if (response.ok && result.success) {
+      if (response.ok && (result.success || result.ok)) {
         setTicketId(result.referenceId || `KRX-RD-${Math.floor(1000 + Math.random() * 9000)}`);
         setIsSubmitting(false);
         setSubmitted(true);
 
         // Pure Silver & White Confetti
-        confetti({
-          particleCount: 80,
-          spread: 60,
-          origin: { y: 0.7 },
-          colors: ["#ffffff", "#d4d4d8", "#a1a1aa", "#71717a"],
-        });
+        try {
+          confetti({
+            particleCount: 80,
+            spread: 60,
+            origin: { y: 0.7 },
+            colors: ["#ffffff", "#d4d4d8", "#a1a1aa", "#71717a"],
+          });
+        } catch {
+          // Non-blocking
+        }
       } else {
         setIsSubmitting(false);
         setErrors((prev) => ({
@@ -118,246 +131,248 @@ export default function Footer({ onRequestDemo }: FooterProps = {}) {
   };
 
   return (
-    <footer id="contact" className="relative bg-black border-t border-white/[0.08] overflow-hidden pt-20">
+    <footer id="contact" className="relative bg-black border-t border-white/[0.08] overflow-hidden pt-16">
       {/* ======================================================== */}
       {/* EXECUTIVE R&D CONSULTATION & CORPORATE GOODWILL SECTION */}
       {/* ======================================================== */}
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-24">
-        <div className="relative rounded-3xl bg-[#080808] border border-white/10 p-8 sm:p-12 lg:p-16 overflow-hidden shadow-[0_0_60px_rgba(0,0,0,0.95)]">
-          {/* Specular Top Line */}
-          <div className="absolute top-0 left-12 right-12 h-[1px] bg-gradient-to-r from-transparent via-white/30 to-transparent pointer-events-none" />
-
-          {/* Resend-Style Horizon Glow in Pure White / Silver */}
-          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[700px] sm:w-[1000px] h-[340px] bg-[radial-gradient(ellipse_80%_50%_at_50%_120%,rgba(255,255,255,0.08),transparent)] pointer-events-none" />
-
-          {/* Section Header */}
-          <div className="text-center max-w-3xl mx-auto mb-12">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/[0.03] border border-white/10 text-[11px] font-mono tracking-widest text-zinc-300 uppercase mb-5">
-              <span>09 // EXECUTIVE INQUIRY &amp; PARTNERSHIP</span>
-            </div>
-
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mb-5 leading-tight bg-gradient-to-b from-white via-zinc-100 to-zinc-500 bg-clip-text text-transparent">
-              Better Software Starts with Better Questions.
-            </h2>
-
-            <p className="text-base sm:text-lg text-zinc-400 leading-relaxed mb-6">
-              We explore industry challenges, develop useful software, and turn promising solutions into products businesses can use.
-            </p>
-
-            <div className="flex flex-wrap items-center justify-center gap-4 mb-8">
-              <Link
-                href="/products"
-                className="px-6 py-2.5 rounded-full bg-white text-black font-semibold text-xs hover:bg-zinc-200 transition-all shadow-md flex items-center gap-2"
-              >
-                <span>Explore Products</span>
-                <ArrowRight className="w-3.5 h-3.5" />
-              </Link>
-              <Link
-                href="/contact"
-                className="px-6 py-2.5 rounded-full bg-white/[0.04] text-white hover:bg-white/[0.08] border border-white/10 font-medium text-xs transition-all"
-              >
-                <span>Contact Krynex Labs</span>
-              </Link>
-            </div>
-          </div>
-
-          {/* Interactive Corporate Inquiry Form */}
-          {submitted ? (
-            <div
-              role="status"
-              aria-live="polite"
-              className="max-w-xl mx-auto p-8 rounded-2xl bg-black border border-white/10 text-center animate-fade-in"
-            >
-              <div className="w-14 h-14 rounded-2xl bg-white/[0.05] border border-white/20 flex items-center justify-center mx-auto mb-4">
-                <CheckCircle2 className="w-7 h-7 text-white" />
-              </div>
-              <div className="text-xs font-mono text-zinc-300 mb-2">
-                {`INQUIRY REGISTERED // ${ticketId}`}
-              </div>
-              <h3 className="text-xl font-bold text-white mb-2">
-                Inquiry Routed to Corporate Engineering
-              </h3>
-              <p className="text-xs sm:text-sm text-zinc-400 mb-6 leading-relaxed">
-                Thank you, <span className="text-white font-medium">{inquiryName}</span>. Your technical inquiry has been securely registered under reference <span className="font-mono text-white">{ticketId}</span>. A Systems Architect will evaluate your operational brief and reach out to{" "}
-                <span className="text-white font-medium">{inquiryEmail}</span> promptly during standard business hours.
-              </p>
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-                <Link
-                  href={`/thank-you?ref=${encodeURIComponent(ticketId)}`}
-                  className="w-full sm:w-auto px-6 py-2.5 rounded-full bg-white text-black font-semibold text-xs hover:bg-zinc-200 transition-colors"
-                >
-                  View Transmission Record &rarr;
-                </Link>
-                <button
-                  type="button"
-                  onClick={() => {
-                    setSubmitted(false);
-                    setInquiryChallenge("");
-                  }}
-                  className="w-full sm:w-auto px-6 py-2.5 rounded-full bg-white/[0.04] text-zinc-300 border border-white/10 hover:bg-white/[0.08] text-xs transition-colors"
-                >
-                  Submit Another Inquiry
-                </button>
-              </div>
-            </div>
-          ) : (
-            <form onSubmit={handleInquirySubmit} noValidate className="max-w-2xl mx-auto space-y-4">
-              {/* Anti-spam honeypot */}
-              <input
-                type="text"
-                name="_security_honeypot"
-                value={honeypot}
-                onChange={(e) => setHoneypot(e.target.value)}
-                tabIndex={-1}
-                autoComplete="off"
-                className="hidden"
-                aria-hidden="true"
+      {!hideInquirySection && (
+        <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 mb-24">
+          <div className="relative rounded-3xl bg-[#090a0d] border border-white/10 p-8 sm:p-12 lg:p-16 overflow-hidden shadow-[0_20px_70px_rgba(0,0,0,0.95)]">
+            {/* Resend Silk Fabric Drapery Backdrop (Exact Resend brand background) */}
+            <div className="absolute inset-0 z-0 pointer-events-none select-none overflow-hidden">
+              <Image
+                src="/static/background-auth.jpg"
+                alt="Silk Drapery Ambience"
+                fill
+                quality={95}
+                className="object-cover object-top opacity-55 sm:opacity-75"
               />
+              <div className="absolute inset-0 bg-[radial-gradient(ellipse_65%_55%_at_50%_45%,rgba(0,0,0,0.85)_0%,rgba(0,0,0,0.45)_60%,rgba(0,0,0,0.95)_100%)]" />
+              <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black" />
+            </div>
 
-              {errors.general && (
-                <div className="flex items-center gap-2 p-3.5 rounded-xl bg-red-950/20 border border-red-500/40 text-xs text-red-400 font-mono">
-                  <AlertCircle className="w-4 h-4 shrink-0" />
-                  <span>{errors.general}</span>
+            {/* Specular Top Line */}
+            <div className="absolute top-0 left-12 right-12 h-[1px] bg-gradient-to-r from-transparent via-white/30 to-transparent pointer-events-none z-10" />
+
+            {/* Section Header */}
+            <div className="text-center max-w-2xl mx-auto mb-10 relative z-10">
+              <p className="text-xs text-zinc-400 font-normal mb-3">
+                Business Hours: 9:30 AM to 6:30 PM IST • Ahmedabad, India
+              </p>
+
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mb-3 leading-[1.1]">
+                <span className="text-white block">Experience better</span>
+                <span className="bg-gradient-to-b from-zinc-200 via-zinc-400 to-zinc-500 bg-clip-text text-transparent block">software today</span>
+              </h2>
+
+              <p className="text-sm sm:text-base text-zinc-400 leading-relaxed mb-6">
+                Get personal, reliable support from people who know your setup and care about your success.
+              </p>
+            </div>
+
+            {/* Interactive Corporate Inquiry Form */}
+            {submitted ? (
+              <div
+                role="status"
+                aria-live="polite"
+                className="max-w-xl mx-auto p-8 rounded-2xl bg-black/80 border border-white/10 text-center animate-fade-in relative z-10 backdrop-blur-xl"
+              >
+                <div className="w-12 h-12 rounded-full bg-white/[0.08] border border-white/20 flex items-center justify-center mx-auto mb-4 text-white">
+                  <CheckCircle2 className="w-6 h-6" />
                 </div>
-              )}
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <h3 className="text-xl font-bold text-white mb-2 tracking-tight">
+                  Inquiry Dispatched
+                </h3>
+                <p className="text-xs sm:text-sm text-zinc-400 mb-6 leading-relaxed">
+                  Thank you, <span className="text-white font-medium">{inquiryName}</span>. Your inquiry has been received. Our engineering team in Ahmedabad will reach out to{" "}
+                  <span className="text-white font-medium">{inquiryEmail}</span> within 1–2 business days.
+                </p>
+                <div className="inline-block px-4 py-2 rounded-xl bg-black/60 border border-white/10 font-mono text-xs text-zinc-300 mb-6">
+                  Reference ID: <span className="font-bold text-white">{ticketId}</span>
+                </div>
                 <div>
-                  <label htmlFor="footer-inquiry-name" className="block text-xs font-mono text-zinc-400 mb-1.5 uppercase cursor-pointer">
-                    Your Name *
-                  </label>
-                  <input
-                    id="footer-inquiry-name"
-                    type="text"
-                    value={inquiryName}
-                    maxLength={100}
-                    onChange={(e) => {
-                      setInquiryName(e.target.value);
-                      if (errors.name) setErrors({ ...errors, name: "" });
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setSubmitted(false);
+                      setInquiryChallenge("");
                     }}
-                    placeholder="e.g. Vikramaditya Mehta"
-                    className={`w-full px-4 py-3 rounded-xl bg-black border text-sm text-white focus:outline-none font-sans transition-colors placeholder:text-zinc-600 focus-visible:ring-1 focus-visible:ring-white/40 ${
-                      errors.name ? "border-red-500/50 bg-red-950/10" : "border-white/15 focus:border-white"
-                    }`}
-                  />
-                  {errors.name && (
-                    <div className="flex items-center gap-1.5 text-xs text-red-400 font-mono mt-1.5">
-                      <AlertCircle className="w-3.5 h-3.5 shrink-0" />
-                      <span>{errors.name}</span>
-                    </div>
-                  )}
+                    className="px-6 py-2.5 rounded-full bg-white text-black font-semibold text-xs hover:bg-zinc-200 transition-colors"
+                  >
+                    Submit Another Inquiry
+                  </button>
                 </div>
+              </div>
+            ) : (
+              <form onSubmit={handleInquirySubmit} noValidate className="max-w-xl mx-auto space-y-4 relative z-10">
+                {/* Anti-spam honeypot */}
+                <input
+                  type="text"
+                  name="_security_honeypot"
+                  value={honeypot}
+                  onChange={(e) => setHoneypot(e.target.value)}
+                  tabIndex={-1}
+                  autoComplete="off"
+                  className="hidden"
+                  aria-hidden="true"
+                />
 
+                {errors.general && (
+                  <div className="flex items-center gap-2 p-3.5 rounded-xl bg-white/[0.05] border border-white/15 text-xs text-white">
+                    <AlertCircle className="w-4 h-4 shrink-0" />
+                    <span>{errors.general}</span>
+                  </div>
+                )}
+
+                {/* Email Address */}
                 <div>
-                  <label htmlFor="footer-inquiry-email" className="block text-xs font-mono text-zinc-400 mb-1.5 uppercase cursor-pointer">
-                    Corporate Email *
+                  <label htmlFor="footer-inquiry-email" className="block text-xs sm:text-sm font-normal text-zinc-300 mb-1.5">
+                    Email address
                   </label>
                   <input
                     id="footer-inquiry-email"
                     type="email"
+                    required
                     value={inquiryEmail}
                     maxLength={120}
                     onChange={(e) => {
                       setInquiryEmail(e.target.value);
                       if (errors.email) setErrors({ ...errors, email: "" });
                     }}
-                    placeholder="v.mehta@enterprise.com"
-                    className={`w-full px-4 py-3 rounded-xl bg-black border text-sm text-white focus:outline-none font-sans transition-colors placeholder:text-zinc-600 focus-visible:ring-1 focus-visible:ring-white/40 ${
-                      errors.email ? "border-red-500/50 bg-red-950/10" : "border-white/15 focus:border-white"
+                    placeholder="Enter your email"
+                    className={`w-full bg-[#0f1013] border rounded-lg px-4 py-3 text-sm text-zinc-100 placeholder-zinc-500 focus:outline-none focus:border-white/30 focus:ring-1 focus:ring-white/15 transition-all font-sans ${
+                      errors.email ? "border-red-400/80" : "border-white/10"
                     }`}
                   />
                   {errors.email && (
-                    <div className="flex items-center gap-1.5 text-xs text-red-400 font-mono mt-1.5">
-                      <AlertCircle className="w-3.5 h-3.5 shrink-0" />
-                      <span>{errors.email}</span>
+                    <div className="text-[11px] text-red-400 mt-1.5">
+                      {errors.email}
                     </div>
                   )}
                 </div>
-              </div>
 
-              <div>
-                <label htmlFor="footer-inquiry-company" className="block text-xs font-mono text-zinc-400 mb-1.5 uppercase cursor-pointer">
-                  Company / Industry Vertical *
-                </label>
-                <input
-                  id="footer-inquiry-company"
-                  type="text"
-                  value={inquiryCompany}
-                  maxLength={120}
-                  onChange={(e) => {
-                    setInquiryCompany(e.target.value);
-                    if (errors.company) setErrors({ ...errors, company: "" });
-                  }}
-                  placeholder="e.g. Continental Logistics & Ports / Manufacturing"
-                  className={`w-full px-4 py-3 rounded-xl bg-black border text-sm text-white focus:outline-none font-sans transition-colors placeholder:text-zinc-600 focus-visible:ring-1 focus-visible:ring-white/40 ${
-                    errors.company ? "border-red-500/50 bg-red-950/10" : "border-white/15 focus:border-white"
-                  }`}
-                />
-                {errors.company && (
-                  <div className="flex items-center gap-1.5 text-xs text-red-400 font-mono mt-1.5">
-                    <AlertCircle className="w-3.5 h-3.5 shrink-0" />
-                    <span>{errors.company}</span>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label htmlFor="footer-inquiry-name" className="block text-xs sm:text-sm font-normal text-zinc-300 mb-1.5">
+                      Your name
+                    </label>
+                    <input
+                      id="footer-inquiry-name"
+                      type="text"
+                      required
+                      value={inquiryName}
+                      maxLength={100}
+                      onChange={(e) => {
+                        setInquiryName(e.target.value);
+                        if (errors.name) setErrors({ ...errors, name: "" });
+                      }}
+                      placeholder="Enter your name"
+                      className={`w-full bg-[#0f1013] border rounded-lg px-4 py-3 text-sm text-zinc-100 placeholder-zinc-500 focus:outline-none focus:border-white/30 focus:ring-1 focus:ring-white/15 transition-all font-sans ${
+                        errors.name ? "border-red-400/80" : "border-white/10"
+                      }`}
+                    />
+                    {errors.name && (
+                      <div className="text-[11px] text-red-400 mt-1.5">
+                        {errors.name}
+                      </div>
+                    )}
                   </div>
-                )}
-              </div>
 
-              <div>
-                <label htmlFor="footer-inquiry-challenge" className="block text-xs font-mono text-zinc-400 mb-1.5 uppercase cursor-pointer">
-                  Describe the Operational Challenge *
-                </label>
-                <textarea
-                  id="footer-inquiry-challenge"
-                  rows={3}
-                  value={inquiryChallenge}
-                  maxLength={1000}
-                  onChange={(e) => {
-                    setInquiryChallenge(e.target.value);
-                    if (errors.challenge) setErrors({ ...errors, challenge: "" });
-                  }}
-                  placeholder="Briefly outline your current technical friction, data bottleneck, or AI automation objective..."
-                  className={`w-full px-4 py-3 rounded-xl bg-black border text-sm text-white focus:outline-none font-sans transition-colors placeholder:text-zinc-600 resize-none focus-visible:ring-1 focus-visible:ring-white/40 ${
-                    errors.challenge ? "border-red-500/50 bg-red-950/10" : "border-white/15 focus:border-white"
-                  }`}
-                />
-                {errors.challenge && (
-                  <div className="flex items-center gap-1.5 text-xs text-red-400 font-mono mt-1.5">
-                    <AlertCircle className="w-3.5 h-3.5 shrink-0" />
-                    <span>{errors.challenge}</span>
+                  <div>
+                    <label htmlFor="footer-inquiry-company" className="block text-xs sm:text-sm font-normal text-zinc-300 mb-1.5">
+                      Company / Industry
+                    </label>
+                    <input
+                      id="footer-inquiry-company"
+                      type="text"
+                      required
+                      value={inquiryCompany}
+                      maxLength={120}
+                      onChange={(e) => {
+                        setInquiryCompany(e.target.value);
+                        if (errors.company) setErrors({ ...errors, company: "" });
+                      }}
+                      placeholder="Enter your company"
+                      className={`w-full bg-[#0f1013] border rounded-lg px-4 py-3 text-sm text-zinc-100 placeholder-zinc-500 focus:outline-none focus:border-white/30 focus:ring-1 focus:ring-white/15 transition-all font-sans ${
+                        errors.company ? "border-red-400/80" : "border-white/10"
+                      }`}
+                    />
+                    {errors.company && (
+                      <div className="text-[11px] text-red-400 mt-1.5">
+                        {errors.company}
+                      </div>
+                    )}
                   </div>
-                )}
-              </div>
+                </div>
 
-              <div className="pt-2">
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="w-full py-4 rounded-full bg-white text-black font-bold text-sm tracking-wide hover:bg-zinc-200 transition-all flex items-center justify-center gap-2 shadow-[0_0_30px_rgba(255,255,255,0.2)] disabled:opacity-50 group focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
-                >
-                  {isSubmitting ? (
-                    <>
-                      <Cpu className="w-4 h-4 animate-spin text-black" />
-                      <span>Encrypting &amp; Transmitting Brief...</span>
-                    </>
-                  ) : (
-                    <>
-                      <span>Initiate R&amp;D Inquiry &rarr;</span>
-                    </>
+                <div>
+                  <label htmlFor="footer-inquiry-challenge" className="block text-xs sm:text-sm font-normal text-zinc-300 mb-1.5">
+                    How can we help?
+                  </label>
+                  <textarea
+                    id="footer-inquiry-challenge"
+                    rows={4}
+                    required
+                    value={inquiryChallenge}
+                    maxLength={1000}
+                    onChange={(e) => {
+                      setInquiryChallenge(e.target.value);
+                      if (errors.challenge) setErrors({ ...errors, challenge: "" });
+                    }}
+                    placeholder="I'd like to know how Krynex Labs can help me with..."
+                    className={`w-full bg-[#0f1013] border rounded-lg p-4 text-sm text-zinc-100 placeholder-zinc-500 focus:outline-none focus:border-white/30 focus:ring-1 focus:ring-white/15 transition-all font-sans resize-none ${
+                      errors.challenge ? "border-red-400/80" : "border-white/10"
+                    }`}
+                  />
+                  {errors.challenge && (
+                    <div className="text-[11px] text-red-400 mt-1.5">
+                      {errors.challenge}
+                    </div>
                   )}
-                </button>
-              </div>
+                </div>
 
-              <div className="flex items-center justify-center gap-4 text-[11px] font-mono text-zinc-500 pt-3">
-                <span className="flex items-center gap-1.5">
-                  <Shield className="w-3.5 h-3.5 text-zinc-400" />
-                  ENTERPRISE PRIVACY &amp; DATA ISOLATION PROTECTED
-                </span>
-                <span>•</span>
-                <span>AHMEDABAD (IN)</span>
-              </div>
-            </form>
-          )}
+                {/* Resend Style Submit Button */}
+                <div className="pt-2">
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className={`inline-flex items-center justify-center gap-1.5 px-6 py-2.5 rounded-full text-xs font-semibold tracking-wide transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-white disabled:opacity-50 cursor-pointer ${
+                      inquiryEmail.trim() && inquiryChallenge.trim()
+                        ? "bg-white text-black hover:bg-zinc-200 shadow-[0_0_20px_rgba(255,255,255,0.15)]"
+                        : "bg-[#141518] border border-white/10 text-zinc-400 hover:text-white hover:border-white/25 hover:bg-[#1a1c22]"
+                    }`}
+                  >
+                    {isSubmitting ? (
+                      <>
+                        <div className="w-3.5 h-3.5 border-2 border-current border-t-transparent rounded-full animate-spin" />
+                        <span>Submitting...</span>
+                      </>
+                    ) : (
+                      <>
+                        <span>Submit</span>
+                        <ChevronRight className="w-3.5 h-3.5" />
+                      </>
+                    )}
+                  </button>
+                </div>
+
+                {/* Legal Notice */}
+                <p className="text-[11px] text-zinc-500 pt-2 border-t border-white/[0.06]">
+                  By submitting, you agree to our{" "}
+                  <Link href="/terms" className="text-zinc-400 hover:text-white underline transition-colors">
+                    Terms
+                  </Link>{" "}
+                  and{" "}
+                  <Link href="/privacy" className="text-zinc-400 hover:text-white underline transition-colors">
+                    Privacy Policy
+                  </Link>
+                  .
+                </p>
+              </form>
+            )}
+          </div>
         </div>
-      </div>
+      )}
 
       {/* ======================================================== */}
       {/* CORPORATE MULTI-COLUMN FOOTER */}
