@@ -20,8 +20,6 @@ interface HeroSectionProps {
 function isHardwareAccelerated(): boolean {
   if (typeof window === "undefined") return false;
   try {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return false;
-    if (window.innerWidth < 768) return false;
     if (navigator.userAgent && /lighthouse|chrome-lighthouse/i.test(navigator.userAgent)) {
       return false;
     }
@@ -31,7 +29,8 @@ function isHardwareAccelerated(): boolean {
     const debugInfo = gl.getExtension("WEBGL_debug_renderer_info");
     if (debugInfo) {
       const renderer = gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL) || "";
-      if (/swiftshader|llvmpipe|software|mesa/i.test(renderer)) {
+      // Filter out CPU-based software rasterizers only (preserves Mesa hardware drivers for Linux/ChromeOS/Android)
+      if (/swiftshader|llvmpipe|softpipe|swrast|software rasterizer/i.test(renderer)) {
         return false;
       }
     }
@@ -46,15 +45,15 @@ export default function HeroSection({ onRequestDemo }: HeroSectionProps) {
 
   useEffect(() => {
     if (!isHardwareAccelerated()) return;
-    // Defer WebGL mounting until after initial critical rendering path reaches idle
+    // Mount 3D canvas after initial hydration idle window
     if ("requestIdleCallback" in window) {
       const handle = (window as any).requestIdleCallback(
         () => setShouldMount3D(true),
-        { timeout: 3500 }
+        { timeout: 800 }
       );
       return () => (window as any).cancelIdleCallback(handle);
     } else {
-      const timer = setTimeout(() => setShouldMount3D(true), 1500);
+      const timer = setTimeout(() => setShouldMount3D(true), 200);
       return () => clearTimeout(timer);
     }
   }, []);

@@ -2,15 +2,17 @@
 
 import React, { useRef, useMemo, useState, useEffect } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { OrbitControls, RoundedBox, Edges, Environment, Lightformer, PerspectiveCamera } from "@react-three/drei";
+import { OrbitControls, RoundedBox, Environment, Lightformer, PerspectiveCamera } from "@react-three/drei";
 import * as THREE from "three";
 
 function ResendRubiksAssembly({
   prefersReducedMotion,
   isInView = true,
+  isMobile = false,
 }: {
   prefersReducedMotion: boolean;
   isInView?: boolean;
+  isMobile?: boolean;
 }) {
   const outerGroupRef = useRef<THREE.Group>(null);
   const [hoveredCubeId, setHoveredCubeId] = useState<number | null>(null);
@@ -146,7 +148,13 @@ function ResendRubiksAssembly({
     };
   }, []);
 
-  // Safe cleanup of component-owned WebGL textures and materials (PERF-01)
+  // Shared Box Edges Geometry (12 clean edges per subcube, zero GPU buffer allocation anomalies)
+  const boxEdgesGeom = useMemo(
+    () => new THREE.EdgesGeometry(new THREE.BoxGeometry(0.94, 0.94, 0.94)),
+    []
+  );
+
+  // Safe cleanup of component-owned WebGL textures, materials, and geometries
   useEffect(() => {
     if (ribbedTex) ribbedTex.needsUpdate = true;
     if (dottedTex) dottedTex.needsUpdate = true;
@@ -159,11 +167,12 @@ function ResendRubiksAssembly({
       mat0Hover?.dispose();
       mat1Hover?.dispose();
       mat2Hover?.dispose();
+      boxEdgesGeom?.dispose();
       if (typeof document !== "undefined") {
         document.body.style.cursor = "auto";
       }
     };
-  }, [mat0, mat1, mat2, mat0Hover, mat1Hover, mat2Hover, ribbedTex, dottedTex]);
+  }, [mat0, mat1, mat2, mat0Hover, mat1Hover, mat2Hover, ribbedTex, dottedTex, boxEdgesGeom]);
 
   // Pointer hover feedback handlers
   const handlePointerOver = (e: any, id: number) => {
@@ -277,7 +286,7 @@ function ResendRubiksAssembly({
     // Suspend rendering computations when scrolled out of viewport
     if (!isInView) return;
 
-    // A11Y-03: Respect prefers-reduced-motion preference
+    // A11Y-03: Respect prefers-reduced-motion preference (keep static isometric pose)
     if (prefersReducedMotion) {
       if (outerGroupRef.current) {
         outerGroupRef.current.position.set(0, 0, 0);
@@ -385,7 +394,7 @@ function ResendRubiksAssembly({
   });
 
   return (
-    <group ref={outerGroupRef} scale={0.64} rotation={[0.55, -0.65, 0.22]}>
+    <group ref={outerGroupRef} scale={isMobile ? 0.52 : 0.64} rotation={[0.55, -0.65, 0.22]}>
       {cubes.map((cube) => {
         const isHovered = hoveredCubeId === cube.id;
         const baseMat = cube.id % 3 === 0 ? mat0 : cube.id % 3 === 1 ? mat1 : mat2;
@@ -408,45 +417,20 @@ function ResendRubiksAssembly({
               onPointerOver={(e) => handlePointerOver(e, cube.id)}
               onPointerOut={(e) => handlePointerOut(e, cube.id)}
             >
-              <Edges threshold={18} color={isHovered ? "#ffffff" : "#52525b"} />
+              {/* Native LineSegments with shared 12-edge BoxGeometry (zero WebGL fat-line desync or stray spikes) */}
+              <lineSegments geometry={boxEdgesGeom}>
+                <lineBasicMaterial
+                  color={isHovered ? "#ffffff" : "#71717a"}
+                  transparent
+                  opacity={isHovered ? 0.95 : 0.45}
+                  depthTest={true}
+                />
+              </lineSegments>
             </RoundedBox>
           </group>
         );
       })}
     </group>
-  );
-}
-
-function StaticSvgFallback() {
-  return (
-    <div className="relative w-full h-full min-h-[380px] sm:min-h-[480px] lg:min-h-[680px] flex items-center justify-center p-8 select-none">
-      <svg
-        role="img"
-        aria-label="Krynex Modular Engineering Cube Visual"
-        viewBox="0 0 400 400"
-        className="w-full max-w-[380px] h-auto drop-shadow-[0_0_35px_rgba(255,255,255,0.12)]"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        {/* Isometric wireframe cube facets */}
-        <polygon points="200,50 320,120 200,190 80,120" fill="#141414" stroke="#ffffff" strokeWidth="1.5" strokeOpacity="0.4" />
-        <polygon points="80,120 200,190 200,330 80,260" fill="#090909" stroke="#ffffff" strokeWidth="1.5" strokeOpacity="0.3" />
-        <polygon points="200,190 320,120 320,260 200,330" fill="#0d0d0d" stroke="#ffffff" strokeWidth="1.5" strokeOpacity="0.3" />
-        {/* Grid lines simulating 3x3 Rubik slices */}
-        <line x1="120" y1="96" x2="240" y2="166" stroke="#ffffff" strokeWidth="1" strokeOpacity="0.35" />
-        <line x1="160" y1="73" x2="280" y2="143" stroke="#ffffff" strokeWidth="1" strokeOpacity="0.35" />
-        <line x1="240" y1="73" x2="120" y2="143" stroke="#ffffff" strokeWidth="1" strokeOpacity="0.35" />
-        <line x1="280" y1="96" x2="160" y2="166" stroke="#ffffff" strokeWidth="1" strokeOpacity="0.35" />
-        <line x1="120" y1="143" x2="120" y2="283" stroke="#ffffff" strokeWidth="1" strokeOpacity="0.25" />
-        <line x1="160" y1="166" x2="160" y2="306" stroke="#ffffff" strokeWidth="1" strokeOpacity="0.25" />
-        <line x1="240" y1="166" x2="240" y2="306" stroke="#ffffff" strokeWidth="1" strokeOpacity="0.25" />
-        <line x1="280" y1="143" x2="280" y2="283" stroke="#ffffff" strokeWidth="1" strokeOpacity="0.25" />
-        <line x1="80" y1="166" x2="200" y2="236" stroke="#ffffff" strokeWidth="1" strokeOpacity="0.25" />
-        <line x1="80" y1="213" x2="200" y2="283" stroke="#ffffff" strokeWidth="1" strokeOpacity="0.25" />
-        <line x1="200" y1="236" x2="320" y2="166" stroke="#ffffff" strokeWidth="1" strokeOpacity="0.25" />
-        <line x1="200" y1="283" x2="320" y2="213" stroke="#ffffff" strokeWidth="1" strokeOpacity="0.25" />
-      </svg>
-    </div>
   );
 }
 
@@ -470,7 +454,7 @@ class WebGLErrorBoundary extends React.Component<WebGLErrorBoundaryProps, WebGLE
   }
 
   componentDidCatch(err: any) {
-    console.warn("[KRYNEX 3D] WebGL canvas caught runtime exception, activating static fallback:", err);
+    console.warn("[KRYNEX 3D] WebGL canvas caught runtime exception, activating fallback:", err);
   }
 
   render() {
@@ -495,10 +479,9 @@ export default function Hero3DCube() {
     setMounted(true);
 
     if (typeof window !== "undefined") {
-      // 1. Mobile viewport detection (<768px uses lightweight zero-JS SVG fallback)
       setIsMobile(window.innerWidth < 768);
 
-      // 2. WebGL capability check with software rasterizer filter
+      // WebGL capability check with true software rasterizer filter (preserves Mesa hardware drivers)
       try {
         const canvas = document.createElement("canvas");
         const gl =
@@ -510,7 +493,7 @@ export default function Hero3DCube() {
           const debugInfo = gl.getExtension("WEBGL_debug_renderer_info");
           if (debugInfo) {
             const renderer = gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL) || "";
-            if (/swiftshader|llvmpipe|software|mesa/i.test(renderer)) {
+            if (/swiftshader|llvmpipe|softpipe|swrast|software rasterizer/i.test(renderer)) {
               setHasWebGL(false);
             }
           }
@@ -519,7 +502,7 @@ export default function Hero3DCube() {
         setHasWebGL(false);
       }
 
-      // 3. User accessibility preference: prefers-reduced-motion
+      // User accessibility preference: prefers-reduced-motion
       const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
       setPrefersReducedMotion(mediaQuery.matches);
       const motionListener = (event: MediaQueryListEvent) => {
@@ -532,29 +515,28 @@ export default function Hero3DCube() {
       };
       window.addEventListener("resize", resizeListener, { passive: true });
 
-      // 4. Viewport IntersectionObserver to pause rendering when out of sight
-      let observer: IntersectionObserver | null = null;
-      if (containerRef.current && "IntersectionObserver" in window) {
-        observer = new IntersectionObserver(
-          ([entry]) => {
-            setIsInView(entry.isIntersecting);
-          },
-          { threshold: 0.05 }
-        );
-        observer.observe(containerRef.current);
-      }
-
       return () => {
-        observer?.disconnect();
         mediaQuery.removeEventListener("change", motionListener);
         window.removeEventListener("resize", resizeListener);
       };
     }
   }, []);
 
-  // For mobile devices, users with reduced motion preference, or browsers without WebGL,
-  // serve the lightweight zero-load SVG isometric cube to ensure maximum mobile performance.
-  if (!mounted || isMobile || prefersReducedMotion || !hasWebGL) {
+  // Viewport IntersectionObserver to pause rendering when out of sight (attached when container div mounts)
+  useEffect(() => {
+    if (!mounted || !containerRef.current || !("IntersectionObserver" in window)) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsInView(entry.isIntersecting);
+      },
+      { threshold: 0.05 }
+    );
+    observer.observe(containerRef.current);
+    return () => observer.disconnect();
+  }, [mounted]);
+
+  // Graceful fallback only if WebGL is truly unavailable
+  if (!hasWebGL) {
     return <HeroCubeFallback />;
   }
 
@@ -562,78 +544,83 @@ export default function Hero3DCube() {
     <WebGLErrorBoundary fallback={<HeroCubeFallback />}>
       <div
         ref={containerRef}
-        className="relative w-full h-full select-none [mask-image:radial-gradient(circle_at_center,black_70%,transparent_100%)] [-webkit-mask-image:radial-gradient(circle_at_center,black_70%,transparent_100%)] flex items-center justify-center"
+        className="relative w-full h-full select-none flex items-center justify-center"
       >
         <Canvas
-          dpr={[1, 1.5]}
+          dpr={isMobile ? [1, 1.25] : [1, 1.5]}
           gl={{ powerPreference: "high-performance", antialias: true, alpha: true }}
           className="cursor-grab active:cursor-grabbing w-full h-full"
         >
-        {/* Exact camera setup requested: position [0, 0, 6.2], fov 38 */}
-        <PerspectiveCamera makeDefault position={[0, 0, 6.2]} fov={38} />
+          {/* Exact camera setup requested: position [0, 0, 6.2], fov 38 */}
+          <PerspectiveCamera makeDefault position={[0, 0, 6.2]} fov={38} />
 
-        <ambientLight intensity={0.4} />
-        <directionalLight position={[6, 8, 5]} intensity={3.0} color="#ffffff" />
-        <directionalLight position={[-6, -4, -6]} intensity={4.5} color="#ffffff" />
+          <ambientLight intensity={0.4} />
+          <directionalLight position={[6, 8, 5]} intensity={3.0} color="#ffffff" />
+          <directionalLight position={[-6, -4, -6]} intensity={4.5} color="#ffffff" />
 
-        {/* High-Contrast Monochrome Studio Lighting with 4 Softbox Lightformers (100% offline) */}
-        <Environment resolution={256}>
-          {/* Top-Left Key Softbox */}
-          <Lightformer
-            form="rect"
-            intensity={6}
-            position={[-5, 6, 4]}
-            scale={[8, 8, 1]}
-            target={[0, 0, 0]}
-            color="#ffffff"
+          {/* High-Contrast Monochrome Studio Lighting with 4 Softbox Lightformers (100% offline) */}
+          <Environment resolution={256}>
+            {/* Top-Left Key Softbox */}
+            <Lightformer
+              form="rect"
+              intensity={6}
+              position={[-5, 6, 4]}
+              scale={[8, 8, 1]}
+              target={[0, 0, 0]}
+              color="#ffffff"
+            />
+            {/* Top-Right Rim Softbox */}
+            <Lightformer
+              form="rect"
+              intensity={4}
+              position={[6, 5, -3]}
+              scale={[6, 6, 1]}
+              target={[0, 0, 0]}
+              color="#e4e4e7"
+            />
+            {/* Front Specular Strip */}
+            <Lightformer
+              form="rect"
+              intensity={2.5}
+              position={[0, 2, 6]}
+              scale={[10, 2, 1]}
+              target={[0, 0, 0]}
+              color="#ffffff"
+            />
+            {/* Bottom Fill */}
+            <Lightformer
+              form="ring"
+              intensity={1}
+              position={[0, -6, 0]}
+              scale={5}
+              color="#71717a"
+            />
+          </Environment>
+
+          <ResendRubiksAssembly
+            prefersReducedMotion={prefersReducedMotion}
+            isInView={isInView}
+            isMobile={isMobile}
           />
-          {/* Top-Right Rim Softbox */}
-          <Lightformer
-            form="rect"
-            intensity={4}
-            position={[6, 5, -3]}
-            scale={[6, 6, 1]}
-            target={[0, 0, 0]}
-            color="#e4e4e7"
-          />
-          {/* Front Specular Strip */}
-          <Lightformer
-            form="rect"
-            intensity={2.5}
-            position={[0, 2, 6]}
-            scale={[10, 2, 1]}
-            target={[0, 0, 0]}
-            color="#ffffff"
-          />
-          {/* Bottom Fill */}
-          <Lightformer
-            form="ring"
-            intensity={1}
-            position={[0, -6, 0]}
-            scale={5}
-            color="#71717a"
-          />
-        </Environment>
 
-        <ResendRubiksAssembly prefersReducedMotion={prefersReducedMotion} isInView={isInView} />
+          <OrbitControls
+            enableZoom={false}
+            enablePan={false}
+            rotateSpeed={0.6}
+            minPolarAngle={Math.PI / 4}
+            maxPolarAngle={Math.PI - Math.PI / 4}
+          />
+        </Canvas>
 
-        <OrbitControls
-          enableZoom={false}
-          enablePan={false}
-          rotateSpeed={0.6}
-          minPolarAngle={Math.PI / 4}
-          maxPolarAngle={Math.PI - Math.PI / 4}
-        />
-      </Canvas>
-
-      {/* Interactive Rubik's mechanics instruction badge */}
-      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 pointer-events-none z-10 hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/60 border border-white/[0.08] backdrop-blur-md">
-        <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
-        <span className="text-[10px] font-mono tracking-widest text-zinc-400 uppercase">
-          {"Click row to turn // Shift+Click column"}
-        </span>
-      </div>
+        {/* Interactive Rubik's mechanics instruction badge */}
+        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 pointer-events-none z-10 hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/60 border border-white/[0.08] backdrop-blur-md">
+          <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
+          <span className="text-[10px] font-mono tracking-widest text-zinc-400 uppercase">
+            {"Click row to turn // Shift+Click column"}
+          </span>
+        </div>
       </div>
     </WebGLErrorBoundary>
   );
 }
+
