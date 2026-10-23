@@ -276,25 +276,8 @@ export default function ContactForm({ initialProduct }: ContactFormProps) {
             </div>
           </div>
 
-          {/* Area of Interest / Category */}
-          <div>
-            <label htmlFor="inquiry-category" className="text-xs sm:text-sm font-normal text-zinc-300 mb-2 block">
-              Inquiry type
-            </label>
-            <select
-              id="inquiry-category"
-              name="inquiryCategory"
-              value={inquiryType}
-              onChange={(e) => setInquiryType(e.target.value)}
-              className="w-full bg-[#0f1013] border border-white/10 rounded-lg px-4 py-3 text-sm text-zinc-200 focus:outline-none focus:border-white/30 focus:ring-1 focus:ring-white/15 transition-all font-sans"
-            >
-              <option value="Custom Software & AI Architecture">Custom Software &amp; AI Solutions</option>
-              <option value="AI & Machine Learning Systems">AI &amp; Machine Learning Automation</option>
-              <option value="Cloud & Data Infrastructure">Cloud &amp; Distributed Systems</option>
-              <option value="Enterprise Software Integration">ERP / Database &amp; System Integration</option>
-              <option value="Technical Consultation">Technical Consultation &amp; Discovery</option>
-            </select>
-          </div>
+          {/* Inquiry Category (Hidden default for API contract) */}
+          <input type="hidden" name="inquiryCategory" value={inquiryType} />
 
           {/* How can we help? Textarea (Exact Resend layout) */}
           <div>
