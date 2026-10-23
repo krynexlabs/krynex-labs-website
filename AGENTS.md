@@ -1,4 +1,4 @@
-# KRYNEX LABS — AI & Software Engineering Studio Architecture
+# KRYNEX LABS — Enterprise System Architecture & Knowledge Graph
 
 ## Corporate Identity & Positioning
 - **Company:** Krynex Labs
@@ -6,8 +6,8 @@
 - **Official Domain:** https://www.krynexlabs.in
 - **Official Contact Email:** support@krynexlabs.in
 - **Official WhatsApp:** +91 9879418569 (WhatsApp Only • No Calls)
-- **Corporate Positioning:** AI & Software Engineering Studio. We design custom AI solutions, scalable cloud systems, and enterprise software that solve real operational bottlenecks.
-- **Core Philosophy:** Pragmatic, problem-driven software engineering tailored to how businesses actually run, with zero-trust data privacy and agile delivery.
+- **Corporate Positioning:** Unified Software Product & SaaS Company. We identify real-world industry bottlenecks, understand operational pain points, build software products (web, mobile, AI-powered, automation), and earn recurring software revenue through subscriptions and software-rental access.
+- **Core Business Model:** Rented software access via recurring subscriptions (Build → Launch → Subscribe → Maintain → Improve). Not a custom development agency or hourly contractor.
 
 ---
 
@@ -15,51 +15,50 @@
 | Token / Element | Hex / Value | Implementation |
 | :--- | :--- | :--- |
 | **Primary Canvas** | `#000000` (Pure Pitch Black) | `bg-black`, `body { background-color: #000000; }` |
-| **Card Surfaces** | `#080808` to `#09090b` | `bg-[#09090b]`, `bg-[#080808]` |
-| **Borders** | `rgba(255, 255, 255, 0.08)` | `border border-white/[0.08] hover:border-white/20` |
-| **Specular Rim** | `rgba(255, 255, 255, 0.25)` | `h-[1px] bg-gradient-to-r from-transparent via-white/25 to-transparent` |
-| **Headings** | White to Brushed Silver | `bg-gradient-to-b from-white via-zinc-100 to-zinc-400 bg-clip-text text-transparent` |
-| **Body Text** | `#A1A1AA` / `#71717A` | `text-zinc-400`, `text-zinc-500` |
+| **Card Surfaces** | `#080808` to `#0A0A0A` | `bg-[#080808]`, `bg-[#030303]` for terminal consoles |
+| **Borders** | `rgba(255, 255, 255, 0.08)` | `border border-white/[0.08] hover:border-white/[0.22]` |
+| **Specular Rim** | `rgba(255, 255, 255, 0.30)` | `h-[1px] bg-gradient-to-r from-transparent via-white/30 to-transparent` |
+| **Headings** | White to Brushed Silver | `bg-gradient-to-b from-white via-zinc-100 to-zinc-500 bg-clip-text text-transparent` |
+| **Body Text** | `#A1A1AA` / `#71717A` | `text-zinc-400`, `text-zinc-500` (monospaced telemetry) |
 | **Primary CTA** | `#FFFFFF` on `#000000` | `bg-white text-black font-semibold hover:bg-zinc-200 shadow-[0_0_25px_rgba(255,255,255,0.2)]` |
 | **Secondary CTA**| `rgba(255, 255, 255, 0.04)` | `bg-white/[0.04] text-white border border-white/10 hover:bg-white/[0.08]` |
-| **3D Antigravity** | WebGL Procedural Scenes | 5 distinct Three.js scenes with zero-gravity floating physics & mouse parallax |
+| **3D Rubik Material** | Obsidian Dark Metal | 27 `RoundedBox` subcubes, 3 procedural micro-textures (smooth, ribbed, knurled dotted) |
+| **Studio Lighting** | High-Contrast Monochrome | 4 `<Lightformer>` softboxes inside `<Environment>` + directional rim lights |
+| **Color Prohibition** | Zero Blue / Cyan / Neon | All color classes strictly purged. |
 
 ---
 
-## Clean 5-Page Route Architecture
-1. `/` (`src/app/page.tsx`): Home page featuring:
-   - Sticky glassmorphic navigation (`Navbar.tsx`)
-   - Hero split layout with Antigravity 3D Rubik / Intelligence Matrix (`HeroRubikScene.tsx`)
-   - 3 Clean Core Capabilities cards (Applied AI, Custom Software, Cloud Architecture)
-   - Why Krynex Labs highlights
-   - Minimal CTA banner linking to `/contact`
-   - Corporate footer (`Footer.tsx`)
-2. `/solutions` (`src/app/solutions/page.tsx`): Solutions page featuring:
-   - Hero split layout with Interactive 3D Neural Constellation (`NeuralConstellationScene.tsx`)
-   - 4 Core Engineering Services (AI & Machine Learning, Web & Mobile, System & ERP Integration, Cloud Infrastructure)
-   - Minimal CTA banner
-3. `/industries` (`src/app/industries/page.tsx`): Target sectors page featuring:
-   - Hero split layout with 3D Floating Isometric Data Wave (`IsometricDataWaveScene.tsx`)
-   - 4 Industry Cards with plain-language Problem & Solution breakdown (Manufacturing, FinTech, Logistics, Enterprise)
-   - Minimal CTA banner
-4. `/about` (`src/app/about/page.tsx`): About page featuring:
-   - Hero split layout with 3D Gyroscopic Core Precision Rings (`GyroscopicCoreScene.tsx`)
-   - 4-Step Process (Understand, Engineer, Refine, Support)
-   - 3 Core Principles (Pragmatic Engineering, Client Data Sovereignty, Direct Collaboration)
-   - Minimal CTA banner
-5. `/contact` (`src/app/contact/page.tsx`): Contact page featuring:
-   - 2-Column layout with 3D Orbital Signal Globe (`OrbitalGlobeScene.tsx`) and direct contact details
-   - Clean contact form (`ContactForm.tsx`) with honeypot security and rate limiting
-- `/privacy` (`src/app/privacy/page.tsx`): Enterprise Data Sovereignty and legal compliance.
-- `/terms` (`src/app/terms/page.tsx`): Terms of service with 99.9% monthly availability target.
-- `/thank-you` (`src/app/thank-you/page.tsx`): Executive inquiry confirmation docket.
-- `not-found.tsx` (`src/app/not-found.tsx`): Custom 404 terminal page.
+## Route Architecture
+- `/` (`src/app/page.tsx`): Main flagship enterprise landing page containing:
+  - Sticky glassmorphic navigation (`Navbar.tsx`)
+  - Full-height `min-h-[92vh]` Hero section with unboxed 3D 3x3x3 Rubik's assembly (`HeroSection.tsx`, `Hero3DCube.tsx`)
+  - Corporate Thesis section (`00:01`) with live Ahmedabad DC-01 cluster telemetry
+  - 1px Silver Horizon Dividers (`SectionDivider.tsx`)
+  - The Krynex Engineering Matrix (`Methodology.tsx`) with animated radar, synaptic mesh, and cloud shield
+  - Core Capabilities Bento Grid (`BentoGrid.tsx`) with curved SVG bezier light beams
+  - Enterprise R&D Diagnostic Console (`DraftingDemo.tsx`) with interactive industry tabs
+  - Target Industry Dossiers (`EnterpriseMatrix.tsx`)
+  - Executive Consultation Portal & Corporate Footer (`Footer.tsx`)
+  - Floating Sticky Mobile CTA (`StickyMobileCTA.tsx`)
+  - Consultation Modal (`DemoModal.tsx`)
+- `/privacy` (`src/app/privacy/page.tsx`): Enterprise Data Sovereignty, data isolation standards, KMS envelope encryption, and legal compliance.
+- `/terms` (`src/app/terms/page.tsx`): Enterprise Terms of Service, 99.99% SLA commitment, IP ownership, and Ahmedabad jurisdiction.
+- `/thank-you` (`src/app/thank-you/page.tsx`): Executive inquiry confirmation docket displaying Ticket ID, SLA response window, and routing status.
+- `not-found.tsx` (`src/app/not-found.tsx`): Custom 404 terminal telemetry page with button linking to `/`.
+- `/api/contact` (`src/app/api/contact/route.ts`): Production backend endpoint with input sanitization, honeypot protection, character length enforcement, and enterprise reference ID generation.
 
 ---
 
-## 3D "Antigravity" WebGL Scenes (`src/components/canvas/`)
-- `HeroRubikScene.tsx`: Floating 3x3x3 modular cyber-cube with glowing edges, zero-gravity levitation, and cursor-expanded subcubes.
-- `NeuralConstellationScene.tsx`: Levitating 3D sphere of interconnected glowing nodes and data synapses with interactive mouse parallax.
-- `IsometricDataWaveScene.tsx`: Sleek grid of 3D geometric pillars moving in an isometric sine-wave motion representing industrial flow.
-- `GyroscopicCoreScene.tsx`: Three concentric metallic wireframe rings rotating across three axes around a levitating crystalline core.
-- `OrbitalGlobeScene.tsx`: Wireframe 3D globe with glowing signal beacon pinpointed on Ahmedabad, India emitting orbital connection arcs.
+## SEO & Security Specifications
+- `KrynexLogo.tsx`: Pure typographic wordmark (`KRYNEX` 900 bold white + `LABS` 300 light silver + optional monospace tagline `ARCHITECTING INTELLIGENCE FOR INDUSTRY.`) with zero icon.
+- `icon.tsx`: Code-generated Next.js 32x32 typographic "KL" monogram favicon (`runtime = "edge"`).
+- `apple-icon.tsx`: Code-generated 180x180 typographic "KL" Apple touch icon (`runtime = "edge"`).
+- `opengraph-image.tsx`: Dynamic 1200x630 enterprise social share card via `ImageResponse` with typographic wordmark and metadata (`runtime = "edge"`, `www.krynexlabs.in`).
+- `manifest.ts`: PWA Web App Manifest (`start_url: "/"`, theme and background `#000000`).
+- `robots.ts`: Standard robots protocol indexing `/`, `/privacy`, `/terms`, `/thank-you` and disallowing `/api/`.
+- `sitemap.ts`: Dynamic XML sitemap indexing all canonical routes on `https://www.krynexlabs.in`.
+- `layout.tsx`: Schema.org JSON-LD `@graph` containing `Organization`, `Corporation`, and `WebSite` structured data.
+- `next.config.mjs`: Hardened HTTP security headers (`X-Frame-Options: DENY`, `X-Content-Type-Options: nosniff`, `Referrer-Policy: strict-origin-when-cross-origin`, `Strict-Transport-Security: max-age=63072000; includeSubDomains; preload`, `Permissions-Policy`, `X-XSS-Protection`).
+- Form Security: Anti-spam honeypot fields (`_security_honeypot`), strict client email validation, character length constraints, and anti-bot sanitization.
+- `CookieBanner.tsx`: Non-intrusive bottom glassmorphic banner with localStorage persistence (`krynex_cookie_consent`).
+- `Analytics.tsx`: Privacy-first client route logger respecting user cookie consent.

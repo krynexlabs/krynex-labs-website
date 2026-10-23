@@ -1,5 +1,4 @@
 import assert from "node:assert";
-import fs from "node:fs";
 import {
   stripHtmlTags,
   sanitizeSingleLine,
@@ -9,16 +8,16 @@ import {
 } from "../src/lib/sanitizer.ts";
 import { checkRateLimit } from "../src/lib/rate-limiter.ts";
 import { safeLocalStorage } from "../src/lib/safe-storage.ts";
-import { INDUSTRIES_DATA } from "../src/data/industries-data.ts";
-import { ABOUT_DATA } from "../src/data/about-data.ts";
-import { SOLUTIONS_DATA } from "../src/data/solutions-data.ts";
 
-console.log("=== RUNNING KRYNEX LABS STUDIO REGRESSION TEST SUITE ===");
+console.log("=== RUNNING KRYNEX LABS REMEDIATION & REGRESSION TEST SUITE ===");
 
 // 1. Regression Test: Text Preservation (<10ms, AT&T, O'Brien, comparison operators)
 console.log("\n[TEST 1] Complex Engineering Text Preservation");
 const testMessage = "Our line needs latency <10ms, AT&T integration, and O'Brien's approval. Compare x < y and y > z.";
 const sanitizedMultiline = sanitizeMultiline(testMessage);
+
+console.log("Original: ", testMessage);
+console.log("Sanitized:", sanitizedMultiline);
 
 assert.strictEqual(
   sanitizedMultiline,
@@ -66,26 +65,36 @@ console.log("✔ PASS: 5 requests allowed; 6th request correctly blocked with ra
 
 // 6. Safe Storage Exception Handling
 console.log("\n[TEST 6] Safe Storage Exception Handling");
+// In Node.js environment where window is undefined:
 assert.strictEqual(safeLocalStorage.getItem("test_key"), null);
 assert.strictEqual(safeLocalStorage.setItem("test_key", "val"), false);
 assert.strictEqual(safeLocalStorage.removeItem("test_key"), false);
 console.log("✔ PASS: Safe storage gracefully falls back without throwing exceptions.");
 
-// 7. Thank-You Query Ref Sanitization
+// 7. Thank-You Docket Regex Validation
 console.log("\n[TEST 7] Thank-You Query Ref Sanitization");
 const SAFE_REF_REGEX = /^[A-Za-z0-9_-]{4,32}$/;
-assert.strictEqual(SAFE_REF_REGEX.test("KL-REQ-849201"), true);
-assert.strictEqual(SAFE_REF_REGEX.test("KL-PRJ-1049"), true);
+assert.strictEqual(SAFE_REF_REGEX.test("KRX-RD-849201"), true);
+assert.strictEqual(SAFE_REF_REGEX.test("KRX-SHIELD-1049"), true);
 assert.strictEqual(SAFE_REF_REGEX.test("<script>alert(1)</script>"), false);
 assert.strictEqual(SAFE_REF_REGEX.test("javascript:void(0)"), false);
 console.log("✔ PASS: Safe reference IDs accepted; arbitrary scripts rejected.");
 
 // 8. Compliance & Security Claims Verification
 console.log("\n[TEST 8] Security & Legal Compliance Claim Sanitization");
+import { PRODUCTS_DATA } from "../src/data/products-data.ts";
+import { INDUSTRIES_DATA } from "../src/data/industries-data.ts";
+import { ABOUT_DATA } from "../src/data/about-data.ts";
+
+const productsStr = JSON.stringify(PRODUCTS_DATA);
 const industriesStr = JSON.stringify(INDUSTRIES_DATA);
 const aboutStr = JSON.stringify(ABOUT_DATA);
-const solutionsStr = JSON.stringify(SOLUTIONS_DATA);
 
+assert.strictEqual(
+  productsStr.includes("FIPS 140-2"),
+  false,
+  "PRODUCTS_DATA must not contain unqualified FIPS 140-2 hardware certifications"
+);
 assert.strictEqual(
   industriesStr.includes("FIPS 140-2"),
   false,
@@ -97,11 +106,11 @@ assert.strictEqual(
   "ABOUT_DATA must not contain unqualified FIPS 140-2 hardware certifications"
 );
 assert.strictEqual(
-  solutionsStr.includes("99.99%"),
+  productsStr.includes("legally binding"),
   false,
-  "SOLUTIONS_DATA must use standard > 99.9% uptime target rather than unverified 99.99%"
+  "PRODUCTS_DATA must qualify legal drafting assistance rather than claiming legally binding outcomes"
 );
-console.log("✔ PASS: Zero unverified FIPS 140-2 or 99.99% claims in datasets.");
+console.log("✔ PASS: Zero unverified FIPS 140-2 or unqualified binding claims in dataset catalogs.");
 
 // 9. Location & Contact Consistency
 console.log("\n[TEST 9] Corporate Location & Contact Consistency");
@@ -112,76 +121,114 @@ assert.strictEqual(
 );
 console.log("✔ PASS: Corporate headquarters standardized to AHMEDABAD (IN).");
 
-// 10. Zero Products & Dual-Division Hygiene
-console.log("\n[TEST 10] Zero Legacy Product Mentions & Division Splits");
-const combinedStr = aboutStr + " " + solutionsStr + " " + industriesStr;
-assert.strictEqual(combinedStr.includes("Krynex Lexis"), false, "Must not mention Krynex Lexis");
-assert.strictEqual(combinedStr.includes("Krynex Flow"), false, "Must not mention Krynex Flow");
-assert.strictEqual(combinedStr.includes("Krynex Vision"), false, "Must not mention Krynex Vision");
-assert.strictEqual(combinedStr.includes("Division A"), false, "Must not mention Division A");
-assert.strictEqual(combinedStr.includes("Division B"), false, "Must not mention Division B");
-assert.strictEqual(combinedStr.includes("Rented Software Model"), false, "Must not mention Rented Software Model");
-console.log("✔ PASS: Zero product mentions or division splits in active datasets.");
+// 10. SLA & Support Channel Consistency
+console.log("\n[TEST 10] SLA & Support Channel Consistency");
+import { SOLUTIONS_DATA } from "../src/data/solutions-data.ts";
+const solutionsStr = JSON.stringify(SOLUTIONS_DATA);
+
+assert.strictEqual(
+  productsStr.includes("direct phone support"),
+  false,
+  "PRODUCTS_DATA must not promise direct phone support (WhatsApp-only channel policy)"
+);
+assert.strictEqual(
+  solutionsStr.includes("99.99%"),
+  false,
+  "SOLUTIONS_DATA must use standard > 99.9% uptime target rather than unverified 99.99%"
+);
+console.log("✔ PASS: Zero unverified 99.99% uptime or phone support contradictions.");
 
 // 11. Security Header & Configuration Verification
 console.log("\n[TEST 11] Security Header & Configuration Verification");
+import fs from "node:fs";
 const nextConfigContent = fs.readFileSync("next.config.mjs", "utf-8");
 assert.strictEqual(nextConfigContent.includes("Strict-Transport-Security"), true);
 assert.strictEqual(nextConfigContent.includes("Content-Security-Policy"), true);
 assert.strictEqual(nextConfigContent.includes("X-Frame-Options"), true);
 assert.strictEqual(nextConfigContent.includes("nosniff"), true);
 console.log("✔ PASS: Required enterprise security headers present in next.config.mjs.");
+// 12. Mid-Word Truncation Verification
+console.log("\n[TEST 12] Mid-Word Truncation Verification in Product Catalogs");
+Object.values(PRODUCTS_DATA).forEach((prod) => {
+  assert.strictEqual(
+    prod.summary.includes("..."),
+    false,
+    `Product summary for ${prod.name} must not contain mid-word truncation '...'`
+  );
+  assert.strictEqual(
+    prod.summary.endsWith("."),
+    true,
+    `Product summary for ${prod.name} must be a complete sentence ending in a period.`
+  );
+});
+console.log("✔ PASS: Zero mid-word truncations in product summaries; all are complete sentences.");
 
-// 12. Legacy Routes Redirect Verification
-console.log("\n[TEST 12] Legacy Routes 301 Redirects Verification");
-assert.strictEqual(nextConfigContent.includes("source: '/products'"), true);
-assert.strictEqual(nextConfigContent.includes("source: '/research'"), true);
-assert.strictEqual(nextConfigContent.includes("source: '/approach'"), true);
-console.log("✔ PASS: next.config.mjs gracefully redirects /products, /research, /approach.");
+// 13. Dual-Currency Pricing Verification
+console.log("\n[TEST 13] Dual-Currency (INR & USD) Pricing Verification");
+Object.values(PRODUCTS_DATA).forEach((prod) => {
+  assert.ok(prod.startingPrice?.inr, `${prod.name} must define an INR startingPrice`);
+  assert.ok(prod.startingPrice?.usd, `${prod.name} must define a USD startingPrice`);
+  prod.pricingTiers.forEach((tier) => {
+    assert.ok(tier.price, `${tier.name} must define INR price`);
+    assert.ok(tier.usdPrice, `${tier.name} must define USD price`);
+  });
+});
+console.log("✔ PASS: All products and tiers define both INR and USD subscription pricing.");
 
-// 13. Canonical Sitemap Verification (Clean 5-Page Studio Architecture)
-console.log("\n[TEST 13] Canonical Sitemap Verification (5-Page Studio Architecture)");
+// 14. Canonical Sitemap Verification
+console.log("\n[TEST 14] Canonical Sitemap Route Verification (All Live Routes Present)");
 const sitemapContent = fs.readFileSync("src/app/sitemap.ts", "utf-8");
-assert.strictEqual(sitemapContent.includes('path: ""'), true);
-assert.strictEqual(sitemapContent.includes('path: "/solutions"'), true);
-assert.strictEqual(sitemapContent.includes('path: "/industries"'), true);
-assert.strictEqual(sitemapContent.includes('path: "/about"'), true);
-assert.strictEqual(sitemapContent.includes('path: "/contact"'), true);
-assert.strictEqual(sitemapContent.includes('path: "/privacy"'), true);
-assert.strictEqual(sitemapContent.includes('path: "/terms"'), true);
-assert.strictEqual(sitemapContent.includes("/products"), false, "Sitemap must not contain /products");
-console.log("✔ PASS: Sitemap strictly contains 5 core studio pages and legal pages.");
+assert.strictEqual(
+  sitemapContent.includes("/solutions"),
+  true,
+  "Sitemap must include /solutions routes (live pages, no longer 301-redirected)"
+);
+assert.strictEqual(sitemapContent.includes("/products/krynex-lexis"), true);
+assert.strictEqual(sitemapContent.includes("/products/krynex-flow"), true);
+assert.strictEqual(sitemapContent.includes("/products/krynex-vision"), true);
+assert.strictEqual(sitemapContent.includes("/solutions/ai-ml"), true);
+assert.strictEqual(sitemapContent.includes("/solutions/enterprise-software"), true);
+assert.strictEqual(sitemapContent.includes("/solutions/web-mobile"), true);
+assert.strictEqual(sitemapContent.includes("/solutions/cloud-data"), true);
+console.log("✔ PASS: Sitemap contains all canonical 200 OK routes including solutions.");
 
-// 14. Legacy String & Entity Name Hygiene
-console.log("\n[TEST 14] Legacy String & Entity Name Hygiene");
+// 15. Legacy String & Entity Name Hygiene
+console.log("\n[TEST 15] Legacy String & Entity Name Hygiene");
 const termsContent = fs.readFileSync("src/app/terms/page.tsx", "utf-8");
 const footerContent = fs.readFileSync("src/components/Footer.tsx", "utf-8");
 assert.strictEqual(termsContent.includes("Krynex Labs Inc"), false);
 assert.strictEqual(footerContent.includes("bespoke artificial intelligence"), false);
+assert.strictEqual(termsContent.includes("Statements of Work"), false);
 assert.strictEqual(footerContent.includes("https://github.com/krynexlabs"), false);
 console.log("✔ PASS: Zero legacy entity names, bespoke consulting copy, or dead GitHub links.");
 
-// 15. SLA Standardization
-console.log("\n[TEST 15] SLA Standardization");
-assert.strictEqual(termsContent.includes("99.99%"), false, "Terms must not claim unverified 99.99% uptime");
-assert.strictEqual(termsContent.includes("99.9%"), true, "Terms should use verified 99.9% monthly availability target");
-console.log("✔ PASS: SLA uses verified 99.9% monthly availability target.");
+// 16. SLA Standardization to Verified Availability Target
+console.log("\n[TEST 16] SLA Standardization to Verified Availability Target");
+assert.strictEqual(termsContent.includes("99.99%"), false,
+  "Terms must not claim unverified 99.99% uptime"
+);
+assert.strictEqual(termsContent.includes("99.9%"), true,
+  "Terms should use the standard 99.9% monthly service availability target"
+);
+console.log("✔ PASS: SLA uses verified 99.9% monthly availability target without unverified 99.99% claims.");
 
-// 16. Contact Form SSR Field & Honeypot Verification
-console.log("\n[TEST 16] Contact Form SSR Canonical Fields & Honeypot Verification");
+// 17. Contact Form SSR Field & Honeypot Verification
+console.log("\n[TEST 17] Contact Form SSR Canonical Fields & Honeypot Verification");
 const contactFormContent = fs.readFileSync("src/components/ContactForm.tsx", "utf-8");
 assert.strictEqual(contactFormContent.includes('name="executiveName"'), true);
 assert.strictEqual(contactFormContent.includes('name="corporateEmail"'), true);
+assert.strictEqual(contactFormContent.includes('name="inquiryCategory"'), true);
 assert.strictEqual(contactFormContent.includes('name="companySector"'), true);
 assert.strictEqual(contactFormContent.includes('name="operationalFriction"'), true);
+assert.strictEqual(contactFormContent.includes('name="requestWalkthrough"'), true);
 assert.strictEqual(contactFormContent.includes('name="websiteHoneypot"'), true);
 assert.strictEqual(contactFormContent.includes('fetch("/api/contact"'), true);
 assert.strictEqual(contactFormContent.includes("https://wa.me/919879418569"), true);
 assert.strictEqual(contactFormContent.includes("mailto:support@krynexlabs.in"), true);
 console.log("✔ PASS: Contact form contains all canonical fields, honeypot trap, and direct fallback links.");
 
-// 17. API Contact Route Contract & Security Architecture
-console.log("\n[TEST 17] Contact API Route Contract & Security Architecture");
+// 18. API Contact Route Contract & Security Architecture
+console.log("\n[TEST 18] Contact API Route Contract & Security Architecture");
 const apiRouteContent = fs.readFileSync("src/app/api/contact/route.ts", "utf-8");
 assert.strictEqual(apiRouteContent.includes("websiteHoneypot"), true);
 assert.strictEqual(apiRouteContent.includes("checkRateLimit"), true);
@@ -191,17 +238,10 @@ assert.strictEqual(apiRouteContent.includes("status: 429"), true);
 assert.strictEqual(apiRouteContent.includes("status: 400"), true);
 console.log("✔ PASS: /api/contact enforces rate limits, honeypot, validation, webhook, and referenceId.");
 
-// 18. Antigravity 3D Canvas Scenes Verification
-console.log("\n[TEST 18] Antigravity 3D Canvas Scenes Verification");
-assert.strictEqual(fs.existsSync("src/components/canvas/HeroRubikScene.tsx"), true);
-assert.strictEqual(fs.existsSync("src/components/canvas/NeuralConstellationScene.tsx"), true);
-assert.strictEqual(fs.existsSync("src/components/canvas/IsometricDataWaveScene.tsx"), true);
-assert.strictEqual(fs.existsSync("src/components/canvas/GyroscopicCoreScene.tsx"), true);
-assert.strictEqual(fs.existsSync("src/components/canvas/OrbitalGlobeScene.tsx"), true);
-console.log("✔ PASS: All 5 distinct Antigravity 3D WebGL scenes exist and are verified.");
-
 console.log("\n=======================================================");
-console.log("ALL 18 STUDIO REGRESSION SUITES PASSED SUCCESSFULLY!");
+console.log("ALL 18 CRITICAL REGRESSION SUITES PASSED SUCCESSFULLY!");
 console.log("=======================================================\n");
 
 process.exit(0);
+
+

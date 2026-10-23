@@ -1,310 +1,412 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import { CheckCircle2, AlertCircle, ArrowRight, MessageSquare, Mail } from "lucide-react";
+import { CheckCircle2, AlertCircle, ArrowRight } from "lucide-react";
 import confetti from "canvas-confetti";
-import { trackConversionEvent } from "./Analytics";
 
-export default function ContactForm() {
-  const [formData, setFormData] = useState({
-    executiveName: "",
-    corporateEmail: "",
-    companySector: "",
-    operationalFriction: "",
-    websiteHoneypot: "",
-  });
+interface ContactFormProps {
+  initialProduct?: string;
+}
+
+export default function ContactForm({ initialProduct }: ContactFormProps) {
+  // Map query parameter slug (e.g. "krynex-lexis") to dropdown option
+  const getInitialInquiryType = (prod?: string) => {
+    if (!prod) return "Krynex Lexis Inquiry";
+    const p = prod.toLowerCase();
+    if (p.includes("lexis")) return "Krynex Lexis Inquiry";
+    if (p.includes("flow")) return "Krynex Flow Inquiry";
+    if (p.includes("vision")) return "Krynex Vision Inquiry";
+    return "Krynex Lexis Inquiry";
+  };
+
+  const [inquiryName, setInquiryName] = useState("");
+  const [inquiryEmail, setInquiryEmail] = useState("");
+  const [inquiryCompany, setInquiryCompany] = useState("");
+  const [inquiryChallenge, setInquiryChallenge] = useState("");
+  const [inquiryType, setInquiryType] = useState(getInitialInquiryType(initialProduct));
+  const [requestMeeting, setRequestMeeting] = useState(false);
+  const [honeypot, setHoneypot] = useState("");
 
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [ticketId, setTicketId] = useState("");
-  const [serverError, setServerError] = useState("");
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-    if (errors[name]) {
-      setErrors((prev) => {
-        const next = { ...prev };
-        delete next[name];
-        return next;
-      });
+  // Update inquiry type if initialProduct prop changes
+  useEffect(() => {
+    if (initialProduct) {
+      setInquiryType(getInitialInquiryType(initialProduct));
     }
-  };
+  }, [initialProduct]);
 
-  const validate = () => {
+  const validateForm = () => {
     const newErrors: Record<string, string> = {};
-    if (!formData.executiveName.trim()) {
-      newErrors.executiveName = "Your name is required.";
+    if (!inquiryName.trim()) {
+      newErrors.name = "Executive Name is required.";
     }
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!formData.corporateEmail.trim()) {
-      newErrors.corporateEmail = "Work email is required.";
-    } else if (!emailRegex.test(formData.corporateEmail.trim())) {
-      newErrors.corporateEmail = "Please enter a valid work email address.";
+    if (!inquiryEmail.trim()) {
+      newErrors.email = "Corporate Email is required.";
+    } else if (!emailRegex.test(inquiryEmail.trim())) {
+      newErrors.email = "Please provide a valid corporate email.";
     }
-    if (!formData.operationalFriction.trim()) {
-      newErrors.operationalFriction = "Please tell us how we can help you.";
-    } else if (formData.operationalFriction.trim().length < 10) {
-      newErrors.operationalFriction = "Please provide at least 10 characters.";
+    if (!inquiryCompany.trim()) {
+      newErrors.company = "Company and sector are required.";
     }
-    return newErrors;
+    if (!inquiryChallenge.trim()) {
+      newErrors.challenge = "Brief description of operational friction is required.";
+    } else if (inquiryChallenge.trim().length < 15) {
+      newErrors.challenge = "Please provide at least 15 characters describing the challenge.";
+    }
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleInquirySubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setServerError("");
-
-    const validationErrors = validate();
-    if (Object.keys(validationErrors).length > 0) {
-      setErrors(validationErrors);
-      return;
-    }
+    if (honeypot) return; // Silent bot rejection
+    if (!validateForm()) return;
 
     setIsSubmitting(true);
+    const prevErrors = { ...errors };
+    delete prevErrors.general;
+    setErrors(prevErrors);
 
     try {
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          ...formData,
-          companySector: formData.companySector.trim() || "Independent / General",
-          inquiryCategory: "General Engineering Inquiry",
+          inquiryCategory: inquiryType,
+          executiveName: inquiryName,
+          corporateEmail: inquiryEmail,
+          companySector: inquiryCompany,
+          operationalFriction: inquiryChallenge,
+          requestWalkthrough: requestMeeting,
+          websiteHoneypot: honeypot,
+          // Backwards compatibility mappings
+          name: inquiryName,
+          email: inquiryEmail,
+          company: `${inquiryCompany} [${inquiryType}]${requestMeeting ? " [Requested Architecture Walkthrough]" : ""}`,
+          challenge: inquiryChallenge,
+          _security_honeypot: honeypot,
         }),
       });
 
-      const data = await response.json();
+      const result = await response.json();
 
-      if (response.ok && (data.success || data.ok)) {
+      if (response.ok && (result.ok || result.success)) {
+        setTicketId(result.referenceId || `KL-REQ-${Math.floor(1000 + Math.random() * 9000)}`);
+        setIsSubmitting(false);
         setSubmitted(true);
-        const refId = data.referenceId || `KL-${Date.now().toString(36).toUpperCase()}`;
-        setTicketId(refId);
 
-        trackConversionEvent("contact_form_submit", {
-          referenceId: refId,
-        });
-
-        // Trigger celebratory confetti
         try {
           confetti({
-            particleCount: 50,
+            particleCount: 80,
             spread: 60,
-            origin: { y: 0.6 },
-            colors: ["#ffffff", "#caecff", "#02fcef"],
+            origin: { y: 0.7 },
+            colors: ["#ffffff", "#d4d4d8", "#a1a1aa", "#71717a"],
           });
         } catch {
-          // Graceful fallback
+          // Non-blocking
         }
       } else {
-        setServerError(data.error || "Submission failed. Please email support@krynexlabs.in directly.");
+        setIsSubmitting(false);
+        if (result.errors) {
+          setErrors(result.errors);
+        } else {
+          setErrors((prev) => ({
+            ...prev,
+            general: result.error || "Submission rejected by server. Please verify your details.",
+          }));
+        }
       }
     } catch {
-      setServerError("Network error. Please email support@krynexlabs.in or reach out via WhatsApp.");
-    } finally {
       setIsSubmitting(false);
+      setErrors((prev) => ({
+        ...prev,
+        general: "Network transmission error. Please reach out to support@krynexlabs.in directly.",
+      }));
     }
   };
 
-  if (submitted) {
-    return (
-      <div className="rounded-2xl bg-[#09090b] border border-white/10 p-8 sm:p-10 space-y-6 text-center animate-in fade-in duration-300 relative overflow-hidden">
-        <div className="absolute top-0 left-6 right-6 h-[1px] bg-gradient-to-r from-transparent via-white/30 to-transparent pointer-events-none" />
-
-        <div className="w-14 h-14 rounded-full bg-white/[0.06] border border-white/20 flex items-center justify-center mx-auto text-white">
-          <CheckCircle2 className="w-7 h-7 text-white" />
-        </div>
-
-        <div className="space-y-2">
-          <h3 className="text-2xl font-bold text-white tracking-tight">
-            Message Dispatched Successfully.
-          </h3>
-          <p className="text-sm text-zinc-400 max-w-md mx-auto">
-            Our engineering team in Ahmedabad will review your project details and get back to you within 1 business day.
-          </p>
-        </div>
-
-        <div className="p-4 rounded-xl bg-black border border-white/[0.08] inline-block font-mono text-xs text-zinc-400">
-          Reference ID: <span className="text-white font-semibold">{ticketId}</span>
-        </div>
-
-        <div className="pt-2">
-          <Link
-            href={`/thank-you?ref=${encodeURIComponent(ticketId)}`}
-            className="inline-flex items-center gap-2 text-xs font-mono text-zinc-400 hover:text-white underline underline-offset-4"
-          >
-            <span>View executive docket →</span>
-          </Link>
-        </div>
-      </div>
-    );
-  }
-
   return (
-    <form
-      onSubmit={handleSubmit}
-      noValidate
-      className="rounded-2xl bg-[#09090b] border border-white/[0.08] p-8 sm:p-10 space-y-6 relative overflow-hidden"
-    >
-      <div className="absolute top-0 left-6 right-6 h-[1px] bg-gradient-to-r from-transparent via-white/25 to-transparent pointer-events-none" />
+    <div className="p-8 sm:p-10 rounded-3xl bg-[#080808] border border-white/10 relative overflow-hidden shadow-2xl">
+      <div className="absolute top-0 left-8 right-8 h-[1px] bg-gradient-to-r from-transparent via-white/25 to-transparent pointer-events-none" />
 
-      {/* Hidden Anti-Spam Honeypot */}
-      <div className="hidden" aria-hidden="true">
-        <label htmlFor="websiteHoneypot">Do not fill this</label>
-        <input
-          id="websiteHoneypot"
-          type="text"
-          name="websiteHoneypot"
-          tabIndex={-1}
-          autoComplete="off"
-          value={formData.websiteHoneypot}
-          onChange={handleChange}
-        />
-      </div>
-
-      {serverError && (
-        <div className="p-4 rounded-xl bg-red-950/40 border border-red-500/30 text-red-300 text-xs flex items-center gap-2.5">
-          <AlertCircle className="w-4 h-4 shrink-0" />
-          <span>{serverError}</span>
-        </div>
-      )}
-
-      {/* Your Name */}
-      <div className="space-y-2">
-        <label
-          htmlFor="executiveName"
-          className="block text-xs font-mono font-medium text-zinc-300"
-        >
-          Your Name <span className="text-zinc-500">*</span>
-        </label>
-        <input
-          id="executiveName"
-          type="text"
-          name="executiveName"
-          required
-          placeholder="e.g. Rahul Mehta"
-          value={formData.executiveName}
-          onChange={handleChange}
-          className={`w-full h-11 px-4 rounded-xl bg-black border text-sm text-white placeholder:text-zinc-600 focus:outline-none transition-colors ${
-            errors.executiveName
-              ? "border-red-500/60 focus:border-red-500"
-              : "border-white/10 focus:border-white/30"
-          }`}
-        />
-        {errors.executiveName && (
-          <p className="text-xs text-red-400 font-mono">{errors.executiveName}</p>
-        )}
-      </div>
-
-      {/* Work Email */}
-      <div className="space-y-2">
-        <label
-          htmlFor="corporateEmail"
-          className="block text-xs font-mono font-medium text-zinc-300"
-        >
-          Work Email <span className="text-zinc-500">*</span>
-        </label>
-        <input
-          id="corporateEmail"
-          type="email"
-          name="corporateEmail"
-          required
-          placeholder="name@company.com"
-          value={formData.corporateEmail}
-          onChange={handleChange}
-          className={`w-full h-11 px-4 rounded-xl bg-black border text-sm text-white placeholder:text-zinc-600 focus:outline-none transition-colors ${
-            errors.corporateEmail
-              ? "border-red-500/60 focus:border-red-500"
-              : "border-white/10 focus:border-white/30"
-          }`}
-        />
-        {errors.corporateEmail && (
-          <p className="text-xs text-red-400 font-mono">{errors.corporateEmail}</p>
-        )}
-      </div>
-
-      {/* Company / Industry */}
-      <div className="space-y-2">
-        <label
-          htmlFor="companySector"
-          className="block text-xs font-mono font-medium text-zinc-300"
-        >
-          Company / Industry <span className="text-zinc-600">(Optional)</span>
-        </label>
-        <input
-          id="companySector"
-          type="text"
-          name="companySector"
-          placeholder="e.g. Apex Manufacturing // Industrial"
-          value={formData.companySector}
-          onChange={handleChange}
-          className="w-full h-11 px-4 rounded-xl bg-black border border-white/10 text-sm text-white placeholder:text-zinc-600 focus:outline-none focus:border-white/30 transition-colors"
-        />
-      </div>
-
-      {/* How can we help you? */}
-      <div className="space-y-2">
-        <label
-          htmlFor="operationalFriction"
-          className="block text-xs font-mono font-medium text-zinc-300"
-        >
-          How can we help you? <span className="text-zinc-500">*</span>
-        </label>
-        <textarea
-          id="operationalFriction"
-          name="operationalFriction"
-          required
-          rows={4}
-          placeholder="Describe your technical challenges, custom software requirements, or AI integration goals..."
-          value={formData.operationalFriction}
-          onChange={handleChange}
-          className={`w-full p-4 rounded-xl bg-black border text-sm text-white placeholder:text-zinc-600 focus:outline-none transition-colors resize-none ${
-            errors.operationalFriction
-              ? "border-red-500/60 focus:border-red-500"
-              : "border-white/10 focus:border-white/30"
-          }`}
-        />
-        {errors.operationalFriction && (
-          <p className="text-xs text-red-400 font-mono">
-            {errors.operationalFriction}
+      {submitted ? (
+        <div className="py-8 text-center animate-fade-in space-y-4">
+          <div className="w-14 h-14 rounded-full bg-white/10 border border-white/20 mx-auto flex items-center justify-center text-white">
+            <CheckCircle2 className="w-8 h-8" />
+          </div>
+          <h3 className="text-2xl font-bold text-white tracking-tight">
+            Inquiry Dispatched to Engineering Docket
+          </h3>
+          <p className="text-xs sm:text-sm text-zinc-400 max-w-md mx-auto leading-relaxed">
+            Your inquiry has been logged for review by our engineering team within our 1–2 business day SLA window.
           </p>
-        )}
-      </div>
+          <div className="inline-block px-4 py-2 rounded-xl bg-black border border-white/10 font-mono text-xs text-white">
+            Reference ID: <span className="font-bold text-zinc-200">{ticketId}</span>
+          </div>
 
-      {/* Submit Button */}
-      <div className="pt-2">
-        <button
-          type="submit"
-          disabled={isSubmitting}
-          className="w-full inline-flex items-center justify-center gap-2 h-12 rounded-full bg-white text-black font-semibold text-sm hover:bg-zinc-200 transition-all shadow-[0_0_25px_rgba(255,255,255,0.2)] disabled:opacity-50 disabled:cursor-not-allowed group"
-        >
-          <span>{isSubmitting ? "Sending..." : "Send Message"}</span>
-          <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-        </button>
-      </div>
+          {/* One-click Direct Escalation Fallbacks */}
+          <div className="pt-4 border-t border-white/[0.08] max-w-md mx-auto">
+            <div className="text-[11px] font-mono text-zinc-500 uppercase tracking-wider mb-3">
+              Optional Direct Escalation Channels
+            </div>
+            <div className="flex flex-wrap items-center justify-center gap-3">
+              <a
+                href={`https://wa.me/919879418569?text=${encodeURIComponent(
+                  `Hello Krynex Labs, I have logged inquiry ticket ${ticketId}. Requesting architectural follow-up.`
+                )}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 text-xs font-mono text-white transition-colors"
+              >
+                <span>Send Backup via WhatsApp</span>
+              </a>
+              <a
+                href={`mailto:support@krynexlabs.in?subject=${encodeURIComponent(
+                  `Inquiry Docket ${ticketId} - ${inquiryCompany}`
+                )}&body=${encodeURIComponent(
+                  `Hello Krynex Labs Engineering,\n\nReferencing inquiry docket ${ticketId}.\nExecutive: ${inquiryName}\nCompany: ${inquiryCompany}\nCategory: ${inquiryType}\n\nSummary:\n${inquiryChallenge}`
+                )}`}
+                className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 text-xs font-mono text-white transition-colors"
+              >
+                <span>Send Backup via Direct Email</span>
+              </a>
+            </div>
+          </div>
 
-      {/* Direct Fallback Links */}
-      <div className="pt-4 border-t border-white/[0.06] flex items-center justify-between text-xs text-zinc-500 font-mono">
-        <a
-          href="mailto:support@krynexlabs.in"
-          className="hover:text-zinc-300 transition-colors flex items-center gap-1.5"
-        >
-          <Mail className="w-3.5 h-3.5" />
-          <span>support@krynexlabs.in</span>
-        </a>
-        <a
-          href="https://wa.me/919879418569"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="hover:text-zinc-300 transition-colors flex items-center gap-1.5"
-        >
-          <MessageSquare className="w-3.5 h-3.5" />
-          <span>WhatsApp Chat</span>
-        </a>
-      </div>
-    </form>
+          <div className="pt-4">
+            <button
+              onClick={() => {
+                setSubmitted(false);
+                setInquiryName("");
+                setInquiryEmail("");
+                setInquiryCompany("");
+                setInquiryChallenge("");
+                setRequestMeeting(false);
+              }}
+              className="text-xs text-zinc-400 hover:text-white underline underline-offset-4 focus:outline-none focus-visible:ring-1 focus-visible:ring-white"
+            >
+              Submit another technical brief
+            </button>
+          </div>
+        </div>
+      ) : (
+        <form onSubmit={handleInquirySubmit} className="space-y-4" noValidate>
+          <div className="text-xs font-mono uppercase tracking-wider text-zinc-400 mb-2">
+            Project Specification Dossier
+          </div>
+
+          {/* Bot Honeypot */}
+          <div className="hidden" aria-hidden="true">
+            <label htmlFor="security_honeypot_contact">Leave empty</label>
+            <input
+              id="security_honeypot_contact"
+              type="text"
+              name="websiteHoneypot"
+              tabIndex={-1}
+              value={honeypot}
+              onChange={(e) => setHoneypot(e.target.value)}
+              autoComplete="off"
+            />
+          </div>
+
+          {errors.general && (
+            <div className="p-3 rounded-xl bg-white/[0.05] border border-white/15 text-xs text-white flex items-center gap-2">
+              <AlertCircle className="w-4 h-4 text-white shrink-0" />
+              <span>{errors.general}</span>
+            </div>
+          )}
+
+          {/* Inquiry Category Selector */}
+          <div>
+            <label htmlFor="inquiry-category" className="text-[10px] font-mono text-zinc-400 uppercase block mb-1">
+              Inquiry Category *
+            </label>
+            <select
+              id="inquiry-category"
+              name="inquiryCategory"
+              value={inquiryType}
+              onChange={(e) => setInquiryType(e.target.value)}
+              className="w-full bg-black border border-white/10 rounded-xl px-4 py-2.5 text-xs font-mono text-white focus:outline-none focus:border-white/40 focus-visible:ring-2 focus-visible:ring-white/40"
+            >
+              <option value="Krynex Lexis Inquiry">
+                Krynex Lexis // Legal &amp; Statutory AI Drafting SaaS
+              </option>
+              <option value="Krynex Flow Inquiry">
+                Krynex Flow // Enterprise Workflow &amp; Middleware Engine
+              </option>
+              <option value="Krynex Vision Inquiry">
+                Krynex Vision // Edge Industrial Computer Vision QC
+              </option>
+              <option value="Propose Industry Problem">
+                Propose Industry Bottleneck // Suggest Problem for R&amp;D
+              </option>
+              <option value="Software Subscription &amp; Licensing">
+                Software Subscription &amp; Licensing Inquiry
+              </option>
+              <option value="Corporate Partnership">
+                General Corporate / Technology Partnership
+              </option>
+            </select>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label htmlFor="executive-name" className="text-[10px] font-mono text-zinc-400 uppercase block mb-1">
+                Executive Name *
+              </label>
+              <input
+                id="executive-name"
+                name="executiveName"
+                type="text"
+                required
+                autoComplete="name"
+                value={inquiryName}
+                onChange={(e) => setInquiryName(e.target.value)}
+                aria-invalid={Boolean(errors.executiveName || errors.name)}
+                aria-describedby={errors.executiveName || errors.name ? "name-error" : undefined}
+                placeholder="e.g. Vikram Mehta"
+                className={`w-full bg-black border rounded-xl px-4 py-2.5 text-xs text-white placeholder-zinc-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/40 ${
+                  errors.executiveName || errors.name ? "border-red-400/80" : "border-white/10 focus:border-white/40"
+                }`}
+              />
+              {(errors.executiveName || errors.name) && (
+                <div id="name-error" className="text-[10px] text-zinc-300 font-mono mt-1">
+                  {errors.executiveName || errors.name}
+                </div>
+              )}
+            </div>
+
+            <div>
+              <label htmlFor="corporate-email" className="text-[10px] font-mono text-zinc-400 uppercase block mb-1">
+                Corporate Email *
+              </label>
+              <input
+                id="corporate-email"
+                name="corporateEmail"
+                type="email"
+                required
+                autoComplete="email"
+                value={inquiryEmail}
+                onChange={(e) => setInquiryEmail(e.target.value)}
+                aria-invalid={Boolean(errors.corporateEmail || errors.email)}
+                aria-describedby={errors.corporateEmail || errors.email ? "email-error" : undefined}
+                placeholder="v.mehta@enterprise.com"
+                className={`w-full bg-black border rounded-xl px-4 py-2.5 text-xs text-white placeholder-zinc-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/40 ${
+                  errors.corporateEmail || errors.email ? "border-red-400/80" : "border-white/10 focus:border-white/40"
+                }`}
+              />
+              {(errors.corporateEmail || errors.email) && (
+                <div id="email-error" className="text-[10px] text-zinc-300 font-mono mt-1">
+                  {errors.corporateEmail || errors.email}
+                </div>
+              )}
+            </div>
+          </div>
+
+          <div>
+            <label htmlFor="company-sector" className="text-[10px] font-mono text-zinc-400 uppercase block mb-1">
+              Company &amp; Industry Sector *
+            </label>
+            <input
+              id="company-sector"
+              name="companySector"
+              type="text"
+              required
+              autoComplete="organization"
+              value={inquiryCompany}
+              onChange={(e) => setInquiryCompany(e.target.value)}
+              aria-invalid={Boolean(errors.companySector || errors.company)}
+              aria-describedby={errors.companySector || errors.company ? "company-error" : undefined}
+              placeholder="e.g. Apex Industrial Corp / Heavy Manufacturing"
+              className={`w-full bg-black border rounded-xl px-4 py-2.5 text-xs text-white placeholder-zinc-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/40 ${
+                errors.companySector || errors.company ? "border-red-400/80" : "border-white/10 focus:border-white/40"
+              }`}
+            />
+            {(errors.companySector || errors.company) && (
+              <div id="company-error" className="text-[10px] text-zinc-300 font-mono mt-1">
+                {errors.companySector || errors.company}
+              </div>
+            )}
+          </div>
+
+          <div>
+            <label htmlFor="operational-friction" className="text-[10px] font-mono text-zinc-400 uppercase block mb-1">
+              Operational Friction &amp; Project Scope *
+            </label>
+            <textarea
+              id="operational-friction"
+              name="operationalFriction"
+              rows={4}
+              required
+              value={inquiryChallenge}
+              onChange={(e) => setInquiryChallenge(e.target.value)}
+              aria-invalid={Boolean(errors.operationalFriction || errors.challenge)}
+              aria-describedby={errors.operationalFriction || errors.challenge ? "challenge-error" : undefined}
+              placeholder="Detail the technical bottleneck, current legacy systems, estimated data volumes, or desired software licensing scale..."
+              className={`w-full bg-black border rounded-xl px-4 py-2.5 text-xs text-white placeholder-zinc-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/40 resize-none ${
+                errors.operationalFriction || errors.challenge ? "border-red-400/80" : "border-white/10 focus:border-white/40"
+              }`}
+            />
+            {(errors.operationalFriction || errors.challenge) && (
+              <div id="challenge-error" className="text-[10px] text-zinc-300 font-mono mt-1">
+                {errors.operationalFriction || errors.challenge}
+              </div>
+            )}
+          </div>
+
+          {/* Option to request scheduled Google Meet / Zoom walkthrough */}
+          <div className="flex items-center gap-2 pt-1 pb-2">
+            <input
+              type="checkbox"
+              id="request-meeting"
+              name="requestWalkthrough"
+              checked={requestMeeting}
+              onChange={(e) => setRequestMeeting(e.target.checked)}
+              className="w-4 h-4 rounded bg-black border-white/20 text-white focus:ring-1 focus:ring-white"
+            />
+            <label htmlFor="request-meeting" className="text-xs text-zinc-300 select-none cursor-pointer">
+              Request scheduled Google Meet / Zoom architecture walkthrough
+            </label>
+          </div>
+
+          <button
+            type="submit"
+            disabled={isSubmitting}
+            className="w-full bg-white text-black font-semibold hover:bg-zinc-200 py-3 rounded-xl transition-all text-xs tracking-wider uppercase shadow-[0_0_20px_rgba(255,255,255,0.15)] flex items-center justify-center gap-2 disabled:opacity-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
+          >
+            {isSubmitting ? (
+              <>
+                <div className="w-4 h-4 border-2 border-black/30 border-t-black rounded-full animate-spin" />
+                <span>Dispatching Dossier...</span>
+              </>
+            ) : (
+              <>
+                <span>Submit Technical Dossier</span>
+                <ArrowRight className="w-4 h-4" />
+              </>
+            )}
+          </button>
+
+          <div className="text-[10px] font-mono text-zinc-400 text-center pt-2 space-y-1">
+            <div>
+              By submitting, you agree to our{" "}
+              <Link href="/privacy" className="underline hover:text-white transition-colors">
+                Privacy &amp; Data Sovereignty Policy
+              </Link>
+              .
+            </div>
+            <div>
+              Encrypted transmission &bull; Zero public model co-mingling &bull; 1–2 business day SLA response
+            </div>
+          </div>
+        </form>
+      )}
+    </div>
   );
 }
