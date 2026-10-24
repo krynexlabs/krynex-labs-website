@@ -136,14 +136,6 @@ export async function POST(request: Request) {
       }
     }
 
-    // 9. Dispatch Transport: Email Delivery (Resend API or SMTP)
-    const gmailUser = process.env.GMAIL_USER || process.env.SMTP_USER;
-    const gmailPass = process.env.GMAIL_APP_PASSWORD || process.env.SMTP_PASS;
-    const smtpHost = process.env.SMTP_HOST;
-    const smtpPort = process.env.SMTP_PORT;
-    const resendApiKey = process.env.RESEND_API_KEY;
-    const receiverEmail = process.env.CONTACT_RECEIVER_EMAIL || gmailUser || "support@krynexlabs.in";
-
     const subject = `[KRYNEX INQUIRY] ${referenceId} - ${cleanCompany} (${cleanName})${requestWalkthrough ? " [WALKTHROUGH REQUESTED]" : ""}`;
 
     const textContent = [
@@ -180,6 +172,17 @@ export async function POST(request: Request) {
       </div>
     `;
 
+    // 9. Dispatch Transport: Email Delivery (Resend API or SMTP)
+    const gmailUser = process.env.GMAIL_USER || process.env.SMTP_USER;
+    const gmailPass = process.env.GMAIL_APP_PASSWORD || process.env.SMTP_PASS;
+    const smtpHost = process.env.SMTP_HOST;
+    const smtpPort = process.env.SMTP_PORT;
+    const resendApiKey = process.env.RESEND_API_KEY;
+    const receiverEmail = process.env.CONTACT_RECEIVER_EMAIL || gmailUser || "support@krynexlabs.in";
+
+    let isDelivered = false;
+    let providerFailureReason: string | null = null;
+
     // Try SMTP if credentials present
     if (gmailUser && gmailPass) {
       try {
@@ -192,7 +195,7 @@ export async function POST(request: Request) {
 
         const fromAddress = process.env.CONTACT_FROM_EMAIL || `Krynex Labs Briefing <${gmailUser}>`;
 
-        await transporter.sendMail({
+        const info = await transporter.sendMail({
           from: fromAddress,
           to: receiverEmail,
           replyTo: cleanEmail,
@@ -200,14 +203,19 @@ export async function POST(request: Request) {
           text: textContent,
           html: htmlContent,
         });
+
+        if (info && info.messageId) {
+          isDelivered = true;
+        }
       } catch (smtpErr) {
-        console.error("[KRYNEX NOTIFICATION ERROR] SMTP delivery exception:", smtpErr instanceof Error ? smtpErr.message : "Unknown SMTP failure");
+        providerFailureReason = smtpErr instanceof Error ? smtpErr.message : "SMTP transport exception";
+        console.error("[KRYNEX NOTIFICATION ERROR] SMTP delivery exception:", providerFailureReason);
       }
     } else if (resendApiKey) {
       // Try Resend if credentials present
       try {
         const fromEmail = process.env.CONTACT_FROM_EMAIL || "Krynex Labs <onboarding@resend.dev>";
-        await fetch("https://api.resend.com/emails", {
+        const resendResponse = await fetch("https://api.resend.com/emails", {
           method: "POST",
           headers: {
             "Authorization": `Bearer ${resendApiKey}`,
@@ -221,23 +229,62 @@ export async function POST(request: Request) {
             text: textContent,
             html: htmlContent,
           }),
+          signal: AbortSignal.timeout(8000), // 8-second timeout guard
         });
+
+        if (resendResponse.ok) {
+          isDelivered = true;
+        } else {
+          const errData = await resendResponse.json().catch(() => ({}));
+          providerFailureReason = errData?.message || `Resend HTTP ${resendResponse.status}`;
+          console.error(`[KRYNEX NOTIFICATION ERROR] Resend rejected dispatch: ${providerFailureReason}`);
+        }
       } catch (resendErr) {
-        console.error("[KRYNEX NOTIFICATION ERROR] Resend exception:", resendErr instanceof Error ? resendErr.message : "Unknown Resend failure");
+        providerFailureReason = resendErr instanceof Error ? resendErr.message : "Resend network failure or timeout";
+        console.error("[KRYNEX NOTIFICATION ERROR] Resend exception:", providerFailureReason);
       }
+    } else {
+      // Neither SMTP nor Resend configured
+      providerFailureReason = "No production email transport configured in environment.";
+      console.warn("[KRYNEX NOTIFICATION WARNING]", providerFailureReason);
     }
 
     // 10. Audit Logging (Safe operational telemetry without printing sensitive credentials)
-    console.log(`[KRYNEX INQUIRY LOGGED] Reference ID: ${referenceId} | Category: ${cleanCategory} | Company: ${cleanCompany}`);
+    console.log(`[KRYNEX INQUIRY LOGGED] Reference ID: ${referenceId} | Category: ${cleanCategory} | Company: ${cleanCompany} | Delivered: ${isDelivered}`);
 
-    // 11. Return 200 OK Response with Tracking Dossier
+    // Construct customer mailto fallback link with prefilled docket details
+    const fallbackMailto = `mailto:support@krynexlabs.in?subject=${encodeURIComponent(
+      `[KRYNEX BRIEFING] ${referenceId} - ${cleanCompany} (${cleanName})`
+    )}&body=${encodeURIComponent(
+      `Reference ID: ${referenceId}\nCompany: ${cleanCompany}\nName: ${cleanName}\nInquiry: ${cleanCategory}\n\nScope:\n${cleanFriction}`
+    )}`;
+
+    // 11. Return HTTP 503 if provider delivery could not be confirmed (SEC-001)
+    if (!isDelivered) {
+      return NextResponse.json(
+        {
+          ok: false,
+          success: false,
+          referenceId,
+          timestamp,
+          error: "Inquiry delivery could not be confirmed at this moment. Please email our Software Engineering team directly at support@krynexlabs.in referencing your Reference ID.",
+          fallbackMailto,
+        },
+        {
+          status: 503,
+          headers: { "Cache-Control": "no-store" },
+        }
+      );
+    }
+
+    // 12. Return 200 OK Response with Tracking Dossier upon Confirmed Delivery
     return NextResponse.json(
       {
         ok: true,
         success: true,
         referenceId,
         timestamp,
-        message: "Inquiry dossier created and routed to Krynex Labs engineering team.",
+        message: "Inquiry dossier created and successfully dispatched to Krynex Labs engineering team.",
       },
       {
         status: 200,

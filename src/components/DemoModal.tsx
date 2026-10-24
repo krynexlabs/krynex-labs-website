@@ -17,6 +17,7 @@ export default function DemoModal({ isOpen, onClose }: DemoModalProps) {
   const [requestId, setRequestId] = useState("");
   const [honeypot, setHoneypot] = useState("");
   const [formErrors, setFormErrors] = useState<{ [key: string]: string }>({});
+  const [fallbackMailto, setFallbackMailto] = useState<string | null>(null);
 
   const [formData, setFormData] = useState({
     name: "",
@@ -29,6 +30,7 @@ export default function DemoModal({ isOpen, onClose }: DemoModalProps) {
   const resetAndClose = useCallback(() => {
     setIsSuccess(false);
     setFormErrors({});
+    setFallbackMailto(null);
     onClose();
   }, [onClose]);
 
@@ -82,6 +84,7 @@ export default function DemoModal({ isOpen, onClose }: DemoModalProps) {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (isSubmitting) return;
     if (honeypot) return;
 
     const errors: { [key: string]: string } = {};
@@ -109,6 +112,7 @@ export default function DemoModal({ isOpen, onClose }: DemoModalProps) {
     }
 
     setFormErrors({});
+    setFallbackMailto(null);
     setIsSubmitting(true);
 
     try {
@@ -151,10 +155,14 @@ export default function DemoModal({ isOpen, onClose }: DemoModalProps) {
         }
       } else {
         setIsSubmitting(false);
+        if (result.fallbackMailto) {
+          setFallbackMailto(result.fallbackMailto);
+        }
         setFormErrors({ general: result.error || "Submission rejected by server. Please verify your details." });
       }
     } catch {
       setIsSubmitting(false);
+      setFallbackMailto("mailto:support@krynexlabs.in?subject=Direct%20Consultation%20Inquiry%20Fallback");
       setFormErrors({ general: "Network transmission error. Please email support@krynexlabs.in directly." });
     }
   };
@@ -252,9 +260,21 @@ export default function DemoModal({ isOpen, onClose }: DemoModalProps) {
                 />
 
                 {formErrors.general && (
-                  <div className="p-3 rounded-xl bg-white/[0.05] border border-white/15 text-xs text-white flex items-center gap-2">
-                    <AlertCircle className="w-4 h-4 shrink-0" />
-                    <span>{formErrors.general}</span>
+                  <div className="p-3.5 rounded-xl bg-red-950/20 border border-red-500/30 text-xs text-red-200 space-y-2">
+                    <div className="flex items-center gap-2">
+                      <AlertCircle className="w-4 h-4 shrink-0 text-red-400" />
+                      <span>{formErrors.general}</span>
+                    </div>
+                    {fallbackMailto && (
+                      <div className="pt-1">
+                        <a
+                          href={fallbackMailto}
+                          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-white font-medium text-xs transition-colors border border-white/20"
+                        >
+                          Email Inquiry Directly (Pre-Filled) →
+                        </a>
+                      </div>
+                    )}
                   </div>
                 )}
 

@@ -306,6 +306,21 @@ export default function RootLayout({
         {/* Global Privacy & Cookie Consent */}
         <CookieBanner />
 
+        {/* Google Consent Mode v2 - Default Denial prior to Google Tag Loading (SEC-003) */}
+        <Script id="google-consent-default" strategy="beforeInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('consent', 'default', {
+              'analytics_storage': 'denied',
+              'ad_storage': 'denied',
+              'ad_user_data': 'denied',
+              'ad_personalization': 'denied',
+              'wait_for_update': 500
+            });
+          `}
+        </Script>
+
         {/* Google tag (gtag.js) - Non-render-blocking via next/script */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-KZCMWZSRFN"
@@ -313,10 +328,7 @@ export default function RootLayout({
         />
         <Script id="google-analytics" strategy="afterInteractive">
           {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-
             gtag('config', 'G-KZCMWZSRFN');
           `}
         </Script>

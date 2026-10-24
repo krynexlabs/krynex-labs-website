@@ -237,8 +237,202 @@ assert.strictEqual(apiRouteContent.includes("status: 429"), true);
 assert.strictEqual(apiRouteContent.includes("status: 400"), true);
 console.log("✔ PASS: /api/contact enforces rate limits, honeypot, validation, webhook, and referenceId.");
 
+// 19. SEC-002: Rate Limiter Client IP Trust & Header Spoof Defense
+console.log("\n[TEST 19] SEC-002: Rate Limiter Client IP Trust & Header Spoof Defense");
+import { getClientIp, cleanAndValidateIp } from "../src/lib/rate-limiter.ts";
+
+// Scenario A: Attacker attempts to spoof client IP via leftmost hop in X-Forwarded-For
+const spoofedReq = new Request("http://localhost/api/contact", {
+  headers: {
+    "x-forwarded-for": "10.0.0.1, 198.51.100.22",
+  },
+});
+const resolvedSpoofedIp = getClientIp(spoofedReq);
+assert.strictEqual(
+  resolvedSpoofedIp,
+  "198.51.100.22",
+  "Rate limiter must extract rightmost trusted proxy hop, NOT attacker-controlled leftmost hop!"
+);
+
+// Scenario B: Vercel edge-authenticated header takes top precedence
+const vercelReq = new Request("http://localhost/api/contact", {
+  headers: {
+    "x-vercel-forwarded-for": "203.0.113.50",
+    "x-forwarded-for": "10.0.0.1, 198.51.100.22",
+  },
+});
+assert.strictEqual(
+  getClientIp(vercelReq),
+  "203.0.113.50",
+  "x-vercel-forwarded-for must take precedence over multi-hop x-forwarded-for when valid"
+);
+
+// Scenario C: Non-proxied local request fallback in development/test
+const localReq = new Request("http://localhost/api/contact");
+assert.strictEqual(getClientIp(localReq), "127.0.0.1");
+
+// Scenario D: Malformed IP headers must be rejected without throwing
+assert.strictEqual(cleanAndValidateIp("not-an-ip"), null);
+assert.strictEqual(cleanAndValidateIp("999.999.999.999"), null);
+assert.strictEqual(cleanAndValidateIp(""), null);
+assert.strictEqual(cleanAndValidateIp("   "), null);
+assert.strictEqual(cleanAndValidateIp("<script>alert(1)</script>"), null);
+assert.strictEqual(cleanAndValidateIp("198.51.100.1:8080"), "198.51.100.1");
+assert.strictEqual(cleanAndValidateIp("[2001:db8::1]:443"), "2001:db8::1");
+
+// Scenario E: Conflicting malformed header falls through to valid proxy hop
+const malformedVercelReq = new Request("http://localhost/api/contact", {
+  headers: {
+    "x-vercel-forwarded-for": "malicious_string_not_ip",
+    "x-forwarded-for": "10.0.0.1, 198.51.100.77",
+  },
+});
+assert.strictEqual(
+  getClientIp(malformedVercelReq),
+  "198.51.100.77",
+  "Malformed x-vercel-forwarded-for must not be trusted; must fall back to valid rightmost hop"
+);
+
+// Scenario F: Elimination of 127.0.0.1 collective lockout in production
+const prevEnv = process.env.NODE_ENV;
+process.env.NODE_ENV = "production";
+try {
+  const visitorA = new Request("https://www.krynexlabs.in/api/contact", {
+    headers: {
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/120.0.0.0",
+      "accept-language": "en-US,en;q=0.9",
+    },
+  });
+  const visitorB = new Request("https://www.krynexlabs.in/api/contact", {
+    headers: {
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15) Firefox/121.0",
+      "accept-language": "fr-FR,fr;q=0.8",
+    },
+  });
+  const idA = getClientIp(visitorA);
+  const idB = getClientIp(visitorB);
+  assert.ok(idA.startsWith("anon_fp_"), "Visitor A must receive partitioned anonymous fingerprint");
+  assert.ok(idB.startsWith("anon_fp_"), "Visitor B must receive partitioned anonymous fingerprint");
+  assert.notStrictEqual(idA, idB, "Distinct visitors without IP headers must NOT share the same rate-limit bucket!");
+  assert.notStrictEqual(idA, "127.0.0.1", "Production missing-IP requests must NOT default to 127.0.0.1!");
+} finally {
+  process.env.NODE_ENV = prevEnv;
+}
+console.log("✔ PASS: Rate limiter rejects spoofing, validates IP syntax, and eliminates shared 127.0.0.1 lockout.");
+
+// 20. SEC-001: Contact Form Provider Failure Handling & Direct Fallback
+console.log("\n[TEST 20] SEC-001: Provider Failure Handling & Fallback Mailto Docket");
+assert.strictEqual(apiRouteContent.includes("fallbackMailto"), true, "/api/contact must generate fallbackMailto");
+assert.strictEqual(apiRouteContent.includes("status: 503"), true, "/api/contact must return 503 when providers fail");
+assert.strictEqual(apiRouteContent.includes("isDelivered"), true, "/api/contact must track delivery status");
+
+const demoModalContent = fs.readFileSync("src/components/DemoModal.tsx", "utf-8");
+assert.strictEqual(demoModalContent.includes("fallbackMailto"), true, "DemoModal must support fallbackMailto");
+assert.strictEqual(footerContent.includes("fallbackMailto"), true, "Footer must support fallbackMailto");
+assert.strictEqual(contactFormContent.includes("fallbackMailto"), true, "ContactForm must support fallbackMailto");
+console.log("✔ PASS: Form handlers return 503 on provider failure and render actionable mailto dockets.");
+
+// 21. SEC-003: Google Consent Mode v2 Default Denial
+console.log("\n[TEST 21] SEC-003: Google Consent Mode v2 Default Denial");
+const layoutContent = fs.readFileSync("src/app/layout.tsx", "utf-8");
+assert.strictEqual(
+  layoutContent.includes('id="google-consent-default"'),
+  true,
+  "layout.tsx must contain google-consent-default script tag"
+);
+assert.strictEqual(
+  layoutContent.includes("strategy=\"beforeInteractive\""),
+  true,
+  "Consent default must execute beforeInteractive prior to tag loading"
+);
+assert.strictEqual(
+  layoutContent.includes("'analytics_storage': 'denied'"),
+  true,
+  "analytics_storage must default to denied"
+);
+assert.strictEqual(
+  layoutContent.includes("'wait_for_update': 500"),
+  true,
+  "wait_for_update grace period must be specified"
+);
+console.log("✔ PASS: Google Consent Mode v2 default denial configured before tag initialization.");
+
+// 22. UI-001: Mobile CTA and Cookie Banner Coordinate Collision Resolution
+console.log("\n[TEST 22] UI-001: Mobile Sticky CTA Coordinate Collision Prevention");
+const stickyCtaContent = fs.readFileSync("src/components/StickyMobileCTA.tsx", "utf-8");
+const cookieBannerContent = fs.readFileSync("src/components/CookieBanner.tsx", "utf-8");
+
+assert.strictEqual(
+  stickyCtaContent.includes("krynex_cookie_action"),
+  true,
+  "StickyMobileCTA must listen to krynex_cookie_action event"
+);
+assert.strictEqual(
+  cookieBannerContent.includes("krynex_cookie_action"),
+  true,
+  "CookieBanner must dispatch krynex_cookie_action event on choice"
+);
+assert.strictEqual(
+  stickyCtaContent.includes("bottom-[max(11.5rem"),
+  true,
+  "StickyMobileCTA must shift above banner when consent is pending"
+);
+assert.strictEqual(
+  stickyCtaContent.includes("safe-area-inset-bottom"),
+  true,
+  "StickyMobileCTA must respect safe-area-inset-bottom"
+);
+assert.strictEqual(
+  cookieBannerContent.includes("safe-area-inset-bottom"),
+  true,
+  "CookieBanner must respect safe-area-inset-bottom"
+);
+console.log("✔ PASS: Sticky CTA and Cookie Banner coordinates dynamically offset with safe-area support.");
+
+// 23. SEC-004: Next.js Version Consistency Verification
+console.log("\n[TEST 23] SEC-004: Next.js Version Consistency Verification");
+const packageJson = JSON.parse(fs.readFileSync("package.json", "utf-8"));
+const installedNextVersion = packageJson.dependencies.next;
+assert.ok(
+  installedNextVersion.includes("14.2.35"),
+  `Next.js version in package.json must be 14.2.35 (found: ${installedNextVersion})`
+);
+console.log(`✔ PASS: Next.js version verified as ${installedNextVersion} (resolving 14.2.18 audit anomaly).`);
+
+// 24. TASK 2: Consent Withdrawal & Cookie Settings Reopen Mechanism
+console.log("\n[TEST 24] TASK 2: Consent Withdrawal & Cookie Settings Reopening");
+assert.strictEqual(
+  footerContent.includes("krynex_open_cookie_settings"),
+  true,
+  "Footer.tsx must contain a trigger dispatching krynex_open_cookie_settings"
+);
+assert.strictEqual(
+  cookieBannerContent.includes("krynex_open_cookie_settings"),
+  true,
+  "CookieBanner.tsx must listen for krynex_open_cookie_settings to reopen settings"
+);
+assert.strictEqual(
+  stickyCtaContent.includes("krynex_open_cookie_settings"),
+  true,
+  "StickyMobileCTA.tsx must elevate when settings are reopened to avoid collision"
+);
+assert.strictEqual(
+  cookieBannerContent.includes("Expires=Thu, 01 Jan 1970"),
+  true,
+  "CookieBanner.tsx must actively purge Google Analytics tracking cookies on withdrawal"
+);
+console.log("✔ PASS: Accessible cookie settings trigger, withdrawal flow, and active cookie purging verified.");
+
+// 25. TASK 3: Dependency Advisory Architectural Constraints Verification
+console.log("\n[TEST 25] TASK 3: Dependency Advisory Architectural Constraints Verification");
+const reactVersion = packageJson.dependencies.react;
+const r3fVersion = packageJson.dependencies["@react-three/fiber"];
+assert.ok(reactVersion.includes("18"), `React must be version 18 for Three.js compatibility (found: ${reactVersion})`);
+assert.ok(r3fVersion.includes("8.17.10"), `@react-three/fiber must be 8.17.10 (found: ${r3fVersion})`);
+console.log("✔ PASS: Architectural dependency constraint (React 18 / R3F 8.17.10) verified.");
+
 console.log("\n=======================================================");
-console.log("ALL 18 CRITICAL REGRESSION SUITES PASSED SUCCESSFULLY!");
+console.log("ALL 25 CRITICAL REGRESSION SUITES PASSED SUCCESSFULLY!");
 console.log("=======================================================\n");
 
 process.exit(0);

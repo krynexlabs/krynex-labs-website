@@ -40,6 +40,7 @@ export default function Footer({ onRequestDemo, hideInquirySection = false }: Fo
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [ticketId, setTicketId] = useState("");
+  const [fallbackMailto, setFallbackMailto] = useState<string | null>(null);
 
   const validateForm = () => {
     const newErrors: Record<string, string> = {};
@@ -66,12 +67,14 @@ export default function Footer({ onRequestDemo, hideInquirySection = false }: Fo
 
   const handleInquirySubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (isSubmitting) return;
     // Bot honeypot filter
     if (honeypot) return;
 
     if (!validateForm()) return;
 
     setIsSubmitting(true);
+    setFallbackMailto(null);
     const prevErrors = { ...errors };
     delete prevErrors.general;
     setErrors(prevErrors);
@@ -116,6 +119,9 @@ export default function Footer({ onRequestDemo, hideInquirySection = false }: Fo
         }
       } else {
         setIsSubmitting(false);
+        if (result.fallbackMailto) {
+          setFallbackMailto(result.fallbackMailto);
+        }
         setErrors((prev) => ({
           ...prev,
           general: result.error || "Submission rejected by server. Please check your details.",
@@ -123,6 +129,7 @@ export default function Footer({ onRequestDemo, hideInquirySection = false }: Fo
       }
     } catch {
       setIsSubmitting(false);
+      setFallbackMailto("mailto:support@krynexlabs.in?subject=Technical%20Architecture%20Inquiry%20Fallback");
       setErrors((prev) => ({
         ...prev,
         general: "Network transmission error. Please reach out to support@krynexlabs.in directly.",
@@ -218,9 +225,21 @@ export default function Footer({ onRequestDemo, hideInquirySection = false }: Fo
                 />
 
                 {errors.general && (
-                  <div className="flex items-center gap-2 p-3.5 rounded-xl bg-white/[0.05] border border-white/15 text-xs text-white">
-                    <AlertCircle className="w-4 h-4 shrink-0" />
-                    <span>{errors.general}</span>
+                  <div className="p-3.5 rounded-xl bg-red-950/20 border border-red-500/30 text-xs text-red-200 space-y-2">
+                    <div className="flex items-center gap-2">
+                      <AlertCircle className="w-4 h-4 shrink-0 text-red-400" />
+                      <span>{errors.general}</span>
+                    </div>
+                    {fallbackMailto && (
+                      <div className="pt-1">
+                        <a
+                          href={fallbackMailto}
+                          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-white font-medium text-xs transition-colors border border-white/20"
+                        >
+                          Email Inquiry Directly (Pre-Filled) →
+                        </a>
+                      </div>
+                    )}
                   </div>
                 )}
 
@@ -517,6 +536,20 @@ export default function Footer({ onRequestDemo, hideInquirySection = false }: Fo
                 <Link href="/terms" className="hover:text-white transition-colors">
                   Terms of Service &amp; SLA
                 </Link>
+              </li>
+              <li>
+                <button
+                  type="button"
+                  onClick={() => {
+                    if (typeof window !== "undefined") {
+                      window.dispatchEvent(new CustomEvent("krynex_open_cookie_settings"));
+                    }
+                  }}
+                  className="hover:text-white transition-colors text-left font-normal"
+                  aria-label="Open Telemetry &amp; Cookie Consent Settings"
+                >
+                  Cookie Settings &amp; Consent
+                </button>
               </li>
             </ul>
           </div>

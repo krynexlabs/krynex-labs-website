@@ -31,6 +31,7 @@ export default function ContactForm({ initialProduct }: ContactFormProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [ticketId, setTicketId] = useState("");
+  const [fallbackMailto, setFallbackMailto] = useState<string | null>(null);
 
   useEffect(() => {
     if (initialProduct) {
@@ -63,10 +64,12 @@ export default function ContactForm({ initialProduct }: ContactFormProps) {
 
   const handleInquirySubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (isSubmitting) return;
     if (honeypot) return; // Silent bot rejection
     if (!validateForm()) return;
 
     setIsSubmitting(true);
+    setFallbackMailto(null);
     const prevErrors = { ...errors };
     delete prevErrors.general;
     setErrors(prevErrors);
@@ -112,6 +115,9 @@ export default function ContactForm({ initialProduct }: ContactFormProps) {
         }
       } else {
         setIsSubmitting(false);
+        if (result.fallbackMailto) {
+          setFallbackMailto(result.fallbackMailto);
+        }
         if (result.errors) {
           setErrors(result.errors);
         } else {
@@ -191,9 +197,21 @@ export default function ContactForm({ initialProduct }: ContactFormProps) {
           </div>
 
           {errors.general && (
-            <div className="p-3.5 rounded-xl bg-white/[0.05] border border-white/15 text-xs text-white flex items-center gap-2.5">
-              <AlertCircle className="w-4 h-4 text-white shrink-0" />
-              <span>{errors.general}</span>
+            <div className="p-4 rounded-xl bg-white/[0.05] border border-white/15 text-xs text-white space-y-2.5">
+              <div className="flex items-start gap-2.5">
+                <AlertCircle className="w-4 h-4 text-zinc-300 shrink-0 mt-0.5" />
+                <span className="leading-relaxed">{errors.general}</span>
+              </div>
+              {fallbackMailto && (
+                <div className="pt-2 border-t border-white/10">
+                  <a
+                    href={fallbackMailto}
+                    className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-white text-black font-semibold text-xs hover:bg-zinc-200 transition-colors"
+                  >
+                    <span>Email Briefing directly with Reference ID &rarr;</span>
+                  </a>
+                </div>
+              )}
             </div>
           )}
 
