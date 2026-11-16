@@ -189,7 +189,7 @@ export const INDUSTRIES_DATA: IndustryDetail[] = [
     whyExistingInadequate:
       "Rigid traditional integration platforms charge exorbitant multi-lakh implementation fees and break silently whenever an API or document schema changes.",
     krynexSolution:
-      "Dastaveg & Krynex Workflow Engine: Resilient document parsing and event-driven orchestration middleware that ingests business documents, executes automated validation rules, and synchronizes backends seamlessly.",
+      "Krynex Workflow & Document Engine: Resilient document parsing and event-driven orchestration middleware that ingests business documents, executes automated validation rules, and synchronizes backends seamlessly.",
     architectureDetails: [
       "Deterministic business rule state machine with audit trails",
       "Multilingual optical extraction pipeline for invoices and contracts",

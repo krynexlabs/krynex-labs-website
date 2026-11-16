@@ -5,20 +5,20 @@ import { Quote, Building2, Sparkles } from "lucide-react";
 
 export default function FounderSection() {
   return (
-    <section id="founder" className="relative py-24 sm:py-32 bg-[#080B12] border-t border-white/[0.08] overflow-hidden">
+    <section id="founder" className="relative py-24 sm:py-32 bg-[#050505] border-t border-white/[0.08] overflow-hidden">
       {/* Background Radial Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[850px] h-[350px] bg-[radial-gradient(ellipse_70%_40%_at_50%_50%,rgba(37,99,235,0.06),transparent_70%)] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[850px] h-[350px] bg-[radial-gradient(ellipse_70%_40%_at_50%_50%,rgba(255,255,255,0.03),transparent_70%)] pointer-events-none" />
 
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Eyebrow */}
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-xs font-mono text-blue-400 uppercase tracking-widest mb-6">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.04] border border-white/10 text-xs font-mono text-zinc-300 uppercase tracking-widest mb-6">
           <Building2 className="w-3.5 h-3.5" />
           <span>09 // THE FOUNDER</span>
         </div>
 
         {/* Founder Profile Card */}
-        <div className="p-8 sm:p-12 rounded-3xl bg-[#121A27] border border-white/[0.08] hover:border-blue-500/30 transition-all shadow-2xl relative overflow-hidden">
-          <div className="absolute top-0 left-8 right-8 h-[1px] bg-gradient-to-r from-transparent via-blue-500/30 to-transparent pointer-events-none" />
+        <div className="p-8 sm:p-12 rounded-3xl bg-[#111111] border border-white/[0.08] hover:border-white/[0.22] transition-all shadow-2xl relative overflow-hidden">
+          <div className="absolute top-0 left-8 right-8 h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent pointer-events-none" />
 
           {/* Header Row: DP Monogram + Name & Title */}
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 pb-8 border-b border-white/[0.08] mb-8">
@@ -32,7 +32,7 @@ export default function FounderSection() {
                 <h3 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
                   D. PATEL
                 </h3>
-                <div className="text-sm font-mono text-blue-400 mt-1">
+                <div className="text-sm font-mono text-zinc-400 mt-1">
                   Founder, Krynex Labs
                 </div>
               </div>
@@ -50,9 +50,9 @@ export default function FounderSection() {
 
           {/* Quote Block */}
           <div className="relative">
-            <Quote className="w-8 h-8 text-blue-400/40 mb-4" />
+            <Quote className="w-8 h-8 text-zinc-500 mb-4" />
 
-            <div className="space-y-4 text-base sm:text-lg text-zinc-200 leading-relaxed font-sans border-l-2 border-blue-500/40 pl-6 sm:pl-8">
+            <div className="space-y-4 text-base sm:text-lg text-zinc-200 leading-relaxed font-sans border-l-2 border-white/20 pl-6 sm:pl-8">
               <p>
                 &ldquo;Technology should solve real problems, simplify complex processes and create meaningful value.
               </p>

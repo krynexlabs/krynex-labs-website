@@ -70,6 +70,16 @@ const nextConfig = {
         permanent: true,
       },
       {
+        source: '/products/dastaveg',
+        destination: '/products/krynex-lawos',
+        permanent: true,
+      },
+      {
+        source: '/dastaveg',
+        destination: '/products/krynex-lawos',
+        permanent: true,
+      },
+      {
         source: '/legal/privacy',
         destination: '/privacy',
         permanent: true,

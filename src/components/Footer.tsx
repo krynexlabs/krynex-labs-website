@@ -164,7 +164,7 @@ export default function Footer({ onRequestDemo, hideInquirySection = false }: Fo
 
             {/* Section Header */}
             <div className="text-center max-w-2xl mx-auto mb-10 relative z-10">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-[11px] font-mono tracking-widest text-blue-400 uppercase mb-4">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.04] border border-white/10 text-[11px] font-mono tracking-widest text-zinc-300 uppercase mb-4">
                 <span>GET IN TOUCH // AHMEDABAD LABS</span>
               </div>
 
@@ -179,7 +179,7 @@ export default function Footer({ onRequestDemo, hideInquirySection = false }: Fo
               <div className="flex flex-wrap items-center justify-center gap-4 mb-8">
                 <a
                   href="/products"
-                  className="px-6 py-2.5 rounded-full bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs transition-all shadow-[0_0_20px_rgba(37,99,235,0.35)] flex items-center gap-2"
+                  className="px-6 py-2.5 rounded-full bg-[#F5F5F5] hover:bg-white text-[#050505] font-semibold text-xs transition-all shadow-[0_0_20px_rgba(255,255,255,0.15)] flex items-center gap-2"
                 >
                   <span>Explore Products</span>
                   <ArrowRight className="w-3.5 h-3.5" />
@@ -477,12 +477,7 @@ export default function Footer({ onRequestDemo, hideInquirySection = false }: Fo
                 </Link>
               </li>
               <li>
-                <Link href="/products/dastaveg" className="hover:text-white transition-colors">
-                  Dastaveg
-                </Link>
-              </li>
-              <li>
-                <Link href="/products" className="hover:text-white transition-colors text-blue-400">
+                <Link href="/products" className="hover:text-white transition-colors text-zinc-300">
                   All Products Directory →
                 </Link>
               </li>
@@ -535,7 +530,7 @@ export default function Footer({ onRequestDemo, hideInquirySection = false }: Fo
                 </Link>
               </li>
               <li>
-                <Link href="/resources" className="hover:text-white transition-colors text-blue-400">
+                <Link href="/resources" className="hover:text-white transition-colors text-zinc-300">
                   Insights &amp; Whitepapers
                 </Link>
               </li>

@@ -23,32 +23,29 @@ export default function ProductsShowcase({ onRequestDemo }: ProductsShowcaseProp
   const products = [
     PRODUCTS_DATA["solarops"],
     PRODUCTS_DATA["krynex-lawos"],
-    PRODUCTS_DATA["dastaveg"],
   ].filter(Boolean);
 
   const iconMap: Record<string, React.ReactNode> = {
-    "krynex-lawos": <FileText className="w-5 h-5 text-blue-400" />,
-    "lawos": <FileText className="w-5 h-5 text-blue-400" />,
-    "solarops": <Workflow className="w-5 h-5 text-blue-400" />,
-    "dastaveg": <Sparkles className="w-5 h-5 text-blue-400" />,
+    "krynex-lawos": <FileText className="w-5 h-5 text-zinc-300" />,
+    "lawos": <FileText className="w-5 h-5 text-zinc-300" />,
+    "solarops": <Workflow className="w-5 h-5 text-zinc-300" />,
   };
 
   const statusBadges: Record<string, { label: string; color: string }> = {
-    "krynex-lawos": { label: "Private Beta", color: "text-blue-400 bg-blue-500/10 border-blue-500/30" },
-    "solarops": { label: "In Development", color: "text-amber-400 bg-amber-500/10 border-amber-500/30" },
-    "dastaveg": { label: "In Development", color: "text-amber-400 bg-amber-500/10 border-amber-500/30" },
+    "krynex-lawos": { label: "Private Beta", color: "text-zinc-300 bg-white/[0.04] border-white/10" },
+    "solarops": { label: "In Development", color: "text-zinc-400 bg-white/[0.03] border-white/10" },
   };
 
   return (
-    <section id="products" className="relative py-24 sm:py-32 bg-[#080B12] overflow-hidden">
+    <section id="products" className="relative py-24 sm:py-32 bg-[#050505] overflow-hidden">
       {/* Specular Spotlight Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[400px] bg-[radial-gradient(ellipse_70%_40%_at_50%_50%,rgba(255,255,255,0.04),transparent_70%)] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[400px] bg-[radial-gradient(ellipse_70%_40%_at_50%_50%,rgba(255,255,255,0.03),transparent_70%)] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 border-b border-white/[0.06] pb-8 gap-6">
           <div>
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-xs font-mono text-blue-400 uppercase tracking-widest mb-4">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/[0.04] border border-white/10 text-xs font-mono text-zinc-300 uppercase tracking-widest mb-4">
               <span>03 // OUR SOFTWARE PRODUCTS</span>
             </div>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white mb-4 leading-tight">
@@ -62,7 +59,7 @@ export default function ProductsShowcase({ onRequestDemo }: ProductsShowcaseProp
           <div className="shrink-0">
             <Link
               href="/products"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs transition-all shadow-[0_0_20px_rgba(37,99,235,0.35)]"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#F5F5F5] hover:bg-white text-[#050505] font-semibold text-xs transition-all shadow-[0_0_20px_rgba(255,255,255,0.15)]"
             >
               <span>Explore Products Directory</span>
               <ArrowRight className="w-3.5 h-3.5" />
@@ -70,18 +67,18 @@ export default function ProductsShowcase({ onRequestDemo }: ProductsShowcaseProp
           </div>
         </div>
 
-        {/* 3 Product Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {/* Product Cards Grid: 2 Flagship Products */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
           {products.map((product) => {
             const badge = statusBadges[product.slug] || { label: product.status, color: "text-zinc-400 bg-white/[0.04] border-white/10" };
 
             return (
               <div
                 key={product.slug}
-                className="group p-8 rounded-3xl bg-[#121A27] border border-white/[0.08] hover:border-blue-500/40 transition-all relative overflow-hidden flex flex-col justify-between shadow-xl"
+                className="group p-8 rounded-3xl bg-[#111111] border border-white/[0.08] hover:border-white/[0.22] transition-all relative overflow-hidden flex flex-col justify-between shadow-xl"
               >
                 {/* Specular Top Rim */}
-                <div className="absolute top-0 left-6 right-6 h-[1px] bg-gradient-to-r from-transparent via-blue-500/30 to-transparent pointer-events-none" />
+                <div className="absolute top-0 left-6 right-6 h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent pointer-events-none" />
 
                 <div>
                   <div className="flex items-center justify-between mb-5">
@@ -150,7 +147,7 @@ export default function ProductsShowcase({ onRequestDemo }: ProductsShowcaseProp
                   </div>
                   <Link
                     href={`/products/${product.slug}`}
-                    className="inline-flex items-center justify-between w-full px-4 py-2.5 rounded-xl bg-blue-600 text-white font-semibold text-xs hover:bg-blue-500 transition-all shadow-[0_0_15px_rgba(37,99,235,0.25)] group/btn"
+                    className="inline-flex items-center justify-between w-full px-4 py-2.5 rounded-xl bg-[#F5F5F5] text-[#050505] font-semibold text-xs hover:bg-white transition-all shadow-[0_0_15px_rgba(255,255,255,0.1)] group/btn"
                   >
                     <span>Explore Product Overview</span>
                     <ArrowRight className="w-3.5 h-3.5 group-hover/btn:translate-x-1 transition-transform" />

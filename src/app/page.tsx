@@ -23,7 +23,7 @@ export default function Home() {
   const [isDemoModalOpen, setIsDemoModalOpen] = useState(false);
 
   return (
-    <main className="relative min-h-screen bg-[#080B12] text-[#F8FAFC] selection:bg-blue-600 selection:text-white">
+    <main className="relative min-h-screen bg-[#050505] text-[#FFFFFF] selection:bg-white selection:text-black">
       {/* 01. Clean Responsive Navigation */}
       <Navbar onRequestDemo={() => setIsDemoModalOpen(true)} />
 
@@ -32,7 +32,7 @@ export default function Home() {
 
       <SectionDivider />
 
-      {/* 03. Our Products: SolarOps, Krynex LawOS, Dastaveg */}
+      {/* 03. Our Products: SolarOps, Krynex LawOS */}
       <ProductsShowcase onRequestDemo={() => setIsDemoModalOpen(true)} />
 
       <SectionDivider />

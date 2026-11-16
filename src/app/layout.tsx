@@ -95,7 +95,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#080B12",
+  themeColor: "#050505",
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
@@ -281,23 +281,6 @@ const jsonLd = {
       },
     },
     {
-      "@type": "SoftwareApplication",
-      "@id": "https://www.krynexlabs.in/products/dastaveg#software",
-      name: "Dastaveg",
-      applicationCategory: "BusinessApplication",
-      operatingSystem: "Cloud-based SaaS",
-      offers: {
-        "@type": "Offer",
-        price: "999",
-        priceCurrency: "INR",
-      },
-      description:
-        "Intelligent document automation, sub-registrar Index-II triage, and statutory deed compilation platform.",
-      provider: {
-        "@id": "https://www.krynexlabs.in/#organization",
-      },
-    },
-    {
       "@type": "FAQPage",
       "@id": "https://www.krynexlabs.in/#faq",
       mainEntity: [
@@ -385,7 +368,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${inter.variable} ${jetbrainsMono.variable} bg-[#080B12] font-sans antialiased text-[#F8FAFC] min-h-screen selection:bg-blue-600 selection:text-white overflow-x-hidden max-w-[100vw] w-full`}
+        className={`${inter.variable} ${jetbrainsMono.variable} bg-[#050505] font-sans antialiased text-[#FFFFFF] min-h-screen selection:bg-white selection:text-black overflow-x-hidden max-w-[100vw] w-full`}
       >
         {/* Internal Diagnostic Telemetry Tracker */}
         <ClientTelemetry />
@@ -399,8 +382,8 @@ export default function RootLayout({
         {/* Background Grid & Spotlights */}
         <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
           <div className="absolute inset-0 bg-grid-tech opacity-40" />
-          {/* Subtle Electric Blue Radial Spotlight */}
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1100px] h-[550px] bg-[radial-gradient(ellipse_80%_50%_at_50%_0%,rgba(37,99,235,0.12),transparent_70%)] pointer-events-none" />
+          {/* Subtle Monochrome Soft Radial Lighting */}
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1100px] h-[550px] bg-[radial-gradient(ellipse_80%_50%_at_50%_0%,rgba(255,255,255,0.04),transparent_70%)] pointer-events-none" />
         </div>
 
         {/* Main Content Area */}

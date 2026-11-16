@@ -115,7 +115,7 @@ export default function ArticleDetailPage({ params }: Props) {
   };
 
   return (
-    <main className="min-h-screen bg-[#080B12] text-[#F8FAFC]">
+    <main className="min-h-screen bg-[#050505] text-[#FFFFFF]">
       <Navbar />
 
       {/* Structured Data */}
@@ -148,7 +148,7 @@ export default function ArticleDetailPage({ params }: Props) {
               <li>
                 <ChevronRight className="w-3 h-3 text-zinc-600" />
               </li>
-              <li className="text-blue-400 truncate max-w-[200px] sm:max-w-xs">
+              <li className="text-white truncate max-w-[200px] sm:max-w-xs">
                 {article.title}
               </li>
             </ol>
@@ -156,7 +156,7 @@ export default function ArticleDetailPage({ params }: Props) {
 
           {/* Category Badge & Meta */}
           <div className="flex flex-wrap items-center gap-3 text-xs font-mono mb-6">
-            <span className="px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 font-semibold tracking-wider uppercase">
+            <span className="px-3 py-1 rounded-full bg-white/[0.04] border border-white/10 text-zinc-300 font-semibold tracking-wider uppercase">
               {article.category}
             </span>
             <span className="text-zinc-500 flex items-center gap-1.5">
@@ -179,8 +179,8 @@ export default function ArticleDetailPage({ params }: Props) {
           </h1>
 
           {/* Executive Summary Box */}
-          <div className="p-6 rounded-2xl bg-[#121A27] border border-blue-500/30 mb-12 shadow-[0_4px_30px_rgba(37,99,235,0.08)]">
-            <div className="flex items-center gap-2 text-xs font-mono text-blue-400 uppercase tracking-widest mb-3">
+          <div className="p-6 rounded-2xl bg-[#111111] border border-white/[0.08] mb-12">
+            <div className="flex items-center gap-2 text-xs font-mono text-zinc-400 uppercase tracking-widest mb-3">
               <BookOpen className="w-4 h-4" />
               <span>EXECUTIVE RESEARCH SUMMARY</span>
             </div>
@@ -194,7 +194,7 @@ export default function ArticleDetailPage({ params }: Props) {
             {article.sections.map((section, idx) => (
               <section key={idx} className="space-y-4">
                 <h2 className="text-xl sm:text-2xl font-bold text-white tracking-tight flex items-center gap-3">
-                  <span className="text-blue-500 font-mono text-base font-normal">
+                  <span className="text-zinc-400 font-mono text-base font-normal">
                     0{idx + 1}.
                   </span>
                   {section.heading.replace(/^\d+\.\s*/, "")}
@@ -218,7 +218,7 @@ export default function ArticleDetailPage({ params }: Props) {
                   key={idx}
                   className="text-xs font-mono text-zinc-500 flex items-center gap-2"
                 >
-                  <span className="text-blue-400">[{idx + 1}]</span>
+                  <span className="text-zinc-400">[{idx + 1}]</span>
                   <span>{src}</span>
                 </li>
               ))}
@@ -226,9 +226,9 @@ export default function ArticleDetailPage({ params }: Props) {
           </div>
 
           {/* Related Product Callout */}
-          <div className="mt-12 p-8 rounded-3xl bg-gradient-to-r from-blue-900/20 via-[#121A27] to-[#121A27] border border-blue-500/30 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+          <div className="mt-12 p-8 rounded-3xl bg-[#111111] border border-white/[0.08] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
             <div className="space-y-2">
-              <span className="text-[10px] font-mono text-blue-400 uppercase tracking-wider">
+              <span className="text-[10px] font-mono text-zinc-400 uppercase tracking-wider">
                 COMMERCIAL IMPLEMENTATION
               </span>
               <h4 className="text-lg font-bold text-white">
@@ -241,7 +241,7 @@ export default function ArticleDetailPage({ params }: Props) {
             </div>
             <Link
               href={article.relatedProduct.href}
-              className="px-6 py-3 rounded-full bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs transition-all shadow-[0_0_20px_rgba(37,99,235,0.35)] flex items-center gap-2 whitespace-nowrap"
+              className="px-6 py-3 rounded-full bg-[#F5F5F5] hover:bg-white text-[#050505] font-semibold text-xs transition-all shadow-[0_0_20px_rgba(255,255,255,0.15)] flex items-center gap-2 whitespace-nowrap"
             >
               <span>{article.relatedProduct.cta}</span>
               <ArrowRight className="w-3.5 h-3.5" />

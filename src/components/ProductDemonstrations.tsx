@@ -37,15 +37,15 @@ export default function ProductDemonstrations() {
   };
 
   return (
-    <section id="demos" className="relative py-24 sm:py-32 bg-[#080B12] border-t border-white/[0.08] overflow-hidden">
+    <section id="demos" className="relative py-24 sm:py-32 bg-[#050505] border-t border-white/[0.08] overflow-hidden">
       {/* Background Radial Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[850px] h-[400px] bg-[radial-gradient(ellipse_70%_40%_at_50%_50%,rgba(37,99,235,0.05),transparent_70%)] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[850px] h-[400px] bg-[radial-gradient(ellipse_70%_40%_at_50%_50%,rgba(255,255,255,0.03),transparent_70%)] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 border-b border-white/[0.06] pb-8 gap-6">
           <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-xs font-mono text-blue-400 uppercase tracking-widest mb-4">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.04] border border-white/10 text-xs font-mono text-zinc-300 uppercase tracking-widest mb-4">
               <Play className="w-3.5 h-3.5" />
               <span>05 // PRODUCT DEMONSTRATIONS</span>
             </div>
@@ -58,7 +58,7 @@ export default function ProductDemonstrations() {
           </div>
 
           {/* Product Switcher Tabs */}
-          <div className="inline-flex p-1.5 rounded-2xl bg-[#121A27] border border-white/10 shrink-0">
+          <div className="inline-flex p-1.5 rounded-2xl bg-[#111111] border border-white/10 shrink-0">
             <button
               type="button"
               onClick={() => {
@@ -67,7 +67,7 @@ export default function ProductDemonstrations() {
               }}
               className={`px-5 py-2.5 rounded-xl text-xs font-mono font-semibold transition-all flex items-center gap-2 ${
                 activeTab === "solarops"
-                  ? "bg-blue-600 text-white shadow-md"
+                  ? "bg-white text-black font-semibold shadow-sm"
                   : "text-zinc-400 hover:text-white"
               }`}
             >
@@ -82,7 +82,7 @@ export default function ProductDemonstrations() {
               }}
               className={`px-5 py-2.5 rounded-xl text-xs font-mono font-semibold transition-all flex items-center gap-2 ${
                 activeTab === "lawos"
-                  ? "bg-blue-600 text-white shadow-md"
+                  ? "bg-white text-black font-semibold shadow-sm"
                   : "text-zinc-400 hover:text-white"
               }`}
             >
@@ -93,8 +93,8 @@ export default function ProductDemonstrations() {
         </div>
 
         {/* Demo Stage Container */}
-        <div className="rounded-3xl bg-[#121A27] border border-white/[0.08] shadow-2xl overflow-hidden relative">
-          <div className="absolute top-0 left-8 right-8 h-[1px] bg-gradient-to-r from-transparent via-blue-500/30 to-transparent pointer-events-none" />
+        <div className="rounded-3xl bg-[#111111] border border-white/[0.08] shadow-2xl overflow-hidden relative">
+          <div className="absolute top-0 left-8 right-8 h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent pointer-events-none" />
 
           {/* Sample Data Notice Banner */}
           <div className="bg-amber-500/10 border-b border-amber-500/20 px-6 py-2.5 flex items-center justify-between text-xs font-mono text-amber-300">
@@ -115,7 +115,7 @@ export default function ProductDemonstrations() {
                 {/* Console Top Toolbar */}
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-6 border-b border-white/[0.08] gap-4">
                   <div>
-                    <span className="text-[10px] font-mono text-blue-400 uppercase tracking-wider block">
+                    <span className="text-[10px] font-mono text-zinc-400 uppercase tracking-wider block">
                       SOLAR OPERATIONS &amp; MANAGEMENT
                     </span>
                     <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight mt-1">
@@ -131,7 +131,7 @@ export default function ProductDemonstrations() {
                       type="button"
                       onClick={runSimulation}
                       disabled={isSimulating}
-                      className="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs transition-all shadow-[0_0_15px_rgba(37,99,235,0.3)] flex items-center gap-2 disabled:opacity-50"
+                      className="px-4 py-2 rounded-xl bg-[#F5F5F5] hover:bg-white text-[#050505] font-semibold text-xs transition-all shadow-[0_0_15px_rgba(255,255,255,0.15)] flex items-center gap-2 disabled:opacity-50"
                     >
                       {isSimulating ? (
                         <>
@@ -160,7 +160,7 @@ export default function ProductDemonstrations() {
 
                 {/* Dashboard Metrics Grid */}
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-                  <div className="p-4 rounded-2xl bg-[#080B12] border border-white/[0.06]">
+                  <div className="p-4 rounded-2xl bg-[#0A0A0A] border border-white/[0.06]">
                     <div className="text-[10px] font-mono text-zinc-400 uppercase">Daily Generation</div>
                     <div className="text-2xl font-bold font-mono text-white mt-1">
                       {simulationComplete ? "482.4 kWh" : "468.1 kWh"}
@@ -170,7 +170,7 @@ export default function ProductDemonstrations() {
                     </div>
                   </div>
 
-                  <div className="p-4 rounded-2xl bg-[#080B12] border border-white/[0.06]">
+                  <div className="p-4 rounded-2xl bg-[#0A0A0A] border border-white/[0.06]">
                     <div className="text-[10px] font-mono text-zinc-400 uppercase">Inverter Health</div>
                     <div className="text-2xl font-bold font-mono text-white mt-1">
                       {simulationComplete ? "Optimal" : "Checking"}
@@ -180,7 +180,7 @@ export default function ProductDemonstrations() {
                     </div>
                   </div>
 
-                  <div className="p-4 rounded-2xl bg-[#080B12] border border-white/[0.06]">
+                  <div className="p-4 rounded-2xl bg-[#0A0A0A] border border-white/[0.06]">
                     <div className="text-[10px] font-mono text-zinc-400 uppercase">String Status</div>
                     <div className="text-2xl font-bold font-mono text-white mt-1">
                       {simulationComplete ? "8 / 8 Active" : "Scanning..."}
@@ -190,7 +190,7 @@ export default function ProductDemonstrations() {
                     </div>
                   </div>
 
-                  <div className="p-4 rounded-2xl bg-[#080B12] border border-white/[0.06]">
+                  <div className="p-4 rounded-2xl bg-[#0A0A0A] border border-white/[0.06]">
                     <div className="text-[10px] font-mono text-zinc-400 uppercase">DISCOM Stage</div>
                     <div className="text-2xl font-bold font-mono text-white mt-1">
                       Commissioned
@@ -202,10 +202,10 @@ export default function ProductDemonstrations() {
                 </div>
 
                 {/* Simulated Telemetry Log & Work Order */}
-                <div className="p-5 rounded-2xl bg-[#080B12] border border-white/[0.06] font-mono text-xs text-zinc-400 space-y-2">
+                <div className="p-5 rounded-2xl bg-[#0A0A0A] border border-white/[0.06] font-mono text-xs text-zinc-400 space-y-2">
                   <div className="text-zinc-500 pb-2 border-b border-white/[0.06] flex items-center justify-between">
                     <span>OPERATIONAL TELEMETRY LOG [SIMULATED STREAM]</span>
-                    <span className="text-blue-400">RS-485 / MODBUS SIMULATION</span>
+                    <span className="text-zinc-300">RS-485 / MODBUS SIMULATION</span>
                   </div>
                   <div>&gt; Array Irradiance: 890 W/m² (POA Pyranometer calibrated)</div>
                   <div>&gt; Module Temperature: 44.2°C | Performance Ratio (PR): 82.6%</div>
@@ -215,7 +215,7 @@ export default function ProductDemonstrations() {
                         [DIAGNOSTIC COMPLETE] Soiling threshold nominal. No automated cleaning dispatch required.
                       </span>
                     ) : isSimulating ? (
-                      <span className="text-blue-400">
+                      <span className="text-zinc-300">
                         [IN PROGRESS] Evaluating string current variance against IEC 61724-1 reference curve...
                       </span>
                     ) : (
@@ -230,7 +230,7 @@ export default function ProductDemonstrations() {
                   </span>
                   <Link
                     href="/products/solarops"
-                    className="inline-flex items-center gap-1.5 text-xs font-mono text-blue-400 hover:text-blue-300 font-semibold"
+                    className="inline-flex items-center gap-1.5 text-xs font-mono text-zinc-300 hover:text-white font-semibold"
                   >
                     <span>View Full SolarOps Product Page</span>
                     <ArrowRight className="w-3.5 h-3.5" />
@@ -245,7 +245,7 @@ export default function ProductDemonstrations() {
                 {/* Console Top Toolbar */}
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-6 border-b border-white/[0.08] gap-4">
                   <div>
-                    <span className="text-[10px] font-mono text-blue-400 uppercase tracking-wider block">
+                    <span className="text-[10px] font-mono text-zinc-400 uppercase tracking-wider block">
                       LEGAL &amp; STATUTORY DOCUMENT AUTOMATION
                     </span>
                     <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight mt-1">
@@ -261,11 +261,11 @@ export default function ProductDemonstrations() {
                       type="button"
                       onClick={runSimulation}
                       disabled={isSimulating}
-                      className="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs transition-all shadow-[0_0_15px_rgba(37,99,235,0.3)] flex items-center gap-2 disabled:opacity-50"
+                      className="px-4 py-2 rounded-xl bg-[#F5F5F5] hover:bg-white text-[#050505] font-semibold text-xs transition-all shadow-[0_0_15px_rgba(255,255,255,0.15)] flex items-center gap-2 disabled:opacity-50"
                     >
                       {isSimulating ? (
                         <>
-                          <span className="w-3 h-3 rounded-full border-2 border-white border-t-transparent animate-spin" />
+                          <span className="w-3 h-3 rounded-full border-2 border-black border-t-transparent animate-spin" />
                           <span>Compiling Deed...</span>
                         </>
                       ) : (
@@ -290,8 +290,8 @@ export default function ProductDemonstrations() {
 
                 {/* Side-by-Side Clause Preview */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="p-5 rounded-2xl bg-[#080B12] border border-white/[0.06] space-y-3">
-                    <div className="text-xs font-mono text-blue-400 uppercase flex items-center justify-between pb-2 border-b border-white/[0.06]">
+                  <div className="p-5 rounded-2xl bg-[#0A0A0A] border border-white/[0.06] space-y-3">
+                    <div className="text-xs font-mono text-zinc-300 uppercase flex items-center justify-between pb-2 border-b border-white/[0.06]">
                       <span>GUJARATI VERNACULAR CLAUSE (વેચાણ દસ્તાવેજ)</span>
                       <span className="text-[10px] text-zinc-500">SECTION 12 // STATUTORY</span>
                     </div>
@@ -304,8 +304,8 @@ export default function ProductDemonstrations() {
                     </div>
                   </div>
 
-                  <div className="p-5 rounded-2xl bg-[#080B12] border border-white/[0.06] space-y-3">
-                    <div className="text-xs font-mono text-blue-400 uppercase flex items-center justify-between pb-2 border-b border-white/[0.06]">
+                  <div className="p-5 rounded-2xl bg-[#0A0A0A] border border-white/[0.06] space-y-3">
+                    <div className="text-xs font-mono text-zinc-300 uppercase flex items-center justify-between pb-2 border-b border-white/[0.06]">
                       <span>ENGLISH PARALLEL COVENANT (FREE OF ENCUMBRANCE)</span>
                       <span className="text-[10px] text-zinc-500">PARALLEL TOKEN MIRROR</span>
                     </div>
@@ -320,10 +320,10 @@ export default function ProductDemonstrations() {
                 </div>
 
                 {/* Validation Checklist */}
-                <div className="p-5 rounded-2xl bg-[#080B12] border border-white/[0.06] font-mono text-xs text-zinc-400 space-y-2">
+                <div className="p-5 rounded-2xl bg-[#0A0A0A] border border-white/[0.06] font-mono text-xs text-zinc-400 space-y-2">
                   <div className="text-zinc-500 pb-2 border-b border-white/[0.06] flex items-center justify-between">
                     <span>STATUTORY VERIFICATION AUDIT [SIMULATED]</span>
-                    <span className="text-blue-400">REGISTRATION ACT 1908</span>
+                    <span className="text-zinc-300">REGISTRATION ACT 1908</span>
                   </div>
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 pt-1">
                     <div className="flex items-center gap-2">
@@ -347,7 +347,7 @@ export default function ProductDemonstrations() {
                   </span>
                   <Link
                     href="/products/krynex-lawos"
-                    className="inline-flex items-center gap-1.5 text-xs font-mono text-blue-400 hover:text-blue-300 font-semibold"
+                    className="inline-flex items-center gap-1.5 text-xs font-mono text-zinc-300 hover:text-white font-semibold"
                   >
                     <span>View Full Krynex LawOS Product Page</span>
                     <ArrowRight className="w-3.5 h-3.5" />

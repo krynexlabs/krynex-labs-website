@@ -63,14 +63,14 @@ export default function WhatWeSolveSection() {
   ];
 
   return (
-    <section id="what-we-solve" className="relative py-24 sm:py-32 bg-[#0D121C] border-t border-white/[0.08] overflow-hidden">
+    <section id="what-we-solve" className="relative py-24 sm:py-32 bg-[#050505] border-t border-white/[0.08] overflow-hidden">
       {/* Subtle radial spotlight */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[400px] bg-[radial-gradient(ellipse_70%_40%_at_50%_50%,rgba(37,99,235,0.06),transparent_70%)] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[400px] bg-[radial-gradient(ellipse_70%_40%_at_50%_50%,rgba(255,255,255,0.03),transparent_70%)] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <div className="max-w-3xl mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-xs font-mono text-blue-400 uppercase tracking-widest mb-4">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.04] border border-white/10 text-xs font-mono text-zinc-300 uppercase tracking-widest mb-4">
             <AlertTriangle className="w-3.5 h-3.5" />
             <span>04 // WHAT WE SOLVE</span>
           </div>
@@ -87,13 +87,13 @@ export default function WhatWeSolveSection() {
           {problems.map((prob) => (
             <div
               key={prob.number}
-              className="p-8 rounded-3xl bg-[#121A27] border border-white/[0.08] hover:border-blue-500/30 transition-all flex flex-col justify-between group relative overflow-hidden"
+              className="p-8 rounded-3xl bg-[#111111] border border-white/[0.08] hover:border-white/[0.22] transition-all flex flex-col justify-between group relative overflow-hidden"
             >
-              <div className="absolute top-0 left-6 right-6 h-[1px] bg-gradient-to-r from-transparent via-blue-500/20 to-transparent pointer-events-none" />
+              <div className="absolute top-0 left-6 right-6 h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent pointer-events-none" />
 
               <div>
                 <div className="flex items-center justify-between mb-6">
-                  <span className="text-xs font-mono font-bold text-blue-400 px-2.5 py-1 rounded bg-blue-500/10 border border-blue-500/20">
+                  <span className="text-xs font-mono font-bold text-zinc-300 px-2.5 py-1 rounded bg-white/[0.04] border border-white/10">
                     PROBLEM {prob.number}
                   </span>
                   <span className="text-[11px] font-mono text-zinc-500 px-2 py-0.5 rounded bg-white/[0.03]">
@@ -101,7 +101,7 @@ export default function WhatWeSolveSection() {
                   </span>
                 </div>
 
-                <h3 className="text-xl font-bold text-white mb-3 tracking-tight group-hover:text-blue-200 transition-colors">
+                <h3 className="text-xl font-bold text-white mb-3 tracking-tight group-hover:text-zinc-200 transition-colors">
                   {prob.title}
                 </h3>
 
@@ -111,8 +111,8 @@ export default function WhatWeSolveSection() {
               </div>
 
               <div className="pt-4 border-t border-white/[0.06] space-y-2">
-                <div className="text-[10px] font-mono text-blue-400 uppercase tracking-wider flex items-center gap-1.5">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-blue-400" />
+                <div className="text-[10px] font-mono text-zinc-300 uppercase tracking-wider flex items-center gap-1.5">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-white" />
                   <span>How Our Software Solves This:</span>
                 </div>
                 <p className="text-xs text-zinc-300 leading-relaxed">
@@ -123,9 +123,9 @@ export default function WhatWeSolveSection() {
           ))}
 
           {/* 6th Callout Card */}
-          <div className="p-8 rounded-3xl bg-gradient-to-br from-blue-900/20 via-[#121A27] to-[#121A27] border border-blue-500/30 flex flex-col justify-between">
+          <div className="p-8 rounded-3xl bg-[#111111] border border-white/10 hover:border-white/[0.22] transition-all flex flex-col justify-between">
             <div>
-              <span className="text-[10px] font-mono text-blue-400 uppercase tracking-wider block mb-4">
+              <span className="text-[10px] font-mono text-zinc-400 uppercase tracking-wider block mb-4">
                 PRACTICAL ENGINEERING
               </span>
               <h3 className="text-xl font-bold text-white mb-3">
@@ -136,11 +136,11 @@ export default function WhatWeSolveSection() {
               </p>
             </div>
 
-            <div className="mt-8 pt-4 border-t border-blue-500/20 flex items-center justify-between">
-              <span className="text-xs font-mono text-blue-300">AHMEDABAD LABS</span>
+            <div className="mt-8 pt-4 border-t border-white/10 flex items-center justify-between">
+              <span className="text-xs font-mono text-zinc-400">AHMEDABAD LABS</span>
               <Link
                 href="/products"
-                className="inline-flex items-center gap-1.5 text-xs font-mono text-blue-400 hover:text-blue-300 font-semibold"
+                className="inline-flex items-center gap-1.5 text-xs font-mono text-zinc-300 hover:text-white font-semibold"
               >
                 <span>Explore Products</span>
                 <ArrowRight className="w-3.5 h-3.5" />

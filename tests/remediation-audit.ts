@@ -456,8 +456,33 @@ assert.strictEqual(
 );
 console.log("✔ PASS: RFC 9116 security.txt verified, and 'unsafe-eval' & wildcard 'https:' eliminated from CSP.");
 
+// 27. DASTAVEG Elimination & 2-Product Architecture Verification
+console.log("\n[TEST 27] DASTAVEG Elimination & Final 2-Product Architecture Verification");
+const productKeys = Object.keys(PRODUCTS_DATA).sort();
+assert.deepStrictEqual(
+  productKeys,
+  ["krynex-lawos", "solarops"].sort(),
+  "Product catalog must contain ONLY 'solarops' and 'krynex-lawos'"
+);
+assert.strictEqual(
+  (PRODUCTS_DATA as any)["dastaveg"],
+  undefined,
+  "DASTAVEG must be completely removed from product catalog"
+);
+assert.strictEqual(
+  sitemapContent.includes("/products/dastaveg"),
+  false,
+  "Sitemap must NOT contain /products/dastaveg"
+);
+assert.ok(
+  nextConfigContent.includes("source: '/products/dastaveg'") &&
+  nextConfigContent.includes("destination: '/products/krynex-lawos'"),
+  "next.config.mjs must contain permanent 301 redirect from /products/dastaveg to /products/krynex-lawos"
+);
+console.log("✔ PASS: Dastaveg eliminated; exactly 2 products active; 301 redirect verified.");
+
 console.log("\n=======================================================");
-console.log("ALL 26 CRITICAL REGRESSION SUITES PASSED SUCCESSFULLY!");
+console.log("ALL 27 CRITICAL REGRESSION SUITES PASSED SUCCESSFULLY!");
 console.log("=======================================================\n");
 
 process.exit(0);

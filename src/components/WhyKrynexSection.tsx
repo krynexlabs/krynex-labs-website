@@ -50,14 +50,14 @@ export default function WhyKrynexSection() {
   ];
 
   return (
-    <section id="why-krynex" className="relative py-24 sm:py-32 bg-[#080B12] border-t border-white/[0.08] overflow-hidden">
+    <section id="why-krynex" className="relative py-24 sm:py-32 bg-[#050505] border-t border-white/[0.08] overflow-hidden">
       {/* Subtle radial spotlight */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[850px] h-[350px] bg-[radial-gradient(ellipse_at_center,rgba(37,99,235,0.05),transparent_70%)] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[850px] h-[350px] bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.03),transparent_70%)] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <div className="max-w-3xl mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-xs font-mono text-blue-400 uppercase tracking-widest mb-4">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.04] border border-white/10 text-xs font-mono text-zinc-300 uppercase tracking-widest mb-4">
             <CheckCircle2 className="w-3.5 h-3.5" />
             <span>07 // WHY KRYNEX LABS</span>
           </div>
@@ -76,21 +76,21 @@ export default function WhyKrynexSection() {
             return (
               <div
                 key={diff.number}
-                className="p-8 rounded-3xl bg-[#121A27] border border-white/[0.08] hover:border-blue-500/30 transition-all relative overflow-hidden flex flex-col justify-between group"
+                className="p-8 rounded-3xl bg-[#111111] border border-white/[0.08] hover:border-white/[0.22] transition-all relative overflow-hidden flex flex-col justify-between group"
               >
-                <div className="absolute top-0 left-6 right-6 h-[1px] bg-gradient-to-r from-transparent via-blue-500/20 to-transparent pointer-events-none" />
+                <div className="absolute top-0 left-6 right-6 h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent pointer-events-none" />
 
                 <div>
                   <div className="flex items-center justify-between mb-6">
-                    <span className="text-xs font-mono font-bold text-blue-400 px-2.5 py-1 rounded bg-blue-500/10 border border-blue-500/20">
+                    <span className="text-xs font-mono font-bold text-zinc-300 px-2.5 py-1 rounded bg-white/[0.04] border border-white/10">
                       {diff.number}
                     </span>
-                    <div className="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400">
+                    <div className="w-10 h-10 rounded-xl bg-white/[0.04] border border-white/10 flex items-center justify-center text-zinc-300">
                       <Icon className="w-5 h-5" />
                     </div>
                   </div>
 
-                  <h3 className="text-xl font-bold text-white mb-3 tracking-tight group-hover:text-blue-200 transition-colors">
+                  <h3 className="text-xl font-bold text-white mb-3 tracking-tight group-hover:text-white transition-colors">
                     {diff.title}
                   </h3>
 
@@ -101,16 +101,16 @@ export default function WhyKrynexSection() {
 
                 <div className="mt-8 pt-4 border-t border-white/[0.06] text-[10px] font-mono text-zinc-500 flex items-center justify-between">
                   <span>KRYNEX DIFFERENTIATOR</span>
-                  <span className="text-blue-400/80">#{diff.number}</span>
+                  <span className="text-zinc-400">#{diff.number}</span>
                 </div>
               </div>
             );
           })}
 
           {/* 6th Telemetry Box */}
-          <div className="p-8 rounded-3xl bg-gradient-to-br from-blue-900/20 via-[#121A27] to-[#121A27] border border-blue-500/30 flex flex-col justify-between">
+          <div className="p-8 rounded-3xl bg-[#111111] border border-white/[0.08] flex flex-col justify-between">
             <div>
-              <span className="text-[10px] font-mono text-blue-400 uppercase tracking-wider block mb-4">
+              <span className="text-[10px] font-mono text-zinc-400 uppercase tracking-wider block mb-4">
                 HEADQUARTERS &amp; OPERATIONS
               </span>
               <h3 className="text-xl font-bold text-white mb-3">
@@ -121,7 +121,7 @@ export default function WhyKrynexSection() {
               </p>
             </div>
 
-            <div className="mt-8 pt-4 border-t border-blue-500/20 text-xs font-mono text-zinc-400 flex items-center gap-2">
+            <div className="mt-8 pt-4 border-t border-white/[0.08] text-xs font-mono text-zinc-400 flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-emerald-400" />
               <span>ACTIVE PRODUCT OPERATIONS</span>
             </div>

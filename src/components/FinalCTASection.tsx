@@ -10,12 +10,12 @@ interface FinalCTASectionProps {
 
 export default function FinalCTASection({ onRequestDemo }: FinalCTASectionProps) {
   return (
-    <section className="relative py-24 sm:py-32 bg-[#080B12] border-t border-white/[0.08] overflow-hidden">
+    <section className="relative py-24 sm:py-32 bg-[#050505] border-t border-white/[0.08] overflow-hidden">
       {/* Background Radial Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[850px] h-[400px] bg-[radial-gradient(ellipse_70%_50%_at_50%_50%,rgba(37,99,235,0.08),transparent_70%)] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[850px] h-[400px] bg-[radial-gradient(ellipse_70%_50%_at_50%_50%,rgba(255,255,255,0.03),transparent_70%)] pointer-events-none" />
 
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-xs font-mono text-blue-400 uppercase tracking-widest mb-6">
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.04] border border-white/10 text-xs font-mono text-zinc-300 uppercase tracking-widest mb-6">
           <Sparkles className="w-3.5 h-3.5" />
           <span>START THE CONVERSATION {"//"} KRYNEX LABS</span>
         </div>
@@ -31,7 +31,7 @@ export default function FinalCTASection({ onRequestDemo }: FinalCTASectionProps)
         <div className="flex flex-wrap items-center justify-center gap-4">
           <Link
             href="/products"
-            className="px-8 py-4 rounded-full bg-blue-600 hover:bg-blue-500 text-white font-semibold text-sm transition-all shadow-[0_0_25px_rgba(37,99,235,0.35)] flex items-center gap-2 group"
+            className="px-8 py-4 rounded-full bg-[#F5F5F5] hover:bg-white text-[#050505] font-semibold text-sm transition-all shadow-[0_0_20px_rgba(255,255,255,0.15)] flex items-center gap-2 group"
           >
             <span>Explore Products</span>
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />

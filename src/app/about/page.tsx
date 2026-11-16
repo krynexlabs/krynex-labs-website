@@ -118,15 +118,14 @@ export default function AboutPage() {
   const products = [
     PRODUCTS_DATA["solarops"],
     PRODUCTS_DATA["krynex-lawos"],
-    PRODUCTS_DATA["dastaveg"],
   ].filter(Boolean);
 
   const principleIcons = [
-    <Compass key="1" className="w-5 h-5 text-blue-400" />,
-    <Lightbulb key="2" className="w-5 h-5 text-blue-400" />,
-    <Lock key="3" className="w-5 h-5 text-blue-400" />,
-    <Target key="4" className="w-5 h-5 text-blue-400" />,
-    <Clock key="5" className="w-5 h-5 text-blue-400" />,
+    <Compass key="1" className="w-5 h-5 text-zinc-300" />,
+    <Lightbulb key="2" className="w-5 h-5 text-zinc-300" />,
+    <Lock key="3" className="w-5 h-5 text-zinc-300" />,
+    <Target key="4" className="w-5 h-5 text-zinc-300" />,
+    <Clock key="5" className="w-5 h-5 text-zinc-300" />,
   ];
 
   const milestones = [
@@ -157,7 +156,7 @@ export default function AboutPage() {
   ];
 
   return (
-    <main className="min-h-screen bg-[#080B12] text-[#F8FAFC]">
+    <main className="min-h-screen bg-[#050505] text-[#FFFFFF]">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(aboutJsonLd) }}
@@ -166,7 +165,7 @@ export default function AboutPage() {
 
       {/* 1. ABOUT KRYNEX LABS (Hero Section) */}
       <section className="relative pt-36 pb-20 border-b border-white/[0.08] overflow-hidden">
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[850px] h-[350px] bg-[radial-gradient(ellipse_80%_50%_at_50%_20%,rgba(37,99,235,0.08),transparent_70%)] pointer-events-none" />
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[850px] h-[350px] bg-[radial-gradient(ellipse_80%_50%_at_50%_20%,rgba(255,255,255,0.03),transparent_70%)] pointer-events-none" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-3xl">
@@ -181,11 +180,11 @@ export default function AboutPage() {
                 <li>
                   <ChevronRight className="w-3 h-3 text-zinc-600" />
                 </li>
-                <li className="text-blue-400">About</li>
+                <li className="text-white">About</li>
               </ol>
             </nav>
 
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-[11px] font-mono tracking-widest text-blue-400 uppercase mb-5">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/[0.04] border border-white/10 text-[11px] font-mono tracking-widest text-zinc-300 uppercase mb-5">
               <span>01 // ABOUT KRYNEX LABS</span>
             </div>
 
@@ -200,15 +199,15 @@ export default function AboutPage() {
 
             <div className="flex flex-wrap items-center gap-4 text-xs font-mono text-zinc-400">
               <div className="flex items-center gap-1.5">
-                <MapPin className="w-4 h-4 text-blue-400" />
+                <MapPin className="w-4 h-4 text-zinc-400" />
                 <span>Ahmedabad, India</span>
               </div>
               <div className="flex items-center gap-1.5">
-                <CheckCircle2 className="w-4 h-4 text-blue-400" />
+                <CheckCircle2 className="w-4 h-4 text-zinc-400" />
                 <span>Software Product &amp; SaaS Company</span>
               </div>
               <div className="flex items-center gap-1.5">
-                <CheckCircle2 className="w-4 h-4 text-blue-400" />
+                <CheckCircle2 className="w-4 h-4 text-zinc-400" />
                 <span>Predictable Subscription Access</span>
               </div>
             </div>
@@ -217,14 +216,14 @@ export default function AboutPage() {
       </section>
 
       {/* 2 & 3. COMPANY MISSION & VISION */}
-      <section className="py-24 border-b border-white/[0.08] bg-[#0D121C]">
+      <section className="py-24 border-b border-white/[0.08] bg-[#050505]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {/* Mission Card */}
-            <div className="p-8 sm:p-10 rounded-3xl bg-[#121A27] border border-white/[0.08] hover:border-blue-500/30 transition-all flex flex-col justify-between relative overflow-hidden">
-              <div className="absolute top-0 left-6 right-6 h-[1px] bg-gradient-to-r from-transparent via-blue-500/30 to-transparent pointer-events-none" />
+            <div className="p-8 sm:p-10 rounded-3xl bg-[#111111] border border-white/[0.08] hover:border-white/[0.22] transition-all flex flex-col justify-between relative overflow-hidden">
+              <div className="absolute top-0 left-6 right-6 h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent pointer-events-none" />
               <div>
-                <div className="text-xs font-mono text-blue-400 uppercase tracking-wider mb-4">
+                <div className="text-xs font-mono text-zinc-400 uppercase tracking-wider mb-4">
                   02 // OUR MISSION
                 </div>
                 <h2 className="text-2xl sm:text-3xl font-bold text-white mb-4 tracking-tight">
@@ -240,10 +239,10 @@ export default function AboutPage() {
             </div>
 
             {/* Vision Card */}
-            <div className="p-8 sm:p-10 rounded-3xl bg-[#121A27] border border-white/[0.08] hover:border-blue-500/30 transition-all flex flex-col justify-between relative overflow-hidden">
-              <div className="absolute top-0 left-6 right-6 h-[1px] bg-gradient-to-r from-transparent via-blue-500/30 to-transparent pointer-events-none" />
+            <div className="p-8 sm:p-10 rounded-3xl bg-[#111111] border border-white/[0.08] hover:border-white/[0.22] transition-all flex flex-col justify-between relative overflow-hidden">
+              <div className="absolute top-0 left-6 right-6 h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent pointer-events-none" />
               <div>
-                <div className="text-xs font-mono text-blue-400 uppercase tracking-wider mb-4">
+                <div className="text-xs font-mono text-zinc-400 uppercase tracking-wider mb-4">
                   03 // OUR VISION
                 </div>
                 <h2 className="text-2xl sm:text-3xl font-bold text-white mb-4 tracking-tight">
@@ -262,11 +261,11 @@ export default function AboutPage() {
       </section>
 
       {/* 4 & 5. FOUNDER D. PATEL & FOUNDER'S MESSAGE */}
-      <section id="founder" className="py-24 border-b border-white/[0.08] bg-[#0A0E17] relative overflow-hidden">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[400px] bg-[radial-gradient(ellipse_70%_50%_at_50%_0%,rgba(37,99,235,0.06),transparent_70%)] pointer-events-none" />
+      <section id="founder" className="py-24 border-b border-white/[0.08] bg-[#050505] relative overflow-hidden">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[400px] bg-[radial-gradient(ellipse_70%_50%_at_50%_0%,rgba(255,255,255,0.03),transparent_70%)] pointer-events-none" />
 
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-xs font-mono text-blue-400 uppercase tracking-widest mb-6">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.04] border border-white/10 text-xs font-mono text-zinc-300 uppercase tracking-widest mb-6">
             <Building2 className="w-3.5 h-3.5" />
             <span>04 &amp; 05 // LEADERSHIP &amp; FOUNDER&apos;S MESSAGE</span>
           </div>
@@ -286,7 +285,7 @@ export default function AboutPage() {
                 <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-tight">
                   D. PATEL
                 </h2>
-                <div className="text-sm font-mono text-blue-400 mt-1">
+                <div className="text-sm font-mono text-zinc-400 mt-1">
                   Founder, Krynex Labs
                 </div>
               </div>
@@ -303,10 +302,10 @@ export default function AboutPage() {
           </div>
 
           {/* Executive Message Card */}
-          <div className="p-8 sm:p-12 rounded-3xl bg-[#121A27] border border-white/[0.08] hover:border-blue-500/30 transition-all shadow-2xl relative overflow-hidden">
-            <div className="absolute top-0 left-8 right-8 h-[1px] bg-gradient-to-r from-transparent via-blue-500/30 to-transparent pointer-events-none" />
+          <div className="p-8 sm:p-12 rounded-3xl bg-[#111111] border border-white/[0.08] hover:border-white/[0.22] transition-all shadow-2xl relative overflow-hidden">
+            <div className="absolute top-0 left-8 right-8 h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent pointer-events-none" />
 
-            <div className="w-12 h-12 rounded-2xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400 mb-8">
+            <div className="w-12 h-12 rounded-2xl bg-white/[0.04] border border-white/10 flex items-center justify-center text-zinc-300 mb-8">
               <Quote className="w-6 h-6" />
             </div>
 
@@ -314,7 +313,7 @@ export default function AboutPage() {
               A Message from the Founder
             </h3>
 
-            <div className="space-y-6 text-sm sm:text-base text-zinc-300 leading-relaxed font-sans border-l-2 border-blue-500/40 pl-6 sm:pl-8">
+            <div className="space-y-6 text-sm sm:text-base text-zinc-300 leading-relaxed font-sans border-l-2 border-white/30 pl-6 sm:pl-8">
               <p className="text-base sm:text-lg text-white font-medium">
                 &ldquo;Technology should solve real problems, simplify complex processes and create meaningful value.
               </p>
@@ -352,10 +351,10 @@ export default function AboutPage() {
       </section>
 
       {/* 6. PRODUCTS BEING DEVELOPED */}
-      <section className="py-24 border-b border-white/[0.08] bg-[#080B12]">
+      <section className="py-24 border-b border-white/[0.08] bg-[#050505]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mb-16">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-xs font-mono text-blue-400 uppercase tracking-widest mb-4">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.04] border border-white/10 text-xs font-mono text-zinc-300 uppercase tracking-widest mb-4">
               <span>06 // PRODUCTS BEING DEVELOPED</span>
             </div>
             <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-white mb-4">
@@ -366,15 +365,15 @@ export default function AboutPage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {products.map((prod) => (
               <div
                 key={prod.slug}
-                className="p-8 rounded-3xl bg-[#121A27] border border-white/[0.08] hover:border-blue-500/30 transition-all flex flex-col justify-between"
+                className="p-8 rounded-3xl bg-[#111111] border border-white/[0.08] hover:border-white/[0.22] transition-all flex flex-col justify-between"
               >
                 <div>
                   <div className="flex items-center justify-between mb-4 text-xs font-mono">
-                    <span className="px-2.5 py-0.5 rounded-full bg-blue-500/10 text-blue-400 border border-blue-500/20">
+                    <span className="px-2.5 py-0.5 rounded-full bg-white/[0.04] text-zinc-300 border border-white/10">
                       {prod.status}
                     </span>
                     <span className="text-zinc-500">{prod.category}</span>
@@ -394,7 +393,7 @@ export default function AboutPage() {
                     <div className="text-[10px] font-mono text-zinc-500 uppercase">Target Users:</div>
                     {prod.targetCustomers.slice(0, 3).map((cust, idx) => (
                       <div key={idx} className="text-xs text-zinc-400 flex items-center gap-2">
-                        <span className="w-1.5 h-1.5 rounded-full bg-blue-400" />
+                        <span className="w-1.5 h-1.5 rounded-full bg-zinc-400" />
                         <span>{cust}</span>
                       </div>
                     ))}
@@ -404,7 +403,7 @@ export default function AboutPage() {
                 <div className="pt-4 border-t border-white/[0.06]">
                   <Link
                     href={`/products/${prod.slug}`}
-                    className="inline-flex items-center justify-between w-full px-4 py-2.5 rounded-xl bg-blue-600 text-white font-semibold text-xs hover:bg-blue-500 transition-all shadow-md"
+                    className="inline-flex items-center justify-between w-full px-4 py-2.5 rounded-xl bg-[#F5F5F5] text-[#050505] font-semibold text-xs hover:bg-white transition-all shadow-md"
                   >
                     <span>View Product Overview</span>
                     <ArrowRight className="w-3.5 h-3.5" />
@@ -417,10 +416,10 @@ export default function AboutPage() {
       </section>
 
       {/* 7. PRODUCT PHILOSOPHY (The 5 Guiding Principles) */}
-      <section className="py-24 border-b border-white/[0.08] bg-[#0D121C]">
+      <section className="py-24 border-b border-white/[0.08] bg-[#050505]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mb-16">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-xs font-mono text-blue-400 uppercase tracking-widest mb-4">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.04] border border-white/10 text-xs font-mono text-zinc-300 uppercase tracking-widest mb-4">
               <span>07 // PRODUCT PHILOSOPHY</span>
             </div>
             <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-white mb-4">
@@ -435,14 +434,14 @@ export default function AboutPage() {
             {guidingPrinciples.map((item, idx) => (
               <div
                 key={item.number}
-                className="p-8 rounded-3xl bg-[#121A27] border border-white/[0.08] hover:border-blue-500/30 transition-all flex flex-col justify-between"
+                className="p-8 rounded-3xl bg-[#111111] border border-white/[0.08] hover:border-white/[0.22] transition-all flex flex-col justify-between"
               >
                 <div>
                   <div className="flex items-center justify-between mb-6">
-                    <span className="text-xs font-mono font-bold text-blue-400 px-2.5 py-1 rounded bg-blue-500/10 border border-blue-500/20">
+                    <span className="text-xs font-mono font-bold text-zinc-300 px-2.5 py-1 rounded bg-white/[0.04] border border-white/10">
                       {item.number}
                     </span>
-                    <div className="p-2 rounded-xl bg-white/[0.03] text-blue-400">
+                    <div className="p-2 rounded-xl bg-white/[0.03] text-zinc-300">
                       {principleIcons[idx]}
                     </div>
                   </div>
@@ -466,10 +465,10 @@ export default function AboutPage() {
       </section>
 
       {/* 8. COMPANY JOURNEY & VERIFIED MILESTONES */}
-      <section className="py-24 border-b border-white/[0.08] bg-[#080B12]">
+      <section className="py-24 border-b border-white/[0.08] bg-[#050505]">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mb-16">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-xs font-mono text-blue-400 uppercase tracking-widest mb-4">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.04] border border-white/10 text-xs font-mono text-zinc-300 uppercase tracking-widest mb-4">
               <Calendar className="w-3.5 h-3.5" />
               <span>08 // COMPANY JOURNEY</span>
             </div>
@@ -485,10 +484,10 @@ export default function AboutPage() {
             {milestones.map((ms, idx) => (
               <div
                 key={idx}
-                className="p-8 rounded-3xl bg-[#121A27] border border-white/[0.08] flex flex-col sm:flex-row sm:items-center justify-between gap-6"
+                className="p-8 rounded-3xl bg-[#111111] border border-white/[0.08] flex flex-col sm:flex-row sm:items-center justify-between gap-6"
               >
                 <div className="sm:max-w-xs shrink-0">
-                  <span className="text-[11px] font-mono text-blue-400 uppercase tracking-wider block mb-1">
+                  <span className="text-[11px] font-mono text-zinc-400 uppercase tracking-wider block mb-1">
                     PHASE 0{idx + 1}
                   </span>
                   <div className="text-lg font-bold text-white font-mono">
@@ -511,9 +510,9 @@ export default function AboutPage() {
       </section>
 
       {/* 9. CONTACT INFORMATION */}
-      <section className="py-24 bg-[#0A0E17]">
+      <section className="py-24 bg-[#050505]">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-xs font-mono text-blue-400 uppercase tracking-widest mb-6">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.04] border border-white/10 text-xs font-mono text-zinc-300 uppercase tracking-widest mb-6">
             <Mail className="w-3.5 h-3.5" />
             <span>09 // CONNECT WITH KRYNEX LABS</span>
           </div>
@@ -525,14 +524,14 @@ export default function AboutPage() {
             Headquartered in Ahmedabad, India. We welcome inquiries from potential business customers, pilot partners, and enterprise collaborators.
           </p>
 
-          <div className="inline-flex flex-col sm:flex-row items-center gap-4 p-4 rounded-2xl bg-[#121A27] border border-white/[0.08]">
+          <div className="inline-flex flex-col sm:flex-row items-center gap-4 p-4 rounded-2xl bg-[#111111] border border-white/[0.08]">
             <div className="flex items-center gap-2 text-xs font-mono text-zinc-300 px-4">
-              <MapPin className="w-4 h-4 text-blue-400" />
+              <MapPin className="w-4 h-4 text-zinc-400" />
               <span>Ahmedabad, Gujarat, India (380015)</span>
             </div>
             <div className="hidden sm:block text-zinc-600">|</div>
-            <div className="flex items-center gap-2 text-xs font-mono text-blue-400 px-4">
-              <Mail className="w-4 h-4 text-blue-400" />
+            <div className="flex items-center gap-2 text-xs font-mono text-zinc-300 px-4">
+              <Mail className="w-4 h-4 text-zinc-400" />
               <a href="mailto:support@krynexlabs.in" className="hover:underline">
                 support@krynexlabs.in
               </a>
@@ -542,7 +541,7 @@ export default function AboutPage() {
           <div className="mt-10">
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs transition-all shadow-[0_0_20px_rgba(37,99,235,0.35)]"
+              className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-[#F5F5F5] hover:bg-white text-[#050505] font-semibold text-xs transition-all shadow-[0_0_20px_rgba(255,255,255,0.15)]"
             >
               <span>Visit Online Contact Portal</span>
               <ArrowRight className="w-3.5 h-3.5" />

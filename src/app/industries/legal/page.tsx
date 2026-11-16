@@ -48,7 +48,7 @@ export default function LegalIndustryPage() {
   ];
 
   return (
-    <main className="min-h-screen bg-[#080B12] text-[#F8FAFC]">
+    <main className="min-h-screen bg-[#050505] text-[#FFFFFF]">
       <Navbar />
 
       <section className="pt-36 pb-20 border-b border-white/[0.08]">
@@ -64,11 +64,11 @@ export default function LegalIndustryPage() {
                 <Link href="/industries" className="hover:text-white transition-colors">Industries</Link>
               </li>
               <li><ChevronRight className="w-3 h-3 text-zinc-600" /></li>
-              <li className="text-blue-400">Legal &amp; Document Automation</li>
+              <li className="text-white">Legal &amp; Document Automation</li>
             </ol>
           </nav>
 
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-xs font-mono text-blue-400 uppercase tracking-widest mb-6">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.04] border border-white/10 text-xs font-mono text-zinc-300 uppercase tracking-widest mb-6">
             <Scale className="w-3.5 h-3.5" />
             <span>INDUSTRY DOSSIER // LEGALTECH &amp; CONVEYANCING</span>
           </div>
@@ -84,7 +84,7 @@ export default function LegalIndustryPage() {
           <div className="flex flex-wrap items-center gap-4">
             <Link
               href="/products/lawos"
-              className="px-6 py-3 rounded-full bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs transition-all shadow-[0_0_20px_rgba(37,99,235,0.35)] flex items-center gap-2"
+              className="px-6 py-3 rounded-full bg-[#F5F5F5] hover:bg-white text-[#050505] font-semibold text-xs transition-all shadow-[0_0_20px_rgba(255,255,255,0.15)] flex items-center gap-2"
             >
               <span>Explore Krynex LawOS</span>
               <ArrowRight className="w-3.5 h-3.5" />
@@ -100,7 +100,7 @@ export default function LegalIndustryPage() {
       </section>
 
       {/* Operational Friction Section */}
-      <section className="py-20 border-b border-white/[0.08] bg-[#0D121C]">
+      <section className="py-20 border-b border-white/[0.08] bg-[#050505]">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-2xl sm:text-3xl font-bold text-white mb-4">
             Clerical Friction in Indian Conveyancing &amp; Title Verification
@@ -111,8 +111,8 @@ export default function LegalIndustryPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {bottlenecks.map((item, idx) => (
-              <div key={idx} className="p-6 rounded-2xl bg-[#121A27] border border-white/[0.08] relative">
-                <div className="text-xs font-mono text-blue-400 uppercase tracking-wider mb-2">
+              <div key={idx} className="p-6 rounded-2xl bg-[#111111] border border-white/[0.08] relative">
+                <div className="text-xs font-mono text-zinc-400 uppercase tracking-wider mb-2">
                   0{idx + 1} {"//"} BOTTLENECK
                 </div>
                 <h3 className="text-lg font-bold text-white mb-2">{item.title}</h3>
@@ -124,10 +124,10 @@ export default function LegalIndustryPage() {
       </section>
 
       {/* Dedicated Software Solution */}
-      <section className="py-20 bg-[#080B12]">
+      <section className="py-20 bg-[#050505]">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="p-8 sm:p-10 rounded-3xl bg-[#121A27] border border-blue-500/30 relative overflow-hidden">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 text-xs font-mono text-blue-400 mb-4">
+          <div className="p-8 sm:p-10 rounded-3xl bg-[#111111] border border-white/[0.08] relative overflow-hidden">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.04] text-xs font-mono text-zinc-300 border border-white/10 mb-4">
               <span>KRYNEX LAWOS PLATFORM</span>
             </div>
             <h2 className="text-2xl sm:text-3xl font-bold text-white mb-4">
@@ -137,9 +137,9 @@ export default function LegalIndustryPage() {
               Krynex LawOS structures property conveyancing into a deterministic abstract syntax tree. It compiles parallel Gujarati and English covenants, validates stamp duty requirements, and cross-references multi-decade revenue entries with dedicated KMS envelope encryption.
             </p>
             <div className="flex flex-wrap items-center gap-6 text-xs font-mono text-zinc-300">
-              <span className="flex items-center gap-1.5"><CheckCircle2 className="w-4 h-4 text-blue-400" /> Bilingual Gujarati &amp; English AST</span>
-              <span className="flex items-center gap-1.5"><CheckCircle2 className="w-4 h-4 text-blue-400" /> Automated Revenue Record Ingestion</span>
-              <span className="flex items-center gap-1.5"><CheckCircle2 className="w-4 h-4 text-blue-400" /> Zero Public AI Model Training</span>
+              <span className="flex items-center gap-1.5"><CheckCircle2 className="w-4 h-4 text-zinc-400" /> Bilingual Gujarati &amp; English AST</span>
+              <span className="flex items-center gap-1.5"><CheckCircle2 className="w-4 h-4 text-zinc-400" /> Automated Revenue Record Ingestion</span>
+              <span className="flex items-center gap-1.5"><CheckCircle2 className="w-4 h-4 text-zinc-400" /> Zero Public AI Model Training</span>
             </div>
           </div>
         </div>

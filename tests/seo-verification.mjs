@@ -14,7 +14,6 @@ const routes = [
   { file: "products.html", path: "/products", canonical: "https://www.krynexlabs.in/products" },
   { file: "products/krynex-lawos.html", path: "/products/krynex-lawos", canonical: "https://www.krynexlabs.in/products/krynex-lawos" },
   { file: "products/solarops.html", path: "/products/solarops", canonical: "https://www.krynexlabs.in/products/solarops" },
-  { file: "products/dastaveg.html", path: "/products/dastaveg", canonical: "https://www.krynexlabs.in/products/dastaveg" },
   { file: "technology.html", path: "/technology", canonical: "https://www.krynexlabs.in/technology" },
   { file: "resources.html", path: "/resources", canonical: "https://www.krynexlabs.in/resources" },
   { file: "research.html", path: "/research", canonical: "https://www.krynexlabs.in/research" },
@@ -90,7 +89,7 @@ console.log("\n[CHECK] Sitemap.xml generation & content");
 import * as sitemapMod from "../src/app/sitemap.ts";
 const sitemapFn = sitemapMod.default || sitemapMod;
 const sitemapEntries = sitemapFn();
-assert.strictEqual(sitemapEntries.length, 24, "Sitemap must have 24 canonical indexable routes");
+assert.strictEqual(sitemapEntries.length, 23, "Sitemap must have 23 canonical indexable routes");
 for (const entry of sitemapEntries) {
   assert.ok(entry.url.startsWith("https://www.krynexlabs.in"), "All sitemap entries must start with https://www.krynexlabs.in");
   assert.ok(!entry.url.includes("/thank-you"), "Thank-you page must NOT be in sitemap");

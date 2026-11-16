@@ -119,7 +119,7 @@ export default function Navbar({ onRequestDemo }: NavbarProps) {
             <div className="hidden sm:flex items-center gap-3">
               <Link
                 href="/products"
-                className="bg-blue-600 text-white font-semibold hover:bg-blue-500 px-5 py-2 rounded-full transition-all text-xs tracking-wide shadow-[0_0_20px_rgba(37,99,235,0.35)] flex items-center justify-center focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400"
+                className="bg-[#F5F5F5] text-[#050505] font-semibold hover:bg-white px-5 py-2 rounded-full transition-all text-xs tracking-wide shadow-[0_0_20px_rgba(255,255,255,0.15)] flex items-center justify-center focus:outline-none focus-visible:ring-2 focus-visible:ring-white/40"
               >
                 <span>Explore Products</span>
               </Link>

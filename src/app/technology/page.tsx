@@ -143,7 +143,7 @@ export default function TechnologyPage() {
   ];
 
   return (
-    <main className="min-h-screen bg-[#080B12] text-[#F8FAFC]">
+    <main className="min-h-screen bg-[#050505] text-[#FFFFFF]">
       <Navbar />
 
       <section className="pt-36 pb-20 border-b border-white/[0.08]">
@@ -155,11 +155,11 @@ export default function TechnologyPage() {
                 <Link href="/" className="hover:text-white transition-colors">Home</Link>
               </li>
               <li><ChevronRight className="w-3 h-3 text-zinc-600" /></li>
-              <li className="text-blue-400">Technology</li>
+              <li className="text-white">Technology</li>
             </ol>
           </nav>
 
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-xs font-mono text-blue-400 uppercase tracking-widest mb-6">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.04] border border-white/10 text-xs font-mono text-zinc-300 uppercase tracking-widest mb-6">
             <Cpu className="w-3.5 h-3.5" />
             <span>ENGINEERING FOUNDATION {"//"} 7 CORE DISCIPLINES</span>
           </div>
@@ -175,7 +175,7 @@ export default function TechnologyPage() {
           <div className="flex flex-wrap items-center gap-4">
             <a
               href="#categories"
-              className="px-6 py-3 rounded-full bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs transition-all shadow-[0_0_20px_rgba(37,99,235,0.35)] flex items-center gap-2"
+              className="px-6 py-3 rounded-full bg-[#F5F5F5] hover:bg-white text-[#050505] font-semibold text-xs transition-all shadow-[0_0_20px_rgba(255,255,255,0.15)] flex items-center gap-2"
             >
               <span>Explore 7 Disciplines</span>
               <ArrowRight className="w-3.5 h-3.5" />
@@ -191,18 +191,18 @@ export default function TechnologyPage() {
       </section>
 
       {/* 7 Disciplines Grid */}
-      <section id="categories" className="py-24 bg-[#0D121C]">
+      <section id="categories" className="py-24 bg-[#050505]">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
           {capabilities.map((cap, idx) => {
             const Icon = cap.icon;
             return (
               <div
                 key={cap.id}
-                className="p-8 sm:p-10 rounded-3xl bg-[#121A27] border border-white/[0.08] hover:border-blue-500/30 transition-all relative overflow-hidden"
+                className="p-8 sm:p-10 rounded-3xl bg-[#111111] border border-white/[0.08] hover:border-white/[0.22] transition-all relative overflow-hidden"
               >
                 <div className="flex flex-col md:flex-row md:items-start justify-between gap-6 mb-6">
                   <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 rounded-2xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400 shrink-0">
+                    <div className="w-12 h-12 rounded-2xl bg-white/[0.04] border border-white/10 flex items-center justify-center text-zinc-300 shrink-0">
                       <Icon className="w-6 h-6" />
                     </div>
                     <div>
@@ -217,7 +217,7 @@ export default function TechnologyPage() {
 
                   <Link
                     href={cap.link}
-                    className="inline-flex items-center gap-1.5 text-xs font-mono text-blue-400 hover:text-blue-300 transition-colors shrink-0"
+                    className="inline-flex items-center gap-1.5 text-xs font-mono text-zinc-300 hover:text-white transition-colors shrink-0"
                   >
                     <span>View Architectural Deep-Dive</span>
                     <ArrowRight className="w-3.5 h-3.5" />
@@ -235,7 +235,7 @@ export default function TechnologyPage() {
                 <div className="pt-6 border-t border-white/[0.06] grid grid-cols-1 sm:grid-cols-3 gap-3">
                   {cap.specs.map((spec, sIdx) => (
                     <div key={sIdx} className="flex items-start gap-2 text-xs text-zinc-300">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-blue-400 shrink-0 mt-0.5" />
+                      <CheckCircle2 className="w-3.5 h-3.5 text-zinc-400 shrink-0 mt-0.5" />
                       <span>{spec}</span>
                     </div>
                   ))}

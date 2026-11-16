@@ -360,14 +360,14 @@ export default function ProductDetailView({ product }: ProductDetailViewProps) {
               <div className="space-y-6">
                 <div className="flex flex-wrap items-center justify-between gap-4 pb-4 border-b border-white/[0.06]">
                   <div className="flex items-center gap-2">
-                    <span className="w-2.5 h-2.5 rounded-full bg-blue-400 animate-pulse" />
+                    <span className="w-2.5 h-2.5 rounded-full bg-white animate-pulse" />
                     <span className="text-xs font-mono text-zinc-300 font-semibold uppercase">
                       SOLAR INVERTER TELEMETRY &amp; DISPATCH ENGINE
                     </span>
                   </div>
                   <div className="flex items-center gap-2">
                     <span className="text-[10px] font-mono text-zinc-400">RUNTIME:</span>
-                    <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-blue-500/10 border border-blue-500/20 text-blue-400">
+                    <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.04] border border-white/10 text-zinc-300">
                       MODBUS RTU / MQTT
                     </span>
                   </div>
@@ -376,40 +376,40 @@ export default function ProductDetailView({ product }: ProductDetailViewProps) {
                 {/* 4 Interactive Node Cards */}
                 <div className="grid grid-cols-1 sm:grid-cols-4 gap-3 relative">
                   {/* Node 1 */}
-                  <div className={`p-4 rounded-2xl border transition-all ${flowNodeStep >= 1 ? "bg-blue-600/10 border-blue-500/40 shadow-[0_0_15px_rgba(37,99,235,0.15)]" : "bg-black border-white/10"}`}>
+                  <div className={`p-4 rounded-2xl border transition-all ${flowNodeStep >= 1 ? "bg-white/[0.05] border-white/30 shadow-[0_0_15px_rgba(255,255,255,0.08)]" : "bg-black border-white/10"}`}>
                     <div className="flex items-center justify-between mb-2">
                       <span className="text-[10px] font-mono text-zinc-400">NODE 01</span>
-                      <span className={`w-2 h-2 rounded-full ${flowNodeStep >= 1 ? "bg-blue-400" : "bg-zinc-700"}`} />
+                      <span className={`w-2 h-2 rounded-full ${flowNodeStep >= 1 ? "bg-white" : "bg-zinc-700"}`} />
                     </div>
                     <div className="text-xs font-bold text-white mb-1">Inverter Gateway</div>
                     <div className="text-[11px] font-mono text-zinc-400">RS-485 / MQTT Ingestion</div>
                   </div>
 
                   {/* Node 2 */}
-                  <div className={`p-4 rounded-2xl border transition-all ${flowNodeStep >= 2 ? "bg-blue-600/10 border-blue-500/40 shadow-[0_0_15px_rgba(37,99,235,0.15)]" : "bg-black border-white/10"}`}>
+                  <div className={`p-4 rounded-2xl border transition-all ${flowNodeStep >= 2 ? "bg-white/[0.05] border-white/30 shadow-[0_0_15px_rgba(255,255,255,0.08)]" : "bg-black border-white/10"}`}>
                     <div className="flex items-center justify-between mb-2">
                       <span className="text-[10px] font-mono text-zinc-400">NODE 02</span>
-                      <span className={`w-2 h-2 rounded-full ${flowNodeStep >= 2 ? "bg-blue-400" : "bg-zinc-700"}`} />
+                      <span className={`w-2 h-2 rounded-full ${flowNodeStep >= 2 ? "bg-white" : "bg-zinc-700"}`} />
                     </div>
                     <div className="text-xs font-bold text-white mb-1">String Yield Analysis</div>
                     <div className="text-[11px] font-mono text-zinc-400">PR Ratio &amp; MPPT Curve</div>
                   </div>
 
                   {/* Node 3 */}
-                  <div className={`p-4 rounded-2xl border transition-all ${flowNodeStep >= 3 ? "bg-blue-600/10 border-blue-500/40 shadow-[0_0_15px_rgba(37,99,235,0.15)]" : "bg-black border-white/10"}`}>
+                  <div className={`p-4 rounded-2xl border transition-all ${flowNodeStep >= 3 ? "bg-white/[0.05] border-white/30 shadow-[0_0_15px_rgba(255,255,255,0.08)]" : "bg-black border-white/10"}`}>
                     <div className="flex items-center justify-between mb-2">
                       <span className="text-[10px] font-mono text-zinc-400">NODE 03</span>
-                      <span className={`w-2 h-2 rounded-full ${flowNodeStep >= 3 ? "bg-blue-400" : "bg-zinc-700"}`} />
+                      <span className={`w-2 h-2 rounded-full ${flowNodeStep >= 3 ? "bg-white" : "bg-zinc-700"}`} />
                     </div>
                     <div className="text-xs font-bold text-white mb-1">Soiling &amp; Shading Alert</div>
                     <div className="text-[11px] font-mono text-zinc-400">Irradiance Differential</div>
                   </div>
 
                   {/* Node 4 */}
-                  <div className={`p-4 rounded-2xl border transition-all ${flowNodeStep >= 4 ? "bg-blue-600/10 border-blue-500/40 shadow-[0_0_15px_rgba(37,99,235,0.15)]" : "bg-black border-white/10"}`}>
+                  <div className={`p-4 rounded-2xl border transition-all ${flowNodeStep >= 4 ? "bg-white/[0.05] border-white/30 shadow-[0_0_15px_rgba(255,255,255,0.08)]" : "bg-black border-white/10"}`}>
                     <div className="flex items-center justify-between mb-2">
                       <span className="text-[10px] font-mono text-zinc-400">NODE 04</span>
-                      <span className={`w-2 h-2 rounded-full ${flowNodeStep >= 4 ? "bg-blue-400" : "bg-zinc-700"}`} />
+                      <span className={`w-2 h-2 rounded-full ${flowNodeStep >= 4 ? "bg-white" : "bg-zinc-700"}`} />
                     </div>
                     <div className="text-xs font-bold text-white mb-1">Automated Work Order</div>
                     <div className="text-[11px] font-mono text-zinc-400">O&amp;M Crew Dispatch</div>
@@ -444,7 +444,7 @@ export default function ProductDetailView({ product }: ProductDetailViewProps) {
                   <button
                     onClick={runFlowPipeline}
                     disabled={isFlowRunning}
-                    className="px-5 py-2.5 rounded-xl bg-blue-600 text-white font-semibold text-xs hover:bg-blue-500 transition-all shadow-[0_0_15px_rgba(37,99,235,0.3)] flex items-center gap-2 disabled:opacity-50"
+                    className="px-5 py-2.5 rounded-xl bg-[#F5F5F5] text-[#050505] font-semibold text-xs hover:bg-white transition-all shadow-[0_0_15px_rgba(255,255,255,0.15)] flex items-center gap-2 disabled:opacity-50"
                   >
                     <Play className="w-3.5 h-3.5 fill-current" />
                     <span>{isFlowRunning ? "Analyzing Inverters..." : "Trigger Telemetry Scan"}</span>
@@ -453,19 +453,19 @@ export default function ProductDetailView({ product }: ProductDetailViewProps) {
               </div>
             )}
 
-            {/* Dastaveg Document Automation HUD */}
+            {/* Legal Document Automation HUD */}
             {product.demoPreview.type === "document-automation" && (
               <div className="space-y-6 font-mono text-xs">
                 <div className="flex flex-wrap items-center justify-between gap-4 pb-4 border-b border-white/[0.06]">
                   <div className="flex items-center gap-2">
-                    <span className="w-2.5 h-2.5 rounded-full bg-blue-400 animate-pulse" />
+                    <span className="w-2.5 h-2.5 rounded-full bg-white animate-pulse" />
                     <span className="text-xs text-zinc-300 font-semibold uppercase">
                       STATUTORY DOCUMENT SYNTHESIS &amp; REGISTRY PARSER
                     </span>
                   </div>
                   <div className="flex items-center gap-3">
                     <span className="text-[10px] text-zinc-400">ENGINE:</span>
-                    <span className="text-[10px] px-2 py-0.5 rounded bg-blue-500/10 border border-blue-500/20 text-blue-400 font-bold">
+                    <span className="text-[10px] px-2 py-0.5 rounded bg-white/[0.04] border border-white/10 text-zinc-300 font-bold">
                       Deterministic NLP Parser
                     </span>
                   </div>
@@ -477,23 +477,23 @@ export default function ProductDetailView({ product }: ProductDetailViewProps) {
                   <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none" />
 
                   {/* Corner Reticles */}
-                  <div className="absolute top-3 left-3 w-4 h-4 border-t-2 border-l-2 border-blue-400/40" />
-                  <div className="absolute top-3 right-3 w-4 h-4 border-t-2 border-r-2 border-blue-400/40" />
-                  <div className="absolute bottom-3 left-3 w-4 h-4 border-b-2 border-l-2 border-blue-400/40" />
-                  <div className="absolute bottom-3 right-3 w-4 h-4 border-b-2 border-r-2 border-blue-400/40" />
+                  <div className="absolute top-3 left-3 w-4 h-4 border-t-2 border-l-2 border-white/30" />
+                  <div className="absolute top-3 right-3 w-4 h-4 border-t-2 border-r-2 border-white/30" />
+                  <div className="absolute bottom-3 left-3 w-4 h-4 border-b-2 border-l-2 border-white/30" />
+                  <div className="absolute bottom-3 right-3 w-4 h-4 border-b-2 border-r-2 border-white/30" />
 
                   <div className="relative z-10 flex items-center justify-between text-[11px] text-zinc-400">
                     <span>DOC-01 // REGISTRY RECORD EXTRACTION</span>
-                    <span className="text-blue-400">INDEX-II &amp; DEED TRIAGE</span>
+                    <span className="text-zinc-300 font-semibold">INDEX-II &amp; DEED TRIAGE</span>
                   </div>
 
                   {/* Document Extraction Bounding Box */}
-                  <div className="relative z-10 my-4 mx-auto max-w-md w-full p-4 rounded-xl border border-blue-500/30 bg-blue-500/[0.04] backdrop-blur-sm shadow-xl">
+                  <div className="relative z-10 my-4 mx-auto max-w-md w-full p-4 rounded-xl border border-white/20 bg-white/[0.03] backdrop-blur-sm shadow-xl">
                     <div className="flex items-center justify-between mb-1">
-                      <span className="text-[10px] text-blue-400 font-bold uppercase tracking-wider bg-black/60 px-2 py-0.5 rounded border border-blue-500/20">
+                      <span className="text-[10px] text-zinc-200 font-bold uppercase tracking-wider bg-black/60 px-2 py-0.5 rounded border border-white/10">
                         {isVisionScanning ? "PARSING DOCUMENT AST..." : "EXTRACTION COMPLETE // #VF-712"}
                       </span>
-                      <span className="text-[10px] text-blue-400 font-bold">CONF: 99.8%</span>
+                      <span className="text-[10px] text-white font-bold">CONF: 99.8%</span>
                     </div>
                     <div className="text-xs text-zinc-200 mt-2 font-sans font-medium">
                       Bilingual deed clauses mapped against statutory registration template.
@@ -516,7 +516,7 @@ export default function ProductDetailView({ product }: ProductDetailViewProps) {
                   <button
                     onClick={triggerVisionScan}
                     disabled={isVisionScanning}
-                    className="px-5 py-2.5 rounded-xl bg-blue-600 text-white font-semibold text-xs hover:bg-blue-500 transition-all shadow-[0_0_15px_rgba(37,99,235,0.3)] flex items-center gap-2 disabled:opacity-50"
+                    className="px-5 py-2.5 rounded-xl bg-[#F5F5F5] text-[#050505] font-semibold text-xs hover:bg-white transition-all shadow-[0_0_15px_rgba(255,255,255,0.15)] flex items-center gap-2 disabled:opacity-50"
                   >
                     <Eye className="w-3.5 h-3.5" />
                     <span>{isVisionScanning ? "Parsing Document..." : "Trigger Document Parse"}</span>
@@ -536,7 +536,7 @@ export default function ProductDetailView({ product }: ProductDetailViewProps) {
               <span className="text-[11px] font-mono tracking-widest text-zinc-500 uppercase">
                 CAPABILITIES
               </span>
-              <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-blue-500/10 text-blue-400 border border-blue-500/20">
+              <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-white/[0.04] text-zinc-300 border border-white/10">
                 {product.status === "Live" ? "Verified Capabilities" : "Active Development & Pilot Scope"}
               </span>
             </div>

@@ -52,14 +52,14 @@ export default function SecurityTrustSection() {
   ];
 
   return (
-    <section id="security" className="relative py-24 sm:py-32 bg-[#0D121C] border-t border-white/[0.08] overflow-hidden">
+    <section id="security" className="relative py-24 sm:py-32 bg-[#050505] border-t border-white/[0.08] overflow-hidden">
       {/* Subtle radial spotlight */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[850px] h-[350px] bg-[radial-gradient(ellipse_at_center,rgba(37,99,235,0.06),transparent_70%)] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[850px] h-[350px] bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.03),transparent_70%)] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <div className="max-w-3xl mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-xs font-mono text-blue-400 uppercase tracking-widest mb-4">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.04] border border-white/10 text-xs font-mono text-zinc-300 uppercase tracking-widest mb-4">
             <ShieldCheck className="w-3.5 h-3.5" />
             <span>08 // SECURITY AND TRUST</span>
           </div>
@@ -78,13 +78,13 @@ export default function SecurityTrustSection() {
             return (
               <div
                 key={idx}
-                className="p-8 rounded-3xl bg-[#121A27] border border-white/[0.08] hover:border-blue-500/30 transition-all relative overflow-hidden flex flex-col justify-between group"
+                className="p-8 rounded-3xl bg-[#111111] border border-white/[0.08] hover:border-white/[0.22] transition-all relative overflow-hidden flex flex-col justify-between group"
               >
-                <div className="absolute top-0 left-6 right-6 h-[1px] bg-gradient-to-r from-transparent via-blue-500/20 to-transparent pointer-events-none" />
+                <div className="absolute top-0 left-6 right-6 h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent pointer-events-none" />
 
                 <div>
                   <div className="flex items-center justify-between mb-6">
-                    <div className="w-12 h-12 rounded-2xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400">
+                    <div className="w-12 h-12 rounded-2xl bg-white/[0.04] border border-white/10 flex items-center justify-center text-zinc-300">
                       <Icon className="w-6 h-6" />
                     </div>
                     <span className="text-[10px] font-mono px-2.5 py-1 rounded-full bg-white/[0.04] text-zinc-400 border border-white/10">
@@ -92,7 +92,7 @@ export default function SecurityTrustSection() {
                     </span>
                   </div>
 
-                  <h3 className="text-xl font-bold text-white mb-3 tracking-tight group-hover:text-blue-200 transition-colors">
+                  <h3 className="text-xl font-bold text-white mb-3 tracking-tight group-hover:text-white transition-colors">
                     {pillar.title}
                   </h3>
 
@@ -105,9 +105,9 @@ export default function SecurityTrustSection() {
           })}
 
           {/* 6th Callout Link Card */}
-          <div className="p-8 rounded-3xl bg-gradient-to-br from-blue-900/20 via-[#121A27] to-[#121A27] border border-blue-500/30 flex flex-col justify-between">
+          <div className="p-8 rounded-3xl bg-[#111111] border border-white/[0.08] flex flex-col justify-between">
             <div>
-              <span className="text-[10px] font-mono text-blue-400 uppercase tracking-wider block mb-4">
+              <span className="text-[10px] font-mono text-zinc-400 uppercase tracking-wider block mb-4">
                 TRANSPARENCY &amp; COMPLIANCE
               </span>
               <h3 className="text-xl font-bold text-white mb-3">
@@ -118,10 +118,10 @@ export default function SecurityTrustSection() {
               </p>
             </div>
 
-            <div className="mt-8 pt-4 border-t border-blue-500/20 flex flex-col gap-2">
+            <div className="mt-8 pt-4 border-t border-white/[0.08] flex flex-col gap-2">
               <Link
                 href="/privacy"
-                className="inline-flex items-center gap-1.5 text-xs font-mono text-blue-400 hover:text-blue-300 font-semibold"
+                className="inline-flex items-center gap-1.5 text-xs font-mono text-zinc-300 hover:text-white font-semibold"
               >
                 <span>Read Enterprise Privacy Policy</span>
                 <ArrowRight className="w-3.5 h-3.5" />

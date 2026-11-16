@@ -101,10 +101,10 @@ export default function HeroSection({ onRequestDemo }: HeroSectionProps) {
             <div className="flex flex-wrap items-center gap-4 w-full sm:w-auto mb-10">
               <a
                 href="#products"
-                className="w-full sm:w-auto px-6 py-3.5 rounded-full bg-blue-600 hover:bg-blue-500 text-white font-semibold text-sm transition-all flex items-center justify-center gap-2 group shadow-[0_0_25px_rgba(37,99,235,0.35)]"
+                className="w-full sm:w-auto px-6 py-3.5 rounded-full bg-[#F5F5F5] hover:bg-white text-[#050505] font-semibold text-sm transition-all flex items-center justify-center gap-2 group shadow-[0_0_25px_rgba(255,255,255,0.15)]"
               >
                 <span>Explore Our Products</span>
-                <ArrowRight className="w-4 h-4 text-white group-hover:translate-x-1 transition-transform" />
+                <ArrowRight className="w-4 h-4 text-[#050505] group-hover:translate-x-1 transition-transform" />
               </a>
 
               {onRequestDemo ? (

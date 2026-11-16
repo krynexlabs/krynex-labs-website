@@ -18,7 +18,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/products", priority: 0.95, changeFrequency: "weekly" },
     { path: "/products/solarops", priority: 0.9, changeFrequency: "weekly" },
     { path: "/products/krynex-lawos", priority: 0.9, changeFrequency: "weekly" },
-    { path: "/products/dastaveg", priority: 0.85, changeFrequency: "weekly" },
 
     // Engineering Architecture & Technology
     { path: "/technology", priority: 0.85, changeFrequency: "weekly" },

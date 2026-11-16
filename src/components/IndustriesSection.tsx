@@ -60,15 +60,15 @@ export default function IndustriesSection() {
   ];
 
   return (
-    <section id="industries" className="relative py-24 sm:py-32 bg-[#0D121C] border-t border-white/[0.08] overflow-hidden">
+    <section id="industries" className="relative py-24 sm:py-32 bg-[#050505] border-t border-white/[0.08] overflow-hidden">
       {/* Background Radial Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[350px] bg-[radial-gradient(ellipse_at_center,rgba(37,99,235,0.06),transparent_70%)] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[350px] bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.03),transparent_70%)] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 border-b border-white/[0.06] pb-8 gap-6">
           <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-xs font-mono text-blue-400 uppercase tracking-widest mb-4">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.04] border border-white/10 text-xs font-mono text-zinc-300 uppercase tracking-widest mb-4">
               <span>06 // INDUSTRIES WE SERVE</span>
             </div>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white mb-4 leading-tight">
@@ -82,7 +82,7 @@ export default function IndustriesSection() {
           <div className="shrink-0">
             <Link
               href="/industries"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white text-black font-semibold text-xs hover:bg-zinc-200 transition-all shadow-[0_0_20px_rgba(255,255,255,0.15)]"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#F5F5F5] text-[#050505] font-semibold text-xs hover:bg-white transition-all shadow-[0_0_20px_rgba(255,255,255,0.15)]"
             >
               <span>Explore All Industry Dossiers</span>
               <ArrowRight className="w-3.5 h-3.5" />
@@ -97,19 +97,19 @@ export default function IndustriesSection() {
             return (
               <div
                 key={ind.id}
-                className="p-8 rounded-3xl bg-[#121A27] border border-white/[0.08] hover:border-blue-500/40 transition-all relative overflow-hidden flex flex-col justify-between group shadow-xl"
+                className="p-8 rounded-3xl bg-[#111111] border border-white/[0.08] hover:border-white/[0.22] transition-all relative overflow-hidden flex flex-col justify-between group shadow-xl"
               >
-                <div className="absolute top-0 left-6 right-6 h-[1px] bg-gradient-to-r from-transparent via-blue-500/25 to-transparent pointer-events-none" />
+                <div className="absolute top-0 left-6 right-6 h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent pointer-events-none" />
 
                 <div>
-                  <div className="w-12 h-12 rounded-2xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400 mb-6 group-hover:scale-105 transition-transform">
+                  <div className="w-12 h-12 rounded-2xl bg-white/[0.04] border border-white/10 flex items-center justify-center text-zinc-300 mb-6 group-hover:scale-105 transition-transform">
                     <Icon className="w-6 h-6" />
                   </div>
 
                   <h3 className="text-2xl font-bold text-white mb-1 tracking-tight">
                     {ind.title}
                   </h3>
-                  <div className="text-xs font-mono text-blue-400 mb-4">
+                  <div className="text-xs font-mono text-zinc-400 mb-4">
                     {ind.subtitle}
                   </div>
 
@@ -123,7 +123,7 @@ export default function IndustriesSection() {
                     </div>
                     {ind.capabilities.map((cap, cIdx) => (
                       <div key={cIdx} className="text-xs text-zinc-300 flex items-center gap-2">
-                        <span className="w-1.5 h-1.5 rounded-full bg-blue-400 shrink-0" />
+                        <span className="w-1.5 h-1.5 rounded-full bg-zinc-400 shrink-0" />
                         <span>{cap}</span>
                       </div>
                     ))}
@@ -136,7 +136,7 @@ export default function IndustriesSection() {
                   </span>
                   <Link
                     href={ind.productLink}
-                    className="inline-flex items-center gap-1.5 text-xs font-mono text-blue-400 hover:text-blue-300 font-semibold"
+                    className="inline-flex items-center gap-1.5 text-xs font-mono text-zinc-300 hover:text-white font-semibold"
                   >
                     <span>Learn More</span>
                     <ArrowRight className="w-3.5 h-3.5" />

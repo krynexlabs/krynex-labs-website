@@ -9,15 +9,15 @@ export default function InsightsSection() {
   const articles = technicalArticles.slice(0, 3);
 
   return (
-    <section id="insights" className="relative py-24 sm:py-32 bg-[#0D121C] border-t border-white/[0.08] overflow-hidden">
+    <section id="insights" className="relative py-24 sm:py-32 bg-[#050505] border-t border-white/[0.08] overflow-hidden">
       {/* Background Radial Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[350px] bg-[radial-gradient(ellipse_at_center,rgba(37,99,235,0.05),transparent_70%)] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[350px] bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.03),transparent_70%)] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 border-b border-white/[0.06] pb-8 gap-6">
           <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-xs font-mono text-blue-400 uppercase tracking-widest mb-4">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.04] border border-white/10 text-xs font-mono text-zinc-300 uppercase tracking-widest mb-4">
               <BookOpen className="w-3.5 h-3.5" />
               <span>10 // INSIGHTS &amp; RESOURCES</span>
             </div>
@@ -32,7 +32,7 @@ export default function InsightsSection() {
           <div className="shrink-0">
             <Link
               href="/resources"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white text-black font-semibold text-xs hover:bg-zinc-200 transition-all shadow-[0_0_20px_rgba(255,255,255,0.15)]"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#F5F5F5] text-[#050505] font-semibold text-xs hover:bg-white transition-all shadow-[0_0_20px_rgba(255,255,255,0.15)]"
             >
               <span>View All Resources</span>
               <ArrowRight className="w-3.5 h-3.5" />
@@ -45,13 +45,13 @@ export default function InsightsSection() {
           {articles.map((art) => (
             <div
               key={art.slug}
-              className="p-8 rounded-3xl bg-[#121A27] border border-white/[0.08] hover:border-blue-500/40 transition-all relative overflow-hidden flex flex-col justify-between group shadow-xl"
+              className="p-8 rounded-3xl bg-[#111111] border border-white/[0.08] hover:border-white/[0.22] transition-all relative overflow-hidden flex flex-col justify-between group shadow-xl"
             >
-              <div className="absolute top-0 left-6 right-6 h-[1px] bg-gradient-to-r from-transparent via-blue-500/25 to-transparent pointer-events-none" />
+              <div className="absolute top-0 left-6 right-6 h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent pointer-events-none" />
 
               <div>
                 <div className="flex items-center justify-between text-[11px] font-mono mb-4">
-                  <span className="px-2.5 py-1 rounded-full bg-blue-500/10 text-blue-400 border border-blue-500/20 font-semibold uppercase tracking-wider">
+                  <span className="px-2.5 py-1 rounded-full bg-white/[0.04] text-zinc-300 border border-white/10 font-semibold uppercase tracking-wider">
                     {art.category}
                   </span>
                   <span className="text-zinc-500 flex items-center gap-1">
@@ -61,7 +61,7 @@ export default function InsightsSection() {
                 </div>
 
                 <Link href={`/resources/${art.slug}`} className="block group/link">
-                  <h3 className="text-xl font-bold text-white mb-3 tracking-tight group-hover/link:text-blue-200 transition-colors line-clamp-2">
+                  <h3 className="text-xl font-bold text-white mb-3 tracking-tight group-hover/link:text-zinc-200 transition-colors line-clamp-2">
                     {art.title}
                   </h3>
                 </Link>
@@ -78,7 +78,7 @@ export default function InsightsSection() {
                 </span>
                 <Link
                   href={`/resources/${art.slug}`}
-                  className="inline-flex items-center gap-1.5 text-xs font-mono text-blue-400 hover:text-blue-300 font-semibold"
+                  className="inline-flex items-center gap-1.5 text-xs font-mono text-zinc-300 hover:text-white font-semibold"
                 >
                   <span>Read Article</span>
                   <ArrowRight className="w-3.5 h-3.5" />
