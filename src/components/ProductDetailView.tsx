@@ -1,8 +1,9 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { ProductDetail } from "@/data/products-data";
+import { trackConversionEvent } from "./Analytics";
 import {
   ArrowLeft,
   ArrowRight,
@@ -33,6 +34,14 @@ export default function ProductDetailView({ product }: ProductDetailViewProps) {
   const [isSimulating, setIsSimulating] = useState(false);
   const [simulationComplete, setSimulationComplete] = useState(false);
   const [currency, setCurrency] = useState<"INR" | "USD">("INR");
+
+  useEffect(() => {
+    trackConversionEvent("product_view", {
+      product_slug: product.slug,
+      product_name: product.name,
+      category: product.category,
+    });
+  }, [product.slug, product.name, product.category]);
 
   // For Lexis interactive preview
   const [selectedDeed, setSelectedDeed] = useState("sale-deed");
@@ -103,7 +112,7 @@ export default function ProductDetailView({ product }: ProductDetailViewProps) {
               className="inline-flex items-center gap-2 text-xs font-mono text-zinc-400 hover:text-white transition-colors group"
             >
               <ArrowLeft className="w-3.5 h-3.5 group-hover:-translate-x-1 transition-transform" />
-              <span>&larr; Return to Product Directory</span>
+              <span>&larr; Return to Products Directory</span>
             </Link>
           </div>
 
@@ -346,20 +355,20 @@ export default function ProductDetailView({ product }: ProductDetailViewProps) {
               </div>
             )}
 
-            {/* Flow State-Machine Workflow Canvas Preview */}
-            {product.demoPreview.type === "workflow-engine" && (
+            {/* SolarOps Solar Monitoring & Dispatch Canvas Preview */}
+            {product.demoPreview.type === "solar-ops" && (
               <div className="space-y-6">
                 <div className="flex flex-wrap items-center justify-between gap-4 pb-4 border-b border-white/[0.06]">
                   <div className="flex items-center gap-2">
-                    <span className="w-2.5 h-2.5 rounded-full bg-white animate-pulse" />
+                    <span className="w-2.5 h-2.5 rounded-full bg-blue-400 animate-pulse" />
                     <span className="text-xs font-mono text-zinc-300 font-semibold uppercase">
-                      AUTONOMOUS STATE-MACHINE WORKFLOW CANVAS
+                      SOLAR INVERTER TELEMETRY &amp; DISPATCH ENGINE
                     </span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <span className="text-[10px] font-mono text-zinc-400">ENGINE:</span>
-                    <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.06] border border-white/10 text-white">
-                      EVENT RUNTIME
+                    <span className="text-[10px] font-mono text-zinc-400">RUNTIME:</span>
+                    <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-blue-500/10 border border-blue-500/20 text-blue-400">
+                      MODBUS RTU / MQTT
                     </span>
                   </div>
                 </div>
@@ -367,150 +376,150 @@ export default function ProductDetailView({ product }: ProductDetailViewProps) {
                 {/* 4 Interactive Node Cards */}
                 <div className="grid grid-cols-1 sm:grid-cols-4 gap-3 relative">
                   {/* Node 1 */}
-                  <div className={`p-4 rounded-2xl border transition-all ${flowNodeStep >= 1 ? "bg-white/[0.08] border-white/40 shadow-[0_0_15px_rgba(255,255,255,0.1)]" : "bg-black border-white/10"}`}>
+                  <div className={`p-4 rounded-2xl border transition-all ${flowNodeStep >= 1 ? "bg-blue-600/10 border-blue-500/40 shadow-[0_0_15px_rgba(37,99,235,0.15)]" : "bg-black border-white/10"}`}>
                     <div className="flex items-center justify-between mb-2">
                       <span className="text-[10px] font-mono text-zinc-400">NODE 01</span>
-                      <span className={`w-2 h-2 rounded-full ${flowNodeStep >= 1 ? "bg-white" : "bg-zinc-700"}`} />
+                      <span className={`w-2 h-2 rounded-full ${flowNodeStep >= 1 ? "bg-blue-400" : "bg-zinc-700"}`} />
                     </div>
-                    <div className="text-xs font-bold text-white mb-1">SAP / Tally Ingestion</div>
-                    <div className="text-[11px] font-mono text-zinc-400">Port 8443 Webhook Ingest</div>
+                    <div className="text-xs font-bold text-white mb-1">Inverter Gateway</div>
+                    <div className="text-[11px] font-mono text-zinc-400">RS-485 / MQTT Ingestion</div>
                   </div>
 
                   {/* Node 2 */}
-                  <div className={`p-4 rounded-2xl border transition-all ${flowNodeStep >= 2 ? "bg-white/[0.08] border-white/40 shadow-[0_0_15px_rgba(255,255,255,0.1)]" : "bg-black border-white/10"}`}>
+                  <div className={`p-4 rounded-2xl border transition-all ${flowNodeStep >= 2 ? "bg-blue-600/10 border-blue-500/40 shadow-[0_0_15px_rgba(37,99,235,0.15)]" : "bg-black border-white/10"}`}>
                     <div className="flex items-center justify-between mb-2">
                       <span className="text-[10px] font-mono text-zinc-400">NODE 02</span>
-                      <span className={`w-2 h-2 rounded-full ${flowNodeStep >= 2 ? "bg-white" : "bg-zinc-700"}`} />
+                      <span className={`w-2 h-2 rounded-full ${flowNodeStep >= 2 ? "bg-blue-400" : "bg-zinc-700"}`} />
                     </div>
-                    <div className="text-xs font-bold text-white mb-1">Neural Invoice Parser</div>
-                    <div className="text-[11px] font-mono text-zinc-400">OCR &amp; Tax HSN Verify</div>
+                    <div className="text-xs font-bold text-white mb-1">String Yield Analysis</div>
+                    <div className="text-[11px] font-mono text-zinc-400">PR Ratio &amp; MPPT Curve</div>
                   </div>
 
                   {/* Node 3 */}
-                  <div className={`p-4 rounded-2xl border transition-all ${flowNodeStep >= 3 ? "bg-white/[0.08] border-white/40 shadow-[0_0_15px_rgba(255,255,255,0.1)]" : "bg-black border-white/10"}`}>
+                  <div className={`p-4 rounded-2xl border transition-all ${flowNodeStep >= 3 ? "bg-blue-600/10 border-blue-500/40 shadow-[0_0_15px_rgba(37,99,235,0.15)]" : "bg-black border-white/10"}`}>
                     <div className="flex items-center justify-between mb-2">
                       <span className="text-[10px] font-mono text-zinc-400">NODE 03</span>
-                      <span className={`w-2 h-2 rounded-full ${flowNodeStep >= 3 ? "bg-white" : "bg-zinc-700"}`} />
+                      <span className={`w-2 h-2 rounded-full ${flowNodeStep >= 3 ? "bg-blue-400" : "bg-zinc-700"}`} />
                     </div>
-                    <div className="text-xs font-bold text-white mb-1">Policy Approval Gate</div>
-                    <div className="text-[11px] font-mono text-zinc-400">Policy Limit Auto-Approve</div>
+                    <div className="text-xs font-bold text-white mb-1">Soiling &amp; Shading Alert</div>
+                    <div className="text-[11px] font-mono text-zinc-400">Irradiance Differential</div>
                   </div>
 
                   {/* Node 4 */}
-                  <div className={`p-4 rounded-2xl border transition-all ${flowNodeStep >= 4 ? "bg-white/[0.08] border-white/40 shadow-[0_0_15px_rgba(255,255,255,0.1)]" : "bg-black border-white/10"}`}>
+                  <div className={`p-4 rounded-2xl border transition-all ${flowNodeStep >= 4 ? "bg-blue-600/10 border-blue-500/40 shadow-[0_0_15px_rgba(37,99,235,0.15)]" : "bg-black border-white/10"}`}>
                     <div className="flex items-center justify-between mb-2">
                       <span className="text-[10px] font-mono text-zinc-400">NODE 04</span>
-                      <span className={`w-2 h-2 rounded-full ${flowNodeStep >= 4 ? "bg-white" : "bg-zinc-700"}`} />
+                      <span className={`w-2 h-2 rounded-full ${flowNodeStep >= 4 ? "bg-blue-400" : "bg-zinc-700"}`} />
                     </div>
-                    <div className="text-xs font-bold text-white mb-1">Multi-System Ledger Sync</div>
-                    <div className="text-[11px] font-mono text-zinc-400">SQL + CRM + Port TOS</div>
+                    <div className="text-xs font-bold text-white mb-1">Automated Work Order</div>
+                    <div className="text-[11px] font-mono text-zinc-400">O&amp;M Crew Dispatch</div>
                   </div>
                 </div>
 
                 {/* Execution Telemetry Console */}
                 <div className="p-4 rounded-2xl bg-black border border-white/[0.08] font-mono text-xs leading-relaxed">
                   <div className="text-zinc-500 mb-2 flex items-center justify-between text-[11px]">
-                    <span>LIVE PIPELINE TELEMETRY</span>
-                    <span>STATUS: {flowNodeStep > 0 ? "Pipeline Transition Complete" : "IDLE"}</span>
+                    <span>SOLAR TELEMETRY PIPELINE</span>
+                    <span>STATUS: {flowNodeStep > 0 ? "Telemetry Analyzed" : "READY"}</span>
                   </div>
                   {flowNodeStep === 0 && (
                     <div className="text-zinc-400">
-                      &gt;&gt; Ready. Click &ldquo;Trigger Pipeline Simulation&rdquo; to execute event-driven state transition.
+                      &gt;&gt; Ready. Click &ldquo;Trigger Telemetry Scan&rdquo; to simulate solar inverter diagnostics.
                     </div>
                   )}
                   {flowNodeStep >= 1 && (
                     <div className="text-zinc-300">
-                      &gt;&gt; Ingested multipart invoice payload from SAP ERP instance.<br />
-                      &gt;&gt; Extracted line items, validated GSTIN &amp; HSN statutory codes.<br />
-                      &gt;&gt; Policy rule PASS: Invoiced amount matches Purchase Order itemization.<br />
-                      &gt;&gt; State machine COMPLETE: Ledger updated across Oracle &amp; Salesforce.
+                      &gt;&gt; Polled 16 central inverters via Modbus RS-485 at 1-second interval.<br />
+                      &gt;&gt; Performance Ratio calculated: 82.4% (Expected: 83.1%).<br />
+                      &gt;&gt; String B4 detected 14% power drop due to dust/soiling accumulation.<br />
+                      &gt;&gt; Automated cleaning ticket dispatched to site O&amp;M crew via SMS/portal.
                     </div>
                   )}
                 </div>
 
                 <div className="flex flex-wrap items-center justify-between gap-4 pt-2">
                   <span className="text-[11px] font-mono text-zinc-400">
-                    * Interactive state-machine canvas connecting fragmented enterprise software.
+                    * Simulated SolarOps supervisory telemetry environment.
                   </span>
                   <button
                     onClick={runFlowPipeline}
                     disabled={isFlowRunning}
-                    className="px-5 py-2.5 rounded-xl bg-white text-black font-semibold text-xs hover:bg-zinc-200 transition-all shadow-[0_0_15px_rgba(255,255,255,0.1)] flex items-center gap-2 disabled:opacity-50"
+                    className="px-5 py-2.5 rounded-xl bg-blue-600 text-white font-semibold text-xs hover:bg-blue-500 transition-all shadow-[0_0_15px_rgba(37,99,235,0.3)] flex items-center gap-2 disabled:opacity-50"
                   >
-                    <Play className="w-3.5 h-3.5" />
-                    <span>{isFlowRunning ? "Executing Pipeline..." : "Trigger Pipeline Simulation"}</span>
+                    <Play className="w-3.5 h-3.5 fill-current" />
+                    <span>{isFlowRunning ? "Analyzing Inverters..." : "Trigger Telemetry Scan"}</span>
                   </button>
                 </div>
               </div>
             )}
 
-            {/* Vision Edge Industrial Inspection HUD */}
-            {product.demoPreview.type === "edge-vision" && (
+            {/* Dastaveg Document Automation HUD */}
+            {product.demoPreview.type === "document-automation" && (
               <div className="space-y-6 font-mono text-xs">
                 <div className="flex flex-wrap items-center justify-between gap-4 pb-4 border-b border-white/[0.06]">
                   <div className="flex items-center gap-2">
-                    <span className="w-2.5 h-2.5 rounded-full bg-white animate-pulse" />
+                    <span className="w-2.5 h-2.5 rounded-full bg-blue-400 animate-pulse" />
                     <span className="text-xs text-zinc-300 font-semibold uppercase">
-                      ON-PREMISE EDGE CAMERA INSPECTION HUD
+                      STATUTORY DOCUMENT SYNTHESIS &amp; REGISTRY PARSER
                     </span>
                   </div>
                   <div className="flex items-center gap-3">
-                    <span className="text-[10px] text-zinc-400">INFERENCE:</span>
-                    <span className="text-[10px] px-2 py-0.5 rounded bg-white/[0.06] border border-white/10 text-white font-bold">
-                      TensorRT INT8 Runtime
+                    <span className="text-[10px] text-zinc-400">ENGINE:</span>
+                    <span className="text-[10px] px-2 py-0.5 rounded bg-blue-500/10 border border-blue-500/20 text-blue-400 font-bold">
+                      Deterministic NLP Parser
                     </span>
                   </div>
                 </div>
 
-                {/* Simulated Industrial Camera Viewport */}
+                {/* Simulated Document Processing Viewport */}
                 <div className="relative rounded-2xl bg-black border border-white/10 p-6 overflow-hidden min-h-[220px] flex flex-col justify-between">
                   {/* Grid Lines */}
                   <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none" />
 
                   {/* Corner Reticles */}
-                  <div className="absolute top-3 left-3 w-4 h-4 border-t-2 border-l-2 border-white/40" />
-                  <div className="absolute top-3 right-3 w-4 h-4 border-t-2 border-r-2 border-white/40" />
-                  <div className="absolute bottom-3 left-3 w-4 h-4 border-b-2 border-l-2 border-white/40" />
-                  <div className="absolute bottom-3 right-3 w-4 h-4 border-b-2 border-r-2 border-white/40" />
+                  <div className="absolute top-3 left-3 w-4 h-4 border-t-2 border-l-2 border-blue-400/40" />
+                  <div className="absolute top-3 right-3 w-4 h-4 border-t-2 border-r-2 border-blue-400/40" />
+                  <div className="absolute bottom-3 left-3 w-4 h-4 border-b-2 border-l-2 border-blue-400/40" />
+                  <div className="absolute bottom-3 right-3 w-4 h-4 border-b-2 border-r-2 border-blue-400/40" />
 
                   <div className="relative z-10 flex items-center justify-between text-[11px] text-zinc-400">
-                    <span>CAM-01 // CONTINUOUS CONVEYOR LINE</span>
-                    <span className="text-zinc-300">HIGH-SPEED LINE INSPECTION</span>
+                    <span>DOC-01 // REGISTRY RECORD EXTRACTION</span>
+                    <span className="text-blue-400">INDEX-II &amp; DEED TRIAGE</span>
                   </div>
 
-                  {/* Defect Bounding Box */}
-                  <div className="relative z-10 my-4 mx-auto max-w-md w-full p-4 rounded-xl border border-white/40 bg-white/[0.04] backdrop-blur-sm shadow-xl">
+                  {/* Document Extraction Bounding Box */}
+                  <div className="relative z-10 my-4 mx-auto max-w-md w-full p-4 rounded-xl border border-blue-500/30 bg-blue-500/[0.04] backdrop-blur-sm shadow-xl">
                     <div className="flex items-center justify-between mb-1">
-                      <span className="text-[10px] text-white font-bold uppercase tracking-wider bg-black/60 px-2 py-0.5 rounded border border-white/20">
-                        {isVisionScanning ? "ANALYZING TENSOR KERNEL..." : "DEFECT DETECTED // #DF-409"}
+                      <span className="text-[10px] text-blue-400 font-bold uppercase tracking-wider bg-black/60 px-2 py-0.5 rounded border border-blue-500/20">
+                        {isVisionScanning ? "PARSING DOCUMENT AST..." : "EXTRACTION COMPLETE // #VF-712"}
                       </span>
-                      <span className="text-[10px] text-white font-bold">SIM CONF: HIGH</span>
+                      <span className="text-[10px] text-blue-400 font-bold">CONF: 99.8%</span>
                     </div>
                     <div className="text-xs text-zinc-200 mt-2 font-sans font-medium">
-                      Micro-surface fracture on flange seal.
+                      Bilingual deed clauses mapped against statutory registration template.
                     </div>
                     <div className="text-[11px] text-zinc-400 mt-1 font-mono">
-                      PLC Actuation: Pneumatic Reject Valve Triggered via Modbus TCP.
+                      Output: Verified PDF/A &amp; Structured JSON with SHA-256 integrity hash.
                     </div>
                   </div>
 
                   <div className="relative z-10 flex flex-wrap items-center justify-between text-[11px] text-zinc-400 pt-2 border-t border-white/[0.04]">
-                    <span>STATUS: REJECT DIVERTED TO SCRAP CHUTE</span>
-                    <span className="text-white font-bold">SIMULATED CLEAN YIELD</span>
+                    <span>STATUS: VALIDATED WITH ZERO MODEL RETENTION</span>
+                    <span className="text-white font-bold">KMS ENCRYPTED</span>
                   </div>
                 </div>
 
                 <div className="flex flex-wrap items-center justify-between gap-4 pt-2">
-                  <span className="text-[11px] text-zinc-400">
-                    * On-Premise Edge Execution: Designed for zero cloud dependency and low network latency.
+                  <span className="text-[11px] font-mono text-zinc-400">
+                    * Deterministic Document Engine: Sub-second bilingual deed compilation.
                   </span>
                   <button
                     onClick={triggerVisionScan}
                     disabled={isVisionScanning}
-                    className="px-5 py-2.5 rounded-xl bg-white text-black font-semibold text-xs hover:bg-zinc-200 transition-all shadow-[0_0_15px_rgba(255,255,255,0.1)] flex items-center gap-2 disabled:opacity-50"
+                    className="px-5 py-2.5 rounded-xl bg-blue-600 text-white font-semibold text-xs hover:bg-blue-500 transition-all shadow-[0_0_15px_rgba(37,99,235,0.3)] flex items-center gap-2 disabled:opacity-50"
                   >
                     <Eye className="w-3.5 h-3.5" />
-                    <span>{isVisionScanning ? "Scanning Line..." : "Trigger Conveyor Line Scan"}</span>
+                    <span>{isVisionScanning ? "Parsing Document..." : "Trigger Document Parse"}</span>
                   </button>
                 </div>
               </div>
@@ -523,11 +532,16 @@ export default function ProductDetailView({ product }: ProductDetailViewProps) {
       <section className="py-20 bg-[#050505] border-b border-white/[0.08]">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mb-10">
-            <span className="text-[11px] font-mono tracking-widest text-zinc-500 uppercase">
-              DEEP CAPABILITIES
-            </span>
+            <div className="flex items-center gap-2 mb-2">
+              <span className="text-[11px] font-mono tracking-widest text-zinc-500 uppercase">
+                CAPABILITIES
+              </span>
+              <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-blue-500/10 text-blue-400 border border-blue-500/20">
+                {product.status === "Live" ? "Verified Capabilities" : "Active Development & Pilot Scope"}
+              </span>
+            </div>
             <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight mt-1">
-              Production Feature Specifications
+              {product.status === "Live" ? "Production Feature Specifications" : "Planned & Pilot Feature Specifications"}
             </h2>
           </div>
 
@@ -604,7 +618,10 @@ export default function ProductDetailView({ product }: ProductDetailViewProps) {
               <span className="text-xs font-mono text-zinc-400">Currency:</span>
               <div className="inline-flex p-1 rounded-xl bg-[#080808] border border-white/10 text-xs font-mono">
                 <button
-                  onClick={() => setCurrency("INR")}
+                  onClick={() => {
+                    setCurrency("INR");
+                    trackConversionEvent("currency_toggle", { currency: "INR", product_slug: product.slug });
+                  }}
                   className={`px-3 py-1 rounded-lg transition-all ${
                     currency === "INR"
                       ? "bg-white text-black font-semibold shadow-sm"
@@ -615,7 +632,10 @@ export default function ProductDetailView({ product }: ProductDetailViewProps) {
                   INR (₹)
                 </button>
                 <button
-                  onClick={() => setCurrency("USD")}
+                  onClick={() => {
+                    setCurrency("USD");
+                    trackConversionEvent("currency_toggle", { currency: "USD", product_slug: product.slug });
+                  }}
                   className={`px-3 py-1 rounded-lg transition-all ${
                     currency === "USD"
                       ? "bg-white text-black font-semibold shadow-sm"

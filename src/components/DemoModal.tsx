@@ -4,6 +4,7 @@ import React, { useState, useEffect, useRef, useCallback } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { X, CheckCircle2, ChevronRight, AlertCircle } from "lucide-react";
+import { trackConversionEvent } from "./Analytics";
 
 interface DemoModalProps {
   isOpen: boolean;
@@ -138,9 +139,17 @@ export default function DemoModal({ isOpen, onClose }: DemoModalProps) {
       const result = await response.json();
 
       if (response.ok && (result.ok || result.success)) {
-        setRequestId(result.referenceId || `KL-REQ-${Math.floor(1000 + Math.random() * 9000)}`);
+        const assignedId = result.referenceId || `KL-REQ-${Math.floor(1000 + Math.random() * 9000)}`;
+        setRequestId(assignedId);
         setIsSubmitting(false);
         setIsSuccess(true);
+
+        // Track GA4 Key Event & Vercel Conversion
+        trackConversionEvent("demo_modal_submit", {
+          sector: formData.sector,
+          company: formData.company.trim(),
+          reference_id: assignedId,
+        });
 
         try {
           const confetti = (await import("canvas-confetti")).default;
@@ -185,7 +194,7 @@ export default function DemoModal({ isOpen, onClose }: DemoModalProps) {
         <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden select-none">
           <Image
             src="/static/background-auth.jpg"
-            alt=""
+            alt="Krynex Labs executive consultation console backdrop"
             fill
             className="object-cover object-top opacity-35"
           />

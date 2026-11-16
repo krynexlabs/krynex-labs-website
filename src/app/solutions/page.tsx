@@ -19,24 +19,76 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Capabilities & Enterprise Solutions",
+  title: "Enterprise Solutions & Software Engineering Capabilities",
   description:
-    "Explore Krynex Labs engineering capabilities: Applied AI systems, enterprise software architectures, web and mobile platforms, and resilient cloud data pipelines.",
+    "Explore Krynex Labs engineering capabilities: Applied AI neural architectures, enterprise software modernization, full-stack web and mobile platforms, and resilient cloud data infrastructure.",
+  keywords: [
+    "Enterprise Software Solutions",
+    "Applied AI Engineering",
+    "Cloud Data Infrastructure",
+    "Full-Stack Web Development",
+    "Mobile App Engineering Ahmedabad",
+    "SaaS Architecture India",
+  ],
   alternates: {
     canonical: "https://www.krynexlabs.in/solutions",
   },
   openGraph: {
-    title: "Capabilities & Enterprise Solutions | Krynex Labs",
+    title: "Enterprise Solutions & Software Engineering Capabilities | Krynex Labs",
     description:
       "Explore Krynex Labs engineering capabilities: Applied AI systems, enterprise software architectures, web and mobile platforms, and resilient cloud data pipelines.",
     url: "https://www.krynexlabs.in/solutions",
+    images: [
+      {
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: "Krynex Labs - Enterprise Solutions & Capabilities",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Capabilities & Enterprise Solutions | Krynex Labs",
+    title: "Enterprise Solutions & Software Engineering Capabilities | Krynex Labs",
     description:
       "Explore Krynex Labs engineering capabilities: Applied AI systems, enterprise software architectures, web and mobile platforms, and resilient cloud data pipelines.",
+    images: ["/opengraph-image"],
   },
+};
+
+const solutionsJsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "CollectionPage",
+      "@id": "https://www.krynexlabs.in/solutions#webpage",
+      url: "https://www.krynexlabs.in/solutions",
+      name: "Enterprise Solutions & Software Engineering Capabilities | Krynex Labs",
+      description:
+        "Explore Krynex Labs engineering capabilities: Applied AI systems, enterprise software architectures, web and mobile platforms, and resilient cloud data pipelines.",
+      isPartOf: {
+        "@id": "https://www.krynexlabs.in/#website",
+      },
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://www.krynexlabs.in/solutions#breadcrumb",
+      itemListElement: [
+        {
+          "@type": "ListItem",
+          position: 1,
+          name: "Home",
+          item: "https://www.krynexlabs.in",
+        },
+        {
+          "@type": "ListItem",
+          position: 2,
+          name: "Solutions",
+          item: "https://www.krynexlabs.in/solutions",
+        },
+      ],
+    },
+  ],
 };
 
 export default function SolutionsPage() {
@@ -51,6 +103,10 @@ export default function SolutionsPage() {
 
   return (
     <main className="min-h-screen bg-black text-white selection:bg-white selection:text-black">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(solutionsJsonLd) }}
+      />
       <Navbar />
 
       {/* Hero Header */}

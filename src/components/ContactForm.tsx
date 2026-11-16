@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { CheckCircle2, AlertCircle, ArrowRight, ChevronRight } from "lucide-react";
+import { trackConversionEvent } from "./Analytics";
 
 interface ContactFormProps {
   initialProduct?: string;
@@ -98,9 +99,18 @@ export default function ContactForm({ initialProduct }: ContactFormProps) {
       const result = await response.json();
 
       if (response.ok && (result.ok || result.success)) {
-        setTicketId(result.referenceId || `KL-REQ-${Math.floor(1000 + Math.random() * 9000)}`);
+        const assignedRefId = result.referenceId || `KL-REQ-${Math.floor(1000 + Math.random() * 9000)}`;
+        setTicketId(assignedRefId);
         setIsSubmitting(false);
         setSubmitted(true);
+
+        // Track GA4 Key Event & Vercel Conversion
+        trackConversionEvent("contact_form_submit", {
+          inquiry_type: inquiryType,
+          company_sector: inquiryCompany,
+          request_walkthrough: requestMeeting,
+          reference_id: assignedRefId,
+        });
 
         try {
           const confetti = (await import("canvas-confetti")).default;

@@ -23,6 +23,14 @@ export const metadata: Metadata = {
   title: "Industries & Operational Problems | Problem-Driven Software",
   description:
     "Explore the operational bottlenecks Krynex Labs investigates across Manufacturing, LegalTech, Logistics, FinTech, and Healthcare—and the focused software products we engineer to solve them.",
+  keywords: [
+    "Industrial Software Solutions",
+    "Manufacturing Defect Detection",
+    "LegalTech Compliance Software",
+    "FinTech Banking Automation",
+    "Logistics Telematics India",
+    "Healthcare Diagnostics Software Ahmedabad",
+  ],
   alternates: {
     canonical: "https://www.krynexlabs.in/industries",
   },
@@ -31,12 +39,21 @@ export const metadata: Metadata = {
     description:
       "Explore the operational bottlenecks Krynex Labs investigates across Manufacturing, LegalTech, Logistics, FinTech, and Healthcare—and the focused software products we engineer to solve them.",
     url: "https://www.krynexlabs.in/industries",
+    images: [
+      {
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: "Industries & Operational Bottlenecks - Krynex Labs",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Industries & Operational Problems | Krynex Labs",
     description:
       "Operational bottlenecks Krynex Labs investigates across Manufacturing, LegalTech, Logistics, FinTech, and Healthcare.",
+    images: ["/opengraph-image"],
   },
 };
 

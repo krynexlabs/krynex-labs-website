@@ -17,18 +17,66 @@ export const metadata: Metadata = {
     description:
       "Enterprise data sovereignty, cryptographic security standards, and privacy disclosures governing Krynex Labs client workflows, SaaS products, and contact inquiries.",
     url: "https://www.krynexlabs.in/privacy",
+    images: [
+      {
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: "Privacy Policy - Krynex Labs",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Privacy Policy | Krynex Labs",
     description:
       "Enterprise data sovereignty, cryptographic security standards, and privacy disclosures governing Krynex Labs client workflows, SaaS products, and contact inquiries.",
+    images: ["/opengraph-image"],
   },
+};
+
+const privacyJsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://www.krynexlabs.in/privacy#webpage",
+      url: "https://www.krynexlabs.in/privacy",
+      name: "Privacy Policy | Krynex Labs",
+      description:
+        "Enterprise data sovereignty, cryptographic security standards, and privacy disclosures governing Krynex Labs client workflows, SaaS products, and contact inquiries.",
+      isPartOf: {
+        "@id": "https://www.krynexlabs.in/#website",
+      },
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://www.krynexlabs.in/privacy#breadcrumb",
+      itemListElement: [
+        {
+          "@type": "ListItem",
+          position: 1,
+          name: "Home",
+          item: "https://www.krynexlabs.in",
+        },
+        {
+          "@type": "ListItem",
+          position: 2,
+          name: "Privacy Policy",
+          item: "https://www.krynexlabs.in/privacy",
+        },
+      ],
+    },
+  ],
 };
 
 export default function PrivacyPage() {
   return (
     <main className="min-h-screen bg-black text-white selection:bg-white selection:text-black">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(privacyJsonLd) }}
+      />
       <Navbar />
 
       {/* Top ambient spotlight */}

@@ -25,188 +25,188 @@ export interface IndustryDetail {
 
 export const INDUSTRIES_DATA: IndustryDetail[] = [
   {
-    slug: "manufacturing",
-    name: "Manufacturing & Industrial IoT",
-    badge: "AI & COMPUTER VISION VECTOR",
-    tagline: "Edge Vision & Anomaly Telemetry for Zero-Downtime Plants",
-    overview:
-      "Modern continuous manufacturing facilities face severe margins erosion due to unplanned machinery downtime, uncalibrated visual quality defects on fast-moving assembly lines, and delayed ERP reconciliation. We research factory-floor operational bottlenecks and engineer edge-native software products.",
-    targetWorkflow:
-      "Continuous high-speed assembly, part fabrication, physical quality inspection, and shop-floor MES/SCADA logging.",
-    bottlenecks: [
-      "Manual visual inspection error rates allowing microscopic defects to escape to downstream customers.",
-      "High-speed continuous production lines moving too fast for physical human inspection.",
-      "Cloud-dependent monitoring tools introducing network latency and failing during factory internet drops.",
-    ],
-    whyExistingInadequate:
-      "Legacy machine vision systems require cumbersome bespoke programming, cost tens of lakhs in upfront capex, and fail to correlate detected defects with upstream PLC vibration and temperature sensors.",
-    krynexSolution:
-      "Edge TensorRT computer vision operating entirely on-premise without cloud latency, coupled with real-time SCADA vibration telemetry and direct pneumatic reject triggers.",
-    architectureDetails: [
-      "Edge inference on NVIDIA Jetson / Industrial PCs",
-      "Air-gapped operation with local PLC actuation (Modbus / OPC-UA)",
-      "Automated SAP and Oracle bidirectional ledger synchronization",
-    ],
-    beneficiaries:
-      "Plant managers, quality control engineers, precision component makers, and discrete manufacturers.",
-    statusLabel: "Engineering Architecture (In Active Development)",
-    quantifiedImpact: [
-      { metric: "Reduced", label: "Target Scrap Reduction", sublabel: "Simulated line defect containment objective" },
-      { metric: "Edge", label: "Edge Inference Latency", sublabel: "Offline factory gateway execution target" },
-      { metric: "Minimized", label: "Defect Escape Objective", sublabel: "Modeled improvement over manual inspection" },
-    ],
-    caseDossier: {
-      clientType: "Precision Component & Continuous Manufacturing Facilities",
-      deployedSystem: "Edge Vision Inspection Station Architecture",
-      result: "Automated surface defect inspection modeled for continuous line speed.",
-    },
-  },
-  {
-    slug: "legal",
-    name: "Legal, Real Estate & Statutory Compliance",
-    badge: "ENTERPRISE SOFTWARE VECTOR",
+    slug: "legal-real-estate",
+    name: "Legal and Real Estate",
+    badge: "LEGALTECH & PROPERTY CONVEYANCING",
     tagline: "Deterministic Bilingual Document Synthesis & Title Search Automation",
     overview:
-      "Corporate legal counsel, title advocates, and real estate developers in India face severe backlogs manually drafting deeds, search dockets, and statutory notices across Gujarati and English revenue records. We develop deterministic drafting software to eliminate manual typing and legal ambiguity.",
+      "Corporate legal counsel, title advocates, and real estate developers in India face severe operational backlogs manually drafting deeds, search dockets, and statutory notices across Gujarati and English revenue records. We research conveyancing bottlenecks and engineer deterministic drafting software to eliminate manual typing and legal ambiguity.",
     targetWorkflow:
-      "Real estate conveyancing, sub-registrar index searches, revenue record title clearance, and bilingual statutory notice generation.",
+      "Real estate conveyancing, sub-registrar Index-II searches, revenue record title clearance, and bilingual statutory notice generation.",
     bottlenecks: [
-      "Advocates spending hours per document manually copying boilerplate clauses, risking omitted statutory covenants.",
-      "Regional bilingual requirements (Gujarati & English) requiring clumsy manual translation with severe legal ambiguities.",
-      "Manual search across multi-decade sub-registrar records (Index-II) risking missed encumbrances and title disputes.",
+      "Advocates and legal officers spend hours per document manually copying boilerplate clauses, risking omitted statutory covenants.",
+      "Regional bilingual requirements (Gujarati & English) require clumsy manual translation, introducing severe legal ambiguities in property schedules.",
+      "Manual multi-decade sub-registrar searches (Index-II) risk overlooked encumbrances, bank mortgages, and costly title disputes.",
     ],
     whyExistingInadequate:
-      "Static word processors and generic LLM chat wrappers lack statutory grammar guardrails, hallucinate non-existent citations, and risk confidentiality breaches when sensitive client property dockets are uploaded to public clouds.",
+      "Generic word processors and consumer AI chat tools lack statutory revenue grammar guardrails, hallucinate non-existent legal citations, and compromise confidentiality when private property dockets are uploaded to public cloud servers.",
     krynexSolution:
-      "India's bilingual legal drafting and title clearance intelligence platform, compiling verified draft deeds in seconds with deterministic statutory verification.",
+      "Krynex LawOS: A bilingual legal document automation platform compiling verified draft deeds and title clearance dockets in minutes with deterministic statutory verification against regional revenue guidelines.",
     architectureDetails: [
-      "Bilingual Gujarati and English legal vocabulary grammar compiler",
+      "Bilingual Gujarati and English statutory vocabulary grammar compiler",
       "Automated revenue record ingestion (Village Form 7/12, 8A, Index-II)",
       "Dedicated KMS envelope encryption with zero public model training retention",
     ],
     beneficiaries:
-      "Corporate legal counsel, title clearance advocates, real estate developers, and statutory compliance panels.",
-    statusLabel: "Enterprise Software Solution (Live)",
+      "Corporate legal counsel, conveyancing advocates, real estate developers, and statutory compliance officers.",
+    statusLabel: "Enterprise Software Solution (Private Beta)",
     quantifiedImpact: [
-      { metric: "Target", label: "Drafting Time Reduction", sublabel: "Modeled time reduction vs manual drafting" },
-      { metric: "Native", label: "Bilingual Alignment", sublabel: "Native Gujarati legal terminology alignment" },
-      { metric: "Multi-Year", label: "Title Chain Indexing", sublabel: "Encumbrance timeline triage objective" },
+      { metric: "Rapid", label: "Drafting Turnaround", sublabel: "Target acceleration over manual copying" },
+      { metric: "Native", label: "Bilingual Precision", sublabel: "Parallel Gujarati & English statutory alignment" },
+      { metric: "Zero-Retention", label: "Client Sovereignty", sublabel: "KMS envelope encryption for case dockets" },
     ],
     caseDossier: {
       clientType: "Real Estate Developers & Legal Firm Title Teams",
-      deployedSystem: "Bilingual Statutory Drafting Suite",
-      result: "Rapid bilingual deed compilation prototype with automated stamp duty and registration calculations.",
+      deployedSystem: "Krynex LawOS Bilingual Drafting Engine",
+      result: "Automated bilingual deed compilation with instant stamp duty and registration fee calculations.",
+    },
+  },
+  {
+    slug: "solar-energy",
+    name: "Solar Energy",
+    badge: "CLEANTECH & EPC PROJECT OPERATIONS",
+    tagline: "Unified Project Lifecycle Management & DISCOM Compliance for Solar EPCs",
+    overview:
+      "Rooftop and commercial solar EPC contractors lose substantial margins to dislocated project data: inaccurate site survey measurements, delayed DISCOM net-metering approvals, inventory leakage in balance-of-system procurement, and fragmented post-installation inverter monitoring.",
+    targetWorkflow:
+      "Solar site survey feasibility, dynamic bill of materials (BOM) sizing, DISCOM net-metering statutory milestone tracking, and installation dispatch.",
+    bottlenecks: [
+      "Field site measurements recorded manually on paper lead to miscalculated system sizing and incorrect inverter selections.",
+      "DISCOM net-metering documentation and government subsidy workflows are trapped in disorganized spreadsheets and message threads, dragging projects out for months.",
+      "Lack of real-time visibility between warehouse inventory, procurement purchase orders, and on-site balance-of-system consumption.",
+    ],
+    whyExistingInadequate:
+      "Generic CRM and project management tools lack solar engineering domain logic—they cannot compute solar irradiance tilt losses, compile electrical single-line diagrams (SLD), or track Indian state DISCOM compliance stages.",
+    krynexSolution:
+      "SolarOps: An end-to-end solar business management platform connecting site survey feasibility modeling, automated quotation generation, DISCOM approval checklists, and centralized inverter IoT telemetry.",
+    architectureDetails: [
+      "Solar PV capacity and generation yield estimation engine",
+      "Dynamic multi-tier Bill of Materials (BOM) generator with live cost indexing",
+      "Milestone-driven DISCOM net-metering statutory tracker with document docket compiler",
+    ],
+    beneficiaries:
+      "Solar EPC contractors, rooftop installers, renewable energy project managers, and solar asset O&M technicians.",
+    statusLabel: "Operations Platform (In Active Development)",
+    quantifiedImpact: [
+      { metric: "Minutes", label: "Quotation Generation", sublabel: "Automated proposal & financial model target" },
+      { metric: "Milestone", label: "DISCOM Compliance", sublabel: "Step-by-step net-metering stage tracking" },
+      { metric: "Centralized", label: "BOM Inventory", sublabel: "Real-time balance-of-system cost accounting" },
+    ],
+    caseDossier: {
+      clientType: "Commercial & Industrial Rooftop Solar Installers",
+      deployedSystem: "SolarOps EPC Management Console",
+      result: "Streamlined customer proposal turnaround and structured DISCOM milestone tracking.",
+    },
+  },
+  {
+    slug: "manufacturing",
+    name: "Manufacturing",
+    badge: "INDUSTRIAL IOT & QUALITY CONTROL",
+    tagline: "Edge Computer Vision & Anomaly Telemetry for Continuous Production Lines",
+    overview:
+      "Continuous manufacturing facilities face severe margin erosion from microscopic surface defects escaping on fast-moving lines, uncalibrated machinery vibrations causing sudden breakdown downtime, and delayed production logging.",
+    targetWorkflow:
+      "Continuous component assembly, optical quality inspection, shop-floor SCADA telemetry correlation, and automatic reject actuation.",
+    bottlenecks: [
+      "Manual visual inspection error rates allowing microscopic defects to escape to downstream automotive and industrial buyers.",
+      "High-speed production lines running too fast for reliable human visual inspection.",
+      "Cloud-dependent inspection software introducing network latency and failing during factory internet outages.",
+    ],
+    whyExistingInadequate:
+      "Legacy machine vision boxes require rigid proprietary hardware, cost tens of lakhs in upfront capex, and fail to correlate detected defects with upstream PLC temperature, pressure, and motor vibration telemetry.",
+    krynexSolution:
+      "Edge-native computer vision software deploying quantized TensorRT neural models directly onto factory floor industrial PCs, triggering pneumatic reject actuators at line speed with 100% offline autonomy.",
+    architectureDetails: [
+      "Edge inference on NVIDIA Jetson / Industrial PCs running Ubuntu Core",
+      "Air-gapped operation with local PLC actuation (Modbus / OPC-UA)",
+      "Automated bidirectional ERP & MES synchronization",
+    ],
+    beneficiaries:
+      "Plant operations managers, quality control engineers, precision component fabricators, and discrete manufacturers.",
+    statusLabel: "Industrial Edge Software (In Active Development)",
+    quantifiedImpact: [
+      { metric: "Offline", label: "Edge Autonomy", sublabel: "Zero reliance on external internet for line inspection" },
+      { metric: "Sub-Second", label: "Defect Detection", sublabel: "Real-time optical inference on conveyor lines" },
+      { metric: "Closed-Loop", label: "PLC Actuation", sublabel: "Direct pneumatic valve trigger at line speed" },
+    ],
+    caseDossier: {
+      clientType: "Precision Component & Continuous Manufacturing Facilities",
+      deployedSystem: "Edge Computer Vision Inspection Station",
+      result: "Automated surface defect identification and real-time reject triggering without cloud latency.",
     },
   },
   {
     slug: "logistics",
-    name: "Logistics & Multimodal Supply Chain",
-    badge: "CLOUD & EVENT STREAMING VECTOR",
-    tagline: "Automated Shipping Manifest Ingestion & Terminal Gate Telematics",
+    name: "Logistics",
+    badge: "TELEMATICS & MULTIMODAL SUPPLY CHAIN",
+    tagline: "Automated Waybill Processing & Gate Telematics for Freight Hubs",
     overview:
-      "Freight forwarders, container terminal operators, and fleet logistics hubs lose millions annually to paperwork bottlenecks at port gates, demurrage penalties, and disconnected transport management systems.",
+      "Freight forwarders, container terminal depots, and fleet logistics hubs lose extensive time and capital to manual paperwork verification at gate check-ins, customs invoice discrepancies, and disconnected transport management systems.",
     targetWorkflow:
-      "Inbound container gate processing, multilingual bill-of-lading verification, customs EDI filing, and multi-modal fleet handoffs.",
+      "Inbound container gate processing, multilingual shipping waybill extraction, customs document reconciliation, and fleet handoff logging.",
     bottlenecks: [
-      "Container gate dwell times exacerbated by manual shipping manifest key-value extraction.",
-      "Customs paperwork discrepancies creating substantial demurrage penalties and truck queue congestion.",
-      "Disconnected transport databases forcing logistics staff into repetitive manual re-entry.",
+      "Truck turn-around times delayed by manual clerical extraction from printed manifests and consignee notes.",
+      "Waybill typographical discrepancies resulting in detention penalties and yard congestion.",
+      "Disconnected transport databases requiring dispatchers to re-key consignment details repeatedly.",
     ],
     whyExistingInadequate:
-      "Off-the-shelf OCR tools fail on low-resolution scanned manifests and lack direct bidirectional hooks into port operating systems (TOS) and customs portals.",
+      "Generic desktop OCR tools fail on low-resolution scanned documents and lack automated validation hooks to cross-reconcile weights, GST numbers, and container identifiers against transport management systems.",
     krynexSolution:
-      "High-throughput event middleware and document extraction pipeline that reconciles shipping documents against customs databases in seconds.",
+      "High-throughput document ingestion and telematics pipeline that extracts, validates, and reconciles shipping waybills in seconds, synchronizing yard management systems in real time.",
     architectureDetails: [
-      "Multilingual shipping manifest and bill-of-lading neural extraction",
+      "Multilingual shipping manifest and bill-of-lading optical extraction",
       "Sub-second event synchronization with inland container depot databases",
-      "Distributed Kafka event pipeline with deterministic delivery",
+      "Distributed event pipeline with guaranteed at-least-once message delivery",
     ],
     beneficiaries:
-      "Container terminal operators, customs house agents (CHA), freight forwarders, and intermodal transport fleets.",
-    statusLabel: "Streaming Data Architecture (In Development)",
+      "Container terminal operators, freight forwarders, fleet dispatchers, and intermodal transport hubs.",
+    statusLabel: "Streaming Data Architecture (In Active Development)",
     quantifiedImpact: [
       { metric: "Rapid", label: "Gate Clearance Target", sublabel: "Simulated manifest triage window objective" },
-      { metric: "Automated", label: "Ingestion Acceleration", sublabel: "Modeled EDI processing speed vs manual entry" },
-      { metric: "Target", label: "Reconciliation", sublabel: "3-way ERP document matching objective" },
+      { metric: "Automated", label: "Ingestion Speed", sublabel: "Modeled EDI processing vs manual key-in" },
+      { metric: "Reconciled", label: "Waybill Integrity", sublabel: "Automated 3-way consignment matching" },
     ],
     caseDossier: {
-      clientType: "Port Terminals & Intermodal Logistics Fleets",
-      deployedSystem: "Manifest Telematics & Gate Event Pipeline",
-      result: "High-throughput document extraction and ledger synchronization prototype.",
+      clientType: "Container Freight Stations & Intermodal Transport Fleets",
+      deployedSystem: "Waybill Telematics & Ingestion Gateway",
+      result: "High-throughput document extraction and yard management ledger synchronization.",
     },
   },
   {
-    slug: "fintech",
-    name: "FinTech & Banking Infrastructure",
-    badge: "RESEARCH VECTOR // OPPORTUNITY EXPLORATION",
-    tagline: "Streaming Graph Fraud Detection & Automated Collateral Verification",
+    slug: "enterprise-automation",
+    name: "Enterprise Automation",
+    badge: "WORKFLOW & DOCUMENT ORCHESTRATION",
+    tagline: "Deterministic Document Processing & Multi-System Workflow Orchestration",
     overview:
-      "Financial institutions and MSME lenders struggle with high-frequency transaction fraud rings and manual collateral title verifications, stalling loan disbursement velocity.",
+      "Mid-market and enterprise organizations operate dozens of disconnected software applications—legacy ERPs, SQL databases, ticketing systems, and document portals—forcing knowledge workers into manual, repetitive data re-entry.",
     targetWorkflow:
-      "Real-time payment transaction scoring, synthetic identity detection, and loan collateral asset verification.",
+      "Cross-departmental invoice approval, KYC document verification, purchase order reconciliation, and reverse-ETL database synchronization.",
     bottlenecks: [
-      "Batch transaction scoring failing to catch circular money flows and multi-account synthetic fraud in real time.",
-      "Manual property title search and sub-registrar verification delaying commercial loan approvals for days.",
-      "Legacy banking clearing systems prone to reconciliation errors and regulatory audit friction.",
+      "Manual data re-entry between legacy ERPs (SAP, Tally) and modern SaaS tools creating costly reconciliation delays.",
+      "Multi-day administrative approval lags for purchase orders and vendor invoices due to manual sign-off chains.",
+      "Lack of centralized operational telemetry: Leadership lacks real-time insight into transaction bottlenecks.",
     ],
     whyExistingInadequate:
-      "Traditional rules engines require weeks to update for new fraud topologies, and legacy clearing portals lack modern graph neural processing and low-latency streaming infrastructure.",
+      "Rigid traditional integration platforms charge exorbitant multi-lakh implementation fees and break silently whenever an API or document schema changes.",
     krynexSolution:
-      "Streaming Graph Neural Network (GNN) risk-scoring middleware coupled with automated collateral verification pipelines engineered for zero-trust compliance.",
+      "Dastaveg & Krynex Workflow Engine: Resilient document parsing and event-driven orchestration middleware that ingests business documents, executes automated validation rules, and synchronizes backends seamlessly.",
     architectureDetails: [
-      "Streaming Apache Kafka & Flink feature ingestion design target",
-      "Graph reasoning inference for synthetic identity detection",
-      "Enterprise KMS cryptographic envelope encryption",
+      "Deterministic business rule state machine with audit trails",
+      "Multilingual optical extraction pipeline for invoices and contracts",
+      "Bidirectional connectors for SAP, Tally, SQL, and REST APIs",
     ],
     beneficiaries:
-      "Digital lending platforms, regional commercial banks, NBFCs, and compliance auditing teams.",
-    statusLabel: "Architectural Research & Prototyping",
+      "Finance directors, chief operating officers, IT integration teams, and shared service center managers.",
+    statusLabel: "Workflow Middleware (In Active Development)",
     quantifiedImpact: [
-      { metric: "Real-Time", label: "Target Scoring Latency", sublabel: "Streaming graph neural inference objective" },
-      { metric: "Accelerated", label: "Collateral Title Check", sublabel: "Automated Index-II search exploration target" },
-      { metric: "Zero-Trust", label: "Sovereign Architecture", sublabel: "Hardware-enforced encryption standards" },
+      { metric: "Sub-Second", label: "Document Validation", sublabel: "Automated mathematical syntax checking" },
+      { metric: "Zero Capex", label: "Software Rental", sublabel: "Flat subscription access without upfront fees" },
+      { metric: "Immutable", label: "Audit Ledger", sublabel: "Cryptographically verified state transitions" },
     ],
     caseDossier: {
-      clientType: "Commercial Lending & Financial Platforms",
-      deployedSystem: "Krynex Streaming Risk & Verification Pipeline",
-      result: "Low-latency streaming transaction analysis and automated title verification exploration.",
-    },
-  },
-  {
-    slug: "healthcare",
-    name: "Healthcare & Clinical Diagnostics",
-    badge: "RESEARCH VECTOR // OPPORTUNITY EXPLORATION",
-    tagline: "DPDP-Aligned Medical Imaging Triage & Secure Hospital Workflows",
-    overview:
-      "Diagnostic centers and hospital networks handle massive volumes of DICOM imaging and patient records amidst acute specialist shortages, creating critical turnaround delays in emergency wards.",
-    targetWorkflow:
-      "Emergency diagnostic scan ingestion, radiologist worklist triage, and hospital electronic health record (EHR) synchronization.",
-    bottlenecks: [
-      "Radiologist shortages causing critical triage delays in acute emergency cases.",
-      "Fragmented electronic health records (EHR) trapped across legacy proprietary software suites.",
-      "Strict data sovereignty laws prohibiting patient imaging transmission to third-party public cloud APIs.",
-    ],
-    whyExistingInadequate:
-      "Cloud-based medical AI APIs risk severe compliance penalties under healthcare data privacy regulations, while on-premise legacy PACS systems lack modern neural processing capabilities.",
-    krynexSolution:
-      "Air-gapped on-premise convolutional neural network triage nodes that prioritize urgent DICOM scans on local hospital servers with zero external internet transmission.",
-    architectureDetails: [
-      "Local DICOM gateway with 100% offline hospital LAN execution",
-      "Zero-retention inference with immediate temporary buffer purge",
-      "Designed in alignment with Indian DPDP Act, ABDM health data standards, and international guidelines (HIPAA, GDPR)",
-    ],
-    beneficiaries:
-      "Hospital emergency departments, diagnostic imaging networks, and clinical radiologist teams.",
-    statusLabel: "Clinical Research & Regulatory Exploration",
-    quantifiedImpact: [
-      { metric: "Accelerated", label: "Target Triage Window", sublabel: "Simulated emergency scan prioritization target" },
-      { metric: "Air-Gapped", label: "Data Sovereignty", sublabel: "Zero patient data transmission outside hospital network" },
-      { metric: "Zero Capex", label: "Subscription Delivery", sublabel: "Predictable recurring software access model" },
-    ],
-    caseDossier: {
-      clientType: "Diagnostic Centers & Hospital Networks",
-      deployedSystem: "Krynex On-Premise DICOM Triage Node",
-      result: "Private, air-gapped clinical triage exploration ensuring total patient data confidentiality.",
+      clientType: "Multi-Entity Enterprises & Shared Services Hubs",
+      deployedSystem: "Enterprise Document & Workflow Orchestrator",
+      result: "Automated multi-system document parsing and ERP database synchronization.",
     },
   },
 ];

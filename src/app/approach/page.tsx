@@ -24,6 +24,13 @@ export const metadata: Metadata = {
   title: "Our Approach | Problem-First Software Product Lifecycle",
   description:
     "Explore Krynex Labs' 7-stage product lifecycle: Discover, Identify, Validate, Design, Build, Launch, and Continuously Improve software built around real industry challenges.",
+  keywords: [
+    "Software Product Lifecycle",
+    "Problem-First Software Engineering",
+    "SaaS Development Process",
+    "Software Rental Model India",
+    "Continuous Software Improvement",
+  ],
   alternates: {
     canonical: "https://www.krynexlabs.in/approach",
   },
@@ -32,13 +39,57 @@ export const metadata: Metadata = {
     description:
       "Explore Krynex Labs' 7-stage product lifecycle: Discover, Identify, Validate, Design, Build, Launch, and Continuously Improve software built around real industry challenges.",
     url: "https://www.krynexlabs.in/approach",
+    images: [
+      {
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: "Krynex Labs Approach - Problem-First Software Product Lifecycle",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Our Approach | Problem-First Software Product Lifecycle",
     description:
       "Explore Krynex Labs' 7-stage product lifecycle: Discover, Identify, Validate, Design, Build, Launch, and Continuously Improve software built around real industry challenges.",
+    images: ["/opengraph-image"],
   },
+};
+
+const approachJsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://www.krynexlabs.in/approach#webpage",
+      url: "https://www.krynexlabs.in/approach",
+      name: "Our Approach | Problem-First Software Product Lifecycle | Krynex Labs",
+      description:
+        "Explore Krynex Labs' 7-stage product lifecycle: Discover, Identify, Validate, Design, Build, Launch, and Continuously Improve.",
+      isPartOf: {
+        "@id": "https://www.krynexlabs.in/#website",
+      },
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://www.krynexlabs.in/approach#breadcrumb",
+      itemListElement: [
+        {
+          "@type": "ListItem",
+          position: 1,
+          name: "Home",
+          item: "https://www.krynexlabs.in",
+        },
+        {
+          "@type": "ListItem",
+          position: 2,
+          name: "Approach",
+          item: "https://www.krynexlabs.in/approach",
+        },
+      ],
+    },
+  ],
 };
 
 export default function ApproachPage() {
@@ -56,6 +107,10 @@ export default function ApproachPage() {
 
   return (
     <main className="min-h-screen bg-black text-white selection:bg-white selection:text-black">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(approachJsonLd) }}
+      />
       <Navbar />
 
       {/* Hero Header */}
@@ -160,7 +215,7 @@ export default function ApproachPage() {
       <SectionDivider />
 
       {/* The Core Business Model: Rented Software */}
-      <section className="py-24 bg-black relative">
+      <section id="business-model" className="py-24 bg-black relative">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <span className="text-[11px] font-mono tracking-widest text-zinc-500 uppercase block mb-2">
@@ -251,10 +306,10 @@ export default function ApproachPage() {
           </p>
           <div className="flex flex-wrap items-center justify-center gap-4">
             <Link
-              href="/products"
+              href="/solutions"
               className="px-6 py-3 rounded-full bg-white text-black font-semibold text-xs hover:bg-zinc-200 transition-all shadow-md flex items-center gap-2"
             >
-              <span>Explore Software Products</span>
+              <span>Explore Software Solutions</span>
               <ArrowRight className="w-3.5 h-3.5" />
             </Link>
             <Link

@@ -10,16 +10,36 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "#000000",
+        background: "#080B12",
+        canvas: {
+          DEFAULT: "#080B12",
+          subtle: "#101622",
+          card: "#121A27",
+          glass: "rgba(18, 26, 39, 0.75)",
+        },
         surface: {
-          DEFAULT: "#080808",
-          subtle: "#0a0a0a",
-          elevated: "#121214",
-          glass: "rgba(10, 10, 10, 0.7)",
+          DEFAULT: "#101622",
+          subtle: "#0D121D",
+          elevated: "#121A27",
+          glass: "rgba(18, 26, 39, 0.75)",
+        },
+        accent: {
+          DEFAULT: "#2563EB",
+          light: "#3B82F6",
+          hover: "#1D4ED8",
+          glow: "rgba(37, 99, 235, 0.2)",
+          electric: "#38BDF8",
+        },
+        text: {
+          primary: "#F8FAFC",
+          secondary: "#94A3B8",
+          muted: "#64748B",
         },
         border: {
           subtle: "rgba(255, 255, 255, 0.08)",
+          slate: "rgba(148, 163, 184, 0.12)",
           highlight: "rgba(255, 255, 255, 0.22)",
+          blue: "rgba(37, 99, 235, 0.35)",
           specular: "rgba(255, 255, 255, 0.35)",
         },
       },

@@ -13,7 +13,7 @@ const nextConfig = {
         headers: [
           {
             key: 'Content-Security-Policy',
-            value: "default-src 'self'; script-src 'self' 'unsafe-eval' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; img-src 'self' blob: data: https: https://*.google-analytics.com https://*.googletagmanager.com; font-src 'self' data:; connect-src 'self' https://*.vercel-insights.com https://vitals.vercel-insights.com https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; frame-ancestors 'none'; form-action 'self'; base-uri 'self'; object-src 'none';",
+            value: "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; img-src 'self' blob: data: https://*.google-analytics.com https://*.googletagmanager.com; font-src 'self' data:; connect-src 'self' https://*.vercel-insights.com https://vitals.vercel-insights.com https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; frame-ancestors 'none'; form-action 'self'; base-uri 'self'; object-src 'none';",
           },
           {
             key: 'X-DNS-Prefetch-Control',
@@ -65,7 +65,17 @@ const nextConfig = {
         permanent: true,
       },
       {
+        source: '/products/lawos',
+        destination: '/products/krynex-lawos',
+        permanent: true,
+      },
+      {
         source: '/legal/privacy',
+        destination: '/privacy',
+        permanent: true,
+      },
+      {
+        source: '/privacy-policy',
         destination: '/privacy',
         permanent: true,
       },
@@ -75,13 +85,13 @@ const nextConfig = {
         permanent: true,
       },
       {
-        source: '/products',
-        destination: '/solutions',
+        source: '/terms-of-service',
+        destination: '/terms',
         permanent: true,
       },
       {
-        source: '/products/:slug*',
-        destination: '/solutions',
+        source: '/security.txt',
+        destination: '/.well-known/security.txt',
         permanent: true,
       },
     ];

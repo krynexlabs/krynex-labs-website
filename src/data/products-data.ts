@@ -17,8 +17,10 @@ export interface ProductDetail {
   fullTagline: string;
   category: string;
   division: string;
-  status: "Live" | "In Development" | "Concept";
+  status: "Live" | "In Development" | "Concept" | "Private Beta" | "Early Pilot";
+  badge?: string;
   summary: string;
+  targetCustomers: string[];
   startingPrice: {
     inr: string;
     usd: string;
@@ -47,7 +49,7 @@ export interface ProductDetail {
   demoPreview: {
     title: string;
     subtitle: string;
-    type: "legal-drafting" | "workflow-engine" | "edge-vision";
+    type: "legal-drafting" | "solar-ops" | "document-automation";
     sampleData: Record<string, string>;
   };
   pricingTiers: PricingTier[];
@@ -58,40 +60,47 @@ export interface ProductDetail {
 }
 
 export const PRODUCTS_DATA: Record<string, ProductDetail> = {
-  "krynex-lexis": {
-    slug: "krynex-lexis",
-    name: "Krynex Lexis",
-    shortTagline: "Regional AI Legal & Statutory Drafting System",
+  "krynex-lawos": {
+    slug: "krynex-lawos",
+    name: "Krynex LawOS",
+    shortTagline: "Legal Document Automation & Statutory Compliance Platform",
     fullTagline:
-      "Deterministic Bilingual Drafting & Automated Title Clearance for Indian Statutory Jurisdictions",
-    category: "LegalTech & Enterprise Compliance",
+      "Deterministic Bilingual Deed Compilation, Automated Title Search & Stamp Verification for Indian Practice",
+    category: "LegalTech & Document Automation",
     division: "Krynex Software Products // Recurring SaaS",
-    status: "Live",
+    status: "Private Beta",
+    badge: "LEGALTECH OS",
     summary:
-      "Bilingual legal drafting engine compiling verified statutory deeds and title clearance documentation against Gujarat revenue codes deterministically.",
+      "Bilingual legal document automation platform compiling verified statutory deeds and title clearance documentation against regional revenue codes deterministically.",
+    targetCustomers: [
+      "Individual Advocates & Boutique Practices",
+      "Real Estate Developers & Land Promoters",
+      "Corporate Legal Counsel & Compliance Teams",
+      "Title Search Examiners & Conveyancing Panels",
+    ],
     startingPrice: {
       inr: "₹1,499",
       usd: "$19",
       period: "/ month",
     },
     theProblem: {
-      title: "The Manual Drafting Bottleneck in Indian Statutory Practice",
+      title: "The Clerical Bottleneck in Indian Statutory Conveyancing",
       description:
-        "Drafting real estate deeds, title clearance dockets, sale agreements, and legal notices in India has remained a painful, slow manual bottleneck for decades.",
+        "Drafting real estate deeds, title clearance dockets, sale agreements, and legal notices in India has remained a slow, manual administrative bottleneck prone to typographical errors.",
       painPoints: [
         "Advocates and corporate legal departments spend hours per document manually copying boilerplate clauses, risking omitted statutory covenants.",
         "Regional bilingual requirements (Gujarati & English) require clumsy manual translation, often introducing severe legal ambiguities in property schedules.",
-        "Title search dockets across sub-registrar records (Index-II) require manual chronological indexing and indexing error auditing.",
+        "Title search dockets across sub-registrar records (Index-II) require manual chronological indexing and encumbrance auditing.",
         "Frequent statutory updates (Indian Stamp Act, Registration Act 1908, Gujarat Revenue Code) are easily missed in static Word templates.",
       ],
     },
     theSolution: {
       title: "Deterministic Clause Synthesis with Mathematical Verification",
       description:
-        "Krynex Lexis replaces static templates with an intelligent, deterministic clause compiler that drafts, cross-references, and validates property covenants in real time.",
+        "Krynex LawOS replaces static templates with an intelligent, deterministic clause compiler that drafts, cross-references, and validates property covenants in real time.",
       keyBenefits: [
-        "Target compilation speed: Designed for rapid bilingual Sale Deed (વેચાણ દસ્તાવેજ) and Title Report draft generation with deterministic statutory guardrails.",
-        "Bilingual statutory precision: Full native vernacular support for Gujarati legal vocabulary (e.g., ખેતીની જમીન, બિનખેતી, બોજા મુક્ત પ્રમાણપત્ર) alongside high-standard English jurisprudence.",
+        "Rapid compilation target: Designed for rapid bilingual Sale Deed (વેચાણ દસ્તાવેજ) and Title Report draft generation with deterministic statutory guardrails.",
+        "Bilingual statutory precision: Full native vernacular support for Gujarati legal vocabulary alongside high-standard English jurisprudence.",
         "Deterministic statutory guardrails: Automated calculations of stamp duty, registration fees, and mandatory statutory covenants.",
         "Client data sovereignty: Client case files and draft covenants are protected via AES-256 KMS encryption and never used to train public models.",
       ],
@@ -100,14 +109,14 @@ export const PRODUCTS_DATA: Record<string, ProductDetail> = {
       {
         title: "Bilingual Clause Synthesis Engine",
         description:
-          "Draft deeds simultaneously in Gujarati and English with parallel side-by-side covenant alignment, preserving exact statutory meaning.",
-        specs: "Rapid AST compilation target",
+          "Draft deeds simultaneously in Gujarati and English with parallel side-by-side covenant alignment, preserving exact statutory meaning across languages.",
+        specs: "Deterministic AST compilation engine",
       },
       {
         title: "Title Search & Index-II Triage",
         description:
           "Ingest revenue records (Village Form 7/12, 8A, 6 Haq Patrak, and Index-II sub-registrar dockets) to generate automated chain-of-title chronologies.",
-        specs: "Automated encumbrance detection",
+        specs: "Automated encumbrance timeline mapping",
       },
       {
         title: "Statutory Stamp Duty & Fee Calculator",
@@ -116,7 +125,7 @@ export const PRODUCTS_DATA: Record<string, ProductDetail> = {
         specs: "Updated to current statutory revenue guidelines",
       },
       {
-        title: "Clause Bank & Redlining Audit Ledger",
+        title: "Firm Clause Bank & Audit Ledger",
         description:
           "Maintain your firm's private library of battle-tested dispute clauses, indemnity covenants, and arbitration clauses with automated change tracking.",
         specs: "Cryptographically signed audit logs",
@@ -157,7 +166,7 @@ export const PRODUCTS_DATA: Record<string, ProductDetail> = {
           "Full bilingual support (Gujarati & English)",
           "Standard deed & notice templates (Sale, Lease, POA, Notice)",
           "Gujarat Stamp Duty & Registration fee calculator",
-          "Export to watermarked Word (.docx) and PDF",
+          "Export to clean Word (.docx) and PDF",
           "Standard email engineering support",
         ],
         ctaText: "Start Starter Plan",
@@ -191,7 +200,7 @@ export const PRODUCTS_DATA: Record<string, ProductDetail> = {
           "Dedicated private VPC or on-premise deployment",
           "Custom ERP/DMS integration (SAP, Oracle, iManage)",
           "Unlimited seats with role-based access control (RBAC)",
-          "Hardware Security Module (HSM) dedicated key vaults or KMS envelope encryption",
+          "KMS envelope encryption with customer-managed keys (CMEK) and logical tenant isolation",
           "Custom fine-tuned statutory models on your historic contracts",
           "High availability architecture target with dedicated solutions architect",
           "Dedicated priority support via corporate email channel",
@@ -200,282 +209,317 @@ export const PRODUCTS_DATA: Record<string, ProductDetail> = {
       },
     ],
     documentationLinks: [
-      { label: "Technical Architecture Overview", href: "/products/krynex-lexis#architecture" },
-      { label: "Bilingual Gujarati Vocabulary Guide", href: "/products/krynex-lexis#architecture" },
-      { label: "Statutory Compliance Whitepaper", href: "/contact?subject=lexis-compliance" },
+      { label: "Technical Architecture Overview", href: "/products/krynex-lawos#architecture" },
+      { label: "Bilingual Statutory Guide", href: "/products/krynex-lawos#features" },
+      { label: "Request LawOS Walkthrough", href: "/contact?product=krynex-lawos" },
     ],
   },
-  "krynex-flow": {
-    slug: "krynex-flow",
-    name: "Krynex Flow",
-    shortTagline: "Enterprise Workflow & Legacy Integration Engine",
+  "solarops": {
+    slug: "solarops",
+    name: "SolarOps",
+    shortTagline: "Solar Business Management & Project Execution Software",
     fullTagline:
-      "Event-Driven Process Orchestration Connecting Disparate Systems with Autonomous Triage",
-    category: "Enterprise Automation & Middleware",
+      "End-to-End Solar Project Management, BOM Tracking & DISCOM Compliance for EPC Contractors",
+    category: "CleanTech & Solar Business Management",
     division: "Krynex Software Products // Recurring SaaS",
     status: "In Development",
+    badge: "CLEANTECH OS",
     summary:
-      "An enterprise orchestration middleware platform built to bridge legacy on-premise databases, modern cloud APIs, and autonomous approval workflows.",
+      "Operations software platform for solar EPC contractors and rooftop installers to manage site feasibility surveys, quotation generation, DISCOM approvals, and telemetry monitoring.",
+    targetCustomers: [
+      "Solar EPC Contractors & Turnkey Developers",
+      "Rooftop Solar Installation Teams",
+      "Commercial & Industrial Solar Integrators",
+      "Solar Asset Operations & Maintenance (O&M) Teams",
+    ],
     startingPrice: {
-      inr: "₹7,999",
-      usd: "$99",
+      inr: "₹2,999",
+      usd: "$39",
       period: "/ month",
     },
     theProblem: {
-      title: "The Friction of Disparate Enterprise Systems",
+      title: "Operational Friction in Rooftop & Commercial Solar Delivery",
       description:
-        "Modern enterprises operate dozens of disconnected software tools—legacy ERPs, SQL databases, ticketing systems, and customer portals—forcing knowledge workers into manual glue work.",
+        "Solar EPC contractors struggle with disconnected spreadsheets, inaccurate shadow loss estimations, delayed DISCOM net-metering approvals, and procurement inventory leakage.",
       painPoints: [
-        "Manual data re-entry between ERPs (SAP, Tally, Oracle) and modern SaaS apps creates costly reconciliation errors.",
-        "Slow multi-departmental approval chains that stall purchase orders, vendor invoices, and compliance sign-offs for days.",
-        "Lack of real-time visibility: Executives have no unified operational telemetry across disparate business units.",
-        "Fragile point-to-point webhook scripts that break silently when API schemas change.",
+        "Field site survey measurements recorded on paper lead to miscalculated system sizing and wrong inverter configurations.",
+        "Quotation generation takes days, causing customer loss to faster competitors during commercial procurement windows.",
+        "DISCOM net-metering documentation and government subsidy workflows are trapped in disorganized WhatsApp messages and email folders.",
+        "Post-commissioning generation monitoring requires logging into multiple inverter portals with zero centralized telemetry.",
       ],
     },
     theSolution: {
-      title: "Resilient Event-Driven Middleware with Built-in AI Triage",
+      title: "Unified Solar Execution Engine from Survey to Grid Commissioning",
       description:
-        "Krynex Flow provides a high-throughput distributed pipeline that ingests events, executes automated validation rules, orchestrates AI decision agents, and synchronizes backends seamlessly.",
+        "SolarOps unifies site feasibility modeling, automated bill-of-materials generation, DISCOM approval tracking, and IoT generation telemetry in one cohesive platform.",
       keyBenefits: [
-        "Workflow acceleration target: Designed to streamline end-to-end invoice and approval lifecycles into an automated sequence.",
-        "Autonomous document triage: Automatically classify, extract, and reconcile incoming PDF invoices, POs, and logistics waybills.",
-        "Bi-directional legacy connectors: Pre-built zero-trust agents that integrate with on-premise SQL, SAP, and Tally without opening inbound firewall ports.",
-        "Guaranteed message delivery: Distributed Kafka-backed queuing with automatic retry backoff and dead-letter queue auditing.",
+        "Rapid quotation turnaround: Generate accurate system proposals with financial payback models in minutes.",
+        "Accurate Balance of System (BOM): Automated calculations for panels, inverter capacities, structure tilt, and DC/AC cable schedules.",
+        "DISCOM statutory tracker: Milestone-driven checklist for net-metering applications, inspection readiness, and subsidy releases.",
+        "Unified inverter telemetry: Centralized performance monitoring across Growatt, Sungrow, Solis, and Huawei inverters.",
       ],
     },
     features: [
       {
-        title: "Visual Workflow Canvas & State Machine",
+        title: "Automated Solar Sizing & Financial Modeler",
         description:
-          "Define complex conditional routing, human-in-the-loop approvals, and parallel microservice executions without writing boilerplate code.",
-        specs: "Deterministic state engine",
+          "Calculate solar PV capacity based on roof area, electricity tariff slabs, and solar irradiance, outputting automated ROI and payback schedules.",
+        specs: "Granular solar irradiance simulation target",
       },
       {
-        title: "Autonomous AI Document Parsing",
+        title: "Dynamic Bill of Materials (BOM) & Costing",
         description:
-          "Ingest scanned invoices, delivery receipts, and customs manifests; extract line items with high-precision validation; and match against purchase orders.",
-        specs: "3-way ERP reconciliation target",
+          "Automatically compile hardware components—modules, inverters, structures, lightning arrestors, and earthing pits—with live vendor catalog pricing.",
+        specs: "Real-time procurement cost calculation",
       },
       {
-        title: "Outbound Webhook & Reverse-ETL Gateway",
+        title: "DISCOM Net-Metering & Subsidy Lifecycle Tracker",
         description:
-          "Push processed and enriched event streams back into PostgreSQL, Snowflake, ClickHouse, or legacy on-prem systems in real time.",
-        specs: "High-throughput design target",
+          "Track step-by-step statutory progress across DISCOM approval phases: feasibility consent, work completion report (WCR), meter installation, and commissioning.",
+        specs: "Automated document docket generation",
       },
       {
-        title: "Enterprise Role-Based Access & Audit Ledger",
+        title: "Field Crew Dispatch & Installation Milestones",
         description:
-          "Immutable, timestamped audit log of every state change, document approval, and API transmission for regulatory compliance.",
-        specs: "Designed in alignment with SOC 2 & ISO 27001 security guidelines",
+          "Mobile-friendly daily installation logging, site photo uploads, and technician dispatch to eliminate project delivery delays.",
+        specs: "Offline-capable mobile field logging",
       },
     ],
     architecture: {
-      title: "High-Availability Distributed Engine Architecture",
+      title: "Cloud-Native Solar Operations Architecture",
       description:
-        "Constructed for resilience with zero single point of failure and stateless horizontal scaling.",
+        "Built for real-time field synchronization, telemetry ingestion, and offline mobile resilience.",
       specs: [
-        "High-performance Go and Rust event-processing core",
-        "Kafka-backed event streaming with at-least-once delivery and deterministic idempotent deduplication",
-        "Outbound-only reverse proxy tunnels for secure on-premise database sync",
-        "Multi-tenant cryptographic tenant isolation",
+        "Event-driven cloud microservices with sub-second API responses",
+        "Offline-first mobile synchronization for remote installation sites",
+        "MQTT/HTTP IoT inverter telemetry ingestion pipeline",
+        "Role-based access control for surveyors, project managers, and finance officers",
       ],
     },
     demoPreview: {
-      title: "Live Orchestration Telemetry",
-      subtitle: "Simulated enterprise multi-system dispatch",
-      type: "workflow-engine",
+      title: "SolarOps Project Console",
+      subtitle: "Simulated rooftop solar engineering workflow",
+      type: "solar-ops",
       sampleData: {
-        trigger: "Inbound Vendor Invoice (PDF)",
-        parser: "AI Extraction Engine: High-confidence field matching",
-        validation: "Match Verified against SAP Purchase Order",
-        action: "Payment Drafted in Banking Portal + ERP Ledger Synced",
-        totalTime: "Automated simulation runtime",
+        siteLocation: "Sanand Industrial Estate, Ahmedabad",
+        systemCapacity: "120 kWp Rooftop Grid-Tied PV",
+        estimatedYield: "175,000 kWh / Year",
+        estimatedPayback: "3.2 Years Projected",
+        discomStage: "Work Completion Report (WCR) Submitted",
       },
     },
     pricingTiers: [
       {
-        name: "Team Engine",
-        price: "₹7,999",
-        usdPrice: "$99",
+        name: "Installer Base",
+        price: "₹2,999",
+        usdPrice: "$39",
         period: "per month",
-        description: "For mid-sized companies seeking to automate internal operational workflows.",
+        description: "For boutique residential rooftop installers managing up to 10 active sites monthly.",
         features: [
-          "Up to 250,000 processed workflow events / month",
-          "Up to 15 active automated workflow pipelines",
-          "Standard connectors (REST, Webhooks, SQL, Tally, Sheets)",
-          "AI Document Parser included",
-          "Immutable audit log history",
+          "Up to 10 active solar projects simultaneously",
+          "Automated solar sizing & proposal generation",
+          "Standard BOM bill of materials export",
+          "DISCOM milestone tracking checklist",
+          "PDF quotation generator with your branding",
           "Standard email engineering support",
         ],
-        ctaText: "Start Team Engine",
+        ctaText: "Start Installer Plan",
       },
       {
-        name: "Enterprise Fleet",
-        price: "₹24,999",
-        usdPrice: "$299",
+        name: "EPC Fleet",
+        price: "₹8,999",
+        usdPrice: "$109",
         period: "per month",
-        badge: "ENTERPRISE GRADE",
+        badge: "MOST POPULAR",
         highlighted: true,
-        description: "For multi-plant enterprises with high-throughput transaction pipelines.",
+        description: "For active commercial & industrial solar EPC contractors managing multiple installation crews.",
         features: [
-          "Up to 2,500,000 processed workflow events / month",
-          "Unlimited automated workflow pipelines",
-          "Advanced SAP, Oracle, and SCADA bi-directional connectors",
-          "High-volume AI Document Parser included",
-          "Extended compliance audit log retention",
-          "Dedicated VPC deployment option",
-          "High availability architecture target with priority emergency escalation",
+          "Unlimited active solar projects and site surveys",
+          "Advanced dynamic BOM costing with vendor margins",
+          "Mobile technician dispatch & photo punch-lists",
+          "DISCOM net-metering document repository",
+          "IoT inverter telemetry dashboard integration",
+          "Multi-user role permissions (Sales, EPC, Accounts)",
+          "Priority engineering email support",
         ],
-        ctaText: "Deploy Enterprise Fleet",
+        ctaText: "Deploy EPC Fleet",
       },
       {
-        name: "Custom Cluster",
+        name: "Developer Enterprise",
         price: "Bespoke",
         usdPrice: "Custom",
         period: "annual licensing",
-        description: "For large enterprises requiring private air-gapped infrastructure.",
+        description: "For utility-scale solar developers and multi-megawatt portfolio asset managers.",
         features: [
-          "Unlimited event throughput with custom Kubernetes clustering",
-          "Air-gapped on-premise installation option",
-          "Custom protocol connectors (OPC-UA, Modbus, proprietary legacy APIs)",
-          "Dedicated cryptographic key management and enterprise data isolation",
-          "High availability uptime architecture with dedicated engineering escalation",
+          "Multi-site SCADA and centralized telemetry gateway",
+          "Custom ERP integration (SAP, Tally, Zoho Books)",
+          "Automated O&M maintenance ticketing & degradation alerts",
+          "Dedicated cloud tenant with KMS envelope encryption",
+          "High availability uptime architecture target",
+          "Dedicated technical onboarding manager",
         ],
-        ctaText: "Consult Enterprise Architects",
+        ctaText: "Consult Enterprise Solutions",
       },
     ],
     documentationLinks: [
-      { label: "Flow Architecture Overview", href: "/products/krynex-flow#architecture" },
-      { label: "ERP Connector Specifications", href: "/products/krynex-flow#features" },
-      { label: "Enterprise Security Dossier", href: "/contact?subject=flow-security" },
+      { label: "SolarOps System Sizing Guide", href: "/products/solarops#features" },
+      { label: "DISCOM Compliance Whitepaper", href: "/products/solarops#architecture" },
+      { label: "Inquire About SolarOps Early Pilot", href: "/contact?product=solarops" },
     ],
   },
-  "krynex-vision": {
-    slug: "krynex-vision",
-    name: "Krynex Vision",
-    shortTagline: "Edge Industrial Computer Vision & QC Engine",
-    fullTagline: "Edge Surface Defect Detection & SCADA Correlation for High-Speed Production",
-    category: "Industrial IoT & Edge AI",
-    division: "Krynex Software Products // Recurring SaaS",
+  "dastaveg": {
+    slug: "dastaveg",
+    name: "Dastaveg",
+    shortTagline: "Indian Statutory Deed Automation & Document Engine",
+    fullTagline:
+      "Vernacular Deed Compilation & Sub-Registrar Index-II Automation — Part of the Krynex Legal Product Family",
+    category: "Legal Document Automation & Statutory Engine",
+    division: "Krynex Legal Tech Suite // Document Engine",
     status: "In Development",
+    badge: "LEGAL SUITE MODULE",
     summary:
-      "An edge-native industrial computer vision software platform engineered for continuous manufacturing, pharmaceuticals, and precision quality control.",
+      "Specialized statutory deed and document automation engine developed as part of the Krynex Legal product family, powering Index-II verification and multilingual conveyancing drafting.",
+    targetCustomers: [
+      "Banking & NBFC Loan Operations",
+      "Logistics & Freight Waybill Processors",
+      "Notary & Conveyancing Document Networks",
+      "Statutory & Taxation Compliance Officers",
+    ],
     startingPrice: {
-      inr: "₹18,500",
-      usd: "$229",
-      period: "/ station / mo",
+      inr: "₹3,499",
+      usd: "$45",
+      period: "/ month",
     },
     theProblem: {
-      title: "The Unreliability of Manual Quality Control",
+      title: "The Manual Tax of High-Volume Paper Operations",
       description:
-        "Human visual inspection on high-speed factory lines suffers from fatigue, subjective criteria, and slow throughput, allowing costly defects to escape to customers.",
+        "Enterprises receive thousands of unstructured invoices, identity documents, affidavits, and bill of ladings weekly, forcing employees into mind-numbing data entry and manual cross-checking.",
       painPoints: [
-        "Manual inspection error rates typically hover at elevated levels, leading to expensive customer warranty claims and product recalls.",
-        "High-speed production lines (continuous lines) cannot be physically inspected by human operators in real time.",
-        "Cloud-dependent AI systems introduce network latency and fail completely during factory internet outages.",
-        "Lack of automatic correlation between detected visual defects and upstream machinery telemetry (temperatures, vibrations).",
+        "Manual transcription of document data into ERP systems produces errors that delay disbursements and deliveries.",
+        "Multilingual Indian documents (Gujarati, Hindi, English) fail on standard English-only OCR tools.",
+        "Verification against statutory databases requires swivel-chair clerical work across multiple disconnected portals.",
+        "Generating templated certificates, agreements, and receipts remains fragmented across outdated desktop software.",
       ],
     },
     theSolution: {
-      title: "Edge TensorRT Vision Models with SCADA Feedback",
+      title: "Deterministic Multilingual OCR & Automated Document Compilation",
       description:
-        "Krynex Vision deploys lightweight, quantized neural networks directly onto factory-floor edge gateways, triggering pneumatic reject actuators in real time.",
+        "Dastaveg delivers an enterprise-grade document engine: ingest scanned PDFs, extract structured JSON with mathematical validation, and generate compiled documents deterministically.",
       keyBenefits: [
-        "Target defect escape objective: Modeled to significantly reduce defect escapes compared to manual visual inspection baselines.",
-        "Edge inference target: Modeled for high-speed continuous line inspection.",
-        "100% offline edge autonomy: The system runs uninterrupted 24/7 without requiring external internet connectivity.",
-        "Closed-loop PLC actuation: Direct digital output designed to trigger pneumatic air-blast reject mechanisms at line speed.",
+        "High-accuracy field extraction: Purpose-built for Indian document formats including revenue records, KYC, and commercial invoices.",
+        "Deterministic validation rules: Custom business logic checks that catch calculation errors before writing to databases.",
+        "Programmatic deed & certificate rendering: Generate watermarked, cryptographically signed PDFs from structured JSON data.",
+        "Strict zero-retention data security: Customer documents are processed in memory and never stored without explicit customer consent.",
       ],
     },
     features: [
       {
-        title: "Multi-Camera Edge Orchestration",
+        title: "Multilingual OCR & Entity Extraction",
         description:
-          "Connect multiple industrial vision cameras (GigE or USB3 Vision) to a single edge gateway (NVIDIA Jetson / Industrial PC) with synchronized hardware strobe triggers.",
-        specs: "Synchronized sub-millisecond triggering",
+          "Extract key-value pairs, tables, and handwritten annotations from Gujarati, Hindi, and English documents with high confidence scoring.",
+        specs: "High-precision layout-aware parsing",
       },
       {
-        title: "Defect Classification & Semantic Segmentation",
+        title: "Deterministic Validation & Anomaly Detection",
         description:
-          "Identify scratches, micro-cracks, color variations, burrs, missing components, and barcode reading errors with sub-millimeter precision.",
-        specs: "High-resolution optical target",
+          "Automated cross-field validation rules (e.g. GSTIN checksum, PAN syntax, line-item totals) that flag suspicious documents automatically.",
+        specs: "Automated statutory syntax checking",
       },
       {
-        title: "OPC-UA & Modbus PLC Gateway",
+        title: "Programmatic Document Synthesis",
         description:
-          "Direct integration with Siemens, Allen-Bradley, and Mitsubishi PLCs to correlate defect spikes with machinery vibration and temperature sensors.",
-        specs: "Direct industrial bus communication",
+          "Populate pre-approved statutory templates with structured data to produce print-ready DOCX and PDF documents in sub-seconds.",
+        specs: "Sub-second PDF compilation target",
       },
       {
-        title: "Local Production Analytics Dashboard",
+        title: "Webhook & Reverse-ETL Connectors",
         description:
-          "Touchscreen-optimized factory floor display showing real-time reject rates, yield analytics, Pareto charts, and defect image galleries.",
-        specs: "Zero-latency local web UI",
+          "Send verified document payloads directly into PostgreSQL, SAP, Salesforce, or cloud lakehouses via secured webhooks.",
+        specs: "Deterministic idempotent message delivery",
       },
     ],
     architecture: {
-      title: "Hardened Edge Factory Network Architecture",
+      title: "Resilient Document Pipeline Architecture",
       description:
-        "Engineered for harsh industrial environments with physical isolation and zero-trust LAN protection.",
+        "Constructed for high-throughput batch and real-time processing with memory-only execution and zero data retention for transient inputs.",
       specs: [
-        "Edge computing on NVIDIA Jetson Orin / Industrial PC running Ubuntu Core",
-        "Quantized INT8/FP16 TensorRT inference runtime",
-        "Air-gapped operation with encrypted local SSD storage",
-        "Optional scheduled synchronization with corporate cloud lakehouse",
+        "Stateless containerized OCR and extraction workers",
+        "Distributed queue backpressure with Kafka and Redis",
+        "AES-256 envelope encryption with customer-managed keys",
+        "Air-gapped on-premise deployment option available",
       ],
     },
     demoPreview: {
-      title: "Edge Vision Telemetry",
-      subtitle: "Simulated industrial defect detection line",
-      type: "edge-vision",
+      title: "Dastaveg Extraction Console",
+      subtitle: "Simulated document automation pipeline",
+      type: "document-automation",
       sampleData: {
-        lineSpeed: "Continuous conveyor speed",
-        inferenceTime: "TensorRT INT8 runtime",
-        defectType: "Micro-surface fracture detected on flange seal",
-        actuatorStatus: "Pneumatic reject valve triggered",
-        operationalYield: "High clean line yield objective",
+        documentType: "Commercial Purchase Order & Tax Invoice",
+        detectedLanguage: "Bilingual (Gujarati & English)",
+        entitiesExtracted: "18 Fields, GSTIN Verified, Totals Reconciled",
+        validationStatus: "Syntax & Mathematical Check Passed",
+        exportTarget: "ERP Webhook Dispatched (Sub-second)",
       },
     },
     pricingTiers: [
       {
-        name: "Single Inspection Station",
-        price: "₹18,500",
-        usdPrice: "$229",
-        period: "per station / mo",
-        description: "For single-line inspection and operational evaluation.",
+        name: "Standard Engine",
+        price: "₹3,499",
+        usdPrice: "$45",
+        period: "per month",
+        description: "For small teams and boutique operations processing up to 1,500 documents per month.",
         features: [
-          "Supports 1 inspection station with dual industrial cameras",
-          "Standard surface defect & dimensional models",
-          "Edge inference runtime license",
-          "Local touchscreen operator dashboard",
-          "PLC reject trigger integration (Modbus/OPC-UA)",
-          "Remote engineer onboarding & calibration",
+          "Up to 1,500 document extractions per month",
+          "Bilingual extraction (Gujarati & English)",
+          "Pre-built invoice, KYC, and property deed templates",
+          "Web dashboard and bulk upload queue",
+          "Export to structured CSV, Excel, and JSON",
+          "Standard email engineering support",
         ],
-        ctaText: "Inquire About Station",
+        ctaText: "Start Standard Plan",
       },
       {
-        name: "Multi-Plant Fleet",
-        price: "Custom",
+        name: "Enterprise Triage",
+        price: "₹9,999",
+        usdPrice: "$125",
+        period: "per month",
+        badge: "HIGH THROUGHPUT",
+        highlighted: true,
+        description: "For mid-to-large enterprises processing high-volume daily document streams.",
+        features: [
+          "Up to 10,000 document extractions per month",
+          "Custom validation rules and anomaly alerts",
+          "Programmatic PDF/DOCX synthesis compiler",
+          "Direct REST API and webhook integration",
+          "Team seats with role-based access control",
+          "Audit trail with tamper-evident logs",
+          "Priority engineering email support",
+        ],
+        ctaText: "Deploy Enterprise Triage",
+      },
+      {
+        name: "Private Cluster",
+        price: "Bespoke",
         usdPrice: "Custom",
         period: "annual licensing",
-        badge: "INDUSTRIAL SCALE",
-        highlighted: true,
-        description: "For manufacturing plants deploying automated vision across multiple lines.",
+        description: "For banks, NBFCs, and enterprises requiring air-gapped on-premise infrastructure.",
         features: [
-          "Supports unlimited inspection lines & camera feeds",
-          "Custom neural model training on your historic scrap parts",
-          "Centralized plant-wide telemetry and multi-site dashboard",
-          "Automated SCADA/MES bidirectional sync",
-          "On-site factory calibration & lighting optimization by engineers",
-          "Priority emergency incident escalation and remote support",
+          "Unlimited document processing throughput",
+          "Air-gapped on-premise Kubernetes cluster",
+          "Custom fine-tuned OCR models on proprietary paperwork",
+          "Dedicated KMS key vault envelope encryption",
+          "High availability uptime architecture target",
+          "Dedicated technical solutions architect",
         ],
-        ctaText: "Schedule Plant Audit",
+        ctaText: "Consult Document Architects",
       },
     ],
     documentationLinks: [
-      { label: "Industrial Camera Hardware Guide", href: "/products/krynex-vision#architecture" },
-      { label: "Edge PLC Wiring Specifications", href: "/products/krynex-vision#features" },
-      { label: "Inquire About Plant Deployment", href: "/contact?subject=vision-inspection" },
+      { label: "Document Extraction API Guide", href: "/products/dastaveg#features" },
+      { label: "Zero-Retention Security Specifications", href: "/products/dastaveg#architecture" },
+      { label: "Request Dastaveg Sandbox Access", href: "/contact?product=dastaveg" },
     ],
   },
 };
+
+

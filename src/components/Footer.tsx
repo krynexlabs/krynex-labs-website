@@ -21,6 +21,7 @@ import {
   ChevronRight,
 } from "lucide-react";
 import KrynexLogo from "./KrynexLogo";
+import { trackConversionEvent } from "./Analytics";
 
 interface FooterProps {
   onRequestDemo?: () => void;
@@ -149,7 +150,7 @@ export default function Footer({ onRequestDemo, hideInquirySection = false }: Fo
             <div className="absolute inset-0 z-0 pointer-events-none select-none overflow-hidden">
               <Image
                 src="/static/background-auth.jpg"
-                alt="Silk Drapery Ambience"
+                alt="Krynex Labs executive briefing backdrop"
                 fill
                 quality={95}
                 className="object-cover object-top opacity-55 sm:opacity-75"
@@ -163,18 +164,33 @@ export default function Footer({ onRequestDemo, hideInquirySection = false }: Fo
 
             {/* Section Header */}
             <div className="text-center max-w-2xl mx-auto mb-10 relative z-10">
-              <p className="text-xs text-zinc-400 font-normal mb-3">
-                Business Hours: 9:30 AM to 6:30 PM IST • Ahmedabad, India
-              </p>
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-[11px] font-mono tracking-widest text-blue-400 uppercase mb-4">
+                <span>GET IN TOUCH // AHMEDABAD LABS</span>
+              </div>
 
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mb-3 leading-[1.1]">
-                <span className="text-white block">Experience better</span>
-                <span className="bg-gradient-to-b from-zinc-200 via-zinc-400 to-zinc-500 bg-clip-text text-transparent block">software today</span>
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mb-4 leading-[1.1] text-white">
+                READY TO BUILD SOMETHING INTELLIGENT?
               </h2>
 
               <p className="text-sm sm:text-base text-zinc-400 leading-relaxed mb-6">
-                Get personal, reliable support from people who know your setup and care about your success.
+                Connect with our engineering team in Ahmedabad to evaluate your operational challenges, schedule a product walkthrough, or request beta access.
               </p>
+
+              <div className="flex flex-wrap items-center justify-center gap-4 mb-8">
+                <a
+                  href="/products"
+                  className="px-6 py-2.5 rounded-full bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs transition-all shadow-[0_0_20px_rgba(37,99,235,0.35)] flex items-center gap-2"
+                >
+                  <span>Explore Products</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </a>
+                <Link
+                  href="/contact"
+                  className="px-6 py-2.5 rounded-full bg-white/[0.04] border border-white/10 hover:border-white/20 text-white font-medium text-xs hover:bg-white/[0.08] transition-all"
+                >
+                  Contact Krynex Labs
+                </Link>
+              </div>
             </div>
 
             {/* Interactive Corporate Inquiry Form */}
@@ -424,6 +440,7 @@ export default function Footer({ onRequestDemo, hideInquirySection = false }: Fo
                 <Mail className="w-4 h-4 text-zinc-400 shrink-0" />
                 <a
                   href="mailto:support@krynexlabs.in"
+                  onClick={() => trackConversionEvent("contact_email_click", { location: "footer", email: "support@krynexlabs.in" })}
                   className="hover:text-white transition-colors underline underline-offset-2"
                 >
                   support@krynexlabs.in
@@ -443,15 +460,83 @@ export default function Footer({ onRequestDemo, hideInquirySection = false }: Fo
             </div>
           </div>
 
-          {/* Col 2: Capabilities & Solutions */}
+          {/* Col 2: Products */}
           <div>
             <div className="text-xs font-mono font-semibold text-white uppercase tracking-wider mb-4 flex items-center gap-1.5">
-              <span>Capabilities</span>
+              <span>Products</span>
             </div>
             <ul className="space-y-2.5 text-xs text-zinc-400">
               <li>
-                <Link href="/solutions" className="hover:text-white transition-colors">
-                  Overview &amp; Architecture
+                <Link href="/products/krynex-lawos" className="hover:text-white transition-colors">
+                  Krynex LawOS
+                </Link>
+              </li>
+              <li>
+                <Link href="/products/solarops" className="hover:text-white transition-colors">
+                  SolarOps
+                </Link>
+              </li>
+              <li>
+                <Link href="/products/dastaveg" className="hover:text-white transition-colors">
+                  Dastaveg
+                </Link>
+              </li>
+              <li>
+                <Link href="/products" className="hover:text-white transition-colors text-blue-400">
+                  All Products Directory →
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Col 3: Industries */}
+          <div>
+            <div className="text-xs font-mono font-semibold text-white uppercase tracking-wider mb-4 flex items-center gap-1.5">
+              <span>Industries</span>
+            </div>
+            <ul className="space-y-2.5 text-xs text-zinc-400">
+              <li>
+                <Link href="/industries" className="hover:text-white transition-colors">
+                  Solar Energy
+                </Link>
+              </li>
+              <li>
+                <Link href="/industries" className="hover:text-white transition-colors">
+                  Legal &amp; Real Estate
+                </Link>
+              </li>
+              <li>
+                <Link href="/industries" className="hover:text-white transition-colors">
+                  Continuous Manufacturing
+                </Link>
+              </li>
+              <li>
+                <Link href="/industries" className="hover:text-white transition-colors">
+                  Multimodal Logistics
+                </Link>
+              </li>
+              <li>
+                <Link href="/industries" className="hover:text-white transition-colors">
+                  Enterprise Automation
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Col 4: Technology & Insights */}
+          <div>
+            <div className="text-xs font-mono font-semibold text-white uppercase tracking-wider mb-4 flex items-center gap-1.5">
+              <span>Technology &amp; Insights</span>
+            </div>
+            <ul className="space-y-2.5 text-xs text-zinc-400">
+              <li>
+                <Link href="/technology" className="hover:text-white transition-colors">
+                  Technology Capabilities
+                </Link>
+              </li>
+              <li>
+                <Link href="/resources" className="hover:text-white transition-colors text-blue-400">
+                  Insights &amp; Whitepapers
                 </Link>
               </li>
               <li>
@@ -466,75 +551,51 @@ export default function Footer({ onRequestDemo, hideInquirySection = false }: Fo
               </li>
               <li>
                 <Link href="/solutions/enterprise-software" className="hover:text-white transition-colors">
-                  Enterprise Software
-                </Link>
-              </li>
-              <li>
-                <Link href="/solutions/web-mobile" className="hover:text-white transition-colors">
-                  Web &amp; Mobile Platforms
+                  Enterprise Architecture
                 </Link>
               </li>
             </ul>
           </div>
 
-          {/* Col 3: Industries & Approach */}
-          <div>
-            <div className="text-xs font-mono font-semibold text-white uppercase tracking-wider mb-4 flex items-center gap-1.5">
-              <span>Industries &amp; Approach</span>
-            </div>
-            <ul className="space-y-2.5 text-xs text-zinc-400">
-              <li>
-                <Link href="/industries" className="hover:text-white transition-colors">
-                  Industries &amp; Problems
-                </Link>
-              </li>
-              <li>
-                <Link href="/approach" className="hover:text-white transition-colors">
-                  Our Approach &amp; Lifecycle
-                </Link>
-              </li>
-              <li>
-                <Link href="/approach#business-model" className="hover:text-white transition-colors">
-                  Rented Software Model
-                </Link>
-              </li>
-              <li>
-                <Link href="/research" className="hover:text-white transition-colors">
-                  R&amp;D Diagnostic Console
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* Col 4: Corporate & Governance */}
+          {/* Col 5: Company & Governance */}
           <div>
             <div className="text-xs font-mono font-semibold text-white uppercase tracking-wider mb-4">
-              Company &amp; Governance
+              Company
             </div>
             <ul className="space-y-2.5 text-xs text-zinc-400">
               <li>
                 <Link href="/about" className="hover:text-white transition-colors">
-                  About &amp; Methodology
+                  About Krynex Labs
                 </Link>
               </li>
               <li>
-                <Link href="/solutions" className="hover:text-white transition-colors">
-                  Capabilities &amp; Solutions
+                <Link href="/approach" className="hover:text-white transition-colors">
+                  Product Philosophy
                 </Link>
               </li>
               <li>
                 <Link href="/contact" className="hover:text-white transition-colors">
-                  Executive Consultation
+                  Contact Us
                 </Link>
               </li>
               <li>
                 <Link href="/privacy" className="hover:text-white transition-colors">
-                  Privacy &amp; Data Sovereignty
+                  Privacy Policy
                 </Link>
               </li>
               <li>
                 <Link href="/terms" className="hover:text-white transition-colors">
-                  Terms of Service &amp; SLA
+                  Terms of Service
+                </Link>
+              </li>
+              <li>
+                <Link href="/privacy" className="hover:text-white transition-colors">
+                  Privacy Policy
+                </Link>
+              </li>
+              <li>
+                <Link href="/terms" className="hover:text-white transition-colors">
+                  Terms of Service
                 </Link>
               </li>
               <li>
@@ -545,10 +606,10 @@ export default function Footer({ onRequestDemo, hideInquirySection = false }: Fo
                       window.dispatchEvent(new CustomEvent("krynex_open_cookie_settings"));
                     }
                   }}
-                  className="hover:text-white transition-colors text-left font-normal"
+                  className="hover:text-white transition-colors text-left font-normal text-xs"
                   aria-label="Open Telemetry &amp; Cookie Consent Settings"
                 >
-                  Cookie Settings &amp; Consent
+                  Cookie Settings
                 </button>
               </li>
             </ul>

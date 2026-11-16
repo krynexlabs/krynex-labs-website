@@ -65,10 +65,11 @@ export default function Navbar({ onRequestDemo }: NavbarProps) {
 
   const navLinks = [
     { label: "Home", href: "/" },
-    { label: "Solutions", href: "/solutions" },
+    { label: "Products", href: "/products" },
     { label: "Industries", href: "/industries" },
-    { label: "Our Approach", href: "/approach" },
+    { label: "Technology", href: "/technology" },
     { label: "About", href: "/about" },
+    { label: "Insights", href: "/resources" },
     { label: "Contact", href: "/contact" },
   ];
 
@@ -116,32 +117,12 @@ export default function Navbar({ onRequestDemo }: NavbarProps) {
 
             {/* Right Action CTA Button */}
             <div className="hidden sm:flex items-center gap-3">
-              {onRequestDemo ? (
-                <button
-                  type="button"
-                  onClick={() => {
-                    import("./Analytics").then(({ trackConversionEvent }) => {
-                      trackConversionEvent("demo_click", { location: "navbar_desktop" });
-                    });
-                    onRequestDemo();
-                  }}
-                  className="bg-white text-black font-semibold hover:bg-zinc-200 px-5 py-2 rounded-full transition-all text-xs tracking-wide shadow-[0_0_20px_rgba(255,255,255,0.15)] flex items-center justify-center focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
-                >
-                  <span>Contact Us</span>
-                </button>
-              ) : (
-                <Link
-                  href="/contact"
-                  onClick={() => {
-                    import("./Analytics").then(({ trackConversionEvent }) => {
-                      trackConversionEvent("demo_click", { location: "navbar_desktop" });
-                    });
-                  }}
-                  className="bg-white text-black font-semibold hover:bg-zinc-200 px-5 py-2 rounded-full transition-all text-xs tracking-wide shadow-[0_0_20px_rgba(255,255,255,0.15)] flex items-center justify-center focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
-                >
-                  <span>Contact Us</span>
-                </Link>
-              )}
+              <Link
+                href="/products"
+                className="bg-blue-600 text-white font-semibold hover:bg-blue-500 px-5 py-2 rounded-full transition-all text-xs tracking-wide shadow-[0_0_20px_rgba(37,99,235,0.35)] flex items-center justify-center focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400"
+              >
+                <span>Explore Products</span>
+              </Link>
             </div>
 
             {/* Mobile Hamburger Button */}

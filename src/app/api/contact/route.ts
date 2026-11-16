@@ -6,13 +6,13 @@ import {
   isValidEmail,
   escapeHtml,
 } from "@/lib/sanitizer";
-import { checkRateLimit, getClientIp } from "@/lib/rate-limiter";
+import { checkRateLimit, checkDistributedRateLimit, getClientIp } from "@/lib/rate-limiter";
 
 export async function POST(request: Request) {
   try {
-    // 1. IP Rate Limiting (5 requests per sliding 10-minute window)
+    // 1. IP Rate Limiting (Distributed Upstash/KV store with in-memory checkRateLimit fallback)
     const clientIp = getClientIp(request);
-    const rateLimit = checkRateLimit(clientIp);
+    const rateLimit = await checkDistributedRateLimit(clientIp);
 
     if (!rateLimit.allowed) {
       return NextResponse.json(

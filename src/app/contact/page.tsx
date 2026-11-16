@@ -8,12 +8,75 @@ import Footer from "@/components/Footer";
 import ContactForm from "@/components/ContactForm";
 
 export const metadata: Metadata = {
-  title: "Contact Us",
+  title: "Contact Engineering & Enterprise Briefings",
   description:
-    "Get personal, reliable engineering from people who understand your architecture. Reach out to Krynex Labs in Ahmedabad, India.",
+    "Connect with Krynex Labs for enterprise software architectures, subscription licensing, industry problem proposals, or partnership inquiries. Headquartered in Ahmedabad, India.",
+  keywords: [
+    "Contact Krynex Labs",
+    "Enterprise Software Consultation Ahmedabad",
+    "Software Product Subscription Inquiry",
+    "Software Architecture Briefing India",
+    "Krynex Labs Support",
+  ],
   alternates: {
     canonical: "https://www.krynexlabs.in/contact",
   },
+  openGraph: {
+    title: "Contact Engineering & Enterprise Briefings | Krynex Labs",
+    description:
+      "Connect with Krynex Labs for enterprise software architectures, subscription licensing, industry problem proposals, or partnership inquiries. Headquartered in Ahmedabad, India.",
+    url: "https://www.krynexlabs.in/contact",
+    images: [
+      {
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: "Contact Krynex Labs - Engineering & Enterprise Briefings",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Contact Engineering & Enterprise Briefings | Krynex Labs",
+    description:
+      "Connect with Krynex Labs for enterprise software architectures, subscription licensing, industry problem proposals, or partnership inquiries. Headquartered in Ahmedabad, India.",
+    images: ["/opengraph-image"],
+  },
+};
+
+const contactJsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "ContactPage",
+      "@id": "https://www.krynexlabs.in/contact#webpage",
+      url: "https://www.krynexlabs.in/contact",
+      name: "Contact Engineering & Enterprise Briefings | Krynex Labs",
+      description:
+        "Connect with Krynex Labs for enterprise software architectures, subscription licensing, industry problem proposals, or partnership inquiries.",
+      isPartOf: {
+        "@id": "https://www.krynexlabs.in/#website",
+      },
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://www.krynexlabs.in/contact#breadcrumb",
+      itemListElement: [
+        {
+          "@type": "ListItem",
+          position: 1,
+          name: "Home",
+          item: "https://www.krynexlabs.in",
+        },
+        {
+          "@type": "ListItem",
+          position: 2,
+          name: "Contact",
+          item: "https://www.krynexlabs.in/contact",
+        },
+      ],
+    },
+  ],
 };
 
 interface ContactPageProps {
@@ -27,6 +90,10 @@ export default function ContactPage({ searchParams }: ContactPageProps) {
 
   return (
     <main className="min-h-screen bg-black text-white selection:bg-white selection:text-black relative">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(contactJsonLd) }}
+      />
       <Navbar />
 
       {/* Resend-Style Hero & Centered Form Section with Silk Drapery Backdrop */}
@@ -35,7 +102,7 @@ export default function ContactPage({ searchParams }: ContactPageProps) {
         <div className="absolute inset-0 z-0 pointer-events-none select-none overflow-hidden">
           <Image
             src="/static/background-auth.jpg"
-            alt="Ambient Silk Drapery"
+            alt="Krynex Labs enterprise inquiry portal backdrop"
             fill
             priority
             quality={100}

@@ -76,6 +76,78 @@ export function checkRateLimit(clientIp: string): {
 }
 
 /**
+ * Distributed rate limiter for serverless / multi-instance edge environments.
+ * Checks Upstash Redis REST API or Vercel KV if environment variables are provided.
+ * Falls back seamlessly to the in-memory sliding-window limiter (checkRateLimit)
+ * if Redis is not configured or during local development/offline testing.
+ */
+export async function checkDistributedRateLimit(clientIp: string): Promise<{
+  allowed: boolean;
+  remaining: number;
+  resetInSeconds: number;
+}> {
+  const redisUrl = process.env.UPSTASH_REDIS_REST_URL || process.env.KV_REST_API_URL;
+  const redisToken = process.env.UPSTASH_REDIS_REST_TOKEN || process.env.KV_REST_API_TOKEN;
+
+  if (!redisUrl || !redisToken) {
+    // Shared storage not configured: fall back to instance in-memory sliding window
+    return checkRateLimit(clientIp);
+  }
+
+  try {
+    const key = `ratelimit:contact:${clientIp}`;
+    // Pipeline command via Upstash / Vercel KV REST API: INCR, TTL
+    const response = await fetch(`${redisUrl}/pipeline`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${redisToken}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify([
+        ["INCR", key],
+        ["TTL", key],
+      ]),
+      // Use short 2s timeout so slow Redis never blocks the contact form
+      signal: AbortSignal.timeout(2000),
+    });
+
+    if (!response.ok) {
+      return checkRateLimit(clientIp);
+    }
+
+    const results = await response.json();
+    const count = Number(results?.[0]?.result) || 1;
+    let ttl = Number(results?.[1]?.result) || -1;
+
+    // If key is newly created (TTL not set or negative), set 10-minute expiry (600s)
+    if (ttl < 0 || count === 1) {
+      await fetch(`${redisUrl}/expire/${encodeURIComponent(key)}/600`, {
+        headers: { Authorization: `Bearer ${redisToken}` },
+        signal: AbortSignal.timeout(1000),
+      }).catch(() => {});
+      ttl = 600;
+    }
+
+    if (count > maxRequests) {
+      return {
+        allowed: false,
+        remaining: 0,
+        resetInSeconds: Math.max(1, ttl),
+      };
+    }
+
+    return {
+      allowed: true,
+      remaining: Math.max(0, maxRequests - count),
+      resetInSeconds: Math.max(1, ttl),
+    };
+  } catch {
+    // Graceful fallback to in-memory check
+    return checkRateLimit(clientIp);
+  }
+}
+
+/**
  * Validates and normalizes an IP candidate string (IPv4 or IPv6).
  * Strips bracketed ports (e.g. "[2001:db8::1]:443") or standard IPv4 ports ("198.51.100.1:8080").
  * Returns the normalized IP string if valid, or null if malformed or non-IP.

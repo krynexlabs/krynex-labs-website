@@ -89,77 +89,88 @@ export default function HeroSection({ onRequestDemo }: HeroSectionProps) {
 
             {/* Main Headline - Exact Resend Silver Metallic Gradient */}
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1] mb-6 bg-gradient-to-b from-white via-zinc-100 to-zinc-500 bg-clip-text text-transparent">
-              We Find Industry Problems. We Build the Software That Solves Them.
+              Building Intelligent Software for Real-World Industries.
             </h1>
 
             {/* Subheadline */}
             <p className="text-base sm:text-lg text-zinc-400 max-w-2xl leading-relaxed mb-8">
-              Krynex Labs researches real business challenges and turns them into practical software products. From web and mobile applications to AI-powered platforms, we build, launch, and continuously improve software that businesses can subscribe to and use.
+              We identify real business challenges and transform them into practical software products powered by modern technology and thoughtful engineering.
             </p>
 
             {/* Primary Action Buttons */}
             <div className="flex flex-wrap items-center gap-4 w-full sm:w-auto mb-10">
-              <Link
-                href="/solutions"
-                className="w-full sm:w-auto px-6 py-3.5 rounded-full bg-white text-black font-semibold text-sm hover:bg-zinc-200 transition-all flex items-center justify-center gap-2 group shadow-[0_0_25px_rgba(255,255,255,0.2)]"
-              >
-                <span>Explore Solutions</span>
-                <ArrowRight className="w-4 h-4 text-black group-hover:translate-x-1 transition-transform" />
-              </Link>
-
               <a
-                href="#approach"
-                className="w-full sm:w-auto px-6 py-3.5 rounded-full bg-white/[0.04] border border-white/10 hover:border-white/20 text-white font-medium text-sm hover:bg-white/[0.08] transition-all flex items-center justify-center gap-2 backdrop-blur-md"
+                href="#products"
+                className="w-full sm:w-auto px-6 py-3.5 rounded-full bg-blue-600 hover:bg-blue-500 text-white font-semibold text-sm transition-all flex items-center justify-center gap-2 group shadow-[0_0_25px_rgba(37,99,235,0.35)]"
               >
-                <Compass className="w-4 h-4 text-zinc-400" />
-                <span>How We Build</span>
+                <span>Explore Our Products</span>
+                <ArrowRight className="w-4 h-4 text-white group-hover:translate-x-1 transition-transform" />
               </a>
+
+              {onRequestDemo ? (
+                <button
+                  type="button"
+                  onClick={onRequestDemo}
+                  className="w-full sm:w-auto px-6 py-3.5 rounded-full bg-white/[0.04] border border-white/10 hover:border-white/20 text-white font-medium text-sm hover:bg-white/[0.08] transition-all flex items-center justify-center gap-2 backdrop-blur-md"
+                >
+                  <Compass className="w-4 h-4 text-zinc-400" />
+                  <span>Contact Krynex Labs</span>
+                </button>
+              ) : (
+                <Link
+                  href="/contact"
+                  className="w-full sm:w-auto px-6 py-3.5 rounded-full bg-white/[0.04] border border-white/10 hover:border-white/20 text-white font-medium text-sm hover:bg-white/[0.08] transition-all flex items-center justify-center gap-2 backdrop-blur-md"
+                >
+                  <Compass className="w-4 h-4 text-zinc-400" />
+                  <span>Contact Krynex Labs</span>
+                </Link>
+              )}
             </div>
 
-            {/* Monochrome Telemetry Proof Matrix */}
+            {/* Telemetry Proof Matrix - Simplified & Customer-Focused */}
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-6 border-t border-white/[0.08] w-full">
               <div className="flex flex-col">
                 <div className="flex items-center gap-1.5 text-xs text-zinc-400 font-mono uppercase mb-1">
                   <Globe2 className="w-3.5 h-3.5 text-zinc-400" />
-                  <span>Business Model</span>
+                  <span>Model</span>
                 </div>
                 <div className="text-lg sm:text-xl font-bold text-white tracking-tight font-mono">
-                  Rented SaaS
+                  SaaS Products
                 </div>
-                <span className="text-[11px] text-zinc-400">Zero upfront capex</span>
+                <span className="text-[11px] text-zinc-400">Recurring software access</span>
               </div>
 
               <div className="flex flex-col">
                 <div className="flex items-center gap-1.5 text-xs text-zinc-400 font-mono uppercase mb-1">
                   <ShieldCheck className="w-3.5 h-3.5 text-zinc-400" />
-                  <span>Reliability</span>
+                  <span>Security</span>
                 </div>
                 <div className="text-lg sm:text-xl font-bold text-white tracking-tight font-mono">
-                  High Availability
+                  Protected
                 </div>
-                <span className="text-[11px] text-zinc-400">Service uptime architecture</span>
+                <span className="text-[11px] text-zinc-400">Isolated customer data</span>
               </div>
 
               <div className="flex flex-col">
                 <div className="flex items-center gap-1.5 text-xs text-zinc-400 font-mono uppercase mb-1">
                   <Cpu className="w-3.5 h-3.5 text-zinc-400" />
-                  <span>Precision</span>
+                  <span>Automation</span>
                 </div>
                 <div className="text-lg sm:text-xl font-bold text-white tracking-tight font-mono">
-                  Deterministic
+                  Intelligent
                 </div>
-                <span className="text-[11px] text-zinc-400">Constrained AST guardrails</span>
+                <span className="text-[11px] text-zinc-400">Streamlined business workflows</span>
               </div>
 
               <div className="flex flex-col">
                 <div className="flex items-center gap-1.5 text-xs text-zinc-400 font-mono uppercase mb-1">
                   <Zap className="w-3.5 h-3.5 text-zinc-400" />
-                  <span>Evolution</span>
+                  <span>Reliability</span>
                 </div>
                 <div className="text-lg sm:text-xl font-bold text-white tracking-tight font-mono">
-                  Continuous
+                  Dependable
                 </div>
-                <span className="text-[11px] text-zinc-400">Compounding product updates</span>
+                <span className="text-[11px] text-zinc-400">Built for continuous operations</span>
               </div>
             </div>
           </div>

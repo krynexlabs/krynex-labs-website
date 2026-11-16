@@ -10,7 +10,7 @@ export const ABOUT_DATA = {
     title: "Recurring Software Access & Continuous Evolution",
     subtitle: "CUSTOMERS PAY TO USE THE SOFTWARE. WE CONTINUOUSLY IMPROVE IT. SUBSCRIPTIONS FUND THE BUSINESS.",
     description:
-      "Krynex Labs operates on a predictable recurring software model. Instead of one-time client contracts or hourly development work, we develop and operate our own software products. Customers subscribe to ongoing access, enjoying zero upfront capex, guaranteed uptime, and compounding feature updates.",
+      "Krynex Labs operates on a predictable recurring software model. Instead of one-time client contracts or hourly development work, we develop and operate our own software products. Customers subscribe to ongoing access, enjoying zero upfront capex, high-availability infrastructure, and compounding feature updates.",
     steps: [
       {
         step: "01",
@@ -144,6 +144,54 @@ export const ABOUT_DATA = {
       subtitle: "Compounding Product Velocity",
       description:
         "Through recurring subscription partnerships, our customers fund continuous updates, speed optimizations, and proactive customer support.",
+    },
+  ],
+  vision: {
+    statement:
+      "To build intelligent software products that simplify complex industries, empower businesses and make advanced technology practically accessible.",
+    tagline: "Building Intelligent Software for Real-World Industries.",
+  },
+  founder: {
+    name: "D Patel",
+    title: "Founder — Krynex Labs",
+    tagline: "Building intelligent technology to solve real-world industry problems.",
+    paragraphs: [
+      "Technology should solve real problems, simplify complex processes and create meaningful value.",
+      "I believe the future belongs to software that is built around people's actual needs rather than technology for its own sake.",
+      "At Krynex Labs, our focus is to identify challenges across industries and transform them into practical, intelligent and reliable software products.",
+      "We are committed to building solutions that combine thoughtful engineering, modern technology, security and continuous innovation.",
+      "Our journey is driven by a long-term vision: to build technology products that businesses can trust and depend on.",
+      "We believe great software is not defined by how complicated it is, but by how effectively it solves problems.",
+      "Thank you for being part of the Krynex Labs journey.",
+    ],
+    signature: "D. Patel",
+    role: "Founder, Krynex Labs",
+  },
+  guidingPrinciples: [
+    {
+      number: "01",
+      title: "Problem First",
+      description: "Understand the real problem before building the technology.",
+    },
+    {
+      number: "02",
+      title: "Innovation with Purpose",
+      description: "Use technology where it creates meaningful value.",
+    },
+    {
+      number: "03",
+      title: "Security by Design",
+      description: "Make security and privacy important parts of product development.",
+    },
+    {
+      number: "04",
+      title: "Product Excellence",
+      description: "Build reliable, practical and continuously improving software.",
+    },
+    {
+      number: "05",
+      title: "Long-Term Thinking",
+      description: "Create products with sustainable value for businesses.",
     },
   ],
   governanceAndStandards: [

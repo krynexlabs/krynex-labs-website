@@ -18,11 +18,13 @@ interface ProductsDirectoryProps {
 
 export default function ProductsDirectory({ products }: ProductsDirectoryProps) {
   const [currency, setCurrency] = useState<"INR" | "USD">("INR");
+  const distinctProducts = products.filter((p) => p.slug !== "lawos");
 
   const iconMap: Record<string, React.ReactNode> = {
-    "krynex-lexis": <FileText className="w-6 h-6 text-white" />,
-    "krynex-flow": <Workflow className="w-6 h-6 text-white" />,
-    "krynex-vision": <Eye className="w-6 h-6 text-white" />,
+    "krynex-lawos": <FileText className="w-6 h-6 text-blue-400" />,
+    "lawos": <FileText className="w-6 h-6 text-blue-400" />,
+    "solarops": <Workflow className="w-6 h-6 text-blue-400" />,
+    "dastaveg": <Sparkles className="w-6 h-6 text-blue-400" />,
   };
 
   return (
@@ -70,7 +72,7 @@ export default function ProductsDirectory({ products }: ProductsDirectoryProps) 
 
       {/* 3 Product Cards Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        {products.map((product) => {
+        {distinctProducts.map((product) => {
           const startingPriceStr =
             currency === "INR"
               ? `${product.startingPrice.inr} ${product.startingPrice.period}`
@@ -79,7 +81,7 @@ export default function ProductsDirectory({ products }: ProductsDirectoryProps) 
           return (
             <div
               key={product.slug}
-              className="group p-8 rounded-3xl bg-[#080808] border border-white/[0.08] hover:border-white/[0.22] transition-all relative overflow-hidden flex flex-col justify-between shadow-xl"
+              className="group p-8 rounded-3xl bg-[#121A27] border border-white/[0.08] hover:border-blue-500/30 transition-all relative overflow-hidden flex flex-col justify-between shadow-xl"
             >
               <div className="absolute top-0 left-8 right-8 h-[1px] bg-gradient-to-r from-transparent via-white/25 to-transparent pointer-events-none" />
 

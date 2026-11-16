@@ -19,12 +19,15 @@ export default function CookieBanner() {
       const timer = setTimeout(() => setVisible(true), 1200);
       return () => clearTimeout(timer);
     } else if (consent === "all") {
-      // Restore granted consent for returning visitors
+      // Restore granted consent for returning visitors (Google Consent Mode v2)
       if (typeof window !== "undefined") {
         const win = window as any;
         if (typeof win.gtag === "function") {
           win.gtag("consent", "update", {
             analytics_storage: "granted",
+            ad_storage: "granted",
+            ad_user_data: "granted",
+            ad_personalization: "granted",
           });
         }
       }
@@ -52,6 +55,9 @@ export default function CookieBanner() {
       if (typeof win.gtag === "function") {
         win.gtag("consent", "update", {
           analytics_storage: choice === "all" ? "granted" : "denied",
+          ad_storage: choice === "all" ? "granted" : "denied",
+          ad_user_data: choice === "all" ? "granted" : "denied",
+          ad_personalization: choice === "all" ? "granted" : "denied",
         });
       }
 

@@ -431,8 +431,33 @@ assert.ok(reactVersion.includes("18"), `React must be version 18 for Three.js co
 assert.ok(r3fVersion.includes("8.17.10"), `@react-three/fiber must be 8.17.10 (found: ${r3fVersion})`);
 console.log("✔ PASS: Architectural dependency constraint (React 18 / R3F 8.17.10) verified.");
 
+// 26. Pentest-Tools Remediation: RFC 9116 security.txt & Hardened CSP
+console.log("\n[TEST 26] Pentest-Tools Remediation: RFC 9116 security.txt & CSP Hardening");
+const securityTxtExists = fs.existsSync("public/.well-known/security.txt");
+assert.strictEqual(securityTxtExists, true, "public/.well-known/security.txt must exist");
+const securityTxtContent = fs.readFileSync("public/.well-known/security.txt", "utf-8");
+assert.strictEqual(securityTxtContent.includes("Contact: mailto:support@krynexlabs.in"), true, "security.txt must define Contact");
+assert.strictEqual(securityTxtContent.includes("Expires:"), true, "security.txt must define Expires timestamp");
+assert.strictEqual(securityTxtContent.includes("Canonical:"), true, "security.txt must define Canonical URL");
+assert.strictEqual(
+  nextConfigContent.includes("source: '/security.txt'"),
+  true,
+  "next.config.mjs must redirect /security.txt"
+);
+assert.strictEqual(
+  nextConfigContent.includes("'unsafe-eval'"),
+  false,
+  "next.config.mjs CSP must NOT contain 'unsafe-eval'"
+);
+assert.strictEqual(
+  nextConfigContent.includes("data: https: "),
+  false,
+  "next.config.mjs CSP img-src must NOT contain bare wildcard 'https: '"
+);
+console.log("✔ PASS: RFC 9116 security.txt verified, and 'unsafe-eval' & wildcard 'https:' eliminated from CSP.");
+
 console.log("\n=======================================================");
-console.log("ALL 25 CRITICAL REGRESSION SUITES PASSED SUCCESSFULLY!");
+console.log("ALL 26 CRITICAL REGRESSION SUITES PASSED SUCCESSFULLY!");
 console.log("=======================================================\n");
 
 process.exit(0);

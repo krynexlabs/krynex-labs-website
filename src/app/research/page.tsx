@@ -20,6 +20,13 @@ export const metadata: Metadata = {
   title: "R&D Lab & Engineering Research",
   description:
     "Explore Krynex Labs R&D telemetry, model quantization experiments, deterministic mathematical guardrails, and our architectural simulation diagnostic console.",
+  keywords: [
+    "Software R&D Lab",
+    "Neural Quantization Research",
+    "Deterministic Guardrails",
+    "Enterprise Telemetry Simulation",
+    "Krynex Labs Research Ahmedabad",
+  ],
   alternates: {
     canonical: "https://www.krynexlabs.in/research",
   },
@@ -28,13 +35,57 @@ export const metadata: Metadata = {
     description:
       "Explore Krynex Labs R&D telemetry, model quantization experiments, deterministic mathematical guardrails, and our architectural simulation diagnostic console.",
     url: "https://www.krynexlabs.in/research",
+    images: [
+      {
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: "Krynex Labs - R&D Lab & Engineering Research",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "R&D Lab & Engineering Research | Krynex Labs",
     description:
       "Explore Krynex Labs R&D telemetry, model quantization experiments, deterministic mathematical guardrails, and our architectural simulation diagnostic console.",
+    images: ["/opengraph-image"],
   },
+};
+
+const researchJsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://www.krynexlabs.in/research#webpage",
+      url: "https://www.krynexlabs.in/research",
+      name: "R&D Lab & Engineering Research | Krynex Labs",
+      description:
+        "Explore Krynex Labs R&D telemetry, model quantization experiments, deterministic mathematical guardrails, and our architectural simulation diagnostic console.",
+      isPartOf: {
+        "@id": "https://www.krynexlabs.in/#website",
+      },
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://www.krynexlabs.in/research#breadcrumb",
+      itemListElement: [
+        {
+          "@type": "ListItem",
+          position: 1,
+          name: "Home",
+          item: "https://www.krynexlabs.in",
+        },
+        {
+          "@type": "ListItem",
+          position: 2,
+          name: "Research",
+          item: "https://www.krynexlabs.in/research",
+        },
+      ],
+    },
+  ],
 };
 
 export default function ResearchPage() {
@@ -45,6 +96,10 @@ export default function ResearchPage() {
 
   return (
     <main className="min-h-screen bg-black text-white selection:bg-white selection:text-black">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(researchJsonLd) }}
+      />
       <Navbar />
 
       {/* Hero Header */}

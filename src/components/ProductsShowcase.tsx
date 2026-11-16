@@ -20,22 +20,27 @@ interface ProductsShowcaseProps {
 }
 
 export default function ProductsShowcase({ onRequestDemo }: ProductsShowcaseProps) {
-  const products = Object.values(PRODUCTS_DATA);
+  const products = [
+    PRODUCTS_DATA["solarops"],
+    PRODUCTS_DATA["krynex-lawos"],
+    PRODUCTS_DATA["dastaveg"],
+  ].filter(Boolean);
 
   const iconMap: Record<string, React.ReactNode> = {
-    "krynex-lexis": <FileText className="w-5 h-5 text-white" />,
-    "krynex-flow": <Workflow className="w-5 h-5 text-white" />,
-    "krynex-vision": <Eye className="w-5 h-5 text-white" />,
+    "krynex-lawos": <FileText className="w-5 h-5 text-blue-400" />,
+    "lawos": <FileText className="w-5 h-5 text-blue-400" />,
+    "solarops": <Workflow className="w-5 h-5 text-blue-400" />,
+    "dastaveg": <Sparkles className="w-5 h-5 text-blue-400" />,
   };
 
   const statusBadges: Record<string, { label: string; color: string }> = {
-    "krynex-lexis": { label: "Live", color: "text-zinc-200 bg-white/[0.08] border-white/20" },
-    "krynex-flow": { label: "In Development", color: "text-zinc-400 bg-white/[0.04] border-white/10" },
-    "krynex-vision": { label: "In Development", color: "text-zinc-400 bg-white/[0.04] border-white/10" },
+    "krynex-lawos": { label: "Private Beta", color: "text-blue-400 bg-blue-500/10 border-blue-500/30" },
+    "solarops": { label: "In Development", color: "text-amber-400 bg-amber-500/10 border-amber-500/30" },
+    "dastaveg": { label: "In Development", color: "text-amber-400 bg-amber-500/10 border-amber-500/30" },
   };
 
   return (
-    <section id="products" className="relative py-24 sm:py-32 bg-[#030303] overflow-hidden">
+    <section id="products" className="relative py-24 sm:py-32 bg-[#080B12] overflow-hidden">
       {/* Specular Spotlight Glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[400px] bg-[radial-gradient(ellipse_70%_40%_at_50%_50%,rgba(255,255,255,0.04),transparent_70%)] pointer-events-none" />
 
@@ -43,23 +48,23 @@ export default function ProductsShowcase({ onRequestDemo }: ProductsShowcaseProp
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 border-b border-white/[0.06] pb-8 gap-6">
           <div>
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/[0.04] border border-white/10 text-[11px] font-mono tracking-widest text-zinc-300 uppercase mb-4">
-              <span>04 // OUR SOFTWARE PRODUCTS</span>
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-xs font-mono text-blue-400 uppercase tracking-widest mb-4">
+              <span>03 // OUR SOFTWARE PRODUCTS</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight leading-tight bg-gradient-to-b from-white via-zinc-100 to-zinc-500 bg-clip-text text-transparent">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white mb-4 leading-tight">
               Software Products Built Around Real Problems.
             </h2>
-            <p className="text-sm sm:text-base text-zinc-400 mt-3 max-w-2xl">
-              We research business challenges, develop practical software solutions, launch them as products, and continuously improve them for the businesses that rely on them.
+            <p className="text-sm sm:text-base text-zinc-400 max-w-2xl leading-relaxed">
+              We research real business challenges and engineer focused software applications that solve operational bottlenecks directly.
             </p>
           </div>
 
           <div className="shrink-0">
             <Link
               href="/products"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white text-black font-semibold text-xs hover:bg-zinc-200 transition-all shadow-[0_0_20px_rgba(255,255,255,0.15)]"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs transition-all shadow-[0_0_20px_rgba(37,99,235,0.35)]"
             >
-              <span>View Product Directory</span>
+              <span>Explore Products Directory</span>
               <ArrowRight className="w-3.5 h-3.5" />
             </Link>
           </div>
@@ -73,10 +78,10 @@ export default function ProductsShowcase({ onRequestDemo }: ProductsShowcaseProp
             return (
               <div
                 key={product.slug}
-                className="group p-8 rounded-3xl bg-[#080808] border border-white/[0.08] hover:border-white/[0.22] transition-all relative overflow-hidden flex flex-col justify-between shadow-xl"
+                className="group p-8 rounded-3xl bg-[#121A27] border border-white/[0.08] hover:border-blue-500/40 transition-all relative overflow-hidden flex flex-col justify-between shadow-xl"
               >
                 {/* Specular Top Rim */}
-                <div className="absolute top-0 left-6 right-6 h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent pointer-events-none" />
+                <div className="absolute top-0 left-6 right-6 h-[1px] bg-gradient-to-r from-transparent via-blue-500/30 to-transparent pointer-events-none" />
 
                 <div>
                   <div className="flex items-center justify-between mb-5">
@@ -137,17 +142,17 @@ export default function ProductsShowcase({ onRequestDemo }: ProductsShowcaseProp
                   </div>
                 </div>
 
-                {/* Card Footer: Transparent Starting Pricing & Primary CTA */}
+                {/* Card Footer: Access Status & Primary CTA */}
                 <div className="pt-5 border-t border-white/[0.08] flex flex-col gap-3">
                   <div className="flex items-center justify-between text-xs font-mono">
-                    <span className="text-zinc-500 uppercase tracking-wider text-[10px]">Starting Tier</span>
-                    <span className="text-white font-semibold">{product.startingPrice.inr} <span className="text-zinc-500 font-normal">{product.startingPrice.period}</span></span>
+                    <span className="text-zinc-500 uppercase tracking-wider text-[10px]">Access Model</span>
+                    <span className="text-zinc-300 font-medium">Recurring Subscription</span>
                   </div>
                   <Link
                     href={`/products/${product.slug}`}
-                    className="inline-flex items-center justify-between w-full px-4 py-2.5 rounded-xl bg-white text-black font-semibold text-xs hover:bg-zinc-200 transition-all shadow-[0_0_15px_rgba(255,255,255,0.1)] group/btn"
+                    className="inline-flex items-center justify-between w-full px-4 py-2.5 rounded-xl bg-blue-600 text-white font-semibold text-xs hover:bg-blue-500 transition-all shadow-[0_0_15px_rgba(37,99,235,0.25)] group/btn"
                   >
-                    <span>Explore Product &amp; Pricing</span>
+                    <span>Explore Product Overview</span>
                     <ArrowRight className="w-3.5 h-3.5 group-hover/btn:translate-x-1 transition-transform" />
                   </Link>
                 </div>

@@ -32,6 +32,17 @@ export function trackConversionEvent(
     // 3. Dispatch to Google Analytics (gtag.js) if available
     if (typeof win.gtag === "function") {
       win.gtag("event", eventName, properties);
+
+      // GA4 Key Event: Automatically fire standard 'generate_lead' on high-intent form submissions
+      if (eventName === "contact_form_submit" || eventName === "demo_modal_submit") {
+        win.gtag("event", "generate_lead", {
+          event_category: "leads",
+          lead_source: eventName,
+          value: 1,
+          currency: "INR",
+          ...properties,
+        });
+      }
     }
 
     // 4. Local diagnostic telemetry logging
@@ -48,11 +59,13 @@ export default function Analytics() {
   const pathname = usePathname();
 
   useEffect(() => {
-    // Notify Google Analytics of route transitions in Single Page Application navigation
+    // Notify Google Analytics of page views and route transitions in Single Page Application navigation
     const win = window as any;
     if (typeof win.gtag === "function") {
-      win.gtag("config", "G-KZCMWZSRFN", {
+      win.gtag("event", "page_view", {
         page_path: pathname,
+        page_location: typeof window !== "undefined" ? window.location.href : `https://www.krynexlabs.in${pathname}`,
+        page_title: typeof document !== "undefined" ? document.title : "Krynex Labs",
       });
     }
 

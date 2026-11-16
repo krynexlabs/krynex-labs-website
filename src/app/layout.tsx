@@ -65,12 +65,21 @@ export const metadata: Metadata = {
     title: "Krynex Labs | Problem-Driven Software & SaaS Products",
     description:
       "Krynex Labs identifies real industry problems to engineer software products, web apps, mobile apps, and SaaS platforms businesses subscribe to and rely on.",
+    images: [
+      {
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: "Krynex Labs | Problem-Driven Software & SaaS Products",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Krynex Labs | Problem-Driven Software & SaaS Products",
     description:
       "Krynex Labs identifies real industry problems to engineer software products, web apps, mobile apps, and SaaS platforms businesses subscribe to and rely on.",
+    images: ["/opengraph-image"],
   },
   robots: {
     index: true,
@@ -86,7 +95,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#000000",
+  themeColor: "#080B12",
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
@@ -153,9 +162,26 @@ const jsonLd = {
           availableLanguage: ["English", "Hindi", "Gujarati"],
         },
       ],
+      founder: {
+        "@type": "Person",
+        "@id": "https://www.krynexlabs.in/#founder",
+        name: "D Patel",
+        jobTitle: "Founder",
+      },
       sameAs: [
         "https://www.krynexlabs.in",
       ],
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.krynexlabs.in/#founder",
+      name: "D Patel",
+      jobTitle: "Founder",
+      worksFor: {
+        "@id": "https://www.krynexlabs.in/#organization",
+      },
+      description:
+        "Founder of Krynex Labs. Building intelligent technology to solve real-world industry problems.",
     },
     {
       "@type": "WebSite",
@@ -221,6 +247,57 @@ const jsonLd = {
       areaServed: "India, Global",
     },
     {
+      "@type": "SoftwareApplication",
+      "@id": "https://www.krynexlabs.in/products/solarops#software",
+      name: "SolarOps",
+      applicationCategory: "BusinessApplication",
+      operatingSystem: "Cloud-based SaaS",
+      offers: {
+        "@type": "Offer",
+        price: "4999",
+        priceCurrency: "INR",
+      },
+      description:
+        "Solar plant operations, central inverter SCADA telemetry, string MPPT yield analytics, and automated O&M work-order dispatch software.",
+      provider: {
+        "@id": "https://www.krynexlabs.in/#organization",
+      },
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://www.krynexlabs.in/products/krynex-lawos#software",
+      name: "Krynex LawOS",
+      applicationCategory: "BusinessApplication",
+      operatingSystem: "Cloud-based SaaS",
+      offers: {
+        "@type": "Offer",
+        price: "1499",
+        priceCurrency: "INR",
+      },
+      description:
+        "Deterministic bilingual legal document compilation, automated sub-registrar title search verification, and statutory conveyancing software for Indian legal practice.",
+      provider: {
+        "@id": "https://www.krynexlabs.in/#organization",
+      },
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://www.krynexlabs.in/products/dastaveg#software",
+      name: "Dastaveg",
+      applicationCategory: "BusinessApplication",
+      operatingSystem: "Cloud-based SaaS",
+      offers: {
+        "@type": "Offer",
+        price: "999",
+        priceCurrency: "INR",
+      },
+      description:
+        "Intelligent document automation, sub-registrar Index-II triage, and statutory deed compilation platform.",
+      provider: {
+        "@id": "https://www.krynexlabs.in/#organization",
+      },
+    },
+    {
       "@type": "FAQPage",
       "@id": "https://www.krynexlabs.in/#faq",
       mainEntity: [
@@ -269,6 +346,32 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark scroll-smooth overflow-x-hidden max-w-[100vw]">
       <head>
+        {/* Google Consent Mode v2 - Default Denial prior to Google Tag Loading (SEC-003) */}
+        <Script id="google-consent-default" strategy="beforeInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('consent', 'default', {
+              'analytics_storage': 'denied',
+              'ad_storage': 'denied',
+              'ad_user_data': 'denied',
+              'ad_personalization': 'denied',
+              'wait_for_update': 500
+            });
+            gtag('js', new Date());
+            gtag('config', 'GTM-5396X9HG');
+            gtag('config', 'G-KZCMWZSRFN', {
+              send_page_view: false
+            });
+          `}
+        </Script>
+
+        {/* Google Tag (gtm.js) Container - GTM-5396X9HG (Placed immediately after <head>) */}
+        <script
+          async
+          src="https://www.googletagmanager.com/gtm.js?id=GTM-5396X9HG"
+        />
+
         {/* Geo Audit & Local Search Optimization (Ahmedabad, Gujarat, India) */}
         <meta name="geo.region" content="IN-GJ" />
         <meta name="geo.placename" content="Ahmedabad, Gujarat, India" />
@@ -282,7 +385,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${inter.variable} ${jetbrainsMono.variable} bg-black font-sans antialiased text-zinc-100 min-h-screen selection:bg-white selection:text-black overflow-x-hidden max-w-[100vw] w-full`}
+        className={`${inter.variable} ${jetbrainsMono.variable} bg-[#080B12] font-sans antialiased text-[#F8FAFC] min-h-screen selection:bg-blue-600 selection:text-white overflow-x-hidden max-w-[100vw] w-full`}
       >
         {/* Internal Diagnostic Telemetry Tracker */}
         <ClientTelemetry />
@@ -295,9 +398,9 @@ export default function RootLayout({
 
         {/* Background Grid & Spotlights */}
         <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
-          <div className="absolute inset-0 bg-grid-tech opacity-60" />
-          {/* Exact Resend Top Silver/White Radial Spotlight */}
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1100px] h-[550px] bg-[radial-gradient(ellipse_80%_50%_at_50%_0%,rgba(255,255,255,0.08),transparent_70%)] pointer-events-none" />
+          <div className="absolute inset-0 bg-grid-tech opacity-40" />
+          {/* Subtle Electric Blue Radial Spotlight */}
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1100px] h-[550px] bg-[radial-gradient(ellipse_80%_50%_at_50%_0%,rgba(37,99,235,0.12),transparent_70%)] pointer-events-none" />
         </div>
 
         {/* Main Content Area */}
@@ -305,33 +408,6 @@ export default function RootLayout({
 
         {/* Global Privacy & Cookie Consent */}
         <CookieBanner />
-
-        {/* Google Consent Mode v2 - Default Denial prior to Google Tag Loading (SEC-003) */}
-        <Script id="google-consent-default" strategy="beforeInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('consent', 'default', {
-              'analytics_storage': 'denied',
-              'ad_storage': 'denied',
-              'ad_user_data': 'denied',
-              'ad_personalization': 'denied',
-              'wait_for_update': 500
-            });
-          `}
-        </Script>
-
-        {/* Google tag (gtag.js) - Non-render-blocking via next/script */}
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-KZCMWZSRFN"
-          strategy="afterInteractive"
-        />
-        <Script id="google-analytics" strategy="afterInteractive">
-          {`
-            gtag('js', new Date());
-            gtag('config', 'G-KZCMWZSRFN');
-          `}
-        </Script>
       </body>
     </html>
   );

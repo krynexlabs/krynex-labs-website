@@ -17,18 +17,66 @@ export const metadata: Metadata = {
     description:
       "Enterprise terms of service, subscription billing, guided sandbox access, zero-retention data sovereignty, and high availability targets for Krynex Labs SaaS products.",
     url: "https://www.krynexlabs.in/terms",
+    images: [
+      {
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: "Terms of Service & SLA Governance - Krynex Labs",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Terms of Service & SLA Governance | Krynex Labs",
     description:
       "Enterprise terms of service, subscription billing, guided sandbox access, zero-retention data sovereignty, and high availability targets for Krynex Labs SaaS products.",
+    images: ["/opengraph-image"],
   },
+};
+
+const termsJsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://www.krynexlabs.in/terms#webpage",
+      url: "https://www.krynexlabs.in/terms",
+      name: "Terms of Service & SLA Governance | Krynex Labs",
+      description:
+        "Enterprise terms of service, subscription billing, guided sandbox access, zero-retention data sovereignty, and high availability targets for Krynex Labs SaaS products.",
+      isPartOf: {
+        "@id": "https://www.krynexlabs.in/#website",
+      },
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://www.krynexlabs.in/terms#breadcrumb",
+      itemListElement: [
+        {
+          "@type": "ListItem",
+          position: 1,
+          name: "Home",
+          item: "https://www.krynexlabs.in",
+        },
+        {
+          "@type": "ListItem",
+          position: 2,
+          name: "Terms",
+          item: "https://www.krynexlabs.in/terms",
+        },
+      ],
+    },
+  ],
 };
 
 export default function TermsPage() {
   return (
     <main className="min-h-screen bg-black text-white selection:bg-white selection:text-black">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(termsJsonLd) }}
+      />
       <Navbar />
 
       {/* Top ambient spotlight */}

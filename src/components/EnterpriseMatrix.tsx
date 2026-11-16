@@ -6,8 +6,8 @@ import {
   Factory,
   Scale,
   Truck,
-  Landmark,
-  Activity,
+  Sun,
+  Workflow,
   ArrowUpRight,
   CheckCircle2,
   Cpu,
@@ -35,13 +35,47 @@ export default function EnterpriseMatrix() {
 
   const sectors = [
     {
+      id: "solar",
+      title: "Solar Energy & Renewable Operations",
+      sectorType: "Utility Plants & Commercial C&I",
+      icon: Sun,
+      workflow: "Central inverter SCADA telemetry, string MPPT monitoring, soiling analysis, and O&M crew dispatch.",
+      painPoint:
+        "Solar plant operators suffer undetected power losses from inverter clipping, string dropouts, and dust accumulation because legacy monitoring displays static historical charts without actionable diagnostic tickets.",
+      whyExistingFails:
+        "Standard SCADA dashboards lack automated performance-ratio anomaly detection, requiring manual spreadsheet audits that take days to pinpoint degraded strings.",
+      solution:
+        "SolarOps: Real-time inverter telemetry ingestion via Modbus/MQTT, algorithmic string degradation alerts, and automated work-order dispatch to on-site O&M crews.",
+      beneficiaries: "Solar asset managers, EPC contractors, utility IPPs, and field maintenance teams.",
+      statusBadge: "Active Product Development // SolarOps",
+      metrics: ["Sub-Second Telemetry Target", "Automated String Anomaly Detection", "Rapid O&M Dispatch"],
+      productLink: "/products/solarops",
+    },
+    {
+      id: "legal",
+      title: "Legal & Document Automation",
+      sectorType: "Statutory Practice & Conveyancing",
+      icon: Scale,
+      workflow: "Real estate conveyancing, sub-registrar index searches, and bilingual notice drafting.",
+      painPoint:
+        "Corporate legal counsel and advocates spend hours per deed copying boilerplate clauses, risking omitted statutory covenants and clumsy bilingual Gujarati-English translation errors.",
+      whyExistingFails:
+        "Static Word templates and generic public AI tools hallucinate non-existent citations and risk serious confidentiality breaches under statutory privilege rules.",
+      solution:
+        "Krynex LawOS: Bilingual legal document automation platform compiling verified draft deeds and title clearance dockets with deterministic statutory guardrails.",
+      beneficiaries: "Corporate legal counsel, title advocates, real estate developers, and statutory compliance panels.",
+      statusBadge: "Private Beta // Krynex LawOS",
+      metrics: ["Rapid Compilation Target", "Multi-Year Index-II Triage", "Zero Public Model Training"],
+      productLink: "/products/krynex-lawos",
+    },
+    {
       id: "manufacturing",
-      title: "Advanced Manufacturing & Industrial IoT",
-      sectorType: "Heavy Industry & Continuous Plants",
+      title: "Continuous Manufacturing & Precision Plants",
+      sectorType: "High-Speed Assembly & Fabrication",
       icon: Factory,
       workflow: "High-speed line assembly, part inspection, and SCADA PLC logging.",
       painPoint:
-        "Human visual inspection suffers elevated defect escape rates on fast-moving continuous lines, while cloud-based AI fails due to network latency and factory internet dropouts.",
+        "Human visual inspection suffers elevated defect escape rates on fast-moving continuous lines, while cloud-based AI fails due to factory network latency and internet dropouts.",
       whyExistingFails:
         "Legacy machine vision requires expensive custom programming and cannot correlate detected defects with upstream PLC vibration and temperature sensors.",
       solution:
@@ -52,25 +86,8 @@ export default function EnterpriseMatrix() {
       productLink: "/solutions/ai-ml",
     },
     {
-      id: "legal",
-      title: "Legal, Real Estate & Statutory Compliance",
-      sectorType: "Statutory Practice & Conveyancing",
-      icon: Scale,
-      workflow: "Real estate conveyancing, sub-registrar index searches, and bilingual notice drafting.",
-      painPoint:
-        "Corporate legal counsel and advocates spend hours per deed copying boilerplate clauses, risking omitted statutory covenants and clumsy bilingual Gujarati-English translation errors.",
-      whyExistingFails:
-        "Static Word templates and generic public AI tools hallucinate non-existent citations and risk serious confidentiality breaches under statutory privilege rules.",
-      solution:
-        "India's bilingual legal drafting and title clearance architecture, compiling structured draft deeds with rapid deterministic statutory guardrails.",
-      beneficiaries: "Corporate legal counsel, title advocates, real estate developers, and statutory compliance panels.",
-      statusBadge: "Enterprise Software (Live)",
-      metrics: ["Rapid Compilation Target", "Multi-Year Index-II Triage", "Zero Public Model Training"],
-      productLink: "/solutions/enterprise-software",
-    },
-    {
       id: "logistics",
-      title: "Logistics & Multimodal Supply Chain",
+      title: "Multimodal Logistics & Supply Chain",
       sectorType: "Terminal Gates & Freight Fleets",
       icon: Truck,
       workflow: "Container gate clearance, multilingual manifest extraction, and customs EDI filing.",
@@ -86,38 +103,21 @@ export default function EnterpriseMatrix() {
       productLink: "/solutions/cloud-data",
     },
     {
-      id: "fintech",
-      title: "FinTech & Banking Infrastructure",
-      sectorType: "Risk Scoring & Lending Audits",
-      icon: Landmark,
-      workflow: "Real-time payment transaction scoring, synthetic identity detection, and loan collateral verification.",
+      id: "enterprise-ops",
+      title: "Enterprise Operations & Workflow Automation",
+      sectorType: "Cross-System ERP & Corporate Workflows",
+      icon: Workflow,
+      workflow: "Multi-system ERP reconciliation, statutory invoice triage, policy-driven approval routing.",
       painPoint:
-        "Batch transaction scoring fails to catch multi-account circular fraud rings in real time, and manual collateral land registry searches stall commercial loan disbursements.",
+        "Fragmented business systems (SAP, Tally, Salesforce, custom databases) create manual clerical data re-entry bottlenecks prone to calculation and GST reconciliation errors.",
       whyExistingFails:
-        "Traditional rules engines cannot scale to graph topologies under high-concurrency loads and lack automated sub-registrar verification hooks.",
+        "Rigid RPA bots break upon minor UI changes, while expensive integration suites require months of custom enterprise middleware programming.",
       solution:
-        "Streaming Graph Neural Network (GNN) risk-scoring middleware coupled with automated collateral verification pipelines engineered for zero-trust compliance.",
-      beneficiaries: "Commercial banks, MSME lenders, NBFCs, and financial risk compliance teams.",
-      statusBadge: "Architectural Research & Prototyping",
-      metrics: ["Real-Time Scoring Target", "Accelerated Collateral Verification", "Zero-Trust KMS Encryption"],
-      productLink: "/industries#fintech",
-    },
-    {
-      id: "healthcare",
-      title: "Healthcare & Clinical Diagnostics",
-      sectorType: "Emergency Imaging & Hospital Networks",
-      icon: Activity,
-      workflow: "Emergency diagnostic scan ingestion, radiologist triage, and hospital EHR synchronization.",
-      painPoint:
-        "Acute radiologist shortages cause critical scan review turnarounds to experience significant delays, while strict healthcare data laws prohibit uploading patient DICOM scans to public cloud APIs.",
-      whyExistingFails:
-        "Cloud-based consumer AI violates patient privacy and data sovereignty laws, while legacy hospital software lacks modern neural prioritization.",
-      solution:
-        "Air-gapped on-premise convolutional neural network triage nodes that prioritize urgent emergency scans on local hospital servers without external cloud transmission.",
-      beneficiaries: "Hospital emergency departments, diagnostic imaging networks, and clinical radiologist teams.",
-      statusBadge: "Clinical Research & Regulatory Exploration",
-      metrics: ["Rapid Triage Window Target", "Air-Gapped Hospital LAN", "Zero External Exposure"],
-      productLink: "/industries#healthcare",
+        "Event-driven state-machine engine connecting legacy ledgers, validating tax rules, and automating multi-party approvals with immutable audit trails.",
+      beneficiaries: "CFO offices, enterprise IT departments, procurement heads, and compliance officers.",
+      statusBadge: "Active Architectural Research",
+      metrics: ["Multi-System Ledger Sync", "Automated Tax HSN Verification", "Zero-Code State Machines"],
+      productLink: "/solutions/enterprise-software",
     },
   ];
 
