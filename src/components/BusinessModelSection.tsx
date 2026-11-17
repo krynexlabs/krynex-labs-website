@@ -80,7 +80,7 @@ export default function BusinessModelSection() {
       id="business-model"
       ref={containerRef}
       onMouseMove={handleMouseMove}
-      className="relative py-24 sm:py-32 border-t border-white/[0.08] bg-[#030303] overflow-hidden"
+      className="relative py-16 sm:py-24 lg:py-32 border-t border-white/[0.08] bg-[#030303] overflow-hidden"
     >
       {/* Specular Ambient Radial Spotlight */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[450px] bg-[radial-gradient(ellipse_70%_50%_at_50%_50%,rgba(255,255,255,0.03),transparent_70%)] pointer-events-none -z-10" />
@@ -99,7 +99,7 @@ export default function BusinessModelSection() {
           </p>
         </div>
 
-        {/* The Fundamental Principle Monogram Banner */}
+        {/* The Fundamental Operating Cycle Banner */}
         <div className="spotlight-card rounded-3xl bg-[#080808] border border-white/10 p-8 sm:p-12 mb-16 shadow-2xl relative overflow-hidden text-center">
           <div className="absolute top-0 left-12 right-12 h-[1px] bg-gradient-to-r from-transparent via-white/30 to-transparent pointer-events-none" />
 

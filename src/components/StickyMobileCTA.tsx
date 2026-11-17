@@ -71,7 +71,7 @@ export default function StickyMobileCTA({ onRequestDemo }: StickyMobileCTAProps)
         <a
           href="#contact"
           onClick={handleDemoClick}
-          className="flex-1 px-4 py-2.5 rounded-xl bg-white text-black font-semibold text-xs tracking-wide hover:bg-zinc-200 transition-colors flex items-center justify-center gap-1.5 shadow-[0_0_20px_rgba(255,255,255,0.25)] text-center"
+          className="flex-1 px-4 py-3 min-h-[44px] rounded-xl bg-white text-black font-semibold text-xs tracking-wide hover:bg-zinc-200 transition-colors flex items-center justify-center gap-1.5 shadow-[0_0_20px_rgba(255,255,255,0.25)] text-center"
         >
           <span>Contact Us</span>
           <ArrowRight className="w-3.5 h-3.5 text-black" />

@@ -129,7 +129,7 @@ export default function ResourcesPage() {
             {whitepapers.map((paper, idx) => (
               <div
                 key={idx}
-                className="p-8 rounded-3xl bg-[#111111] border border-white/[0.08] hover:border-white/[0.22] transition-all flex flex-col justify-between"
+                className="p-6 sm:p-8 rounded-3xl bg-[#111111] border border-white/[0.08] hover:border-white/[0.22] transition-all flex flex-col justify-between"
               >
                 <div>
                   <div className="flex items-center justify-between text-[10px] font-mono mb-4">
@@ -152,7 +152,7 @@ export default function ResourcesPage() {
                   <span className="text-xs font-mono text-zinc-500">Krynex Labs Telemetry Dossier</span>
                   <Link
                     href={paper.link}
-                    className="inline-flex items-center gap-1.5 text-xs font-mono text-zinc-300 hover:text-white font-semibold"
+                    className="inline-flex items-center gap-1.5 text-xs font-mono text-zinc-300 hover:text-white font-semibold py-2 px-3 -my-2 -mx-3 rounded-lg"
                   >
                     <span>Read Overview</span>
                     <ArrowRight className="w-3.5 h-3.5" />

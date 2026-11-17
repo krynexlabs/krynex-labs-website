@@ -240,7 +240,7 @@ export default function ContactForm({ initialProduct }: ContactFormProps) {
               onChange={(e) => setInquiryEmail(e.target.value)}
               aria-invalid={Boolean(errors.corporateEmail || errors.email)}
               placeholder="Enter your email"
-              className={`w-full bg-[#0f1013] border rounded-lg px-4 py-3 text-sm text-zinc-100 placeholder-zinc-500 focus:outline-none focus:border-white/30 focus:ring-1 focus:ring-white/15 transition-all font-sans ${
+              className={`w-full bg-[#0f1013] border rounded-lg px-4 py-3 sm:py-3.5 text-base sm:text-sm text-zinc-100 placeholder-zinc-500 focus:outline-none focus:border-white/30 focus:ring-1 focus:ring-white/15 transition-all font-sans min-h-[44px] ${
                 errors.corporateEmail || errors.email ? "border-red-400/80" : "border-white/10"
               }`}
             />
@@ -267,7 +267,7 @@ export default function ContactForm({ initialProduct }: ContactFormProps) {
                 onChange={(e) => setInquiryName(e.target.value)}
                 aria-invalid={Boolean(errors.executiveName || errors.name)}
                 placeholder="Enter your name"
-                className={`w-full bg-[#0f1013] border rounded-lg px-4 py-3 text-sm text-zinc-100 placeholder-zinc-500 focus:outline-none focus:border-white/30 focus:ring-1 focus:ring-white/15 transition-all font-sans ${
+                className={`w-full bg-[#0f1013] border rounded-lg px-4 py-3 sm:py-3.5 text-base sm:text-sm text-zinc-100 placeholder-zinc-500 focus:outline-none focus:border-white/30 focus:ring-1 focus:ring-white/15 transition-all font-sans min-h-[44px] ${
                   errors.executiveName || errors.name ? "border-red-400/80" : "border-white/10"
                 }`}
               />
@@ -292,7 +292,7 @@ export default function ContactForm({ initialProduct }: ContactFormProps) {
                 onChange={(e) => setInquiryCompany(e.target.value)}
                 aria-invalid={Boolean(errors.companySector || errors.company)}
                 placeholder="Enter your company"
-                className={`w-full bg-[#0f1013] border rounded-lg px-4 py-3 text-sm text-zinc-100 placeholder-zinc-500 focus:outline-none focus:border-white/30 focus:ring-1 focus:ring-white/15 transition-all font-sans ${
+                className={`w-full bg-[#0f1013] border rounded-lg px-4 py-3 sm:py-3.5 text-base sm:text-sm text-zinc-100 placeholder-zinc-500 focus:outline-none focus:border-white/30 focus:ring-1 focus:ring-white/15 transition-all font-sans min-h-[44px] ${
                   errors.companySector || errors.company ? "border-red-400/80" : "border-white/10"
                 }`}
               />
@@ -315,13 +315,13 @@ export default function ContactForm({ initialProduct }: ContactFormProps) {
             <textarea
               id="operational-friction"
               name="operationalFriction"
-              rows={5}
+              rows={4}
               required
               value={inquiryChallenge}
               onChange={(e) => setInquiryChallenge(e.target.value)}
               aria-invalid={Boolean(errors.operationalFriction || errors.challenge)}
               placeholder="I'd like to know how Krynex Labs can help me with..."
-              className={`w-full bg-[#0f1013] border rounded-lg p-4 text-sm text-zinc-100 placeholder-zinc-500 focus:outline-none focus:border-white/30 focus:ring-1 focus:ring-white/15 transition-all font-sans resize-none ${
+              className={`w-full bg-[#0f1013] border rounded-lg p-4 text-base sm:text-sm text-zinc-100 placeholder-zinc-500 focus:outline-none focus:border-white/30 focus:ring-1 focus:ring-white/15 transition-all font-sans resize-none ${
                 errors.operationalFriction || errors.challenge ? "border-red-400/80" : "border-white/10"
               }`}
             />
@@ -333,7 +333,7 @@ export default function ContactForm({ initialProduct }: ContactFormProps) {
           </div>
 
           {/* Optional walkthrough checkbox */}
-          <div className="flex items-center gap-2.5 pt-0.5">
+          <div className="flex items-center gap-3 pt-0.5 min-h-[36px]">
             <input
               type="checkbox"
               id="request-meeting"
@@ -347,12 +347,12 @@ export default function ContactForm({ initialProduct }: ContactFormProps) {
             </label>
           </div>
 
-          {/* Resend Style Submit Button */}
+          {/* Resend Style Submit Button with full width on mobile and 44px tap height */}
           <div className="pt-2">
             <button
               type="submit"
               disabled={isSubmitting}
-              className={`inline-flex items-center justify-center gap-1.5 px-6 py-2.5 rounded-full text-xs font-semibold tracking-wide transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-white disabled:opacity-50 cursor-pointer ${
+              className={`w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full text-xs font-semibold tracking-wide transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-white disabled:opacity-50 cursor-pointer min-h-[44px] ${
                 inquiryEmail.trim() && inquiryChallenge.trim()
                   ? "bg-white text-black hover:bg-zinc-200 shadow-[0_0_20px_rgba(255,255,255,0.15)]"
                   : "bg-[#141518] border border-white/10 text-zinc-400 hover:text-white hover:border-white/25 hover:bg-[#1a1c22]"

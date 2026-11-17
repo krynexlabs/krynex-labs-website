@@ -8,7 +8,7 @@ import React from "react";
 export default function HeroCubeFallback() {
   return (
     <div
-      className="relative w-full h-full min-h-[380px] sm:min-h-[480px] lg:min-h-[680px] flex items-center justify-center p-8 select-none"
+      className="relative w-full h-full min-h-[220px] sm:min-h-[340px] lg:min-h-[580px] flex items-center justify-center p-4 sm:p-8 select-none"
     >
       <svg
         role="img"

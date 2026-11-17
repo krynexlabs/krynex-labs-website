@@ -50,7 +50,7 @@ export default function WhyKrynexSection() {
   ];
 
   return (
-    <section id="why-krynex" className="relative py-24 sm:py-32 bg-[#050505] border-t border-white/[0.08] overflow-hidden">
+    <section id="why-krynex" className="relative py-16 sm:py-24 lg:py-32 bg-[#050505] border-t border-white/[0.08] overflow-hidden">
       {/* Subtle radial spotlight */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[850px] h-[350px] bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.03),transparent_70%)] pointer-events-none" />
 
@@ -76,7 +76,7 @@ export default function WhyKrynexSection() {
             return (
               <div
                 key={diff.number}
-                className="p-8 rounded-3xl bg-[#111111] border border-white/[0.08] hover:border-white/[0.22] transition-all relative overflow-hidden flex flex-col justify-between group"
+                className="p-6 sm:p-8 rounded-3xl bg-[#111111] border border-white/[0.08] hover:border-white/[0.22] transition-all relative overflow-hidden flex flex-col justify-between group"
               >
                 <div className="absolute top-0 left-6 right-6 h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent pointer-events-none" />
 
@@ -108,7 +108,7 @@ export default function WhyKrynexSection() {
           })}
 
           {/* 6th Telemetry Box */}
-          <div className="p-8 rounded-3xl bg-[#111111] border border-white/[0.08] flex flex-col justify-between">
+          <div className="p-6 sm:p-8 rounded-3xl bg-[#111111] border border-white/[0.08] flex flex-col justify-between">
             <div>
               <span className="text-[10px] font-mono text-zinc-400 uppercase tracking-wider block mb-4">
                 HEADQUARTERS &amp; OPERATIONS

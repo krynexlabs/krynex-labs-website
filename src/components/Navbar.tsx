@@ -79,7 +79,7 @@ export default function Navbar({ onRequestDemo }: NavbarProps) {
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           isScrolled
             ? "bg-black/90 backdrop-blur-xl border-b border-white/[0.08] shadow-[0_4px_30px_rgba(0,0,0,0.9)] py-3"
-            : "bg-transparent py-5"
+            : "bg-transparent py-4 sm:py-5"
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -119,17 +119,17 @@ export default function Navbar({ onRequestDemo }: NavbarProps) {
             <div className="hidden sm:flex items-center gap-3">
               <Link
                 href="/products"
-                className="bg-[#F5F5F5] text-[#050505] font-semibold hover:bg-white px-5 py-2 rounded-full transition-all text-xs tracking-wide shadow-[0_0_20px_rgba(255,255,255,0.15)] flex items-center justify-center focus:outline-none focus-visible:ring-2 focus-visible:ring-white/40"
+                className="bg-[#F5F5F5] text-[#050505] font-semibold hover:bg-white px-5 py-2.5 rounded-full transition-all text-xs tracking-wide shadow-[0_0_20px_rgba(255,255,255,0.15)] flex items-center justify-center focus:outline-none focus-visible:ring-2 focus-visible:ring-white/40 min-h-[40px]"
               >
                 <span>Explore Products</span>
               </Link>
             </div>
 
-            {/* Mobile Hamburger Button */}
+            {/* Mobile Hamburger Button with comfortable 44px tap target */}
             <button
               ref={hamburgerBtnRef}
               type="button"
-              className="lg:hidden p-2 rounded-lg text-zinc-400 hover:text-white hover:bg-white/[0.06] transition-colors focus:outline-none focus-visible:ring-1 focus-visible:ring-white/40"
+              className="lg:hidden p-2.5 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-xl text-zinc-300 hover:text-white hover:bg-white/[0.08] transition-colors focus:outline-none focus-visible:ring-1 focus-visible:ring-white/40"
               onClick={() => setMobileMenuOpen(true)}
               aria-label="Open mobile navigation menu"
               aria-expanded={mobileMenuOpen}
@@ -149,24 +149,36 @@ export default function Navbar({ onRequestDemo }: NavbarProps) {
           role="dialog"
           aria-modal="true"
           aria-label="Mobile Navigation"
-          className="fixed inset-0 z-[60] bg-black/95 backdrop-blur-2xl lg:hidden pt-20 px-6 flex flex-col justify-between pb-8 animate-fade-in overflow-y-auto"
+          className="fixed inset-0 z-[60] bg-black/98 backdrop-blur-2xl lg:hidden flex flex-col justify-between animate-fade-in overflow-y-auto"
         >
-          <div className="flex flex-col gap-3">
-            <div className="flex items-center justify-between pb-3 border-b border-white/10">
-              <span className="text-[11px] font-mono tracking-widest text-zinc-400 uppercase">
-                KRYNEX LABS // NAVIGATION
-              </span>
-              <button
-                type="button"
-                onClick={() => {
-                  setMobileMenuOpen(false);
-                  hamburgerBtnRef.current?.focus();
-                }}
-                className="p-1 rounded-lg text-zinc-400 hover:text-white hover:bg-white/10 transition-colors focus:outline-none focus-visible:ring-1 focus-visible:ring-white/40"
-                aria-label="Close navigation drawer"
-              >
-                <X className="w-5 h-5" />
-              </button>
+          {/* Top Bar with Logo & Close Button */}
+          <div className="px-5 py-4 border-b border-white/10 flex items-center justify-between bg-black/80 backdrop-blur-md sticky top-0 z-10">
+            <Link
+              href="/"
+              onClick={() => setMobileMenuOpen(false)}
+              className="focus:outline-none"
+              aria-label="Krynex Labs Home"
+            >
+              <KrynexLogo size="sm" showTagline={false} />
+            </Link>
+
+            <button
+              type="button"
+              onClick={() => {
+                setMobileMenuOpen(false);
+                hamburgerBtnRef.current?.focus();
+              }}
+              className="p-2.5 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-xl text-zinc-400 hover:text-white hover:bg-white/10 transition-colors focus:outline-none focus-visible:ring-1 focus-visible:ring-white/40"
+              aria-label="Close navigation drawer"
+            >
+              <X className="w-6 h-6" />
+            </button>
+          </div>
+
+          {/* Links List */}
+          <div className="px-6 py-6 flex flex-col gap-2 flex-1">
+            <div className="text-[11px] font-mono tracking-widest text-zinc-500 uppercase mb-2">
+              NAVIGATION
             </div>
 
             {navLinks.map((link) => {
@@ -174,11 +186,11 @@ export default function Navbar({ onRequestDemo }: NavbarProps) {
                 link.href === "/" ? pathname === "/" : pathname.startsWith(link.href);
 
               return (
-                <div key={link.label} className="border-b border-white/[0.04] pb-2">
+                <div key={link.label} className="border-b border-white/[0.04]">
                   <Link
                     href={link.href}
                     onClick={() => setMobileMenuOpen(false)}
-                    className={`text-base font-medium py-1.5 transition-colors flex items-center justify-between ${
+                    className={`text-lg font-medium py-3.5 transition-colors flex items-center justify-between min-h-[48px] ${
                       isActive ? "text-white font-semibold" : "text-zinc-300 hover:text-white"
                     }`}
                   >
@@ -191,7 +203,24 @@ export default function Navbar({ onRequestDemo }: NavbarProps) {
           </div>
 
           {/* Drawer Footer Actions */}
-          <div className="pt-6 border-t border-white/10 flex flex-col gap-3">
+          <div className="p-6 border-t border-white/10 bg-black/40 flex flex-col gap-3">
+            <div className="grid grid-cols-2 gap-3">
+              <Link
+                href="/products/solarops"
+                onClick={() => setMobileMenuOpen(false)}
+                className="py-3 px-3 rounded-xl bg-white/[0.04] border border-white/10 text-white font-medium text-xs hover:bg-white/[0.08] transition-colors text-center min-h-[44px] flex items-center justify-center"
+              >
+                SolarOps
+              </Link>
+              <Link
+                href="/products/krynex-lawos"
+                onClick={() => setMobileMenuOpen(false)}
+                className="py-3 px-3 rounded-xl bg-white/[0.04] border border-white/10 text-white font-medium text-xs hover:bg-white/[0.08] transition-colors text-center min-h-[44px] flex items-center justify-center"
+              >
+                Krynex LawOS
+              </Link>
+            </div>
+
             {onRequestDemo ? (
               <button
                 type="button"
@@ -202,19 +231,23 @@ export default function Navbar({ onRequestDemo }: NavbarProps) {
                   });
                   onRequestDemo();
                 }}
-                className="w-full py-3 rounded-xl bg-white text-black font-semibold text-sm hover:bg-zinc-200 transition-colors text-center shadow-[0_0_20px_rgba(255,255,255,0.2)]"
+                className="w-full py-3.5 rounded-xl bg-white text-black font-semibold text-sm hover:bg-zinc-200 transition-colors text-center shadow-[0_0_20px_rgba(255,255,255,0.2)] min-h-[48px] flex items-center justify-center"
               >
-                Contact Us
+                Contact Krynex Labs
               </button>
             ) : (
               <Link
                 href="/contact"
                 onClick={() => setMobileMenuOpen(false)}
-                className="w-full py-3 rounded-xl bg-white text-black font-semibold text-sm hover:bg-zinc-200 transition-colors text-center shadow-[0_0_20px_rgba(255,255,255,0.2)]"
+                className="w-full py-3.5 rounded-xl bg-white text-black font-semibold text-sm hover:bg-zinc-200 transition-colors text-center shadow-[0_0_20px_rgba(255,255,255,0.2)] min-h-[48px] flex items-center justify-center"
               >
-                Contact Us
+                Contact Krynex Labs
               </Link>
             )}
+
+            <div className="text-center text-[11px] font-mono text-zinc-500 pt-1">
+              AHMEDABAD, INDIA &bull; SUPPORT@KRYNEXLABS.IN
+            </div>
           </div>
         </div>
       )}

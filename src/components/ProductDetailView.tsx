@@ -144,7 +144,7 @@ export default function ProductDetailView({ product }: ProductDetailViewProps) {
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {/* The Problem */}
-            <div className="p-8 rounded-3xl bg-[#080808] border border-white/[0.08] relative">
+            <div className="p-6 sm:p-8 rounded-3xl bg-[#080808] border border-white/[0.08] relative">
               <div className="inline-flex items-center gap-1.5 text-[10px] font-mono text-zinc-400 uppercase tracking-wider px-2 py-0.5 rounded bg-white/[0.04] border border-white/10 mb-4">
                 <AlertCircle className="w-3 h-3 text-zinc-400" />
                 <span>The Industry Problem</span>
@@ -166,7 +166,7 @@ export default function ProductDetailView({ product }: ProductDetailViewProps) {
             </div>
 
             {/* The Solution */}
-            <div className="p-8 rounded-3xl bg-[#080808] border border-white/15 relative overflow-hidden shadow-xl">
+            <div className="p-6 sm:p-8 rounded-3xl bg-[#080808] border border-white/15 relative overflow-hidden shadow-xl">
               <div className="absolute top-0 left-6 right-6 h-[1px] bg-gradient-to-r from-transparent via-white/30 to-transparent pointer-events-none" />
               <div className="inline-flex items-center gap-1.5 text-[10px] font-mono text-zinc-300 uppercase tracking-wider px-2 py-0.5 rounded bg-white/[0.06] border border-white/15 mb-4">
                 <Sparkles className="w-3 h-3 text-white" />
@@ -326,7 +326,7 @@ export default function ProductDetailView({ product }: ProductDetailViewProps) {
                         <span>&bull; Sub-Registrar Index-II: MATCHED</span>
                       </div>
                       <div className="text-[10px] text-zinc-500 pt-1.5 border-t border-white/[0.04] leading-relaxed">
-                        * Notice: Lexis provides automated drafting assistance for legal practitioners. Generated covenants require review and execution by qualified legal counsel.
+                        * Notice: Krynex LawOS provides automated drafting assistance for legal practitioners. Generated covenants require review and execution by qualified legal counsel.
                       </div>
                     </div>
                   ) : (
@@ -339,13 +339,13 @@ export default function ProductDetailView({ product }: ProductDetailViewProps) {
                 {/* Simulator Action Buttons */}
                 <div className="flex flex-wrap items-center justify-between gap-4">
                   <div className="text-xs font-mono text-zinc-400">
-                    Engine: <span className="text-white">Lexis-Statutory-AST</span>
+                    Engine: <span className="text-white">LawOS-Statutory-AST</span>
                   </div>
                     <div className="flex items-center gap-3">
                       <button
                         onClick={runSimulation}
                         disabled={isSimulating}
-                        className="bg-white text-black font-medium hover:bg-zinc-200 px-5 py-2 rounded-xl transition-all text-xs tracking-wide flex items-center gap-2 disabled:opacity-50"
+                        className="bg-white text-black font-semibold hover:bg-zinc-200 px-5 py-2.5 rounded-xl transition-all text-xs tracking-wide flex items-center gap-2 disabled:opacity-50 min-h-[42px]"
                       >
                         <Play className="w-3.5 h-3.5 fill-current" />
                         <span>{isSimulating ? "Compiling..." : "Execute Deterministic Compile"}</span>
@@ -570,7 +570,7 @@ export default function ProductDetailView({ product }: ProductDetailViewProps) {
       {/* Architecture & Zero-Trust Security */}
       <section className="py-20 bg-black border-b border-white/[0.08]">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="p-8 rounded-3xl bg-[#080808] border border-white/10 relative overflow-hidden">
+          <div className="p-6 sm:p-8 rounded-3xl bg-[#080808] border border-white/10 relative overflow-hidden">
             <div className="absolute top-0 left-8 right-8 h-[1px] bg-gradient-to-r from-transparent via-white/25 to-transparent pointer-events-none" />
             <div className="inline-flex items-center gap-1.5 text-[10px] font-mono text-zinc-400 uppercase tracking-wider px-2 py-0.5 rounded bg-white/[0.04] border border-white/10 mb-4">
               <Shield className="w-3.5 h-3.5 text-zinc-400" />
@@ -622,7 +622,7 @@ export default function ProductDetailView({ product }: ProductDetailViewProps) {
                     setCurrency("INR");
                     trackConversionEvent("currency_toggle", { currency: "INR", product_slug: product.slug });
                   }}
-                  className={`px-3 py-1 rounded-lg transition-all ${
+                  className={`px-3.5 py-1.5 min-h-[38px] rounded-lg transition-all font-medium ${
                     currency === "INR"
                       ? "bg-white text-black font-semibold shadow-sm"
                       : "text-zinc-400 hover:text-white"
@@ -636,7 +636,7 @@ export default function ProductDetailView({ product }: ProductDetailViewProps) {
                     setCurrency("USD");
                     trackConversionEvent("currency_toggle", { currency: "USD", product_slug: product.slug });
                   }}
-                  className={`px-3 py-1 rounded-lg transition-all ${
+                  className={`px-3.5 py-1.5 min-h-[38px] rounded-lg transition-all font-medium ${
                     currency === "USD"
                       ? "bg-white text-black font-semibold shadow-sm"
                       : "text-zinc-400 hover:text-white"
@@ -707,7 +707,7 @@ export default function ProductDetailView({ product }: ProductDetailViewProps) {
 
                   <Link
                     href={`/contact?product=${product.slug}&tier=${encodeURIComponent(tier.name)}`}
-                    className={`w-full py-2.5 rounded-xl text-center text-xs font-semibold transition-all flex items-center justify-center gap-1.5 ${
+                    className={`w-full py-3 min-h-[44px] rounded-xl text-center text-xs font-semibold transition-all flex items-center justify-center gap-1.5 ${
                       tier.highlighted
                         ? "bg-white text-black hover:bg-zinc-200 shadow-md"
                         : "bg-white/[0.04] text-white border border-white/10 hover:bg-white/[0.08]"

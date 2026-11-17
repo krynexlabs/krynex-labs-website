@@ -1,3 +1,4 @@
+
 "use client";
 
 import React from "react";
@@ -52,7 +53,7 @@ export default function SecurityTrustSection() {
   ];
 
   return (
-    <section id="security" className="relative py-24 sm:py-32 bg-[#050505] border-t border-white/[0.08] overflow-hidden">
+    <section id="security" className="relative py-16 sm:py-24 lg:py-32 bg-[#050505] border-t border-white/[0.08] overflow-hidden">
       {/* Subtle radial spotlight */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[850px] h-[350px] bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.03),transparent_70%)] pointer-events-none" />
 
@@ -61,7 +62,7 @@ export default function SecurityTrustSection() {
         <div className="max-w-3xl mb-16">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.04] border border-white/10 text-xs font-mono text-zinc-300 uppercase tracking-widest mb-4">
             <ShieldCheck className="w-3.5 h-3.5" />
-            <span>08 // SECURITY AND TRUST</span>
+            <span>09 // SECURITY AND PRIVACY</span>
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white mb-4 leading-tight">
             Enterprise Security Built Into Every Layer.

@@ -481,8 +481,25 @@ assert.ok(
 );
 console.log("✔ PASS: Dastaveg eliminated; exactly 2 products active; 301 redirect verified.");
 
+// 28. Corporate Transformation & Complete Founder Content Elimination
+console.log("\n[TEST 28] Corporate Transformation & Complete Founder Content Elimination");
+const aboutPageSource = fs.readFileSync("src/app/about/page.tsx", "utf-8");
+const homePageSource = fs.readFileSync("src/app/page.tsx", "utf-8");
+const layoutSource = fs.readFileSync("src/app/layout.tsx", "utf-8");
+const aboutDataSource = fs.readFileSync("src/data/about-data.ts", "utf-8");
+
+assert.strictEqual(aboutPageSource.toLowerCase().includes("patel"), false, "About page must NOT contain 'patel'");
+assert.strictEqual(aboutPageSource.toLowerCase().includes("founder"), false, "About page must NOT contain 'founder'");
+assert.strictEqual(aboutPageSource.includes("DP"), false, "About page must NOT contain 'DP' monogram");
+assert.strictEqual(homePageSource.toLowerCase().includes("founder"), false, "Home page must NOT contain 'founder'");
+assert.strictEqual(homePageSource.includes("TechnologyCapabilitiesSection"), true, "Home page must include TechnologyCapabilitiesSection");
+assert.strictEqual(layoutSource.includes("#founder"), false, "Layout JSON-LD must NOT contain '#founder'");
+assert.strictEqual(aboutDataSource.includes("founder:"), false, "about-data.ts must NOT contain 'founder:'");
+
+console.log("✔ PASS: Complete founder content eliminated; professional corporate product positioning verified.");
+
 console.log("\n=======================================================");
-console.log("ALL 27 CRITICAL REGRESSION SUITES PASSED SUCCESSFULLY!");
+console.log("ALL 28 CRITICAL REGRESSION SUITES PASSED SUCCESSFULLY!");
 console.log("=======================================================\n");
 
 process.exit(0);

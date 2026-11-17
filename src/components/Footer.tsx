@@ -371,7 +371,7 @@ export default function Footer({ onRequestDemo, hideInquirySection = false }: Fo
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className={`inline-flex items-center justify-center gap-1.5 px-6 py-2.5 rounded-full text-xs font-semibold tracking-wide transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-white disabled:opacity-50 cursor-pointer ${
+                    className={`inline-flex items-center justify-center gap-1.5 px-6 py-3 min-h-[44px] rounded-full text-xs font-semibold tracking-wide transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-white disabled:opacity-50 cursor-pointer ${
                       inquiryEmail.trim() && inquiryChallenge.trim()
                         ? "bg-white text-black hover:bg-zinc-200 shadow-[0_0_20px_rgba(255,255,255,0.15)]"
                         : "bg-[#141518] border border-white/10 text-zinc-400 hover:text-white hover:border-white/25 hover:bg-[#1a1c22]"
@@ -584,16 +584,6 @@ export default function Footer({ onRequestDemo, hideInquirySection = false }: Fo
                 </Link>
               </li>
               <li>
-                <Link href="/privacy" className="hover:text-white transition-colors">
-                  Privacy Policy
-                </Link>
-              </li>
-              <li>
-                <Link href="/terms" className="hover:text-white transition-colors">
-                  Terms of Service
-                </Link>
-              </li>
-              <li>
                 <button
                   type="button"
                   onClick={() => {
@@ -601,7 +591,7 @@ export default function Footer({ onRequestDemo, hideInquirySection = false }: Fo
                       window.dispatchEvent(new CustomEvent("krynex_open_cookie_settings"));
                     }
                   }}
-                  className="hover:text-white transition-colors text-left font-normal text-xs"
+                  className="hover:text-white transition-colors text-left font-normal text-xs py-1"
                   aria-label="Open Telemetry &amp; Cookie Consent Settings"
                 >
                   Cookie Settings

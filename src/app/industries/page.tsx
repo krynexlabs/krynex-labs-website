@@ -133,7 +133,7 @@ export default function IndustriesPage() {
             <div
               key={ind.slug}
               id={ind.slug}
-              className="p-8 sm:p-12 rounded-3xl bg-[#080808] border border-white/[0.08] hover:border-white/20 transition-all relative overflow-hidden shadow-2xl"
+              className="p-6 sm:p-12 rounded-3xl bg-[#080808] border border-white/[0.08] hover:border-white/20 transition-all relative overflow-hidden shadow-2xl"
             >
               <div className="absolute top-0 left-12 right-12 h-[1px] bg-gradient-to-r from-transparent via-white/25 to-transparent pointer-events-none" />
 
@@ -250,20 +250,20 @@ export default function IndustriesPage() {
                   Target Domain Archetype:{" "}
                   <span className="text-white font-medium">{ind.caseDossier.clientType}</span>
                 </div>
-                <div className="flex items-center gap-3">
+                <div className="flex flex-wrap items-center gap-3">
                   {ind.slug === "manufacturing" && (
                     <Link
                       href="/solutions/ai-ml"
-                      className="bg-white text-black font-medium hover:bg-zinc-200 px-4 py-2 rounded-xl transition-all text-xs tracking-wide flex items-center gap-1.5"
+                      className="bg-white text-black font-semibold hover:bg-zinc-200 px-4 py-2.5 min-h-[44px] rounded-xl transition-all text-xs tracking-wide flex items-center gap-1.5"
                     >
-                      <span>Explore AI & Vision Architecture</span>
+                      <span>Explore AI &amp; Vision Architecture</span>
                       <ArrowRight className="w-3.5 h-3.5" />
                     </Link>
                   )}
                   {ind.slug === "legal" && (
                     <Link
                       href="/solutions/enterprise-software"
-                      className="bg-white text-black font-medium hover:bg-zinc-200 px-4 py-2 rounded-xl transition-all text-xs tracking-wide flex items-center gap-1.5"
+                      className="bg-white text-black font-semibold hover:bg-zinc-200 px-4 py-2.5 min-h-[44px] rounded-xl transition-all text-xs tracking-wide flex items-center gap-1.5"
                     >
                       <span>Explore Legal Tech Architecture</span>
                       <ArrowRight className="w-3.5 h-3.5" />
@@ -272,7 +272,7 @@ export default function IndustriesPage() {
                   {ind.slug === "logistics" && (
                     <Link
                       href="/solutions/cloud-data"
-                      className="bg-white text-black font-medium hover:bg-zinc-200 px-4 py-2 rounded-xl transition-all text-xs tracking-wide flex items-center gap-1.5"
+                      className="bg-white text-black font-semibold hover:bg-zinc-200 px-4 py-2.5 min-h-[44px] rounded-xl transition-all text-xs tracking-wide flex items-center gap-1.5"
                     >
                       <span>Explore Streaming Data Architecture</span>
                       <ArrowRight className="w-3.5 h-3.5" />
@@ -280,7 +280,7 @@ export default function IndustriesPage() {
                   )}
                   <Link
                     href={`/contact?subject=problem-${ind.slug}`}
-                    className="bg-white/[0.04] text-white hover:bg-white/[0.08] border border-white/10 px-4 py-2 rounded-xl transition-all text-xs font-mono flex items-center gap-1.5"
+                    className="bg-white/[0.04] text-white hover:bg-white/[0.08] border border-white/10 px-4 py-2.5 min-h-[44px] rounded-xl transition-all text-xs font-mono flex items-center gap-1.5"
                   >
                     <span>Propose Industry Problem</span>
                   </Link>

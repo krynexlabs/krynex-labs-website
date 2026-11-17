@@ -6,10 +6,10 @@ import { ProductDetail } from "@/data/products-data";
 import {
   FileText,
   Workflow,
-  Eye,
   CheckCircle2,
   ArrowRight,
-  Sparkles,
+  Sun,
+  Scale,
 } from "lucide-react";
 
 interface ProductsDirectoryProps {
@@ -21,15 +21,14 @@ export default function ProductsDirectory({ products }: ProductsDirectoryProps) 
   const distinctProducts = products.filter((p) => p.slug !== "lawos");
 
   const iconMap: Record<string, React.ReactNode> = {
-    "krynex-lawos": <FileText className="w-6 h-6 text-zinc-300" />,
-    "lawos": <FileText className="w-6 h-6 text-zinc-300" />,
-    "solarops": <Workflow className="w-6 h-6 text-zinc-300" />,
+    "krynex-lawos": <Scale className="w-6 h-6 text-zinc-300" />,
+    "solarops": <Sun className="w-6 h-6 text-zinc-300" />,
   };
 
   return (
     <div>
       {/* Top Controls: Currency Toggle & Directory Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-12 border-b border-white/[0.06] pb-6 gap-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-8 sm:mb-12 border-b border-white/[0.06] pb-6 gap-4">
         <div>
           <span className="text-[11px] font-mono tracking-widest text-zinc-500 uppercase">
             PRODUCT DIRECTORY &amp; COMMERCIAL TIERS
@@ -39,13 +38,13 @@ export default function ProductsDirectory({ products }: ProductsDirectoryProps) 
           </h2>
         </div>
 
-        {/* Currency Switcher */}
+        {/* Currency Switcher with accessible touch targets */}
         <div className="flex items-center gap-3">
           <span className="text-xs font-mono text-zinc-400">Currency:</span>
           <div className="inline-flex p-1 rounded-xl bg-[#080808] border border-white/10 text-xs font-mono">
             <button
               onClick={() => setCurrency("INR")}
-              className={`px-3 py-1 rounded-lg transition-all ${
+              className={`px-3.5 py-1.5 min-h-[38px] rounded-lg transition-all font-medium ${
                 currency === "INR"
                   ? "bg-white text-black font-semibold shadow-sm"
                   : "text-zinc-400 hover:text-white"
@@ -56,7 +55,7 @@ export default function ProductsDirectory({ products }: ProductsDirectoryProps) 
             </button>
             <button
               onClick={() => setCurrency("USD")}
-              className={`px-3 py-1 rounded-lg transition-all ${
+              className={`px-3.5 py-1.5 min-h-[38px] rounded-lg transition-all font-medium ${
                 currency === "USD"
                   ? "bg-white text-black font-semibold shadow-sm"
                   : "text-zinc-400 hover:text-white"
@@ -69,8 +68,8 @@ export default function ProductsDirectory({ products }: ProductsDirectoryProps) 
         </div>
       </div>
 
-      {/* 3 Product Cards Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      {/* 2 Flagship Products Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 max-w-4xl mx-auto">
         {distinctProducts.map((product) => {
           const startingPriceStr =
             currency === "INR"
@@ -80,13 +79,13 @@ export default function ProductsDirectory({ products }: ProductsDirectoryProps) 
           return (
             <div
               key={product.slug}
-              className="group p-8 rounded-3xl bg-[#111111] border border-white/[0.08] hover:border-white/[0.22] transition-all relative overflow-hidden flex flex-col justify-between shadow-xl"
+              className="group p-6 sm:p-8 rounded-3xl bg-[#111111] border border-white/[0.08] hover:border-white/[0.22] transition-all relative overflow-hidden flex flex-col justify-between shadow-xl"
             >
               <div className="absolute top-0 left-8 right-8 h-[1px] bg-gradient-to-r from-transparent via-white/25 to-transparent pointer-events-none" />
 
               <div>
                 {/* Header Badge */}
-                <div className="flex items-center justify-between mb-6">
+                <div className="flex items-center justify-between mb-5 sm:mb-6">
                   <div className="w-12 h-12 rounded-2xl bg-white/[0.04] border border-white/10 flex items-center justify-center">
                     {iconMap[product.slug]}
                   </div>
@@ -129,7 +128,7 @@ export default function ProductsDirectory({ products }: ProductsDirectoryProps) 
                 </div>
               </div>
 
-              {/* Card Footer: Starting Pricing & Double CTAs */}
+              {/* Card Footer: Starting Pricing & Double CTAs with 44px tap targets */}
               <div className="pt-6 border-t border-white/[0.08] flex flex-col gap-3">
                 <div className="flex items-center justify-between text-xs font-mono">
                   <span className="text-zinc-500 uppercase tracking-wider text-[10px]">Starting Subscription</span>
@@ -138,7 +137,7 @@ export default function ProductsDirectory({ products }: ProductsDirectoryProps) 
 
                 <Link
                   href={`/products/${product.slug}`}
-                  className="inline-flex items-center justify-center w-full px-4 py-2.5 rounded-xl bg-white text-black font-semibold text-xs hover:bg-zinc-200 transition-all shadow-[0_0_15px_rgba(255,255,255,0.1)] gap-1.5"
+                  className="inline-flex items-center justify-center w-full px-4 py-3 rounded-xl bg-white text-black font-semibold text-xs hover:bg-zinc-200 transition-all shadow-[0_0_15px_rgba(255,255,255,0.1)] gap-1.5 min-h-[44px]"
                 >
                   <span>Explore Product &amp; Pricing</span>
                   <ArrowRight className="w-3.5 h-3.5" />
@@ -146,7 +145,7 @@ export default function ProductsDirectory({ products }: ProductsDirectoryProps) 
 
                 <Link
                   href={`/contact?product=${product.slug}`}
-                  className="inline-flex items-center justify-center w-full px-4 py-2 rounded-xl bg-white/[0.03] hover:bg-white/[0.08] border border-white/10 text-xs font-mono text-zinc-300 hover:text-white transition-all"
+                  className="inline-flex items-center justify-center w-full px-4 py-3 rounded-xl bg-white/[0.03] hover:bg-white/[0.08] border border-white/10 text-xs font-mono text-zinc-300 hover:text-white transition-all min-h-[44px]"
                 >
                   Request Sandbox Trial &rarr;
                 </Link>

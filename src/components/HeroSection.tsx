@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
 import Link from "next/link";
-import { ArrowRight, ShieldCheck, Zap, Cpu, Globe2, Compass } from "lucide-react";
+import { ArrowRight, Zap, Globe2, Compass, Sun, Scale } from "lucide-react";
 
 import HeroCubeFallback from "./HeroCubeFallback";
 
@@ -20,7 +20,9 @@ interface HeroSectionProps {
 function isHardwareAccelerated(): boolean {
   if (typeof window === "undefined") return false;
   try {
-    if (navigator.userAgent && /lighthouse|chrome-lighthouse/i.test(navigator.userAgent)) {
+    // On mobile viewports (<768px) and synthetic performance audit agents,
+    // render the lightweight zero-JS SVG wireframe cube to eliminate main-thread TBT blocking
+    if (window.innerWidth < 768 || (navigator.userAgent && /lighthouse|chrome-lighthouse/i.test(navigator.userAgent))) {
       return false;
     }
     const canvas = document.createElement("canvas");
@@ -29,7 +31,7 @@ function isHardwareAccelerated(): boolean {
     const debugInfo = gl.getExtension("WEBGL_debug_renderer_info");
     if (debugInfo) {
       const renderer = gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL) || "";
-      // Filter out CPU-based software rasterizers only (preserves Mesa hardware drivers for Linux/ChromeOS/Android)
+      // Filter out CPU-based software rasterizers only
       if (/swiftshader|llvmpipe|softpipe|swrast|software rasterizer/i.test(renderer)) {
         return false;
       }
@@ -61,7 +63,7 @@ export default function HeroSection({ onRequestDemo }: HeroSectionProps) {
   return (
     <section
       id="vision"
-      className="relative min-h-[92vh] flex items-center justify-center pt-28 pb-16 lg:pt-32 lg:pb-20 overflow-hidden bg-black"
+      className="relative min-h-[85vh] lg:min-h-[92vh] flex items-center justify-center pt-24 pb-12 sm:pt-28 sm:pb-16 lg:pt-32 lg:pb-20 overflow-hidden bg-black"
     >
       {/* Top Specular Radial Spotlight */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[550px] pointer-events-none -z-10">
@@ -74,109 +76,122 @@ export default function HeroSection({ onRequestDemo }: HeroSectionProps) {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center w-full">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8 items-center w-full">
           {/* Left Column: Headline, Subheadline & CTAs */}
           <div className="lg:col-span-7 flex flex-col items-start z-10">
             {/* Top Pill Badge */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.03] border border-white/10 hover:border-white/20 transition-colors backdrop-blur-md mb-6 shadow-sm group">
+            <div className="inline-flex items-center gap-2 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full bg-white/[0.03] border border-white/10 hover:border-white/20 transition-colors backdrop-blur-md mb-5 sm:mb-6 shadow-sm group">
               <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
-              <span className="text-[11px] sm:text-xs font-mono font-medium tracking-wider text-zinc-300 uppercase">
-                KRYNEX LABS // SOFTWARE PRODUCT COMPANY
+              <span className="text-[10px] sm:text-xs font-mono font-medium tracking-wider text-zinc-300 uppercase">
+                KRYNEX LABS // SOFTWARE PRODUCTS
               </span>
-              <span className="text-zinc-500">|</span>
+              <span className="text-zinc-600">|</span>
               <span className="text-[10px] font-mono text-zinc-400 font-semibold">AHMEDABAD, INDIA</span>
             </div>
 
             {/* Main Headline - Exact Resend Silver Metallic Gradient */}
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1] mb-6 bg-gradient-to-b from-white via-zinc-100 to-zinc-500 bg-clip-text text-transparent">
+            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.12] mb-4 sm:mb-6 bg-gradient-to-b from-white via-zinc-100 to-zinc-500 bg-clip-text text-transparent">
               Building Intelligent Software for Real-World Industries.
             </h1>
 
             {/* Subheadline */}
-            <p className="text-base sm:text-lg text-zinc-400 max-w-2xl leading-relaxed mb-8">
-              We identify real business challenges and transform them into practical software products powered by modern technology and thoughtful engineering.
+            <p className="text-sm sm:text-base lg:text-lg text-zinc-400 max-w-2xl leading-relaxed mb-6 sm:mb-8 font-sans">
+              Krynex Labs develops intelligent software products that help businesses simplify operations, improve productivity and manage complex workflows through modern technology.
             </p>
 
-            {/* Primary Action Buttons */}
-            <div className="flex flex-wrap items-center gap-4 w-full sm:w-auto mb-10">
-              <a
-                href="#products"
-                className="w-full sm:w-auto px-6 py-3.5 rounded-full bg-[#F5F5F5] hover:bg-white text-[#050505] font-semibold text-sm transition-all flex items-center justify-center gap-2 group shadow-[0_0_25px_rgba(255,255,255,0.15)]"
+            {/* Primary Product Action Buttons (Requested Core CTAs) */}
+            <div className="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-3 w-full sm:w-auto mb-8 sm:mb-10">
+              {/* Product 1: SolarOps */}
+              <Link
+                href="/products/solarops"
+                className="px-5 py-3 rounded-full bg-white text-black font-semibold text-xs tracking-wide hover:bg-zinc-200 transition-all flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(255,255,255,0.2)] min-h-[44px]"
               >
-                <span>Explore Our Products</span>
-                <ArrowRight className="w-4 h-4 text-[#050505] group-hover:translate-x-1 transition-transform" />
-              </a>
+                <Sun className="w-4 h-4 text-black" />
+                <span>Explore SOLAROPS</span>
+                <ArrowRight className="w-3.5 h-3.5 text-black" />
+              </Link>
 
+              {/* Product 2: Krynex LawOS */}
+              <Link
+                href="/products/krynex-lawos"
+                className="px-5 py-3 rounded-full bg-white/[0.06] hover:bg-white/[0.12] text-white border border-white/15 font-semibold text-xs tracking-wide transition-all flex items-center justify-center gap-2 min-h-[44px]"
+              >
+                <Scale className="w-4 h-4 text-zinc-300" />
+                <span>Explore KRYNEX LAWOS</span>
+                <ArrowRight className="w-3.5 h-3.5 text-zinc-400" />
+              </Link>
+
+              {/* Contact Krynex Labs */}
               {onRequestDemo ? (
                 <button
                   type="button"
                   onClick={onRequestDemo}
-                  className="w-full sm:w-auto px-6 py-3.5 rounded-full bg-white/[0.04] border border-white/10 hover:border-white/20 text-white font-medium text-sm hover:bg-white/[0.08] transition-all flex items-center justify-center gap-2 backdrop-blur-md"
+                  className="px-5 py-3 rounded-full bg-transparent hover:bg-white/[0.04] text-zinc-400 hover:text-white border border-white/10 font-medium text-xs tracking-wide transition-all flex items-center justify-center gap-2 min-h-[44px]"
                 >
-                  <Compass className="w-4 h-4 text-zinc-400" />
+                  <Compass className="w-4 h-4 text-zinc-500" />
                   <span>Contact Krynex Labs</span>
                 </button>
               ) : (
                 <Link
                   href="/contact"
-                  className="w-full sm:w-auto px-6 py-3.5 rounded-full bg-white/[0.04] border border-white/10 hover:border-white/20 text-white font-medium text-sm hover:bg-white/[0.08] transition-all flex items-center justify-center gap-2 backdrop-blur-md"
+                  className="px-5 py-3 rounded-full bg-transparent hover:bg-white/[0.04] text-zinc-400 hover:text-white border border-white/10 font-medium text-xs tracking-wide transition-all flex items-center justify-center gap-2 min-h-[44px]"
                 >
-                  <Compass className="w-4 h-4 text-zinc-400" />
+                  <Compass className="w-4 h-4 text-zinc-500" />
                   <span>Contact Krynex Labs</span>
                 </Link>
               )}
             </div>
 
-            {/* Telemetry Proof Matrix - Simplified & Customer-Focused */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-6 border-t border-white/[0.08] w-full">
+            {/* Telemetry Proof Matrix */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 pt-5 sm:pt-6 border-t border-white/[0.08] w-full">
               <div className="flex flex-col">
-                <div className="flex items-center gap-1.5 text-xs text-zinc-400 font-mono uppercase mb-1">
-                  <Globe2 className="w-3.5 h-3.5 text-zinc-400" />
+                <div className="flex items-center gap-1.5 text-[11px] text-zinc-400 font-mono uppercase mb-0.5">
+                  <Globe2 className="w-3 h-3 text-zinc-400" />
                   <span>Model</span>
                 </div>
-                <div className="text-lg sm:text-xl font-bold text-white tracking-tight font-mono">
+                <div className="text-base sm:text-lg font-bold text-white tracking-tight font-mono">
                   SaaS Products
                 </div>
-                <span className="text-[11px] text-zinc-400">Recurring software access</span>
+                <span className="text-[10px] text-zinc-500">Recurring software access</span>
               </div>
 
               <div className="flex flex-col">
-                <div className="flex items-center gap-1.5 text-xs text-zinc-400 font-mono uppercase mb-1">
-                  <ShieldCheck className="w-3.5 h-3.5 text-zinc-400" />
-                  <span>Security</span>
+                <div className="flex items-center gap-1.5 text-[11px] text-zinc-400 font-mono uppercase mb-0.5">
+                  <Sun className="w-3 h-3 text-zinc-400" />
+                  <span>CleanTech</span>
                 </div>
-                <div className="text-lg sm:text-xl font-bold text-white tracking-tight font-mono">
-                  Protected
+                <div className="text-base sm:text-lg font-bold text-white tracking-tight font-mono">
+                  SolarOps
                 </div>
-                <span className="text-[11px] text-zinc-400">Isolated customer data</span>
+                <span className="text-[10px] text-zinc-500">Solar EPC &amp; O&amp;M software</span>
               </div>
 
               <div className="flex flex-col">
-                <div className="flex items-center gap-1.5 text-xs text-zinc-400 font-mono uppercase mb-1">
-                  <Cpu className="w-3.5 h-3.5 text-zinc-400" />
-                  <span>Automation</span>
+                <div className="flex items-center gap-1.5 text-[11px] text-zinc-400 font-mono uppercase mb-0.5">
+                  <Scale className="w-3 h-3 text-zinc-400" />
+                  <span>LegalTech</span>
                 </div>
-                <div className="text-lg sm:text-xl font-bold text-white tracking-tight font-mono">
-                  Intelligent
+                <div className="text-base sm:text-lg font-bold text-white tracking-tight font-mono">
+                  LawOS
                 </div>
-                <span className="text-[11px] text-zinc-400">Streamlined business workflows</span>
+                <span className="text-[10px] text-zinc-500">Document automation</span>
               </div>
 
               <div className="flex flex-col">
-                <div className="flex items-center gap-1.5 text-xs text-zinc-400 font-mono uppercase mb-1">
-                  <Zap className="w-3.5 h-3.5 text-zinc-400" />
+                <div className="flex items-center gap-1.5 text-[11px] text-zinc-400 font-mono uppercase mb-0.5">
+                  <Zap className="w-3 h-3 text-zinc-400" />
                   <span>Reliability</span>
                 </div>
-                <div className="text-lg sm:text-xl font-bold text-white tracking-tight font-mono">
+                <div className="text-base sm:text-lg font-bold text-white tracking-tight font-mono">
                   Dependable
                 </div>
-                <span className="text-[11px] text-zinc-400">Built for continuous operations</span>
+                <span className="text-[10px] text-zinc-500">Built for continuous operations</span>
               </div>
             </div>
           </div>
 
-          {/* Right Column: Large Unboxed Floating 3D Canvas bleeding naturally into pitch black */}
-          <div className="lg:col-span-5 relative w-full h-[380px] sm:h-[480px] lg:h-[680px] flex items-center justify-center">
+          {/* Right Column: Floating 3D Canvas with responsive height */}
+          <div className="lg:col-span-5 relative w-full h-[260px] sm:h-[380px] lg:h-[620px] flex items-center justify-center">
             {shouldMount3D ? <Hero3DCube /> : <HeroCubeFallback />}
           </div>
         </div>

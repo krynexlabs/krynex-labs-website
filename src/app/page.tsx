@@ -8,8 +8,8 @@ import WhatWeSolveSection from "@/components/WhatWeSolveSection";
 import ProductDemonstrations from "@/components/ProductDemonstrations";
 import IndustriesSection from "@/components/IndustriesSection";
 import WhyKrynexSection from "@/components/WhyKrynexSection";
+import TechnologyCapabilitiesSection from "@/components/TechnologyCapabilitiesSection";
 import SecurityTrustSection from "@/components/SecurityTrustSection";
-import FounderSection from "@/components/FounderSection";
 import InsightsSection from "@/components/InsightsSection";
 import FinalCTASection from "@/components/FinalCTASection";
 import Footer from "@/components/Footer";
@@ -32,12 +32,12 @@ export default function Home() {
 
       <SectionDivider />
 
-      {/* 03. Our Products: SolarOps, Krynex LawOS */}
+      {/* 03. Product Showcase: SolarOps, Krynex LawOS */}
       <ProductsShowcase onRequestDemo={() => setIsDemoModalOpen(true)} />
 
       <SectionDivider />
 
-      {/* 04. What We Solve: Practical Industry Friction */}
+      {/* 04. Business Problems We Solve: Practical Industry Friction */}
       <WhatWeSolveSection />
 
       <SectionDivider />
@@ -47,32 +47,32 @@ export default function Home() {
 
       <SectionDivider />
 
-      {/* 06. Industries: Solar Energy, Legal & Document Automation, Manufacturing */}
+      {/* 06. Target Industries: Solar Energy, Legal Practice, Manufacturing */}
       <IndustriesSection />
 
       <SectionDivider />
 
-      {/* 07. Why Krynex Labs: 5 Core Differentiators */}
+      {/* 07. Why Krynex Labs: Core Differentiators */}
       <WhyKrynexSection />
 
       <SectionDivider />
 
-      {/* 08. Security and Trust: Understandable Protections */}
+      {/* 08. Technology Capabilities: Modern Engineering Stack */}
+      <TechnologyCapabilitiesSection />
+
+      <SectionDivider />
+
+      {/* 09. Security and Privacy: Enterprise Protections */}
       <SecurityTrustSection />
 
       <SectionDivider />
 
-      {/* 09. Founder Section: D. Patel & Leadership Statement */}
-      <FounderSection />
-
-      <SectionDivider />
-
-      {/* 10. Insights: Educational Articles & Whitepapers */}
+      {/* 10. Insights and Resources: Technical Articles & Analysis */}
       <InsightsSection />
 
       <SectionDivider />
 
-      {/* 11. Final CTA: Let's Build Something Meaningful */}
+      {/* 11. Contact CTA: Start the Conversation */}
       <FinalCTASection onRequestDemo={() => setIsDemoModalOpen(true)} />
 
       <SectionDivider />

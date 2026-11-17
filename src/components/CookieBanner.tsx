@@ -121,7 +121,7 @@ export default function CookieBanner() {
 
           <button
             onClick={handleDismiss}
-            className="text-zinc-500 hover:text-white transition-colors p-1"
+            className="text-zinc-500 hover:text-white transition-colors p-2 -mr-1 rounded-lg flex items-center justify-center min-w-[36px] min-h-[36px]"
             aria-label="Dismiss cookie settings"
           >
             <X className="w-4 h-4" />
@@ -152,16 +152,16 @@ export default function CookieBanner() {
           </Link>.
         </p>
 
-        <div className="flex items-center gap-2">
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
           <button
             onClick={() => handleChoice("all")}
-            className="flex-1 py-2 px-3.5 rounded-full bg-white text-black font-semibold text-xs hover:bg-zinc-200 transition-colors shadow-sm focus:outline-none focus-visible:ring-1 focus-visible:ring-white"
+            className="flex-1 min-h-[44px] py-2.5 px-4 rounded-full bg-white text-black font-semibold text-xs hover:bg-zinc-200 transition-colors shadow-sm focus:outline-none focus-visible:ring-1 focus-visible:ring-white flex items-center justify-center text-center"
           >
             {isReopened && currentConsent === "all" ? "Keep Telemetry Enabled" : "Accept Telemetry"}
           </button>
           <button
             onClick={() => handleChoice("essential")}
-            className="py-2 px-3.5 rounded-full bg-white/[0.04] text-zinc-300 border border-white/10 font-medium text-xs hover:bg-white/[0.08] hover:text-white transition-colors focus:outline-none focus-visible:ring-1 focus-visible:ring-white"
+            className="min-h-[44px] py-2.5 px-4 rounded-full bg-white/[0.04] text-zinc-300 border border-white/10 font-medium text-xs hover:bg-white/[0.08] hover:text-white transition-colors focus:outline-none focus-visible:ring-1 focus-visible:ring-white flex items-center justify-center text-center"
           >
             {isReopened && currentConsent === "all" ? "Withdraw Consent (Essential Only)" : "Essential Only"}
           </button>

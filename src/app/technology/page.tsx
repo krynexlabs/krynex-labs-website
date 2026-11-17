@@ -198,7 +198,7 @@ export default function TechnologyPage() {
             return (
               <div
                 key={cap.id}
-                className="p-8 sm:p-10 rounded-3xl bg-[#111111] border border-white/[0.08] hover:border-white/[0.22] transition-all relative overflow-hidden"
+                className="p-6 sm:p-10 rounded-3xl bg-[#111111] border border-white/[0.08] hover:border-white/[0.22] transition-all relative overflow-hidden"
               >
                 <div className="flex flex-col md:flex-row md:items-start justify-between gap-6 mb-6">
                   <div className="flex items-center gap-4">
@@ -217,7 +217,7 @@ export default function TechnologyPage() {
 
                   <Link
                     href={cap.link}
-                    className="inline-flex items-center gap-1.5 text-xs font-mono text-zinc-300 hover:text-white transition-colors shrink-0"
+                    className="inline-flex items-center gap-1.5 text-xs font-mono text-zinc-300 hover:text-white transition-colors shrink-0 py-2 px-3 -my-2 -mx-3 rounded-lg"
                   >
                     <span>View Architectural Deep-Dive</span>
                     <ArrowRight className="w-3.5 h-3.5" />

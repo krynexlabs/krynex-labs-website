@@ -162,26 +162,9 @@ const jsonLd = {
           availableLanguage: ["English", "Hindi", "Gujarati"],
         },
       ],
-      founder: {
-        "@type": "Person",
-        "@id": "https://www.krynexlabs.in/#founder",
-        name: "D Patel",
-        jobTitle: "Founder",
-      },
       sameAs: [
         "https://www.krynexlabs.in",
       ],
-    },
-    {
-      "@type": "Person",
-      "@id": "https://www.krynexlabs.in/#founder",
-      name: "D Patel",
-      jobTitle: "Founder",
-      worksFor: {
-        "@id": "https://www.krynexlabs.in/#organization",
-      },
-      description:
-        "Founder of Krynex Labs. Building intelligent technology to solve real-world industry problems.",
     },
     {
       "@type": "WebSite",

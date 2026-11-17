@@ -12,7 +12,6 @@ import {
   ArrowRight,
   Sparkles,
   Compass,
-  Quote,
   Target,
   Clock,
   Lock,
@@ -25,21 +24,23 @@ import {
   Mail,
   Calendar,
   Layers,
+  Cpu,
+  Server,
 } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "About Us | Problem-First Software Product Company",
   description:
-    "Learn about Krynex Labs: Software Product and SaaS Company headquartered in Ahmedabad, India. Founded by D Patel to build intelligent technology solving real-world industry problems.",
+    "Krynex Labs develops intelligent software products that help businesses simplify operations, improve productivity and manage complex workflows through modern technology. Headquartered in Ahmedabad, India.",
   keywords: [
     "About Krynex Labs",
-    "D Patel Krynex Labs",
-    "Founder Krynex Labs",
     "Software Product Company Ahmedabad",
     "SaaS Company India",
     "Software Rental Subscription Model",
     "SolarOps Solar Software",
     "Krynex LawOS Legal Tech",
+    "Enterprise Software Products",
+    "Industrial Automation India",
   ],
   alternates: {
     canonical: "https://www.krynexlabs.in/about",
@@ -47,7 +48,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "About Us | Problem-First Software Product Company",
     description:
-      "Learn about Krynex Labs: Software Product and SaaS Company headquartered in Ahmedabad, India. Founded by D Patel to build intelligent technology solving real-world industry problems.",
+      "Krynex Labs develops intelligent software products that help businesses simplify operations, improve productivity and manage complex workflows through modern technology. Headquartered in Ahmedabad, India.",
     url: "https://www.krynexlabs.in/about",
     images: [
       {
@@ -62,7 +63,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "About Us | Problem-First Software Product Company",
     description:
-      "Learn about Krynex Labs: Software Product and SaaS Company headquartered in Ahmedabad, India. Founded by D Patel to build intelligent technology solving real-world industry problems.",
+      "Krynex Labs develops intelligent software products that help businesses simplify operations, improve productivity and manage complex workflows through modern technology. Headquartered in Ahmedabad, India.",
     images: ["/opengraph-image"],
   },
 };
@@ -76,21 +77,10 @@ const aboutJsonLd = {
       url: "https://www.krynexlabs.in/about",
       name: "About Krynex Labs | Problem-First Software Product Company",
       description:
-        "Learn about Krynex Labs: Software Product and SaaS Company headquartered in Ahmedabad, India. Founded by D Patel.",
+        "Krynex Labs develops intelligent software products that help businesses simplify operations, improve productivity and manage complex workflows through modern technology.",
       isPartOf: {
         "@id": "https://www.krynexlabs.in/#website",
       },
-    },
-    {
-      "@type": "Person",
-      "@id": "https://www.krynexlabs.in/#founder",
-      name: "D Patel",
-      jobTitle: "Founder",
-      worksFor: {
-        "@id": "https://www.krynexlabs.in/#organization",
-      },
-      description:
-        "Founder of Krynex Labs, building intelligent technology to solve real-world industry problems.",
     },
     {
       "@type": "BreadcrumbList",
@@ -114,7 +104,7 @@ const aboutJsonLd = {
 };
 
 export default function AboutPage() {
-  const { founder, guidingPrinciples, vision, businessModel } = ABOUT_DATA;
+  const { guidingPrinciples, vision, businessModel, approachPrinciples, governanceAndStandards } = ABOUT_DATA;
   const products = [
     PRODUCTS_DATA["solarops"],
     PRODUCTS_DATA["krynex-lawos"],
@@ -133,13 +123,13 @@ export default function AboutPage() {
       period: "Foundational Phase",
       title: "Establishment in Ahmedabad",
       description:
-        "Krynex Labs was established with a singular focus: to operate as a product-first software company identifying real industry bottlenecks in western India's manufacturing and commerce hubs.",
+        "Krynex Labs was established with a singular focus: to operate as an independent software product company identifying real industry bottlenecks across commercial and industrial sectors.",
     },
     {
       period: "Field Research & Discovery",
       title: "Direct Operational Investigations",
       description:
-        "Our engineering teams spent months observing day-to-day operations across regional solar installation sites and advocate conveyancing chambers to uncover where clerical latency leaks business revenue.",
+        "Our engineering teams spent months observing day-to-day operations across regional solar installation sites and advocate conveyancing chambers to uncover where clerical latency and manual processes leak business value.",
     },
     {
       period: "Product Engineering",
@@ -163,7 +153,7 @@ export default function AboutPage() {
       />
       <Navbar />
 
-      {/* 1. ABOUT KRYNEX LABS (Hero Section) */}
+      {/* 01. ABOUT KRYNEX LABS (Hero Section) */}
       <section className="relative pt-36 pb-20 border-b border-white/[0.08] overflow-hidden">
         <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[850px] h-[350px] bg-[radial-gradient(ellipse_80%_50%_at_50%_20%,rgba(255,255,255,0.03),transparent_70%)] pointer-events-none" />
 
@@ -188,13 +178,13 @@ export default function AboutPage() {
               <span>01 // ABOUT KRYNEX LABS</span>
             </div>
 
-            {/* EXACTLY ONE H1 */}
+            {/* Exactly One H1 */}
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight mb-6 leading-tight text-white">
               Building Intelligent Software for Real-World Industries.
             </h1>
 
             <p className="text-base sm:text-lg text-zinc-400 leading-relaxed mb-8">
-              Krynex Labs develops intelligent software products that help businesses simplify complex operations, improve productivity and manage their work more efficiently. Headquartered in Ahmedabad, India, we identify genuine industry challenges and transform them into practical, dependable software applications.
+              Krynex Labs develops intelligent software products that help businesses simplify operations, improve productivity and manage complex workflows through modern technology.
             </p>
 
             <div className="flex flex-wrap items-center gap-4 text-xs font-mono text-zinc-400">
@@ -215,16 +205,90 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* 2 & 3. COMPANY MISSION & VISION */}
+      {/* 02. COMPANY OVERVIEW */}
+      <section className="py-24 border-b border-white/[0.08] bg-[#050505]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-3xl mb-16">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.04] border border-white/10 text-xs font-mono text-zinc-300 uppercase tracking-widest mb-4">
+              <Building2 className="w-3.5 h-3.5" />
+              <span>02 // COMPANY OVERVIEW</span>
+            </div>
+            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-white mb-4">
+              Dedicated to Independent Software Products.
+            </h2>
+            <p className="text-base sm:text-lg text-zinc-400 leading-relaxed font-sans">
+              Headquartered in Ahmedabad, India, Krynex Labs operates primarily as a software product company. We identify real operational bottlenecks across commercial sectors, engineer focused applications, and provide ongoing access through predictable subscription models.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="p-6 sm:p-8 rounded-3xl bg-[#111111] border border-white/[0.08] hover:border-white/[0.22] transition-all flex flex-col justify-between relative overflow-hidden">
+              <div className="absolute top-0 left-6 right-6 h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent pointer-events-none" />
+              <div>
+                <div className="w-10 h-10 rounded-xl bg-white/[0.04] border border-white/10 flex items-center justify-center text-zinc-300 mb-6">
+                  <Target className="w-5 h-5" />
+                </div>
+                <h3 className="text-xl font-bold text-white mb-3 tracking-tight">
+                  Problem-Driven Products
+                </h3>
+                <p className="text-xs sm:text-sm text-zinc-400 leading-relaxed font-sans">
+                  We do not build technology for its own sake or chase speculative trends. Every product starts with deep operational observation of actual industry friction points.
+                </p>
+              </div>
+              <div className="mt-8 pt-4 border-t border-white/[0.06] text-[11px] font-mono text-zinc-500">
+                FIRST-PRINCIPLES RESEARCH
+              </div>
+            </div>
+
+            <div className="p-6 sm:p-8 rounded-3xl bg-[#111111] border border-white/[0.08] hover:border-white/[0.22] transition-all flex flex-col justify-between relative overflow-hidden">
+              <div className="absolute top-0 left-6 right-6 h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent pointer-events-none" />
+              <div>
+                <div className="w-10 h-10 rounded-xl bg-white/[0.04] border border-white/10 flex items-center justify-center text-zinc-300 mb-6">
+                  <Workflow className="w-5 h-5" />
+                </div>
+                <h3 className="text-xl font-bold text-white mb-3 tracking-tight">
+                  Product, Not Custom Agency
+                </h3>
+                <p className="text-xs sm:text-sm text-zinc-400 leading-relaxed font-sans">
+                  We are not an IT body shop or staffing agency selling billable hours. We build, own, maintain, and continuously refine our own software applications.
+                </p>
+              </div>
+              <div className="mt-8 pt-4 border-t border-white/[0.06] text-[11px] font-mono text-zinc-500">
+                STANDALONE SAAS PLATFORMS
+              </div>
+            </div>
+
+            <div className="p-6 sm:p-8 rounded-3xl bg-[#111111] border border-white/[0.08] hover:border-white/[0.22] transition-all flex flex-col justify-between relative overflow-hidden">
+              <div className="absolute top-0 left-6 right-6 h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent pointer-events-none" />
+              <div>
+                <div className="w-10 h-10 rounded-xl bg-white/[0.04] border border-white/10 flex items-center justify-center text-zinc-300 mb-6">
+                  <Clock className="w-5 h-5" />
+                </div>
+                <h3 className="text-xl font-bold text-white mb-3 tracking-tight">
+                  Compounding Value
+                </h3>
+                <p className="text-xs sm:text-sm text-zinc-400 leading-relaxed font-sans">
+                  Recurring subscription partnerships directly fund regular software enhancements, speed optimizations, security patches, and responsive technical support.
+                </p>
+              </div>
+              <div className="mt-8 pt-4 border-t border-white/[0.06] text-[11px] font-mono text-zinc-500">
+                CONTINUOUS EVOLUTION
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 03. MISSION & VISION */}
       <section className="py-24 border-b border-white/[0.08] bg-[#050505]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {/* Mission Card */}
-            <div className="p-8 sm:p-10 rounded-3xl bg-[#111111] border border-white/[0.08] hover:border-white/[0.22] transition-all flex flex-col justify-between relative overflow-hidden">
+            <div className="p-6 sm:p-10 rounded-3xl bg-[#111111] border border-white/[0.08] hover:border-white/[0.22] transition-all flex flex-col justify-between relative overflow-hidden">
               <div className="absolute top-0 left-6 right-6 h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent pointer-events-none" />
               <div>
                 <div className="text-xs font-mono text-zinc-400 uppercase tracking-wider mb-4">
-                  02 // OUR MISSION
+                  03.1 // OUR MISSION
                 </div>
                 <h2 className="text-2xl sm:text-3xl font-bold text-white mb-4 tracking-tight">
                   Solve Real Challenges with Thoughtful Engineering
@@ -239,11 +303,11 @@ export default function AboutPage() {
             </div>
 
             {/* Vision Card */}
-            <div className="p-8 sm:p-10 rounded-3xl bg-[#111111] border border-white/[0.08] hover:border-white/[0.22] transition-all flex flex-col justify-between relative overflow-hidden">
+            <div className="p-6 sm:p-10 rounded-3xl bg-[#111111] border border-white/[0.08] hover:border-white/[0.22] transition-all flex flex-col justify-between relative overflow-hidden">
               <div className="absolute top-0 left-6 right-6 h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent pointer-events-none" />
               <div>
                 <div className="text-xs font-mono text-zinc-400 uppercase tracking-wider mb-4">
-                  03 // OUR VISION
+                  03.2 // OUR VISION
                 </div>
                 <h2 className="text-2xl sm:text-3xl font-bold text-white mb-4 tracking-tight">
                   Make Advanced Software Practically Accessible
@@ -260,173 +324,18 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* 4 & 5. FOUNDER D. PATEL & FOUNDER'S MESSAGE */}
-      <section id="founder" className="py-24 border-b border-white/[0.08] bg-[#050505] relative overflow-hidden">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[400px] bg-[radial-gradient(ellipse_70%_50%_at_50%_0%,rgba(255,255,255,0.03),transparent_70%)] pointer-events-none" />
-
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.04] border border-white/10 text-xs font-mono text-zinc-300 uppercase tracking-widest mb-6">
-            <Building2 className="w-3.5 h-3.5" />
-            <span>04 &amp; 05 // LEADERSHIP &amp; FOUNDER&apos;S MESSAGE</span>
-          </div>
-
-          {/* Founder Identity Header */}
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 pb-8 border-b border-white/[0.08] mb-12">
-            <div className="flex items-center gap-5">
-              {/* Premium DP Monogram */}
-              <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-white/10 to-white/[0.02] border border-white/20 flex items-center justify-center text-white font-mono font-bold text-2xl tracking-tight shadow-inner shrink-0">
-                <span>DP</span>
-              </div>
-
-              <div>
-                <div className="text-xs font-mono text-zinc-500 uppercase tracking-wider mb-1">
-                  Founder
-                </div>
-                <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-tight">
-                  D. PATEL
-                </h2>
-                <div className="text-sm font-mono text-zinc-400 mt-1">
-                  Founder, Krynex Labs
-                </div>
-              </div>
-            </div>
-
-            <div className="sm:text-right max-w-xs">
-              <p className="text-xs sm:text-sm text-zinc-400 leading-relaxed font-sans">
-                {founder.tagline}
-              </p>
-              <div className="mt-1 text-[11px] font-mono text-zinc-500">
-                AHMEDABAD, GUJARAT, INDIA
-              </div>
-            </div>
-          </div>
-
-          {/* Executive Message Card */}
-          <div className="p-8 sm:p-12 rounded-3xl bg-[#111111] border border-white/[0.08] hover:border-white/[0.22] transition-all shadow-2xl relative overflow-hidden">
-            <div className="absolute top-0 left-8 right-8 h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent pointer-events-none" />
-
-            <div className="w-12 h-12 rounded-2xl bg-white/[0.04] border border-white/10 flex items-center justify-center text-zinc-300 mb-8">
-              <Quote className="w-6 h-6" />
-            </div>
-
-            <h3 className="text-2xl sm:text-3xl font-bold text-white tracking-tight mb-8">
-              A Message from the Founder
-            </h3>
-
-            <div className="space-y-6 text-sm sm:text-base text-zinc-300 leading-relaxed font-sans border-l-2 border-white/30 pl-6 sm:pl-8">
-              <p className="text-base sm:text-lg text-white font-medium">
-                &ldquo;Technology should solve real problems, simplify complex processes and create meaningful value.
-              </p>
-              <p>
-                I believe the future belongs to software that is built around people&apos;s actual needs rather than technology for its own sake.
-              </p>
-              <p>
-                At Krynex Labs, our focus is to identify challenges across industries and transform them into practical, intelligent and reliable software products.
-              </p>
-              <p>
-                We are committed to building solutions that combine thoughtful engineering, modern technology, security and continuous innovation.
-              </p>
-              <p>
-                Our journey is driven by a long-term vision: to build technology products that businesses can trust and depend on.
-              </p>
-              <p>
-                We believe great software is not defined by how complicated it is, but by how effectively it solves problems.
-              </p>
-              <p>
-                Thank you for being part of the Krynex Labs journey.&rdquo;
-              </p>
-            </div>
-
-            <div className="mt-10 pt-6 border-t border-white/[0.08] flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs font-mono text-zinc-400">
-              <div>
-                &mdash; <span className="text-white font-semibold">D. Patel</span>, Founder, Krynex Labs
-              </div>
-              <div className="flex items-center gap-2 text-zinc-500">
-                <span className="w-2 h-2 rounded-full bg-emerald-400" />
-                <span>EXECUTIVE DESK // AHMEDABAD</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 6. PRODUCTS BEING DEVELOPED */}
+      {/* 04. PRODUCT PHILOSOPHY */}
       <section className="py-24 border-b border-white/[0.08] bg-[#050505]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mb-16">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.04] border border-white/10 text-xs font-mono text-zinc-300 uppercase tracking-widest mb-4">
-              <span>06 // PRODUCTS BEING DEVELOPED</span>
+              <span>04 // PRODUCT PHILOSOPHY</span>
             </div>
             <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-white mb-4">
-              Our Active Software Products
+              The Principles That Guide Us.
             </h2>
-            <p className="text-sm sm:text-base text-zinc-400 leading-relaxed">
-              We focus our development efforts on solving operational bottlenecks for solar project management and legal document automation.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            {products.map((prod) => (
-              <div
-                key={prod.slug}
-                className="p-8 rounded-3xl bg-[#111111] border border-white/[0.08] hover:border-white/[0.22] transition-all flex flex-col justify-between"
-              >
-                <div>
-                  <div className="flex items-center justify-between mb-4 text-xs font-mono">
-                    <span className="px-2.5 py-0.5 rounded-full bg-white/[0.04] text-zinc-300 border border-white/10">
-                      {prod.status}
-                    </span>
-                    <span className="text-zinc-500">{prod.category}</span>
-                  </div>
-
-                  <h3 className="text-2xl font-bold text-white mb-2 tracking-tight">
-                    {prod.name}
-                  </h3>
-                  <p className="text-xs font-mono text-zinc-400 mb-4">
-                    {prod.shortTagline}
-                  </p>
-                  <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed mb-6 font-sans">
-                    {prod.summary}
-                  </p>
-
-                  <div className="space-y-1.5 pt-4 border-t border-white/[0.04] mb-6">
-                    <div className="text-[10px] font-mono text-zinc-500 uppercase">Target Users:</div>
-                    {prod.targetCustomers.slice(0, 3).map((cust, idx) => (
-                      <div key={idx} className="text-xs text-zinc-400 flex items-center gap-2">
-                        <span className="w-1.5 h-1.5 rounded-full bg-zinc-400" />
-                        <span>{cust}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="pt-4 border-t border-white/[0.06]">
-                  <Link
-                    href={`/products/${prod.slug}`}
-                    className="inline-flex items-center justify-between w-full px-4 py-2.5 rounded-xl bg-[#F5F5F5] text-[#050505] font-semibold text-xs hover:bg-white transition-all shadow-md"
-                  >
-                    <span>View Product Overview</span>
-                    <ArrowRight className="w-3.5 h-3.5" />
-                  </Link>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 7. PRODUCT PHILOSOPHY (The 5 Guiding Principles) */}
-      <section className="py-24 border-b border-white/[0.08] bg-[#050505]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl mb-16">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.04] border border-white/10 text-xs font-mono text-zinc-300 uppercase tracking-widest mb-4">
-              <span>07 // PRODUCT PHILOSOPHY</span>
-            </div>
-            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-white mb-4">
-              The Principles That Guide Us
-            </h2>
-            <p className="text-sm sm:text-base text-zinc-400 leading-relaxed">
-              Every decision we make follows five core engineering and product commitments.
+            <p className="text-sm sm:text-base text-zinc-400 leading-relaxed font-sans">
+              Every architectural decision, interface, and feature we build follows five core company commitments.
             </p>
           </div>
 
@@ -434,8 +343,9 @@ export default function AboutPage() {
             {guidingPrinciples.map((item, idx) => (
               <div
                 key={item.number}
-                className="p-8 rounded-3xl bg-[#111111] border border-white/[0.08] hover:border-white/[0.22] transition-all flex flex-col justify-between"
+                className="p-6 sm:p-8 rounded-3xl bg-[#111111] border border-white/[0.08] hover:border-white/[0.22] transition-all flex flex-col justify-between relative overflow-hidden"
               >
+                <div className="absolute top-0 left-6 right-6 h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent pointer-events-none" />
                 <div>
                   <div className="flex items-center justify-between mb-6">
                     <span className="text-xs font-mono font-bold text-zinc-300 px-2.5 py-1 rounded bg-white/[0.04] border border-white/10">
@@ -464,7 +374,166 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* 8. COMPANY JOURNEY & VERIFIED MILESTONES */}
+      {/* 05. PRODUCTS & TARGET INDUSTRIES */}
+      <section className="py-24 border-b border-white/[0.08] bg-[#050505]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-3xl mb-16">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.04] border border-white/10 text-xs font-mono text-zinc-300 uppercase tracking-widest mb-4">
+              <Layers className="w-3.5 h-3.5" />
+              <span>05 // PRODUCTS &amp; TARGET INDUSTRIES</span>
+            </div>
+            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-white mb-4">
+              Approved Commercial Product Portfolio.
+            </h2>
+            <p className="text-sm sm:text-base text-zinc-400 leading-relaxed font-sans">
+              We concentrate our software development on solving operational friction in two specific vertical industries: solar energy operations and legal document management.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            {products.map((prod) => (
+              <div
+                key={prod.slug}
+                className="p-6 sm:p-10 rounded-3xl bg-[#111111] border border-white/[0.08] hover:border-white/[0.22] transition-all flex flex-col justify-between relative overflow-hidden"
+              >
+                <div className="absolute top-0 left-6 right-6 h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent pointer-events-none" />
+                <div>
+                  <div className="flex items-center justify-between mb-4 text-xs font-mono">
+                    <span className="px-2.5 py-0.5 rounded-full bg-white/[0.04] text-zinc-300 border border-white/10">
+                      {prod.status}
+                    </span>
+                    <span className="text-zinc-500">{prod.category}</span>
+                  </div>
+
+                  <h3 className="text-2xl sm:text-3xl font-bold text-white mb-2 tracking-tight">
+                    {prod.name}
+                  </h3>
+                  <p className="text-xs font-mono text-zinc-400 mb-4">
+                    {prod.shortTagline}
+                  </p>
+                  <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed mb-6 font-sans">
+                    {prod.summary}
+                  </p>
+
+                  <div className="space-y-1.5 pt-4 border-t border-white/[0.04] mb-6">
+                    <div className="text-[10px] font-mono text-zinc-500 uppercase tracking-wider">Target Users:</div>
+                    {prod.targetCustomers.slice(0, 3).map((cust, idx) => (
+                      <div key={idx} className="text-xs text-zinc-400 flex items-center gap-2">
+                        <span className="w-1.5 h-1.5 rounded-full bg-zinc-400" />
+                        <span>{cust}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="pt-6 border-t border-white/[0.06]">
+                  <Link
+                    href={`/products/${prod.slug}`}
+                    className="inline-flex items-center justify-between w-full px-5 py-3 rounded-full bg-[#F5F5F5] text-[#050505] font-semibold text-xs hover:bg-white transition-all shadow-md"
+                  >
+                    <span>Explore {prod.name}</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </Link>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 06. ENGINEERING APPROACH */}
+      <section className="py-24 border-b border-white/[0.08] bg-[#050505]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-3xl mb-16">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.04] border border-white/10 text-xs font-mono text-zinc-300 uppercase tracking-widest mb-4">
+              <Workflow className="w-3.5 h-3.5" />
+              <span>06 // ENGINEERING APPROACH</span>
+            </div>
+            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-white mb-4">
+              Disciplined Product Lifecycle.
+            </h2>
+            <p className="text-sm sm:text-base text-zinc-400 leading-relaxed font-sans">
+              Our engineering lifecycle transforms operational friction into dependable software products through four disciplined phases.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {approachPrinciples.map((item) => (
+              <div
+                key={item.step}
+                className="p-6 sm:p-8 rounded-3xl bg-[#111111] border border-white/[0.08] hover:border-white/[0.22] transition-all flex flex-col justify-between relative overflow-hidden"
+              >
+                <div className="absolute top-0 left-6 right-6 h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent pointer-events-none" />
+                <div>
+                  <div className="text-xs font-mono font-bold text-zinc-300 px-2.5 py-1 rounded bg-white/[0.04] border border-white/10 inline-block mb-6">
+                    STAGE {item.step}
+                  </div>
+                  <h3 className="text-xl font-bold text-white mb-1.5 tracking-tight">
+                    {item.title}
+                  </h3>
+                  <div className="text-xs font-mono text-zinc-400 mb-4">
+                    {item.subtitle}
+                  </div>
+                  <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed font-sans">
+                    {item.description}
+                  </p>
+                </div>
+
+                <div className="mt-8 pt-4 border-t border-white/[0.06] text-[10px] font-mono text-zinc-500">
+                  PHASE {item.step} VERIFIED
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 07. SECURITY & RESPONSIBILITY */}
+      <section className="py-24 border-b border-white/[0.08] bg-[#050505]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-3xl mb-16">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.04] border border-white/10 text-xs font-mono text-zinc-300 uppercase tracking-widest mb-4">
+              <Shield className="w-3.5 h-3.5" />
+              <span>07 // SECURITY &amp; RESPONSIBILITY</span>
+            </div>
+            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-white mb-4">
+              Enterprise Protection &amp; Data Sovereignty.
+            </h2>
+            <p className="text-sm sm:text-base text-zinc-400 leading-relaxed font-sans">
+              We design security, tenant isolation, and strict data governance into our software architectures from day one.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {governanceAndStandards.map((item, idx) => (
+              <div
+                key={idx}
+                className="p-6 sm:p-8 rounded-3xl bg-[#111111] border border-white/[0.08] hover:border-white/[0.22] transition-all flex flex-col justify-between relative overflow-hidden"
+              >
+                <div className="absolute top-0 left-6 right-6 h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent pointer-events-none" />
+                <div>
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-8 h-8 rounded-lg bg-white/[0.04] border border-white/10 flex items-center justify-center text-zinc-300">
+                      <Lock className="w-4 h-4" />
+                    </div>
+                    <h3 className="text-lg sm:text-xl font-bold text-white tracking-tight">
+                      {item.title}
+                    </h3>
+                  </div>
+                  <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed font-sans">
+                    {item.description}
+                  </p>
+                </div>
+                <div className="mt-6 pt-4 border-t border-white/[0.06] text-[10px] font-mono text-zinc-500">
+                  STANDARD // ZERO-COMPROMISE
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 08. COMPANY JOURNEY & VERIFIED MILESTONES */}
       <section className="py-24 border-b border-white/[0.08] bg-[#050505]">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mb-16">
@@ -473,9 +542,9 @@ export default function AboutPage() {
               <span>08 // COMPANY JOURNEY</span>
             </div>
             <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-white mb-4">
-              Our Journey &amp; Milestones
+              Our Journey &amp; Milestones.
             </h2>
-            <p className="text-sm sm:text-base text-zinc-400 leading-relaxed">
+            <p className="text-sm sm:text-base text-zinc-400 leading-relaxed font-sans">
               A transparent timeline of how Krynex Labs evolved from field observation into an active software product company.
             </p>
           </div>
@@ -484,8 +553,9 @@ export default function AboutPage() {
             {milestones.map((ms, idx) => (
               <div
                 key={idx}
-                className="p-8 rounded-3xl bg-[#111111] border border-white/[0.08] flex flex-col sm:flex-row sm:items-center justify-between gap-6"
+                className="p-6 sm:p-8 rounded-3xl bg-[#111111] border border-white/[0.08] hover:border-white/[0.18] transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-6 relative overflow-hidden"
               >
+                <div className="absolute top-0 left-6 right-6 h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent pointer-events-none" />
                 <div className="sm:max-w-xs shrink-0">
                   <span className="text-[11px] font-mono text-zinc-400 uppercase tracking-wider block mb-1">
                     PHASE 0{idx + 1}
@@ -509,7 +579,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* 9. CONTACT INFORMATION */}
+      {/* 09. CONTACT INFORMATION */}
       <section className="py-24 bg-[#050505]">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.04] border border-white/10 text-xs font-mono text-zinc-300 uppercase tracking-widest mb-6">
@@ -518,10 +588,10 @@ export default function AboutPage() {
           </div>
 
           <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-white mb-4">
-            Get in Touch with Our Team
+            Get in Touch with Our Team.
           </h2>
-          <p className="text-sm sm:text-base text-zinc-400 max-w-xl mx-auto leading-relaxed mb-8">
-            Headquartered in Ahmedabad, India. We welcome inquiries from potential business customers, pilot partners, and enterprise collaborators.
+          <p className="text-sm sm:text-base text-zinc-400 max-w-xl mx-auto leading-relaxed mb-8 font-sans">
+            Headquartered in Ahmedabad, India. We welcome inquiries from prospective business customers, pilot partners, and enterprise collaborators.
           </p>
 
           <div className="inline-flex flex-col sm:flex-row items-center gap-4 p-4 rounded-2xl bg-[#111111] border border-white/[0.08]">
@@ -541,7 +611,7 @@ export default function AboutPage() {
           <div className="mt-10">
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-[#F5F5F5] hover:bg-white text-[#050505] font-semibold text-xs transition-all shadow-[0_0_20px_rgba(255,255,255,0.15)]"
+              className="inline-flex items-center gap-2 px-8 py-3.5 min-h-[44px] rounded-full bg-[#F5F5F5] hover:bg-white text-[#050505] font-semibold text-xs transition-all shadow-[0_0_20px_rgba(255,255,255,0.15)]"
             >
               <span>Visit Online Contact Portal</span>
               <ArrowRight className="w-3.5 h-3.5" />

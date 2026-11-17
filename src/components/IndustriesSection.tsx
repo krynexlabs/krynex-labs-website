@@ -60,7 +60,7 @@ export default function IndustriesSection() {
   ];
 
   return (
-    <section id="industries" className="relative py-24 sm:py-32 bg-[#050505] border-t border-white/[0.08] overflow-hidden">
+    <section id="industries" className="relative py-16 sm:py-24 lg:py-32 bg-[#050505] border-t border-white/[0.08] overflow-hidden">
       {/* Background Radial Glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[350px] bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.03),transparent_70%)] pointer-events-none" />
 
@@ -82,7 +82,7 @@ export default function IndustriesSection() {
           <div className="shrink-0">
             <Link
               href="/industries"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#F5F5F5] text-[#050505] font-semibold text-xs hover:bg-white transition-all shadow-[0_0_20px_rgba(255,255,255,0.15)]"
+              className="inline-flex items-center gap-2 px-5 py-2.5 min-h-[44px] rounded-full bg-[#F5F5F5] text-[#050505] font-semibold text-xs hover:bg-white transition-all shadow-[0_0_20px_rgba(255,255,255,0.15)]"
             >
               <span>Explore All Industry Dossiers</span>
               <ArrowRight className="w-3.5 h-3.5" />
@@ -97,7 +97,7 @@ export default function IndustriesSection() {
             return (
               <div
                 key={ind.id}
-                className="p-8 rounded-3xl bg-[#111111] border border-white/[0.08] hover:border-white/[0.22] transition-all relative overflow-hidden flex flex-col justify-between group shadow-xl"
+                className="p-6 sm:p-8 rounded-3xl bg-[#111111] border border-white/[0.08] hover:border-white/[0.22] transition-all relative overflow-hidden flex flex-col justify-between group shadow-xl"
               >
                 <div className="absolute top-0 left-6 right-6 h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent pointer-events-none" />
 
@@ -136,7 +136,7 @@ export default function IndustriesSection() {
                   </span>
                   <Link
                     href={ind.productLink}
-                    className="inline-flex items-center gap-1.5 text-xs font-mono text-zinc-300 hover:text-white font-semibold"
+                    className="inline-flex items-center gap-1.5 text-xs font-mono text-zinc-300 hover:text-white font-semibold py-2 px-3 -my-2 -mx-3 rounded-lg"
                   >
                     <span>Learn More</span>
                     <ArrowRight className="w-3.5 h-3.5" />

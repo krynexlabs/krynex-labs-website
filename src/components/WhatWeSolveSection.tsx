@@ -63,7 +63,7 @@ export default function WhatWeSolveSection() {
   ];
 
   return (
-    <section id="what-we-solve" className="relative py-24 sm:py-32 bg-[#050505] border-t border-white/[0.08] overflow-hidden">
+    <section id="what-we-solve" className="relative py-16 sm:py-24 lg:py-32 bg-[#050505] border-t border-white/[0.08] overflow-hidden">
       {/* Subtle radial spotlight */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[400px] bg-[radial-gradient(ellipse_70%_40%_at_50%_50%,rgba(255,255,255,0.03),transparent_70%)] pointer-events-none" />
 
@@ -87,7 +87,7 @@ export default function WhatWeSolveSection() {
           {problems.map((prob) => (
             <div
               key={prob.number}
-              className="p-8 rounded-3xl bg-[#111111] border border-white/[0.08] hover:border-white/[0.22] transition-all flex flex-col justify-between group relative overflow-hidden"
+              className="p-6 sm:p-8 rounded-3xl bg-[#111111] border border-white/[0.08] hover:border-white/[0.22] transition-all flex flex-col justify-between group relative overflow-hidden"
             >
               <div className="absolute top-0 left-6 right-6 h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent pointer-events-none" />
 
@@ -123,9 +123,9 @@ export default function WhatWeSolveSection() {
           ))}
 
           {/* 6th Callout Card */}
-          <div className="p-8 rounded-3xl bg-[#111111] border border-white/10 hover:border-white/[0.22] transition-all flex flex-col justify-between">
+          <div className="p-6 sm:p-8 rounded-3xl bg-[#111111] border border-white/10 hover:border-white/[0.22] transition-all flex flex-col justify-between">
             <div>
-              <span className="text-[10px] font-mono text-zinc-400 uppercase tracking-wider block mb-4">
+              <span className="text-[10px] font-mono text-zinc-400 uppercase tracking-widest block mb-4">
                 PRACTICAL ENGINEERING
               </span>
               <h3 className="text-xl font-bold text-white mb-3">
@@ -140,7 +140,7 @@ export default function WhatWeSolveSection() {
               <span className="text-xs font-mono text-zinc-400">AHMEDABAD LABS</span>
               <Link
                 href="/products"
-                className="inline-flex items-center gap-1.5 text-xs font-mono text-zinc-300 hover:text-white font-semibold"
+                className="inline-flex items-center gap-1.5 text-xs font-mono text-zinc-300 hover:text-white font-semibold py-2 px-3 -my-2 -mx-3 rounded-lg"
               >
                 <span>Explore Products</span>
                 <ArrowRight className="w-3.5 h-3.5" />

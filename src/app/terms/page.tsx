@@ -214,7 +214,7 @@ export default function TermsPage() {
               Except as expressly set forth in a signed enterprise master subscription agreement, Krynex Labs software applications, APIs, and sandbox environments are provided on an &ldquo;as is&rdquo; and &ldquo;as available&rdquo; basis without warranties of any kind, whether express or implied.
             </p>
             <p className="text-zinc-400 leading-relaxed">
-              To the maximum extent permitted under applicable law, in no event shall Krynex Labs, its founders, or engineering personnel be liable for any indirect, incidental, punitive, or consequential damages (including loss of business revenue, legal dispute costs, or production scrap penalties) arising out of or in connection with the use of our software. In all events, Krynex Labs&rsquo; total aggregate cumulative liability arising from any claim shall be strictly capped at the total subscription fees paid by the subscriber to Krynex Labs during the twelve (12) months immediately preceding the event giving rise to liability.
+              To the maximum extent permitted under applicable law, in no event shall Krynex Labs, its officers, directors, employees, or engineering personnel be liable for any indirect, incidental, punitive, or consequential damages (including loss of business revenue, legal dispute costs, or production scrap penalties) arising out of or in connection with the use of our software. In all events, Krynex Labs&rsquo; total aggregate cumulative liability arising from any claim shall be strictly capped at the total subscription fees paid by the subscriber to Krynex Labs during the twelve (12) months immediately preceding the event giving rise to liability.
             </p>
           </section>
 
