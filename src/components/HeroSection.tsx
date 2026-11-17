@@ -152,7 +152,7 @@ export default function HeroSection({ onRequestDemo }: HeroSectionProps) {
                 <div className="text-base sm:text-lg font-bold text-white tracking-tight font-mono">
                   SaaS Products
                 </div>
-                <span className="text-[10px] text-zinc-500">Recurring software access</span>
+                <span className="text-[10px] text-zinc-400">Recurring software access</span>
               </div>
 
               <div className="flex flex-col">
@@ -163,7 +163,7 @@ export default function HeroSection({ onRequestDemo }: HeroSectionProps) {
                 <div className="text-base sm:text-lg font-bold text-white tracking-tight font-mono">
                   SolarOps
                 </div>
-                <span className="text-[10px] text-zinc-500">Solar EPC &amp; O&amp;M software</span>
+                <span className="text-[10px] text-zinc-400">Solar EPC &amp; O&amp;M software</span>
               </div>
 
               <div className="flex flex-col">
@@ -174,7 +174,7 @@ export default function HeroSection({ onRequestDemo }: HeroSectionProps) {
                 <div className="text-base sm:text-lg font-bold text-white tracking-tight font-mono">
                   LawOS
                 </div>
-                <span className="text-[10px] text-zinc-500">Document automation</span>
+                <span className="text-[10px] text-zinc-400">Document automation</span>
               </div>
 
               <div className="flex flex-col">
@@ -185,7 +185,7 @@ export default function HeroSection({ onRequestDemo }: HeroSectionProps) {
                 <div className="text-base sm:text-lg font-bold text-white tracking-tight font-mono">
                   Dependable
                 </div>
-                <span className="text-[10px] text-zinc-500">Built for continuous operations</span>
+                <span className="text-[10px] text-zinc-400">Built for continuous operations</span>
               </div>
             </div>
           </div>

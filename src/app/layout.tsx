@@ -332,9 +332,10 @@ export default function RootLayout({
           `}
         </Script>
 
-        {/* Google Tag (gtm.js) Container - GTM-5396X9HG (Placed immediately after <head>) */}
-        <script
-          async
+        {/* Google Tag (gtm.js) Container - GTM-5396X9HG (Optimized post-hydration afterInteractive strategy) */}
+        <Script
+          id="google-tag-manager"
+          strategy="afterInteractive"
           src="https://www.googletagmanager.com/gtm.js?id=GTM-5396X9HG"
         />
 

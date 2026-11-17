@@ -136,9 +136,22 @@ export default function IndustriesSection() {
                   </span>
                   <Link
                     href={ind.productLink}
+                    aria-label={
+                      ind.id === "solar"
+                        ? "Explore SolarOps CleanTech platform"
+                        : ind.id === "legal"
+                        ? "Explore Krynex LawOS LegalTech software"
+                        : "Explore Krynex industrial technology capabilities"
+                    }
                     className="inline-flex items-center gap-1.5 text-xs font-mono text-zinc-300 hover:text-white font-semibold py-2 px-3 -my-2 -mx-3 rounded-lg"
                   >
-                    <span>Learn More</span>
+                    <span>
+                      {ind.id === "solar"
+                        ? "Explore SOLAROPS"
+                        : ind.id === "legal"
+                        ? "Explore KRYNEX LAWOS"
+                        : "Explore Technology Capabilities"}
+                    </span>
                     <ArrowRight className="w-3.5 h-3.5" />
                   </Link>
                 </div>

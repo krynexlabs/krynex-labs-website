@@ -102,8 +102,8 @@ export default function ProductsShowcase({ onRequestDemo }: ProductsShowcaseProp
                   {/* Problem & Solution Contrast */}
                   <div className="space-y-3 mb-6 pt-4 border-t border-white/[0.04]">
                     <div>
-                      <div className="text-[10px] font-mono uppercase tracking-wider text-zinc-500 mb-1 flex items-center gap-1">
-                        <AlertCircle className="w-3 h-3 text-zinc-500 shrink-0" />
+                      <div className="text-[10px] font-mono uppercase tracking-wider text-zinc-400 mb-1 flex items-center gap-1">
+                        <AlertCircle className="w-3 h-3 text-zinc-400 shrink-0" />
                         <span>Problem Solved:</span>
                       </div>
                       <div className="text-xs text-zinc-300 font-medium line-clamp-2">
@@ -112,7 +112,7 @@ export default function ProductsShowcase({ onRequestDemo }: ProductsShowcaseProp
                     </div>
 
                     <div>
-                      <div className="text-[10px] font-mono uppercase tracking-wider text-zinc-500 mb-1 flex items-center gap-1">
+                      <div className="text-[10px] font-mono uppercase tracking-wider text-zinc-400 mb-1 flex items-center gap-1">
                         <CheckCircle2 className="w-3 h-3 text-white shrink-0" />
                         <span>Software Solution:</span>
                       </div>
@@ -124,7 +124,7 @@ export default function ProductsShowcase({ onRequestDemo }: ProductsShowcaseProp
 
                   {/* Main Verified / Planned Features */}
                   <div className="space-y-1.5 mb-6 pt-3 border-t border-white/[0.04]">
-                    <div className="text-[10px] font-mono uppercase tracking-wider text-zinc-500 mb-1">
+                    <div className="text-[10px] font-mono uppercase tracking-wider text-zinc-400 mb-1">
                       {product.status === "Live" ? "Verified Capabilities:" : "Planned Capabilities:"}
                     </div>
                     {product.features.slice(0, 2).map((feat, fIdx) => (
@@ -139,11 +139,12 @@ export default function ProductsShowcase({ onRequestDemo }: ProductsShowcaseProp
                 {/* Card Footer: Access Status & Primary CTA with 44px tap target */}
                 <div className="pt-5 border-t border-white/[0.08] flex flex-col gap-3">
                   <div className="flex items-center justify-between text-xs font-mono">
-                    <span className="text-zinc-500 uppercase tracking-wider text-[10px]">Access Model</span>
+                    <span className="text-zinc-400 uppercase tracking-wider text-[10px]">Access Model</span>
                     <span className="text-zinc-300 font-medium">Recurring Subscription</span>
                   </div>
                   <Link
                     href={`/products/${product.slug}`}
+                    aria-label={`Explore ${product.name} architecture and subscription access`}
                     className="inline-flex items-center justify-between w-full px-5 py-3 rounded-xl bg-[#F5F5F5] text-[#050505] font-semibold text-xs hover:bg-white transition-all shadow-[0_0_15px_rgba(255,255,255,0.1)] group/btn min-h-[44px]"
                   >
                     <span>Explore {product.name}</span>

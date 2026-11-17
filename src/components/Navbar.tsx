@@ -88,7 +88,7 @@ export default function Navbar({ onRequestDemo }: NavbarProps) {
             <Link
               href="/"
               className="flex items-center group focus:outline-none focus-visible:ring-1 focus-visible:ring-white/40 rounded-lg p-1 -m-1"
-              aria-label="Krynex Labs - Return to Home"
+              aria-label="Krynex Labs"
             >
               <KrynexLogo size="md" showTagline={false} />
             </Link>

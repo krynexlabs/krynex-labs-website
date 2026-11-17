@@ -217,6 +217,7 @@ export default function TechnologyPage() {
 
                   <Link
                     href={cap.link}
+                    aria-label={`View architectural deep-dive for ${cap.title}`}
                     className="inline-flex items-center gap-1.5 text-xs font-mono text-zinc-300 hover:text-white transition-colors shrink-0 py-2 px-3 -my-2 -mx-3 rounded-lg"
                   >
                     <span>View Architectural Deep-Dive</span>

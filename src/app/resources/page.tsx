@@ -152,9 +152,10 @@ export default function ResourcesPage() {
                   <span className="text-xs font-mono text-zinc-500">Krynex Labs Telemetry Dossier</span>
                   <Link
                     href={paper.link}
+                    aria-label={`Read whitepaper: ${paper.title}`}
                     className="inline-flex items-center gap-1.5 text-xs font-mono text-zinc-300 hover:text-white font-semibold py-2 px-3 -my-2 -mx-3 rounded-lg"
                   >
-                    <span>Read Overview</span>
+                    <span>Read Whitepaper</span>
                     <ArrowRight className="w-3.5 h-3.5" />
                   </Link>
                 </div>

@@ -420,7 +420,7 @@ export default function Footer({ onRequestDemo, hideInquirySection = false }: Fo
               href="/"
               onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
               className="inline-flex items-center mb-4 group focus:outline-none focus-visible:ring-1 focus-visible:ring-white/40 rounded-lg p-1 -m-1"
-              aria-label="Krynex Labs - Return to top"
+              aria-label="Krynex Labs"
             >
               <KrynexLogo size="md" showTagline={true} />
             </Link>
@@ -592,7 +592,7 @@ export default function Footer({ onRequestDemo, hideInquirySection = false }: Fo
                     }
                   }}
                   className="hover:text-white transition-colors text-left font-normal text-xs py-1"
-                  aria-label="Open Telemetry &amp; Cookie Consent Settings"
+                  aria-label="Cookie Settings"
                 >
                   Cookie Settings
                 </button>

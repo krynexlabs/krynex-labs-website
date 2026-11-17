@@ -137,14 +137,16 @@ export default function ProductsDirectory({ products }: ProductsDirectoryProps) 
 
                 <Link
                   href={`/products/${product.slug}`}
+                  aria-label={`Explore ${product.name} architecture and subscription pricing`}
                   className="inline-flex items-center justify-center w-full px-4 py-3 rounded-xl bg-white text-black font-semibold text-xs hover:bg-zinc-200 transition-all shadow-[0_0_15px_rgba(255,255,255,0.1)] gap-1.5 min-h-[44px]"
                 >
-                  <span>Explore Product &amp; Pricing</span>
+                  <span>Explore {product.name} &amp; Pricing</span>
                   <ArrowRight className="w-3.5 h-3.5" />
                 </Link>
 
                 <Link
                   href={`/contact?product=${product.slug}`}
+                  aria-label={`Request sandbox trial for ${product.name}`}
                   className="inline-flex items-center justify-center w-full px-4 py-3 rounded-xl bg-white/[0.03] hover:bg-white/[0.08] border border-white/10 text-xs font-mono text-zinc-300 hover:text-white transition-all min-h-[44px]"
                 >
                   Request Sandbox Trial &rarr;
